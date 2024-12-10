@@ -97,9 +97,16 @@
                                         <h4><?= $npm; ?></h4>
                                     </li>
                                     <h5 class="card-title"><b>Email :</b></h5>
-                                    <li class="list-group-item">
-                                        <h4><?= $email; ?></h4>
-                                    </li>
+                                    <?php if (!empty($email)) : ?>
+                                        <li class="list-group-item">
+                                            <h4><?= $email; ?></h4>
+                                        </li>
+                                    <?php else : ?>
+                                        <li class="list-group-item">
+                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#modalEmail" class="small-box-footer">Tambahkan Email</a>
+                                            </h5>
+                                        </li>
+                                    <?php endif; ?>
                                     <!-- <h5 class="card-title"><b>Point :</b></h5>
                                     <li class="list-group-item">
                                         <h4><?= $point; ?></h4>
@@ -150,6 +157,33 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal box Tambah Email -->
+<div class="modal fade" id="modalEmail" tabindex="-1" role="dialog" aria-labelledby="addEmailModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addEmailModalLabel">Tambahkan Email</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Add your form or content for adding email here -->
+                <!-- Example: -->
+                <form action="/Role_User/save_email" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="<?= $id; ?>">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Simpan Email</button>
+                </form>
             </div>
         </div>
     </div>

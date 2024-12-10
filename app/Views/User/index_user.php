@@ -50,31 +50,13 @@
                           <h5 class="card-title"><b>Email : </b>
                             <a href="javascript:void(0);" data-toggle="modal" data-target="#modalEmail" class="small-box-footer">Tambahkan Email</a>
                           </h5>
-                        <?php endif; ?>
-                        <li class="list-group-item">
-                          <h5 class="card-title"><b>Point : </b><?= $point; ?></h5>
                         </li>
-                        <li class="list-group-item">
-                          <h5 class="card-title"><b>Level : </b>
-                            <?php
-                            $selectedBadge = null;
-                            foreach ($badges as $badge) {
-                              if ($point >= $badge['point']) {
-                                $selectedBadge = $badge;
-                              } else {
-                                break; // Menghentikan iterasi jika poin mahasiswa tidak cukup untuk badge berikutnya
-                              }
-                            }
-
-                            if ($selectedBadge !== null) {
-                              echo $selectedBadge['nama'];
-                            } else {
-                              echo 'Tidak ada badge';
-                            }
-                            ?></h5>
-                        </li>
-                        <li class="list-group-item">
-                          <h5 class="card-title"><b>Badges : </b></h5>
+                      <?php endif; ?>
+                      <li class="list-group-item">
+                        <h5 class="card-title"><b>Point : </b><?= $point; ?></h5>
+                      </li>
+                      <li class="list-group-item">
+                        <h5 class="card-title"><b>Level : </b>
                           <?php
                           $selectedBadge = null;
                           foreach ($badges as $badge) {
@@ -86,12 +68,31 @@
                           }
 
                           if ($selectedBadge !== null) {
-                            echo '<img src="data:image/png;base64,' . base64_encode($selectedBadge['badges']) . '" width="85">';
+                            echo $selectedBadge['nama'];
                           } else {
                             echo 'Tidak ada badge';
                           }
-                          ?>
-                        </li>
+                          ?></h5>
+                      </li>
+                      <li class="list-group-item">
+                        <h5 class="card-title"><b>Badges : </b></h5>
+                        <?php
+                        $selectedBadge = null;
+                        foreach ($badges as $badge) {
+                          if ($point >= $badge['point']) {
+                            $selectedBadge = $badge;
+                          } else {
+                            break; // Menghentikan iterasi jika poin mahasiswa tidak cukup untuk badge berikutnya
+                          }
+                        }
+
+                        if ($selectedBadge !== null) {
+                          echo '<img src="data:image/png;base64,' . base64_encode($selectedBadge['badges']) . '" width="85">';
+                        } else {
+                          echo 'Tidak ada badge';
+                        }
+                        ?>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -99,84 +100,117 @@
             </div>
           </div>
         </div>
-        <!-- Menampilkan Diagram Donut -->
-        <div class="col-lg-6 col-md-12 mb-3">
-          <div class="small-box border border-dark">
-            <!-- Canvas untuk grafik donut -->
-            <canvas id="donutChart" width="285" height="285"></canvas>
+        <!-- Menampilkan Leaderboard -->
+        <div class="col-lg-6 col-md-12 mb-3 d-flex">
+          <div class="small-box border border-dark flex-fill">
+            <center>
+              <h2><i class="ion ion-trophy"><b> Leaderboard</b></i></h2>
+            </center>
+            <div class="card mb-3">
+              <div class="card-body">
+                <table class="table table-bordered border-dark">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama</th>
+                      <th>Poin</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    // Mengurutkan mahasiswa berdasarkan poin tertinggi
+                    usort($mahasiswa, function ($a, $b) {
+                      return $b['point'] <=> $a['point']; // Urutkan secara descending
+                    });
+
+                    // Mengambil 5 mahasiswa dengan poin tertinggi
+                    $topMahasiswa = array_slice($mahasiswa, 0, 5);
+                    $i = 1;
+                    foreach ($topMahasiswa as $user) : ?>
+                      <tr>
+                        <td><?php echo $i++; ?></td>
+                        <td><?= $user['nama']; ?></td>
+                        <td><?= $user['point']; ?></td>
+                      </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <!-- Menampilkan data -->
-      <div class="row">
-        <div class="col-lg-3 col-md-6 mb-3 ">
-          <!-- small box -->
-          <div class="small-box bg-info">
-            <div class="inner">
-              <h2>Rewards</h2>
-              <!-- Total Rewards -->
-              <p> <?= $totalReward ?> Items </p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-ribbon-a"></i>
-            </div>
-            <a href="javascript:void(0);" data-toggle="modal" data-target="#modalDetailReward" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
-            <!-- <a href="/Role_User/transaksi_reward" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a> -->
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-3 ">
-          <!-- small box -->
-          <div class="small-box bg-danger">
-            <div class="inner">
-              <h2>Pembelian</h2>
-              <!-- Total Challanges  -->
-              <p> <?= $totalPembelian ?> Items </p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-clipboard"></i>
-            </div>
-            <a href="javascript:void(0);" data-toggle="modal" data-target="#modalDetailPembelian" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
-            <!-- <a href="/Role_User/transaksi_pembelian" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a> -->
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-3 ">
-          <!-- small box -->
-          <div class="small-box bg-warning">
-            <div class="inner">
-              <h2>Punishment</h2>
-              <!-- Total data Badges -->
-              <p> <?= $totalPunishment ?> Items </p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-clipboard"></i>
-            </div>
-            <a href="javascript:void(0);" data-toggle="modal" data-target="#modalDetailPunishment" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
-            <!-- <a href="/Role_User/transaksi_punishment" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a> -->
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-3 ">
-          <!-- small box -->
-          <div class="small-box bg-success">
-            <div class="inner">
-              <h2>Misi Tambahan</h2>
-              <!-- Total Challanges  -->
-              <p> <?= $totalMisi ?> Items </p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-clipboard"></i>
-            </div>
-            <a href="javascript:void(0);" data-toggle="modal" data-target="#modalDetailMisi" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
-            <!-- <a href="/Role_User/transaksi_pembelian" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a> -->
-          </div>
-        </div>
-      </div>
-
     </div>
-  </section>
-  <!-- /.content -->
+    <!-- Menampilkan data -->
+    <div class="row">
+      <div class="col-lg-3 col-md-6 mb-3 ">
+        <!-- small box -->
+        <div class="small-box bg-info">
+          <div class="inner">
+            <h2>Rewards</h2>
+            <!-- Total Rewards -->
+            <p> <?= $totalReward ?> Items </p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-ribbon-a"></i>
+          </div>
+          <a href="javascript:void(0);" data-toggle="modal" data-target="#modalDetailReward" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+          <!-- <a href="/Role_User/transaksi_reward" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a> -->
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-3 ">
+        <!-- small box -->
+        <div class="small-box bg-danger">
+          <div class="inner">
+            <h2>Pembelian</h2>
+            <!-- Total Challanges  -->
+            <p> <?= $totalPembelian ?> Items </p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-clipboard"></i>
+          </div>
+          <a href="javascript:void(0);" data-toggle="modal" data-target="#modalDetailPembelian" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+          <!-- <a href="/Role_User/transaksi_pembelian" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a> -->
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-3 ">
+        <!-- small box -->
+        <div class="small-box bg-warning">
+          <div class="inner">
+            <h2>Punishment</h2>
+            <!-- Total data Badges -->
+            <p> <?= $totalPunishment ?> Items </p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-clipboard"></i>
+          </div>
+          <a href="javascript:void(0);" data-toggle="modal" data-target="#modalDetailPunishment" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+          <!-- <a href="/Role_User/transaksi_punishment" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a> -->
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-3 ">
+        <!-- small box -->
+        <div class="small-box bg-success">
+          <div class="inner">
+            <h2>Misi Tambahan</h2>
+            <!-- Total Challanges  -->
+            <p> <?= $totalMisi ?> Items </p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-clipboard"></i>
+          </div>
+          <a href="javascript:void(0);" data-toggle="modal" data-target="#modalDetailMisi" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+          <!-- <a href="/Role_User/transaksi_pembelian" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a> -->
+        </div>
+      </div>
+    </div>
+
+</div>
+</section>
+<!-- /.content -->
 
 </div>
 

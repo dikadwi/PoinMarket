@@ -32,15 +32,14 @@
                          </p>
                      </a>
                  </li>
-
-                 <!-- <li class="nav-item">
-                     <a href="/Transaksi/validasi" class="nav-link">
-                         <i class="nav-icon fas fa-file"></i>
+                 <li class="nav-item">
+                     <a href="#Challange" class="nav-link">
+                         <i class="nav-icon fas fa-trophy"></i>
                          <p>
-                             Validasi
+                             Challange
                          </p>
                      </a>
-                 </li> -->
+                 </li>
              </ul>
          </nav>
          <!-- /.sidebar-menu -->

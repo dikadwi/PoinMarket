@@ -24,8 +24,6 @@ class BadgesModel extends Model
         return $this->findAll();
     }
 
-
-
     public function saveBadge($data)
     {
         return $this->insert($data);
@@ -35,14 +33,4 @@ class BadgesModel extends Model
     {
         return $this->countAll();
     }
-
-    // public function total()
-    // {
-    //     return $this->countAll();
-    // }
-
-    // public function getId($id_badges)
-    // {
-    //     return $this->where(['id_badges' => $id_badges])->find();
-    // }
 }

@@ -31,48 +31,104 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 // $routes->get('/', 'Login::index');
 
+$routes->get('learning', 'Learning::index');
+
+//Memilih Page Login & Landing Page
+$routes->get('pilih', 'LandingPage::pilih');
+$routes->get('Landing', 'LandingPage::page');
+$routes->get('Landing1', 'LandingPage::page1');
+$routes->get('Landing2', 'LandingPage::page2');
+$routes->get('Landing3', 'LandingPage::page3');
+$routes->get('Landing4', 'LandingPage::page4');
+$routes->get('Landing5', 'LandingPage::page5');
+
+$routes->get('tespage', 'LandingPage::tes');
+$routes->get('tespage1', 'LandingPage::tes1');
+$routes->get('tespage2', 'LandingPage::tes2');
+$routes->get('tespage3', 'LandingPage::tes3');
+$routes->get('tespage4', 'LandingPage::tes4');
+$routes->get('tespage5', 'LandingPage::tes5');
+// Menampilkan halaman utama (dengan Filter Login)
+// $routes->get('/', 'Admin::index',  ['filter' => 'login']);
+$routes->get('Login/detail', 'Login::detail'); // Menampilkan profil User (Admin/Mahasiswa yang sedang Login)
+
+// Routes Untuk Controller Login
+// Login User (Admin)
+$routes->get('login', 'Login::index'); //Login Admin
+// $routes->get('logout', 'Login::logout'); //Logout Admin
+//Login User (Mahasiswa)
+$routes->get('loginMhs', 'Login::loginMhs'); //Login Mahasiswa
+$routes->post('Login/process', 'Login::process'); //Proses Login Mahasiswa
+$routes->get('logoutM', 'Login::logoutM'); //Logout Mahasiswa
+
+// Routes untuk Controller Register
+// Register User (Mahasiswa)
+$routes->get('registerMhs', 'Register::registerMhs'); //Halaman Register Mahasiswa
+$routes->post('Register/add', 'Register::add'); //Menyimpan data register mahasiswa
+
+//Routes untuk Controller PoinMarket_Admin
+// Menampilkan Halaman Utama (Controller Admin)
+$routes->get('/', 'PoinMarket_Admin\Admin::index',  ['filter' => 'login']);
+$routes->get('/profile/(:num)', 'PoinMarket_Admin\Admin::profile/$1',  ['filter' => 'login']);
 
 
-
-$routes->get('Login/detail', 'Login::detail');
-
-$routes->get('registerMhs', 'Register::registerMhs');
-$routes->post('Register/add', 'Register::add');
-
-$routes->get('/', 'Admin::index',  ['filter' => 'login']);
-
-// //Menampilkan Halaman Login Admin
-$routes->get('login', 'Login::index');
-// $routes->get('logout', 'Login::logout');
-
-// //Menampilkan Halaman Login Admin
-$routes->get('loginMhs', 'Login::loginMhs');
-$routes->post('Login/process', 'Login::process');
-$routes->get('logoutM', 'Login::logoutM');
-// //Menampilkan halaman Register
-// $routes->get('register', 'Register::index');
-// $routes->post('Register/add', 'Register::add');
-
-// Group untuk Controller Mahasiswa
-$routes->group('Role_User', ['filter' => 'login_m'], function ($routes) {
-    $routes->get('', 'Role_User::index');
-    $routes->get('profile', 'Role_User::detail');
-    $routes->post('save_email', 'Role_User::save_email');
-    $routes->post('Update_Profile', 'Role_User::Update_Profile');
-    $routes->get('data_transaksi', 'Role_User::data_transaksi');
-    $routes->get('badges', 'Role_User::badges');
-    $routes->get('reward', 'Role_User::reward');
-    $routes->get('pembelian', 'Role_User::pembelian');
-    $routes->get('punishment', 'Role_User::punishment');
-    $routes->get('misi_tambahan', 'Role_User::misi');
+// Group untuk Controller User
+$routes->group('User', ['filter' => 'login'], function ($routes) {
+    $routes->get('', 'PoinMarket_Admin\User::index'); //Menampilkan halaman data user
 });
 
 // Group untuk Controller Mahasiswa
-$routes->group('User', ['filter' => 'login'], function ($routes) {
-    $routes->get('', 'User::index');
-    $routes->post('save_Mhs', 'User::save_Mhs');
-    $routes->post('update_Mhs/(:num)', 'User::update_Mhs/$1');
-    $routes->get('delete/(:num)', 'User::delete/$1');
+$routes->group('Mahasiswa', ['filter' => 'login'], function ($routes) {
+    $routes->get('', 'PoinMarket_Admin\Mahasiswa::index'); //Menampilkan halaman data mahasiswa
+    $routes->post('save_Mhs', 'PoinMarket_Admin\Mahasiswa::save_Mhs');
+    $routes->post('update_Mhs/(:num)', 'PoinMarket_Admin\Mahasiswa::update_Mhs/$1');
+    $routes->get('delete/(:num)', 'PoinMarket_Admin\Mahasiswa::delete/$1');
+});
+
+// Group untuk Controller Transaksi
+$routes->group('Transaksi', ['filter' => 'login'], function ($routes) {
+    // ['filter' => 'role:admin']
+    $routes->get('', 'PoinMarket_Admin\Transaksi::index');
+    $routes->get('reward', 'PoinMarket_Admin\Transaksi::reward');
+    $routes->get('pembelian', 'PoinMarket_Admin\Transaksi::pembelian');
+    $routes->get('punishment', 'PoinMarket_Admin\Transaksi::punishment');
+    $routes->get('misi_tambah', 'PoinMarket_Admin\Transaksi::misi_tambah');
+    $routes->post('save_Transaksi', 'PoinMarket_Admin\Transaksi::save_Transaksi');
+    $routes->post('update_transaksi/(:num)', 'PoinMarket_Admin\Transaksi::update_Transaksi/$1');
+    $routes->get('delete_Transaksi/(:num)', 'PoinMarket_Admin\Transaksi::delete_Transaksi/$1');
+});
+
+// Group untuk Controller Misi_Tambah
+$routes->group('Misi_tambah', ['filter' => 'login'], function ($routes) {
+    // ['filter' => 'role:admin']
+    $routes->get('', 'PoinMarket_Admin\Misi_tambah::index');
+    $routes->post('save_Misi', 'PoinMarket_Admin\Misi_tambah::save_Misi');
+    $routes->post('update_Misi/(:num)', 'PoinMarket_Admin\Misi_tambah::update_Misi/$1');
+    $routes->get('delete_Misi/(:num)', 'PoinMarket_Admin\Misi_tambah::delete_Misi/$1');
+});
+
+// Group Routes untuk Controller Badges
+$routes->group('Badges', ['filter' => 'login'], function ($routes) {
+    $routes->get('', 'PoinMarket_Admin\Badges::index');
+    $routes->post('save_badges', 'PoinMarket_Admin\Badges::save_badges');
+    $routes->post('update_badges/(:num)', 'PoinMarket_Admin\Badges::update_badges/$1');
+    $routes->get('delete_badges/(:num)', 'PoinMarket_Admin\Badges::delete_badges/$1');
+});
+
+$routes->group('Validasi', ['filter' => 'login'], function ($routes) {
+    $routes->get('', 'PoinMarket_Admin\Validasi::index');
+    $routes->post('aksi/(:num)', 'PoinMarket_Admin\Validasi::validasiTransaksi/$1');
+});
+
+$routes->group('Jenis_Transaksi', ['filter' => 'login'], function ($routes) {
+    // ['filter' => 'role:admin']
+    $routes->get('reward', 'PoinMarket_Admin\Jenis_Transaksi::reward');
+    $routes->get('pembelian', 'PoinMarket_Admin\Jenis_Transaksi::pembelian');
+    $routes->get('punishment', 'PoinMarket_Admin\Jenis_Transaksi::punishment');
+    $routes->get('misi_tambah', 'PoinMarket_Admin\Jenis_Transaksi::misi_tambah');
+    $routes->post('save_Jenis', 'PoinMarket_Admin\Jenis_Transaksi::save_Jenis');
+    $routes->post('update_Jenis/(:num)', 'PoinMarket_Admin\Jenis_Transaksi::update_Jenis/$1');
+    $routes->get('delete_Jenis/(:num)', 'PoinMarket_Admin\Jenis_Transaksi::delete_Jenis/$1');
 });
 
 // Group untuk Controller Transaksi
@@ -89,49 +145,34 @@ $routes->group('Transaksi', ['filter' => 'login'], function ($routes) {
     $routes->get('validasi', 'Transaksi::validasi');
     $routes->get('data_transaksi', 'Transaksi::data_transaksi');
     $routes->get('data_misitambah', 'Transaksi::data_misitambah');
-    $routes->post('save_transaksi', 'Transaksi::save_transaksi');
-    $routes->post('save_dataTransaksi', 'Transaksi::save_dataTransaksi', ['filter' => 'role:admin']);
-    $routes->post('update_transaksi/(:num)', 'Transaksi::update_transaksi/$1');
-    $routes->post('update_data_transaksi/(:num)', 'Transaksi::update_data_transaksi/$1');
-    $routes->get('delete/(:num)', 'Transaksi::delete/$1');
-    $routes->get('delete_data/(:num)', 'Transaksi::delete_data/$1');
+    // $routes->post('save_transaksi', 'Transaksi::save_transaksi');
+    // $routes->post('save_dataTransaksi', 'Transaksi::save_dataTransaksi', ['filter' => 'role:admin']);
+    // $routes->post('update_transaksi/(:num)', 'Transaksi::update_transaksi/$1');
+    // $routes->post('update_data_transaksi/(:num)', 'Transaksi::update_data_transaksi/$1');
+    // $routes->get('delete/(:num)', 'Transaksi::delete/$1');
+    // $routes->get('delete_data/(:num)', 'Transaksi::delete_data/$1');
 });
 
-// Group Routes untuk Controller Badges
-$routes->group('Badges', ['filter' => 'login'], function ($routes) {
-    $routes->get('', 'Badges::index');
-    $routes->post('save_badges', 'Badges::save_badges');
-    $routes->post('update_badges/(:num)', 'Badges::update_badges/$1');
-    $routes->get('delete/(:num)', 'Badges::delete/$1');
-});
+
 
 // Group untuk Controller Admin
 $routes->group('Admin', ['filter' => 'login'], function ($routes) {
-    $routes->get('transaksi', 'Transaksi::badges');
-    $routes->get('index', 'Admin::index');
-    $routes->get('user', 'Admin::user', ['filter' => 'role:admin']);
-    $routes->get('detail/(:num)', 'Admin::detail/$1');
-    // $routes->get('detail_data/(:num)', 'Admin::detail_data/$1');
-    $routes->get('data', 'Admin::data');
-    $routes->get('printpdf', 'Admin::printpdf');
-    $routes->get('cetakpdf/(:num)', 'Admin::cetakpdf/$1');
-    $routes->get('qrcode', 'Admin::qrcode');
-    $routes->get('roda2', 'Admin::roda2');
-    $routes->get('roda4', 'Admin::roda4');
-    $routes->get('masuk', 'Admin::masuk');
-    //Routes Untuk Menjalankan Perintah Post (Save Data di Controller Perkir)
-    $routes->post('save_jenistransaksi', 'Admin::save_jenistransaksi', ['filter' => 'role:admin']);
-    //Routes Untuk Menjalankan Perintah Post (Save Data di Controller Perkir)
-    $routes->post('save_transaksi', 'Admin::save_transaksi', ['filter' => 'role:admin']);
-    //Routes Untuk Menjalankan Perintah Post (Save Data di Controller Perkir)
-    $routes->post('save_data', 'Admin::save_data', ['filter' => 'role:admin']);
-    //Routes Untuk Menjalankan Perintah Post (Update Data di Controller Perkir)
-    $routes->post('update_data/(:num)', 'Admin::update_data/$1', ['filter' => 'role:admin']);
-    //Routes Untuk Menjalankan Perintah Get (Hapus Data di Controller Perkir)
-    $routes->get('hapus_data/(:num)', 'Admin::hapus_data/$1', ['filter' => 'role:admin']);
     $routes->get('market_place', 'Market_Place::market');
 });
 
+// Group untuk Controller Mahasiswa
+$routes->group('Role_User', ['filter' => 'login_m'], function ($routes) {
+    $routes->get('', 'Role_User::index');
+    $routes->get('profile', 'Role_User::detail');
+    $routes->post('save_email', 'Role_User::save_email');
+    $routes->post('Update_Profile', 'Role_User::Update_Profile');
+    $routes->get('data_transaksi', 'Role_User::data_transaksi');
+    $routes->get('badges', 'Role_User::badges');
+    $routes->get('reward', 'Role_User::reward');
+    $routes->get('pembelian', 'Role_User::pembelian');
+    $routes->get('punishment', 'Role_User::punishment');
+    $routes->get('misi_tambahan', 'Role_User::misi');
+});
 // $routes->get('notification', 'Message::showSweet');
 
 // $routes->get('home', 'Home::index');

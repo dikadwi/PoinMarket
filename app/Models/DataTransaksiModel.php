@@ -90,4 +90,15 @@ class DataTransaksiModel extends Model
         $builder->groupBy('jenis_transaksi');
         return $builder->get()->getResultArray();
     }
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(MahasiswaModel::class, 'npm_mahasiswa', 'npm');
+    }
+
+    // Method baru untuk mengambil transaksi berdasarkan jenis
+    public function getTransaksiByJenis($jenisId)
+    {
+        return $this->where('jenis_transaksi', $jenisId)->findAll();
+    }
 }

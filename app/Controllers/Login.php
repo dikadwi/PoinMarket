@@ -17,6 +17,7 @@ class Login extends BaseController
         $this->MahasiswaModel = new MahasiswaModel();
         $this->JenisTransaksiModel = new JenisTransaksiModel();
     }
+
     public function index()
     {
         return view('auth/login');

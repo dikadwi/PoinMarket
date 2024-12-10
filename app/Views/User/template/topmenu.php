@@ -33,6 +33,11 @@
                 <i class="nav-icon fa fa-ribbon"> Badges</i>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="#Challange" class="nav-link">
+                <i class="nav-icon fa fa-trophy"> Challange</i>
+            </a>
+        </li>
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
