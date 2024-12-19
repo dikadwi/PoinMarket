@@ -17,8 +17,19 @@ class UserModel extends Model
     protected $returnType     = User::class;
     protected $useSoftDeletes = true;
     protected $allowedFields  = [
-        'email', 'username', 'password_hash', 'reset_hash', 'reset_at', 'reset_expires', 'activate_hash',
-        'status', 'status_message', 'active', 'force_pass_reset', 'permissions', 'deleted_at',
+        'email',
+        'username',
+        'password_hash',
+        'reset_hash',
+        'reset_at',
+        'reset_expires',
+        'activate_hash',
+        'status',
+        'status_message',
+        'active',
+        'force_pass_reset',
+        'permissions',
+        'deleted_at',
     ];
     protected $useTimestamps   = true;
     // protected $validationRules = [
@@ -70,6 +81,25 @@ class UserModel extends Model
     //  *
     //  * @return $this
     //  */
+
+    // Fungsi untuk menghapus user dan relasi
+    public function deleteUser($id)
+    {
+        // Cek apakah user dengan ID tersebut ada
+        $user = $this->find($id);
+        if (!$user) {
+            return false; // User tidak ditemukan
+        }
+
+        // Hapus relasi role dari auth_groups_users
+        $db = \Config\Database::connect();
+        $roleBuilder = $db->table('auth_groups_users');
+        $roleBuilder->where('user_id', $id);
+        $roleBuilder->delete();
+
+        // Hapus user dari tabel users
+        return $this->delete($id);
+    }
 
     public function withGroup(string $groupName)
     {

@@ -28,6 +28,20 @@ class Jenis_Transaksi extends BaseController
         $this->MahasiswaModel = new MahasiswaModel();
     }
 
+    public function all()
+    {
+        $session = session();
+
+        $data = [
+            'title' => 'Jenis Transaksi',
+            'username' => $session->get('username'),
+            'transaksi' => $this->TransaksiModel->getTransaksi(),
+            'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+
+        ];
+        return view('PoinMarket_Admin/Page/jenis_transaksi_all', $data);
+    }
+
     public function reward()
     {
         $db      = \Config\Database::connect();
@@ -104,38 +118,47 @@ class Jenis_Transaksi extends BaseController
         return view('PoinMarket_Admin/Page/jenis_transaksi', $data);
     }
 
-    //Save jenis_transaksi
     public function save_Jenis()
     {
         if (!$this->validate([
-            'nama_transaksi' => 'required|is_unique[transaksi.nama_transaksi]',
-            'id_transaksi' => 'required|is_unique[transaksi.id_transaksi]'
+            'nama_transaksi' => 'required',
+            'kode_jenis' => 'required',
+            'poin_digunakan' => 'required'
         ])) {
-            return redirect()->back()->withInput()->with("gagal", "Data Sudah Ada !");
+            return redirect()->back()->withInput()->with("gagal", "Validasi gagal. Mohon cek inputan Anda!");
         }
 
-        $id_transaksi = $this->request->getVar('id_transaksi');
+        // Mengambil Kode Jenis
         $kode_jenis = $this->request->getVar('kode_jenis');
-        $nama = $this->request->getVar('nama_transaksi');
-        $detail = $this->request->getVar('detail');
-        $keterangan = $this->request->getVar('keterangan');
-        $point = $this->request->getVar('poin_digunakan');
 
-        // Generate ID transaksi
-        $nomorUrut = $this->TransaksiModel->getNextNomorUrut($kode_jenis);
-        $id_transaksi = $kode_jenis . str_pad($nomorUrut, 2, '0', STR_PAD_LEFT);
+        // Mengambil id_transaksi terakhir
+        $lastTransaction = $this->TransaksiModel->where('kode_jenis', $kode_jenis)
+            ->orderBy('id_transaksi', 'DESC')
+            ->first();
+        $lastId = $lastTransaction ? (int)substr($lastTransaction['id_transaksi'], strlen($kode_jenis)) : 0;
 
+        // Membuat id_transaksi baru dengan +1 dari id_transaksi terakhir
+        $newId = $lastId + 1;
+        $id_transaksi = $kode_jenis . str_pad($newId, 2, '0', STR_PAD_LEFT);
+
+        // Menyimpan data ke database
         $data = [
             'id_transaksi' => $id_transaksi,
             'kode_jenis' => $kode_jenis,
-            'nama_transaksi' => $nama,
-            'detail' => $detail,
-            'keterangan' => $keterangan,
-            'poin_digunakan' => $point
+            'nama_transaksi' => $this->request->getVar('nama_transaksi'),
+            'detail' => $this->request->getVar('detail'),
+            'keterangan' => $this->request->getVar('keterangan'),
+            'poin_digunakan' => $this->request->getVar('poin_digunakan')
         ];
-        $this->TransaksiModel->save($data);
 
-        session()->setFlashdata("sukses", "Data $nama Berhasil Ditambah.");
+        // Melakukan insert ke database dengan penanganan kesalahan
+        try {
+            $this->TransaksiModel->insert($data);
+            session()->setFlashdata("sukses", "Data {$this->request->getVar('nama_transaksi')} Berhasil Disimpan Dengan ID : {$id_transaksi}.");
+        } catch (\Exception $e) {
+            log_message('error', 'Gagal menyimpan data: ' . $e->getMessage());
+            session()->setFlashdata("gagal", "Gagal menyimpan data. Silakan coba lagi.");
+        }
         return redirect()->back();
     }
 
@@ -162,9 +185,12 @@ class Jenis_Transaksi extends BaseController
     //Menghapus jenis transaksi dari database berdasarkan ID
     public function delete_Jenis($id_transaksi)
     {
+        // Ambil data transaksi berdasarkan ID untuk mendapatkan nama atau informasi lainnya
+        $transaksi = $this->TransaksiModel->find($id_transaksi);
+
         $this->TransaksiModel->delete($id_transaksi);
 
-        session()->setFlashdata("sukses", "Data Berhasil Dihapus.");
+        session()->setFlashdata("sukses", "Data " . $transaksi['nama_transaksi'] . " Berhasil Dihapus.");
 
         return redirect()->back();
     }

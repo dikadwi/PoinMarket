@@ -4,19 +4,22 @@
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
+        <!-- Menampilkan halaman yang ditambahkan ke topmenu -->
+        <!-- <php foreach ($topMenuPages as $page): ?>
+            <li class="nav-item">
+                <a href="<= $page['url']; ?>" class="nav-link">
+                    <i class="nav-icon fa fa-file"> <= $page['title']; ?></i>
+                </a>
+            </li>
+        <php endforeach; ?> -->
         <li class="nav-item">
             <a href="/" class="nav-link">
                 <i class="nav-icon fa fa-home"> Dashboard</i>
             </a>
         </li>
 
-        <?php if (in_groups('admin')) : ?>
-
-            <!-- <li class="nav-item">
-                <a href="" type="button" class="nav-link" data-toggle="modal" data-target="#modalTambah">
-                    <i class="nav-icon fa fa-plus"> Tambah Transaksi</i>
-                </a>
-            </li> -->
+        <!-- <php if (in_groups(['admin', 'validator'])) : ?> -->
+        <?php if (in_groups('admin')) : ?> <!-- Mengambil Role, Jika Role sesuai Menu akan tampil -->
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-tags"> Jenis Transaksi</i> <!-- Ganti ikon sesuai kebutuhan -->
@@ -46,7 +49,6 @@
                     <i class="fas fa-cart-plus"> Market Place</i> <!-- Ganti ikon sesuai kebutuhan -->
                 </a>
             </li>
-
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-newspaper"> Gaya Belajar</i> <!-- Ganti ikon sesuai kebutuhan -->
@@ -64,22 +66,21 @@
                 <!-- date_default_timezone_set('Asia/Jakarta'); echo date(' d-M-Y / H:i:s a'); -->
             </a>
         </li>
-        <?php if (in_groups('admin')) : ?>
-            <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <i class="far fa-user"></i>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <i class="far fa-user"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <a href="/profile/<?= user()->id; ?>" class="dropdown-item">
+                    <i class="fas fa-user mr-2"></i> Profil
                 </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <a href="/profile/<?= user()->id; ?>" class="dropdown-item">
-                        <i class="fas fa-user mr-2"></i> Profil
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="/logout" class="dropdown-item">
-                        <i class="fas fa-reply"></i> Logout
-                    </a>
-                </div>
-            </li>
-        <?php endif; ?>
+                <div class="dropdown-divider"></div>
+                <a href="/logout" class="dropdown-item">
+                    <i class="fas fa-reply"></i> Logout
+                </a>
+            </div>
+        </li>
         <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                 <i class="fas fa-expand-arrows-alt"></i>

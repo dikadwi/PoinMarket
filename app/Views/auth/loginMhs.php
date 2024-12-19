@@ -18,6 +18,10 @@
         .body {
             background-color: aquamarine;
         }
+
+        .alert {
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -33,6 +37,12 @@
             <div class="card-body">
 
                 <?= view('Myth\Auth\Views\_message_block') ?>
+
+                <?php if (session()->getFlashdata('pesan')) : ?>
+                    <div class="alert alert-danger">
+                        <?= session()->getFlashdata('pesan') ?>
+                    </div>
+                <?php endif; ?>
 
                 <form action="/Login/process" method="post">
                     <?= csrf_field() ?>

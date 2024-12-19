@@ -38,7 +38,7 @@ class Admin extends BaseController
         $session = session();
 
         $data = [
-            'title' => 'Point Market',
+            'title' => 'Dashboard',
             'username' => $session->get('username'),
             // 'totaldata' => $this->KendaraanModel->total(),
             'totalReward' => $this->DataTransaksiModel->totalReward(),
@@ -51,6 +51,7 @@ class Admin extends BaseController
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'badges' => $this->BadgesModel->getBadges(),
             'mahasiswa' => $this->MahasiswaModel->getMhs(),
+            'transaksi' => $this->TransaksiModel->getTransaksi(),
         ];
 
         return view('PoinMarket_Admin/index', $data);
@@ -64,7 +65,7 @@ class Admin extends BaseController
 
         $data = [
             'username' => $session->get('username'),
-            'title' => 'Detail',
+            'title' => 'Profile',
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
         ];
         // $users = new \Myth\Auth\Models\UserModel();

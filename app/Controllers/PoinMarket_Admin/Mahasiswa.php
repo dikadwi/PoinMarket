@@ -32,7 +32,7 @@ class Mahasiswa extends BaseController
         $npmList = $this->DataTransaksiModel->getNpmList();
 
         $data = [
-            'title' => 'Data User',
+            'title' => 'Mahasiswa',
             'username' => $session->get('username'),
             'mahasiswa' => $this->MahasiswaModel->getMhs(),
             'badges' => $this->BadgesModel->getBadges(),
@@ -97,11 +97,13 @@ class Mahasiswa extends BaseController
         $nama = $this->request->getPost('nama');
         $npm = $this->request->getPost('npm');
         $point = $this->request->getPost('point');
+        $gaya_belajar = $this->request->getPost('gaya_belajar');
 
         $data = [
             'nama' => $nama,
             'npm' => $npm,
-            'point' => $point
+            'point' => $point,
+            'gaya_belajar' => $gaya_belajar
         ];
 
         $this->MahasiswaModel->update($id, $data);

@@ -31,7 +31,7 @@
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $t['id_transaksi']; ?>">Edit</button>
                     </td>
                     <td>
-                        <button href="/Transaksi/delete/<?= $t['id_transaksi']; ?>" class="btn btn-danger btn-hapus">Hapus</button>
+                        <button href="/Jenis_Transaksi/delete/<?= $t['id_transaksi']; ?>" class="btn btn-danger btn-hapus">Hapus</button>
                     </td>
                 <?php endif; ?>
             </tr>
@@ -51,7 +51,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
                     <div class="col-lg-13">
                         <div class="card mb-3">
                             <div class="row g-0">

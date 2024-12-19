@@ -22,7 +22,19 @@
                  <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                  <li class="nav-header">MENU</li>
-                 <!--Menu  -->
+                 <!-- Menampilkan halaman yang ditambahkan ke sidemenu -->
+                 <!-- <php foreach ($sidemenuPages as $page): ?>
+                     <li class="nav-item">
+                         <a href="<= $page['url']; ?>" class="nav-link">
+                             <i class="nav-icon fas fa-file-alt"></i>
+                             <p>
+                                 <= $page['title']; ?>
+                             </p>
+                         </a>
+                     </li>
+                 <php endforeach; ?> -->
+
+                 <!--Menu  Admin-->
                  <?php if (in_groups('admin')) : ?>
                      <li class="nav-item">
                          <a href="/User" class="nav-link">
@@ -65,6 +77,14 @@
                          <i class="nav-icon fas fa-print"></i>
                          <p>
                              Validasi
+                         </p>
+                     </a>
+                 </li>
+                 <li class="nav-item">
+                     <a href="/cms" class="nav-link">
+                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                         <p>
+                             Content Management System
                          </p>
                      </a>
                  </li>

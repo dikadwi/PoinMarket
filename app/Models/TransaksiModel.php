@@ -10,7 +10,7 @@ class TransaksiModel extends Model
 
     protected $table = 'transaksi';
     protected $primaryKey = 'id_transaksi';
-    protected $allowedFields = ['kode_jenis', 'nama_transaksi', 'detail', 'keterangan', 'poin_digunakan'];
+    protected $allowedFields = ['id_transaksi', 'kode_jenis', 'nama_transaksi', 'detail', 'keterangan', 'poin_digunakan'];
 
     public function getTransaksi()
     {
@@ -88,27 +88,24 @@ class TransaksiModel extends Model
         return null; // Jika tidak ditemukan
     }
 
-    public function getNextNomorUrut($kode_jenis)
-    {
-        $lastTransaksi = $this->where('kode_jenis', $kode_jenis)
-            ->orderBy('id_transaksi', 'DESC')
-            ->first();
+    // // Untuk generate id untuk menambahkan transaksi baru
+    // public function getNextNomorUrut($kode_jenis)
+    // {
+    //     return $this->where('kode_jenis', $kode_jenis)->countAllResults() + 1;
+    // }
 
-        if ($lastTransaksi) {
-            // Ensure $lastTransaksi is an object before accessing its properties
-            if (is_object($lastTransaksi)) {
-                $lastNomorUrut = (int)substr($lastTransaksi->id_transaksi, -2);
-                $nextNomorUrut = $lastNomorUrut + 1;
-            } else {
-                // Handle the case where $lastTransaksi is an array or null
-                // For example, log an error or return a default value
-                log_message('error', 'Unexpected result from query: ' . print_r($lastTransaksi, true));
-                return 1; // Or handle the error differently
-            }
-        } else {
-            $nextNomorUrut = 1;
-        }
+    // public function getNextNomorUrut($kode_jenis)
+    // {
+    //     $lastRecord = $this->where('kode_jenis', $kode_jenis)
+    //         ->orderBy('id_transaksi', 'DESC')
+    //         ->first();
 
-        return $nextNomorUrut;
-    }
+    //     if ($lastRecord) {
+    //         $lastId = $lastRecord['id_transaksi'];
+    //         $lastNumber = (int) substr($lastId, strlen($kode_jenis));
+    //         return $lastNumber + 1;
+    //     }
+
+    //     return 1; // Nomor urut pertama jika belum ada transaksi
+    // }
 }

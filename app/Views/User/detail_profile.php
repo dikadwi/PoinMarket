@@ -3,83 +3,25 @@
 <?= $this->section('content_user'); ?>
 
 <div class="content-wrapper">
-    <div class="container">
-        <h3> Profile </h3>
+    <div class="content-header">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <center>
+                    <h1 class="m-0 text-dark"> <?= $title; ?> </h1>
+                </center>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Role_User">User</a></li>
+                    <li class="breadcrumb-item active"><?= $title; ?></li>
+                </ol>
+            </div>
+        </div>
+    </div>
 
-        <div class="row">
-            <!-- <div class="col-lg-6 col-md-12 mb-3">
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="/img/admin.jpg" class="img-fluid rounded-start">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <ul class="list-group list-group-flush">
-                                    <h5 class="card-title"><b>Nama :</b></h5>
-                                    <li class="list-group-item">
-                                        <h4><?= $username; ?></h4>
-                                    </li>
-                                    <h5 class="card-title"><b>NPM :</b></h5>
-                                    <li class="list-group-item">
-                                        <h4><?= $npm; ?></h4>
-                                    </li>
-                                    <h5 class="card-title"><b>Email :</b></h5>
-                                    <li class="list-group-item">
-                                        <h4><?= $email; ?></h4>
-                                    </li>
-                                    <h5 class="card-title"><b>Point :</b></h5>
-                                    <li class="list-group-item">
-                                        <h4><?= $point; ?></h4>
-                                    </li>
-                                    <h5 class="card-title"><b>Level : </b> </h5>
-                                    <li class="list-group-item">
-                                        <h4>
-                                            <?php
-                                            $selectedBadge = null;
-                                            foreach ($badges as $badge) {
-                                                if ($point >= $badge['point']) {
-                                                    $selectedBadge = $badge;
-                                                } else {
-                                                    break; // Menghentikan iterasi jika poin mahasiswa tidak cukup untuk badge berikutnya
-                                                }
-                                            }
-
-                                            if ($selectedBadge !== null) {
-                                                echo $selectedBadge['nama'];
-                                            } else {
-                                                echo 'Tidak ada badge';
-                                            }
-                                            ?>
-                                        </h4>
-                                    </li>
-                                    <h5 class="card-title"><b>Badges : </b></h5>
-                                    <li class="list-group-item">
-                                        <?php
-                                        $selectedBadge = null;
-                                        foreach ($badges as $badge) {
-                                            if ($point >= $badge['point']) {
-                                                $selectedBadge = $badge;
-                                            } else {
-                                                break; // Menghentikan iterasi jika poin mahasiswa tidak cukup untuk badge berikutnya
-                                            }
-                                        }
-
-                                        if ($selectedBadge !== null) {
-                                            echo '<img src="data:image/png;base64,' . base64_encode($selectedBadge['badges']) . '" width="85">';
-                                        } else {
-                                            echo 'Tidak ada badge';
-                                        }
-                                        ?>
-                                    </li>
-                                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalEdit<?= $npm; ?>">Edit Profil</button>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <div class="col-lg-6 col-md-12 mb-3">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="col-lg-8">
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-md-4">
@@ -107,6 +49,10 @@
                                             </h5>
                                         </li>
                                     <?php endif; ?>
+                                    <h5 class="card-title"><b>Alamat IP :</b></h5>
+                                    <li class="list-group-item">
+                                        <h4><?= $_SERVER['REMOTE_ADDR']; ?></h4>
+                                    </li>
                                     <!-- <h5 class="card-title"><b>Point :</b></h5>
                                     <li class="list-group-item">
                                         <h4><?= $point; ?></h4>
@@ -159,7 +105,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </div>
 
 

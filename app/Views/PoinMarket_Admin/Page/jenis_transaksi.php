@@ -5,18 +5,46 @@
 <div class="content-wrapper">
 
     <div class="content-header">
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahJenisTransaksi">Input</button>
-        <h3>
-            <center>Data <?= $title; ?> <center>
-        </h3>
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <center>
+                    <h1 class="m-0 text-dark">Data <?= $title; ?> </h1>
+                </center>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item "><a href="/Jenis_Transaksi">Jenis Transaksi</a></li>
+                    <li class="breadcrumb-item active"><?= $title; ?></li>
+                </ol>
+            </div>
+        </div>
     </div>
 
     <section class="content">
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
+                <div class="col-md-8">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahJenisTransaksi">Input</button>
+                </div>
+                <!-- Search Belum Jalan -->
+                <div class="col-md-4">
+                    <form action="" method="get">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control" placeholder="Cari... Tambah Filter"> <!--Buat Filter Sesuai $title -->
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-sm-12">
-                    <?= $this->include('PoinMarket_Admin/tabel/tabel_jenis'); ?>
+                    <?= $this->include('PoinMarket_Admin/Tabel/tabel_jenis'); ?>
                 </div>
             </div>
     </section>
@@ -40,7 +68,6 @@
                             <input type="hidden" class="form-control" id="id_transaksi" name="id_transaksi" required>
                         </div>
                     </div>
-
                     <!-- Bagian Jenis Transaksi -->
                     <div class="form-group">
                         <label for="kode_jenis" class="col-form-label">Jenis Transaksi</label>

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= $title; ?></title>
 
+    <link rel="shortcut icon" type="image/png" href="/fafavicon.ico">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -33,7 +34,13 @@
     <link href="<?= base_url() ?>/sweetalert2/package/dist/sweetalert2.min.css">
     <style>
         .swal2-popup {
-            font-size: 1.6rem !important;
+            /* font-size: 1.6rem !important; */
+            /* height: 100px; */
+            /* Menyesuaikan tinggi dengan konten */
+            /* width: 10px; */
+            /* Menentukan lebar popup */
+            font-size: 20px;
+            /* Mengatur ukuran font */
         }
 
         #legend {
@@ -69,6 +76,7 @@
             /* Jarak antara warna dan teks */
         }
     </style>
+
     </script>
 </head>
 
@@ -151,12 +159,14 @@
     <script src="<?= base_url() ?>/template/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <script src="<?= base_url() ?>/sweetalert2/package/dist/sweetalert2.all.js"></script>
     <script src="<?= base_url() ?>/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
 
 
     <script>
+        // Menampilkan Pesan 'sukses' (yang dikirim dari Controller)
         <?php if (session()->has("sukses")) : ?>
             Swal.fire({
                 icon: 'success',
@@ -167,6 +177,19 @@
             })
         <?php endif; ?>
 
+        // Menampilkan Pesan 'validasi' (yang dikirim dari Controller)
+        <?php if (session()->has("validasi")) : ?>
+            Swal.fire({
+                icon: 'info',
+                title: 'Menunggu Validasi',
+                text: '<?= session("validasi") ?>',
+                showConfirmButton: false,
+                timer: 1300
+
+            })
+        <?php endif; ?>
+
+        // Menampilkan Pesan 'gagal' (yang dikirim dari Controller)
         <?php if (session()->has("gagal")) : ?>
             Swal.fire({
                 icon: 'warning',
@@ -177,7 +200,17 @@
             })
         <?php endif; ?>
 
+        // Menampilkan Pesan 'gagal1' (yang dikirim dari Controller)
+        <?php if (session()->has("gagal1")) : ?>
+            Swal.fire({
+                icon: 'warning',
+                title: '<?= session("gagal1") ?>',
+                showConfirmButton: true,
 
+            })
+        <?php endif; ?>
+
+        // Button Konfirmasi Hapus
         $(document).on('click', '.btn-hapus', function(e) {
             e.preventDefault();
             const href = $(this).attr('href');
@@ -199,44 +232,54 @@
             })
         })
 
-        // $(document).on('click', '.btn-beli', function(e) {
-        //     e.preventDefault();
-        //     const href = $(this).attr('href');
+        // Button Konfirmasi Pembelian
+        $(document).on('click', '.btn-beli', function(e) {
+            e.preventDefault();
+            const form = $(this).closest('.buy-form'); // Ambil form terdekat
+            const namaTransaksi = form.find('input[name="nama_transaksi"]').val();
+            const poinDigunakan = form.find('input[name="poin_digunakan"]').val();
 
-        //     Swal.fire({
-        //         title: 'Beli ?',
-        //         text: "Apakah Anda Yakin Ingin Membeli Item !",
-        //         icon: 'warning',
-        //         showCancelButton: true,
-        //         confirmButtonColor: '#3085d6',
-        //         cancelButtonColor: '#d33',
-        //         confirmButtonText: 'Beli',
-        //         cancelButtonText: 'Batal',
+            Swal.fire({
+                // title: 'Beli ?',
+                // text: "Apakah Anda Yakin Ingin Membeli " + namaTransaksi + "!",
+                html: `<p>Apakah Anda yakin ingin membeli <strong>${namaTransaksi}</strong> !</p>
+               <p>Harga : <strong>${poinDigunakan}</strong> Poin</p>`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Beli',
+                cancelButtonText: 'Batal',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit(); // Submit form jika pengguna mengonfirmasi
+                }
+            });
+        })
 
-        //     }).then((result) => {
-        //         if (result.value) {
-        //             document.location.href = href;
-        //         }
-        //     })
-        // })
+        // Button Konfirmasi Misi Tambahan
+        $(document).on('click', '.btn-misi', function(e) {
+            e.preventDefault();
+            const form = $(this).closest('.misi-form'); // Ambil form terdekat
+            const namaTransaksi = form.find('input[name="nama_transaksi"]').val();
+            const poinDigunakan = form.find('input[name="poin_digunakan"]').val();
 
-        // let scanner = new Instascan.Scanner({
-        // video: document.getElementById('preview')
-        //});
-        //Instascan.Camera.getCameras().then(function(cameras) {
-        // if (cameras.length > 0) {
-        // scanner.start(cameras[0]);
-        // } else {
-        // alert('No Camera');
-        //}
-        //}).catch(function(e) {
-        // console.error(e);
-        //});
-
-        scanner.addListener('scan', function(c) {
-            document.getElementById('text').value = c;
-            // document.forms[0].submit();
-        });
+            Swal.fire({
+                title: 'Ambil Misi ?',
+                // text: "Apakah Anda Yakin Ingin Mengerjakan Misi " + namaTransaksi + "!",
+                html: `<p>Apakah Anda yakin ingin Mengerjakan Misi <strong>${namaTransaksi}</strong> !</p>`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Kerjakan',
+                cancelButtonText: 'Batal',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit(); // Submit form jika pengguna mengonfirmasi
+                }
+            });
+        })
     </script>
 
 </body>

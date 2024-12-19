@@ -13,6 +13,7 @@ class LoginFilter implements FilterInterface
         // Cek apakah pengguna sudah login
         $session = session();
         if (!$session->get('isLoggedIn')) {
+            session()->setFlashdata('pesan', 'Harap Login terlebih dahulu !');
             return redirect()->to('/loginMhs'); // Jika belum login, redirect ke halaman login
         }
     }

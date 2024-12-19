@@ -28,6 +28,7 @@ class LoginFilter extends BaseFilter implements FilterInterface
         // If no user is logged in then send them to the login form.
         if (! $this->authenticate->check()) {
             session()->set('redirect_url', current_url());
+            session()->setFlashdata('pesan', 'Harap login terlebih dahulu !');
 
             return redirect($this->reservedRoutes['login']);
         }
@@ -38,7 +39,5 @@ class LoginFilter extends BaseFilter implements FilterInterface
      *
      * @return void
      */
-    public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
-    {
-    }
+    public function after(RequestInterface $request, ResponseInterface $response, $arguments = null) {}
 }

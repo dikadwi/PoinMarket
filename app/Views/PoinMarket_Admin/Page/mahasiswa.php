@@ -5,16 +5,43 @@
 <div class="content-wrapper">
 
     <div class="content-header">
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahMahasiswa">Input</button>
-        <h3>
-            <!-- <center>Data Mahasiswa<center> -->
-            <center>Data User (Mahasiswa)<center>
-        </h3>
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <center>
+                    <h1 class="m-0 text-dark">Data <?= $title; ?> </h1>
+                </center>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active"><?= $title; ?></li>
+                </ol>
+            </div>
+        </div>
     </div>
 
     <section class="content">
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-md-8">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahMahasiswa">
+                        <i class="fas fa-plus"></i> Input
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <form action="" method="get">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control" placeholder="Cari... Tambah Filter">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-sm-12">
                     <?= $this->include('PoinMarket_Admin/Tabel/tabel_mahasiswa'); ?>
@@ -30,7 +57,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <!-- <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Mahasiswa</h5> -->
-                <h5 class="modal-title" id="staticBackdropLabel">Tambah Data User</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Mahasiswa</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -58,7 +85,6 @@
                         </div>
                     </div>
                     <div class="form-group ">
-                        <!-- <label for="npm" class="col-form-label">NPM</label> -->
                         <label for="gaya_belajar" class="col-form-label">Gaya Belajar</label>
                         <div class="col-sm-10">
                             <select name="gaya_belajar" id="gaya_belajar" class="form-control" required oninvalid="this.setCustomValidity('Pilih Salah Satu')" oninput="setCustomValidity('')">

@@ -88,6 +88,10 @@ class AuthController extends Controller
             return redirect()->back()->withInput()->with('error', $this->auth->error() ?? lang('Auth.badAttempt'));
         }
 
+        // Simpan alamat IP pengguna ke dalam sesi
+        $user_ip = $this->request->getIPAddress(); // Mendapatkan alamat IP
+        $this->session->set('user_ip', $user_ip); // Menyimpan alamat IP ke dalam sesi
+
         // Is the user being forced to reset their password?
         if ($this->auth->user()->force_pass_reset === true) {
             return redirect()->to(route_to('reset-password') . '?token=' . $this->auth->user()->reset_hash)->withCookies();

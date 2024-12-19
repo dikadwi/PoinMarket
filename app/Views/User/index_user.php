@@ -4,13 +4,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
 <!-- <div class="content-wrapper" style="background-image: url(https://media.istockphoto.com/id/1149543417/id/vektor/konsep-gamifikasi-mengintegrasikan-permainan.jpg?s=612x612&w=0&k=20&c=124BYzvn0F760W-djUx8B-icV0yB9K5LCl21fdberzk=);"> -->
 <div class="content-wrapper">
-
   <div class="content-header">
-
-    <center>
-      <h1><b> POINT MARKET </b></h1>
-    </center>
-
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <center>
+            <h1 class="m-0 text-dark">Poin Market</h1>
+          </center>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/Role_User">User</a></li>
+            <li class="breadcrumb-item active"> <?= $title; ?></li>
+          </ol>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- /.content-header -->
 
@@ -23,11 +32,11 @@
         <!-- Menampilkan Profil -->
         <div class="col-lg-6 col-md-12 mb-3">
           <!-- small box -->
-          <div class="small-box border border-dark">
+          <div class="small-box b flex-fill">
             <center>
               <h2> <i class="ion ion-person"><b> Profil</b></i></h2>
             </center>
-            <div class="card mb-3">
+            <div class="card mb-0 flex-fill">
               <div class="row g-0">
                 <div class="col-md-4">
                   <img src="/img/admin.jpg" class="img-fluid rounded-start">
@@ -52,6 +61,11 @@
                           </h5>
                         </li>
                       <?php endif; ?>
+                      <li class="list-group-item">
+                        <h5 class="card-title"><b>Password : </b>
+                          <a href="javascript:void(0);" data-toggle="modal" data-target="#modalPassword" class="small-box-footer">Ganti Password</a>
+                        </h5>
+                      </li>
                       <li class="list-group-item">
                         <h5 class="card-title"><b>Point : </b><?= $point; ?></h5>
                       </li>
@@ -101,48 +115,92 @@
           </div>
         </div>
         <!-- Menampilkan Leaderboard -->
-        <div class="col-lg-6 col-md-12 mb-3 d-flex">
-          <div class="small-box border border-dark flex-fill">
+        <div class="col-lg-6 col-md-12 mb-3">
+          <div class="small-box b flex-fill">
             <center>
               <h2><i class="ion ion-trophy"><b> Leaderboard</b></i></h2>
             </center>
-            <div class="card mb-3">
-              <div class="card-body">
-                <table class="table table-bordered border-dark">
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Nama</th>
-                      <th>Poin</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    // Mengurutkan mahasiswa berdasarkan poin tertinggi
-                    usort($mahasiswa, function ($a, $b) {
-                      return $b['point'] <=> $a['point']; // Urutkan secara descending
-                    });
+            <div class="card mb-0 flex-fill">
+              <table class="table table-bordered border-light h-100">
+                <thead class="bg-info">
+                  <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Poin</th>
+                    <th>Level</th>
+                    <th>Badges</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  // Mengurutkan mahasiswa berdasarkan poin tertinggi
+                  usort($mahasiswa, function ($a, $b) {
+                    return $b['point'] <=> $a['point']; // Urutkan secara descending
+                  });
 
-                    // Mengambil 5 mahasiswa dengan poin tertinggi
-                    $topMahasiswa = array_slice($mahasiswa, 0, 5);
-                    $i = 1;
-                    foreach ($topMahasiswa as $user) : ?>
-                      <tr>
-                        <td><?php echo $i++; ?></td>
-                        <td><?= $user['nama']; ?></td>
-                        <td><?= $user['point']; ?></td>
-                      </tr>
-                    <?php endforeach; ?>
-                  </tbody>
-                </table>
-              </div>
+                  // Mengambil 5 mahasiswa dengan poin tertinggi
+                  $topMahasiswa = array_slice($mahasiswa, 0, 5);
+                  $i = 1;
+                  foreach ($topMahasiswa as $user) : ?>
+                    <tr>
+                      <td class="<?= ($i == 1) ? 'gold' : (($i == 2) ? 'silver' : (($i == 3) ? 'bronze' : '')) ?>">
+                        <!-- Menampilkan ikon sesuai peringkat -->
+                        <i class="fas <?= ($i == 1) ? 'fa-trophy' : (($i == 2) ? 'fa-trophy' : (($i == 3) ? 'fa-trophy' : (($i == 4) ? 'fa-medal' : (($i == 5) ? 'fa-medal' : '')))) ?>"
+                          style="color: <?= ($i == 1) ? 'gold' : (($i == 2) ? 'silver' : (($i == 3) ? 'bronze' : (($i == 4) ? 'gold' : 'silver'))) ?>"></i>
+                        <?php echo $i++; ?>
+                      </td>
+                      <td><?= $user['nama']; ?></td>
+                      <td><?= $user['point']; ?></td>
+                      <td>
+                        <?php
+                        $selectedBadge = null;
+                        foreach ($badges as $badge) {
+                          if ($user['point'] >= $badge['point']) {
+                            $selectedBadge = $badge;
+                          } else {
+                            break; // Menghentikan iterasi jika poin mahasiswa tidak cukup untuk badge berikutnya
+                          }
+                        }
+
+                        if ($selectedBadge !== null) {
+                          echo $selectedBadge['nama'];
+                        } else {
+                          echo 'Tidak ada Level';
+                        }
+                        ?>
+                      </td>
+                      <td>
+
+                        <?php
+                        $selectedBadge = null;
+                        foreach ($badges as $badge) {
+                          if ($user['point'] >= $badge['point']) {
+                            $selectedBadge = $badge;
+                          } else {
+                            break; // Menghentikan iterasi jika poin mahasiswa tidak cukup untuk badge berikutnya
+                          }
+                        }
+
+                        if ($selectedBadge !== null) {
+                          echo '<img src="data:image/png;base64,' . base64_encode($selectedBadge['badges']) . '" width="50">';
+                        } else {
+                          echo 'Tidak ada badge';
+                        }
+                        ?>
+
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
     </div>
+
     <!-- Menampilkan data -->
-    <div class="row">
+    <div class="row ">
       <div class="col-lg-3 col-md-6 mb-3 ">
         <!-- small box -->
         <div class="small-box bg-info">
@@ -206,12 +264,12 @@
           <!-- <a href="/Role_User/transaksi_pembelian" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a> -->
         </div>
       </div>
+
     </div>
 
-</div>
-</section>
-<!-- /.content -->
 
+  </section>
+  <!-- /.content -->
 </div>
 
 <!-- Modal box Tambah Email -->
@@ -240,11 +298,41 @@
   </div>
 </div>
 
-
+<!-- Modal box ganti Password -->
+<div class="modal fade" id="modalPassword" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="changePasswordModalLabel">Ganti Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Form Ganti Password -->
+        <form action="/Role_User/change_password" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="old_password">Password Lama</label>
+            <input type="password" class="form-control" id="old_password" name="old_password" required>
+          </div>
+          <div class="form-group">
+            <label for="new_password">Password Baru</label>
+            <input type="password" class="form-control" id="new_password" name="new_password" required>
+          </div>
+          <div class="form-group">
+            <label for="confirm_password">Konfirmasi Password Baru</label>
+            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Ganti Password</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Modal Box Detail Reward -->
 <div class="modal fade" id="modalDetailReward">
-  <div class=" modal-dialog">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Rewards</h5>
@@ -252,7 +340,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
         <table class="table table-bordered border-dark">
           <thead>
             <tr>
@@ -260,7 +348,7 @@
               <th>Nama Transaksi</th>
               <th>Poin Digunakan</th>
               <th>Tanggal Transaksi</th>
-              <th>Validasi</th>
+              <!-- <th>Validasi</th> -->
             </tr>
           </thead>
           <tbody>
@@ -271,8 +359,8 @@
                   <td><?= $i++; ?></td>
                   <td><?= $data['nama_transaksi']; ?></td>
                   <td><?= $data['poin_digunakan']; ?></td>
-                  <td><?= $data['tanggal_transaksi']; ?></td>
-                  <td>
+                  <td><?= date('d-m-Y', strtotime($data['tanggal_transaksi'])); ?></td>
+                  <!-- <td>
                     <?php
                     switch ($data['validation']) {
                       case 'Sudah':
@@ -285,7 +373,7 @@
                         echo '<span class="badge badge-secondary">Tidak Ada</span>';
                         break;
                     } ?>
-                  </td>
+                  </td> -->
                 </tr>
               <?php endif ?>
             <?php endforeach; ?>
@@ -298,7 +386,7 @@
 
 <!-- Modal Box Detail Pembelian -->
 <div class="modal fade" id="modalDetailPembelian">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Pembelian</h5>
@@ -306,7 +394,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
         <table class="table table-bordered border-dark">
           <thead>
             <tr>
@@ -314,7 +402,7 @@
               <th>Nama Transaksi</th>
               <th>Poin Digunakan</th>
               <th>Tanggal Transaksi</th>
-              <th>Validasi</th>
+              <!-- <th>Validasi</th> -->
             </tr>
           </thead>
           <tbody>
@@ -325,8 +413,8 @@
                   <td><?= $i++; ?></td>
                   <td><?= $data['nama_transaksi']; ?></td>
                   <td><?= $data['poin_digunakan']; ?></td>
-                  <td><?= $data['tanggal_transaksi']; ?></td>
-                  <td>
+                  <td><?= date('d-m-Y', strtotime($data['tanggal_transaksi'])); ?></td>
+                  <!-- <td>
                     <?php
                     switch ($data['validation']) {
                       case 'Sudah':
@@ -339,7 +427,7 @@
                         echo '<span class="badge badge-secondary">Tidak Ada</span>';
                         break;
                     } ?>
-                  </td>
+                  </td> -->
                 </tr>
               <?php endif ?>
             <?php endforeach; ?>
@@ -352,7 +440,7 @@
 
 <!-- Modal Box Detail Punishment -->
 <div class="modal fade" id="modalDetailPunishment">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Punishment</h5>
@@ -360,7 +448,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
         <table class="table table-bordered border-dark">
           <thead>
             <tr>
@@ -368,7 +456,7 @@
               <th>Nama Transaksi</th>
               <th>Poin Digunakan</th>
               <th>Tanggal Transaksi</th>
-              <th>Validasi</th>
+              <!-- <th>Validasi</th> -->
             </tr>
           </thead>
           <tbody>
@@ -379,8 +467,8 @@
                   <td><?= $i++; ?></td>
                   <td><?= $data['nama_transaksi']; ?></td>
                   <td><?= $data['poin_digunakan']; ?></td>
-                  <td><?= $data['tanggal_transaksi']; ?></td>
-                  <td>
+                  <td><?= date('d-m-Y', strtotime($data['tanggal_transaksi'])); ?></td>
+                  <!-- <td>
                     <?php
                     switch ($data['validation']) {
                       case 'Sudah':
@@ -393,7 +481,7 @@
                         echo '<span class="badge badge-secondary">Tidak Ada</span>';
                         break;
                     } ?>
-                  </td>
+                  </td> -->
                 </tr>
               <?php endif ?>
             <?php endforeach; ?>
@@ -404,9 +492,9 @@
   </div>
 </div>
 
-<!-- Modal Box Detail Punishment -->
+<!-- Modal Box Detail Misi Tambahan -->
 <div class="modal fade" id="modalDetailMisi">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Misi Tambahan</h5>
@@ -414,7 +502,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
         <table class="table table-bordered border-dark">
           <thead>
             <tr>
@@ -422,7 +510,7 @@
               <th>Nama Transaksi</th>
               <th>Poin Digunakan</th>
               <th>Tanggal Transaksi</th>
-              <th>Validasi</th>
+              <!-- <th>Validasi</th> -->
             </tr>
           </thead>
           <tbody>
@@ -433,8 +521,8 @@
                   <td><?= $i++; ?></td>
                   <td><?= $data['nama_transaksi']; ?></td>
                   <td><?= $data['poin_digunakan']; ?></td>
-                  <td><?= $data['tanggal_transaksi']; ?></td>
-                  <td>
+                  <td><?= date('d-m-Y', strtotime($data['tanggal_transaksi'])); ?></td>
+                  <!-- <td>
                     <?php
                     switch ($data['validation']) {
                       case 'Sudah':
@@ -447,7 +535,7 @@
                         echo '<span class="badge badge-secondary">Tidak Ada</span>';
                         break;
                     } ?>
-                  </td>
+                  </td> -->
                 </tr>
               <?php endif ?>
             <?php endforeach; ?>

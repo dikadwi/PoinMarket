@@ -23,6 +23,16 @@ class Login extends BaseController
         return view('auth/login');
     }
 
+    public function login()
+    {
+        return view('auth/LoginPage');
+    }
+
+    public function loginMs()
+    {
+        return view('auth/LoginPageMhs');
+    }
+
     public function loginMhs()
     {
         return view('auth/loginMhs');
@@ -72,12 +82,19 @@ class Login extends BaseController
                 $session->set('npm', $mahasiswa['npm']);
                 $session->set('email', $mahasiswa['email']);
                 $session->set('point', $mahasiswa['point']);
+                $session->set('password', $mahasiswa['password']);
 
                 return redirect()->to('/Role_User');
+            } else {
+                // Jika password salah, tampilkan pesan error
+                return redirect()->back()->with('pesan', 'Password salah. Silakan coba lagi !');
             }
+        } else {
+            //Jika Username salah
+            return redirect()->back()->with('pesan', 'Username / Npm Tidak Ditemukan. Silahkan Coba Lagi !');
         }
-        return redirect()->back()->with('error', 'Login failed. Invalid NPM or password.');
     }
+
 
 
     public function logoutM()

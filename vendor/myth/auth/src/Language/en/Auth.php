@@ -28,9 +28,9 @@ return [
     'errorSendingActivation' => 'Failed to send activation message to: {0}',
 
     // Login
-    'badAttempt'      => 'Unable to log you in. Please check your credentials.',
+    'badAttempt'      => 'Tidak dapat Login. Periksa Akun Anda.',
     'loginSuccess'    => 'Welcome back!',
-    'invalidPassword' => 'Unable to log you in. Please check your password.',
+    'invalidPassword' => 'Tidak dapat Login. Periksa Password Anda.',
 
     // Forgotten Passwords
     'forgotDisabled'  => 'Reseting password option has been disabled.',

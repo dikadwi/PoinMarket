@@ -31,13 +31,22 @@ class Role_User extends BaseController
         //Mengambil npm yg sedang login
         $npm = $session->get('npm');
 
+        // Mengambil total poin dari model Mahasiswa
+        $mahasiswaData = $this->MahasiswaModel->getPointByNpm($npm);
+        $totalPoints = $mahasiswaData['point'] ?? 0; // Menggunakan null coalescing operator untuk default 0
+
+        // Memperbarui poin di session
+        $session->set('point', $totalPoints);
+
+
         $data = [
-            'title' => 'Point Market',
+            'title' => 'Dashboard',
             'username' => $session->get('username'),
             'id' => $session->get('user_id'),
             'npm' => $session->get('npm'),
             'email' => $session->get('email'),
-            'point' => $session->get('point'),
+            'point' => $totalPoints, // Menggunakan poin yang diambil
+            'password' => $session->get('password'),
             'totalReward' => $this->DataTransaksiModel->Reward($npm),
             'totalPembelian' => $this->DataTransaksiModel->Pembelian($npm),
             'totalPunishment' => $this->DataTransaksiModel->Punishment($npm),
@@ -59,7 +68,7 @@ class Role_User extends BaseController
         $session = session();
 
         $data = array(
-            'title' => 'Detail',
+            'title' => 'Profile',
             'username' => $session->get('username'),
             'id' => $session->get('user_id'),
             'npm' => $session->get('npm'),
@@ -90,6 +99,38 @@ class Role_User extends BaseController
         return redirect()->back();
     }
 
+    public function change_password()
+    {
+        $session = session();
+        $id = $session->get('user_id');
+
+        if ($this->request->getMethod() == 'post') {
+            $old_password = $this->request->getPost('old_password');
+            $new_password = $this->request->getPost('new_password');
+            $confirm_password = $this->request->getPost('confirm_password');
+
+            if ($new_password != $confirm_password) {
+                session()->setFlashdata("gagal", "Konfirmasi Password tidak cocok.");
+                return redirect()->back();
+            }
+
+            $user = $this->MahasiswaModel->find($id);
+            if (!password_verify($old_password, $user['password'])) {
+                session()->setFlashdata("gagal", "Password Lama tidak Cocok");
+                return redirect()->back();
+            }
+
+            $data_update = [
+                'password' => password_hash($new_password, PASSWORD_DEFAULT),
+            ];
+
+            $this->MahasiswaModel->update($id, $data_update);
+
+            session()->setFlashdata("sukses", "Password Berhasil diubah.");
+
+            return redirect()->back();
+        }
+    }
     public function Update_Profile()
     {
         $id = $this->request->getPost('id');
@@ -132,6 +173,102 @@ class Role_User extends BaseController
             'jenis' => $this->JenisTransaksiModel->getJenis(),
         ];
         return view('User/transaksi/data_transaksi', $data);
+    }
+
+    // Save Transaksi (Logika untuk market place)
+    public function save_Transaksi()
+    {
+        $npm = $this->request->getVar('npm');
+        $poin_digunakan = $this->request->getVar('poin_digunakan');
+
+        // Periksa apakah nilai `$npm` kosong
+        if (empty($npm)) {
+            session()->setFlashdata("gagal", "NPM tidak boleh kosong.");
+            return redirect()->back();
+        }
+
+        // Periksa apakah nilai `$poin_digunakan` kosong
+        if (empty($poin_digunakan)) {
+            session()->setFlashdata("gagal", "Poin yang digunakan tidak boleh kosong.");
+            return redirect()->back();
+        }
+
+        // Ambil informasi poin mahasiswa berdasarkan NPM dari tabel mahasiswa
+        $mahasiswaData = $this->MahasiswaModel->where('npm', $npm)->first();
+
+        if ($mahasiswaData) {
+            $totalPoinMahasiswa = $mahasiswaData['point']; // Sesuaikan dengan nama kolom yang menyimpan total poin mahasiswa
+
+            // Tentukan status validasi berdasarkan jenis transaksi
+            $jenis_transaksi = $this->request->getVar('jenis_transaksi');
+            $validationStatus = '';
+
+            if ($jenis_transaksi == '102' || $jenis_transaksi == '103') {
+                // Jika jenis transaksi adalah 102 (Pembelian) atau 103 (Punishment), status validasi langsung "Sudah"
+                $validationStatus = 'Sudah';
+            } else {
+                // Untuk jenis transaksi lainnya, status validasi adalah "Belum"
+                $validationStatus = 'Belum';
+            }
+
+            // Proses pengurangan/penambahan poin berdasarkan jenis transaksi
+            if ($jenis_transaksi == '102') {
+                // Untuk transaksi 102 (Pembelian), periksa apakah poin cukup
+                if ($totalPoinMahasiswa < $poin_digunakan) {
+                    session()->setFlashdata("gagal1", "Poin tidak cukup untuk pembelian.");
+                    return redirect()->back();
+                } else {
+                    $sisaPoin = $totalPoinMahasiswa - $poin_digunakan;
+                    // Simpan data transaksi ke dalam tabel transaksi
+                    $data_transaksi = [
+                        'id_transaksi' => $this->request->getVar('id_transaksi'),
+                        'jenis_transaksi' => $jenis_transaksi,
+                        'nama_transaksi' => $this->request->getVar('nama_transaksi'),
+                        'npm' => $mahasiswaData['npm'],
+                        'poin_digunakan' => $poin_digunakan,
+                        'tanggal_transaksi' => date('Y-m-d H:i:s'), // Sesuaikan dengan format tanggal
+                        'validation' => $validationStatus // Status validasi sesuai dengan jenis transaksi
+                    ];
+                    // Simpan data transaksi ke dalam tabel transaksi
+                    $this->DataTransaksiModel->insert($data_transaksi);
+                    $this->MahasiswaModel->update($mahasiswaData['id'], ['point' => $sisaPoin]);
+                    session()->setFlashdata("sukses", "Transaksi Berhasil. Total poin sekarang: " . $sisaPoin);
+                }
+            } elseif ($jenis_transaksi == '103') {
+                // Untuk transaksi 103 (Punishment), bisa mengurangi poin lebih dari total poin yang dimiliki (negatif)
+                $sisaPoin = $totalPoinMahasiswa - $poin_digunakan;
+                // Simpan data transaksi ke dalam tabel transaksi
+                $data_transaksi = [
+                    'id_transaksi' => $this->request->getVar('id_transaksi'),
+                    'jenis_transaksi' => $jenis_transaksi,
+                    'nama_transaksi' => $this->request->getVar('nama_transaksi'),
+                    'npm' => $mahasiswaData['npm'],
+                    'poin_digunakan' => $poin_digunakan,
+                    'tanggal_transaksi' => date('Y-m-d H:i:s'), // Sesuaikan dengan format tanggal
+                    'validation' => $validationStatus // Status validasi sesuai dengan jenis transaksi
+                ];
+                // Simpan data transaksi ke dalam tabel transaksi
+                $this->DataTransaksiModel->insert($data_transaksi);
+                $this->MahasiswaModel->update($mahasiswaData['id'], ['point' => $sisaPoin]);
+                session()->setFlashdata("sukses", "Transaksi Berhasil. Total poin sekarang: " . $sisaPoin);
+            } else {
+                // Untuk jenis transaksi lainnya ( 101, 105), simpan data transaksi tanpa memeriksa poin
+                $data_transaksi = [
+                    'id_transaksi' => $this->request->getVar('id_transaksi'),
+                    'jenis_transaksi' => $jenis_transaksi,
+                    'nama_transaksi' => $this->request->getVar('nama_transaksi'),
+                    'npm' => $mahasiswaData['npm'],
+                    'poin_digunakan' => $poin_digunakan,
+                    'tanggal_transaksi' => date('Y-m-d H:i:s'), // Sesuaikan dengan format tanggal
+                    'validation' => $validationStatus // Status validasi sesuai dengan jenis transaksi
+                ];
+                // Simpan data transaksi ke dalam tabel transaksi
+                $this->DataTransaksiModel->insert($data_transaksi);
+                session()->setFlashdata("validasi", "Transaksi Ditambahkan.");
+            }
+
+            return redirect()->back();
+        }
     }
 
     public function reward()

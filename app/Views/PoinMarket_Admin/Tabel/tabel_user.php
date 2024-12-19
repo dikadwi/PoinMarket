@@ -31,9 +31,13 @@
                             <?php echo $u->name; ?>
                         </span>
                     </td>
-                    <td><?= $u->created_at; ?></td>
+                    <td><?= date('d-m-Y', strtotime($u->created_at)); ?></td>
+                    <!-- <td><?= $u->created_at; ?></td> -->
                     <td>
                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $u->userid; ?>">Detail</button>
+                    </td>
+                    <td>
+                        <button href="/User/delete_User/<?= $u->userid; ?>" class="btn btn-danger btn-hapus">Hapus</button>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -53,7 +57,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
                         <div class="col-lg-13">
                             <div class="card mb-3">
                                 <div class="row g-0">

@@ -37,7 +37,7 @@ class Misi_tambah extends BaseController
         $session = session();
 
         $data = [
-            'title' => 'Transaksi Misi Tambahan',
+            'title' => 'Misi Tambahan',
             'username' => $session->get('username'),
             'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
             'transaksi' => $this->TransaksiModel->getTransaksi(),

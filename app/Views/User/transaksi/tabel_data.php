@@ -40,7 +40,7 @@
                 </td>
                 <td><?= $data['nama_transaksi']; ?></td>
                 <td><?= $data['poin_digunakan']; ?></td>
-                <td><?= $data['tanggal_transaksi']; ?></td>
+                <td><?= date('d-m-Y', strtotime($data['tanggal_transaksi'])); ?></td>
                 <td> <?php
                         switch ($data['validation']) {
                             case 'Sudah':
@@ -72,7 +72,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
                     <div class="col-lg-13">
                         <div class="card mb-3">
                             <div class="row g-0">
@@ -119,7 +119,7 @@
                                             </li>
                                             <h5 class="card-title"><b>Tanggal Transaksi :</b></h5>
                                             <li class="list-group-item">
-                                                <h4><?= $data['tanggal_transaksi']; ?></h4>
+                                                <h4><?= date('Y-m-d', strtotime($data['tanggal_transaksi'])); ?></h4>
                                             </li>
                                         </ul>
                                     </div>

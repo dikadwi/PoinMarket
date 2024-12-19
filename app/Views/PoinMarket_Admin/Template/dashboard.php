@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= $title; ?></title>
 
+    <link rel="shortcut icon" type="image/png" href="/fafavicon.ico">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -33,7 +34,13 @@
     <link href="<?= base_url() ?>/sweetalert2/package/dist/sweetalert2.min.css">
     <style>
         .swal2-popup {
-            font-size: 1.6rem !important;
+            /* font-size: 1.6rem !important; */
+            /* height: auto; */
+            /* Menyesuaikan tinggi dengan konten */
+            /* width: auto; */
+            /* Menentukan lebar popup */
+            font-size: 20px;
+            /* Mengatur ukuran font */
         }
 
         #legend {
@@ -67,6 +74,87 @@
             /* Atur tinggi warna */
             margin-right: 5px;
             /* Jarak antara warna dan teks */
+        }
+
+        .small-box .icon {
+            font-size: 36px;
+            transition: font-size 0.3s ease-in-out;
+        }
+
+        .small-box .icon:hover {
+            font-size: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .small-box .icon {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .small-box .icon {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .small-box .icon {
+                font-size: 14px;
+            }
+        }
+
+        .small-box.b {
+            height: 500px;
+            /* Atur tinggi box */
+            overflow-y: auto;
+            /* Tambahkan scrollbar jika isi box melebihi tinggi */
+        }
+
+        .small-box.b canvas {
+            width: 100% !important;
+            /* Atur lebar grafik */
+            height: 400px !important;
+            /* Atur tinggi grafik */
+        }
+
+        .small-box.b table {
+            width: 100% !important;
+            /* Atur lebar tabel */
+            height: 400px !important;
+            /* Atur tinggi tabel */
+            overflow-y: auto;
+            /* Tambahkan scrollbar jika isi tabel melebihi tinggi */
+        }
+
+        /* Sticky header */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            padding: 10px;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Optional: Add a shadow for better readability when scrolled */
+        .fixed-header {
+            position: relative;
+        }
+
+        /* CSS untuk mengatur tinggi baris pada tabel dengan kelas 'table_mahasiswa' */
+        .table tr {
+            height: 50px;
+            /* Atur tinggi baris sesuai kebutuhan */
+        }
+
+        .table td,
+        .table th {
+            padding: 4px;
+            /* Atur padding untuk mengurangi ruang di dalam sel */
+        }
+
+        .select option {
+            font-style: normal;
         }
     </style>
     </script>
@@ -152,12 +240,23 @@
     <script src="<?= base_url() ?>/template/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <script src="<?= base_url() ?>/sweetalert2/package/dist/sweetalert2.all.js"></script>
     <script src="<?= base_url() ?>/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
 
 
     <script>
+        <?php if (session()->getFlashdata('message')): ?>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: '<?= session()->getFlashdata('message'); ?>',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        <?php endif; ?>
+
         <?php if (session()->has("sukses")) : ?>
             Swal.fire({
                 icon: 'success',
@@ -189,6 +288,15 @@
             })
         <?php endif; ?>
 
+        <?php if (session()->has("gagal1")) : ?>
+            Swal.fire({
+                icon: 'warning',
+                title: '<?= session("gagal1") ?>',
+                showConfirmButton: true,
+
+            })
+        <?php endif; ?>
+
 
         $(document).on('click', '.btn-hapus', function(e) {
             e.preventDefault();
@@ -210,45 +318,6 @@
                 }
             })
         })
-
-        // $(document).on('click', '.btn-beli', function(e) {
-        //     e.preventDefault();
-        //     const href = $(this).attr('href');
-
-        //     Swal.fire({
-        //         title: 'Beli ?',
-        //         text: "Apakah Anda Yakin Ingin Membeli Item !",
-        //         icon: 'warning',
-        //         showCancelButton: true,
-        //         confirmButtonColor: '#3085d6',
-        //         cancelButtonColor: '#d33',
-        //         confirmButtonText: 'Beli',
-        //         cancelButtonText: 'Batal',
-
-        //     }).then((result) => {
-        //         if (result.value) {
-        //             document.location.href = href;
-        //         }
-        //     })
-        // })
-
-        // let scanner = new Instascan.Scanner({
-        // video: document.getElementById('preview')
-        //});
-        //Instascan.Camera.getCameras().then(function(cameras) {
-        // if (cameras.length > 0) {
-        // scanner.start(cameras[0]);
-        // } else {
-        // alert('No Camera');
-        //}
-        //}).catch(function(e) {
-        // console.error(e);
-        //});
-
-        scanner.addListener('scan', function(c) {
-            document.getElementById('text').value = c;
-            // document.forms[0].submit();
-        });
     </script>
 
 </body>
