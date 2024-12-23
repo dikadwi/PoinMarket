@@ -9,11 +9,11 @@ PointMarket adalah aplikasi berbasis web yang dirancang untuk meningkatkan engag
    - **Level & Badges**: Setiap mahasiswa memiliki level dan lencana berdasarkan jumlah poin yang diperoleh.
 
 2. **Transaksi Berbasis Poin**:
-   - Pengambilan reward.
-   - Penyelesaian misi tambahan.
-   - Konsultasi.
-   - Pembelian produk.
-   - Punishment (pengurangan poin) untuk pelanggaran.
+   - Reward. (penambahan poin dari reward yang diberikan).
+   - Misi tambahan. (penambahan poin, dengan menyelesaikan misi/tugas).
+   - Pembelian produk.(pengurangan poin untuk pembelian produk).
+   - Punishment (pengurangan poin untuk pelanggaran).
+   - Konsultasi (pengurangan poin untuk melakukan konsultasi dengan ahli).     - 
 
 3. **Pengelolaan Poin**:
    - Semua transaksi dilakukan menggunakan sistem poin.
