@@ -97,7 +97,7 @@ class Marketplace extends BaseController
 
         // Validasi NPM
         if ($npm === null) {
-            return redirect()->back()->with('gagal', 'User belum log in.');
+            return redirect()->back()->with('gagal1', 'Silahkan Login Terlebih Dahulu !');
         }
 
         // Ambil data mahasiswa berdasarkan NPM
@@ -142,7 +142,8 @@ class Marketplace extends BaseController
 
         // Validasi NPM
         if ($npm === null) {
-            return redirect()->back()->with('gagal', 'User  not logged in.');
+            // return redirect()->back()->with('gagal', 'User  not logged in.');
+            return redirect()->back()->with('gagal1', 'Silahkan Login Terlebih Dahulu .');
         }
 
         // Ambil data mahasiswa berdasarkan NPM

@@ -63,6 +63,32 @@ class Role_User extends BaseController
         return view('User/index_user', $data);
     }
 
+    public function misi_tambah()
+    {
+        $session = session();
+        $npm = $session->get('npm');
+
+        // Ambil data transaksi yang hanya memiliki kode_jenis 106
+        $filteredDataTransaksi = array_filter(
+            $this->DataTransaksiModel->getDataTransaksiUser($npm),
+            function ($transaksi) {
+                return $transaksi['jenis_transaksi'] == 105;
+            }
+        );
+
+        $data = [
+            'title' => 'Misi Tambahan',
+            'username' => $session->get('username'),
+            'npm' => $session->get('npm'),
+            'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+            'data_transaksi' => $filteredDataTransaksi,
+        ];
+
+        return view('User/misi', $data);
+    }
+
+
+
     public function detail()
     {
         $session = session();

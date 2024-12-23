@@ -28,7 +28,7 @@ class Validasi extends BaseController
     {
         $session = session();
 
-        // Ambil data transaksi
+        // Ambil Semua data transaksi
         // $data_transaksi = $this->DataTransaksiModel->getDataTransaksi();
 
         // Ambil data transaksi yang validasi-nya "Belum"

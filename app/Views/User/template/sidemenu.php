@@ -33,6 +33,14 @@
                      </a>
                  </li>
                  <li class="nav-item">
+                     <a href="/Role_User/misi" class="nav-link">
+                         <i class="nav-icon fas fa-trophy"></i>
+                         <p>
+                             Misi Tambahan
+                         </p>
+                     </a>
+                 </li>
+                 <li class="nav-item">
                      <a href="#Challange" class="nav-link">
                          <i class="nav-icon fas fa-trophy"></i>
                          <p>

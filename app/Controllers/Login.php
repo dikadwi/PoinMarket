@@ -95,23 +95,27 @@ class Login extends BaseController
         }
     }
 
-
-
     public function logoutM()
     {
         $session = session();
         $session->remove('isLoggedIn');
         $session->remove('user_id');
+        $session->remove('username');
+        $session->remove('npm');
+        $session->remove('email');
+        $session->remove('point');
+        $session->remove('password');
+        // $session->destroy();
 
         return redirect()->to('/loginMhs');
     }
 
-    public function logout()
-    {
-        $session = session();
-        $session->remove('isLoggedIn');
-        $session->remove('user_id');
+    // public function logout()
+    // {
+    //     $session = session();
+    //     $session->remove('isLoggedIn');
+    //     $session->remove('user_id');
 
-        return redirect()->to('/login');
-    }
+    //     return redirect()->to('/login');
+    // }
 }

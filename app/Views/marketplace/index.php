@@ -11,7 +11,7 @@
                     </center>
                     <p class="text-center">
                         Welcome, <?= $username ?> . <?= $npm ?> <br>
-                        Points: <strong><?= $mahasiswa['point'] ?></strong>
+                        <!-- Points: <strong><= $mahasiswa['point'] ?></strong> -->
                     </p>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
@@ -26,11 +26,12 @@
     <section class="content">
         <!-- Reward Transactions -->
         <h3>Reward</h3>
+        <!-- Reward Card -->
         <div class="row mb-4">
             <?php if (!empty($datatransaksi)): ?>
                 <?php $no_more_rewards = true; ?>
                 <?php foreach ($datatransaksi as $item): ?>
-                    <?php if ($item['claim'] === 'Belum'): // Hanya tampilkan jika reward belum diambil 
+                    <?php if ($item['claim'] === 'Belum'): // Menampilkan Data Reward jika reward belum diambil dengan status claim "Belum" 
                     ?>
                         <div class="col-md-3 mb-4">
                             <div class="card">
@@ -67,10 +68,10 @@
 
         <!-- Pembelian Transactions -->
         <h3>Pembelian</h3>
-        <!-- Reward Card -->
+        <!-- Buy Card -->
         <div class="row mb-4">
             <?php foreach ($transaksi as $item): ?>
-                <?php if ($item['kode_jenis'] == '102'): // Pembelian 
+                <?php if ($item['kode_jenis'] == '102'): // kode_jenis Pembelian 
                 ?>
                     <div class="col-md-3 mb-4">
                         <div class="card">
@@ -79,12 +80,36 @@
                                 <h5 class="card-title"><strong><?= $item['nama_transaksi'] ?></strong></h5>
                                 <p class="card-text">Point Harga : <strong><?= $item['poin_digunakan'] ?></strong></p>
                                 <div class="d-flex justify-content-center">
-                                    <form action="<?= base_url('Role_User/market/buy') ?>" method="post" class="buy-form">
+                                    <!-- <form action="<?= base_url('Role_User/market/buy') ?>" method="post" class="buy-form"> -->
+                                    <form action="<?= base_url('market/buy') ?>" method="post" class="buy-form">
                                         <input type="hidden" name="nama_transaksi" value="<?= $item['nama_transaksi'] ?>">
                                         <input type="hidden" name="poin_digunakan" value="<?= $item['poin_digunakan'] ?>">
                                         <button type="submit" class="btn btn-primary btn-beli">Buy</button>
-                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalDetail">Detail</button>
+                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalDetail<?= esc($item['id_transaksi']) ?>">Detail</button>
                                     </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Detail -->
+                    <div class="modal fade" id="modalDetail<?= esc($item['id_transaksi']) ?>" tabindex="-1" role="dialog" aria-labelledby="modalDetailLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalDetailLabel">Detail Transaksi</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <strong>Nama Transaksi:</strong> <?= esc($item['nama_transaksi']) ?><br>
+                                    <strong>Detail Transaksi:</strong> <?= esc($item['detail']) ?><br>
+                                    <strong>Point Harga:</strong> <?= esc($item['poin_digunakan']) ?><br>
+                                    <!-- Add more details as needed -->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
@@ -95,10 +120,10 @@
 
         <!-- Pembelian Transactions -->
         <h3>Misi Tambahan</h3>
-        <!-- Reward Card -->
+        <!-- Mission Card -->
         <div class="row mb-4">
             <?php foreach ($transaksi as $item): ?>
-                <?php if ($item['kode_jenis'] == '105'): // Pembelian 
+                <?php if ($item['kode_jenis'] == '105'): // kode_jenis Misi Tambahan 
                 ?>
                     <div class="col-md-3 mb-4">
                         <div class="card">
@@ -107,11 +132,36 @@
                                 <h5 class="card-title"><strong><?= $item['nama_transaksi'] ?></strong></h5>
                                 <p class="card-text">Point Diperoleh : <strong><?= $item['poin_digunakan'] ?></strong></p>
                                 <div class="d-flex justify-content-center">
-                                    <form action="<?= base_url('Role_User/market/misi_tambah') ?>" method="post" class="misi-form">
+                                    <!-- <form action="<?= base_url('Role_User/market/misi_tambah') ?>" method="post" class="misi-form"> -->
+                                    <form action="<?= base_url('market/misi') ?>" method="post" class="misi-form">
                                         <input type="hidden" name="nama_transaksi" value="<?= $item['nama_transaksi'] ?>">
                                         <input type="hidden" name="poin_digunakan" value="<?= $item['poin_digunakan'] ?>">
                                         <button type="submit" class="btn btn-success btn-misi">Complete Mission</button>
+                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalDetail<?= esc($item['id_transaksi']) ?>">Detail</button>
                                     </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Detail -->
+                    <div class="modal fade" id="modalDetail<?= esc($item['id_transaksi']) ?>" tabindex="-1" role="dialog" aria-labelledby="modalDetailLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalDetailLabel">Detail Transaksi</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <strong>Nama Transaksi:</strong> <?= esc($item['nama_transaksi']) ?><br>
+                                    <strong>Detail Transaksi:</strong> <?= esc($item['detail']) ?><br>
+                                    <strong>Point Diperoleh:</strong> <?= esc($item['poin_digunakan']) ?><br>
+                                    <!-- Add more details as needed -->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +170,59 @@
             <?php endforeach; ?>
         </div>
 
+        <!-- Konsultasi Transactions -->
+        <h3>Konsultasi</h3>
+        <!-- Consult Card -->
+        <div class="row mb-4">
+            <?php foreach ($transaksi as $item): ?>
+                <?php if ($item['kode_jenis'] == '106'): // kode_jenis Konsultasi 
+                ?>
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <img src="https://trierconsulting.com/wp-content/uploads/2021/07/client-1024x657.png" class="card-img-top" alt="<?= $item['nama_transaksi'] ?>">
+                            <div class="card-body">
+                                <h5 class="card-title"><strong><?= $item['nama_transaksi'] ?></strong></h5>
+                                <p class="card-text">Point Digunakan : <strong><?= $item['poin_digunakan'] ?></strong></p>
+                                <div class="d-flex justify-content-center">
+                                    <!-- <form action="<?= base_url('Role_User/market/konsultasi') ?>" method="post" class="misi-form"> -->
+                                    <form action="<?= base_url('market/konsultasi') ?>" method="post" class="misi-form">
+                                        <input type="hidden" name="nama_transaksi" value="<?= $item['nama_transaksi'] ?>">
+                                        <input type="hidden" name="poin_digunakan" value="<?= $item['poin_digunakan'] ?>">
+                                        <button type="submit" class="btn btn-success btn-konsul">Konsultasi</button>
+                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalDetail<?= esc($item['id_transaksi']) ?>">Detail</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Detail -->
+                    <div class="modal fade" id="modalDetail<?= esc($item['id_transaksi']) ?>" tabindex="-1" role="dialog" aria-labelledby="modalDetailLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalDetailLabel">Detail Transaksi</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <strong>Nama Transaksi:</strong> <?= esc($item['nama_transaksi']) ?><br>
+                                    <strong>Detail Transaksi:</strong> <?= esc($item['detail']) ?><br>
+                                    <strong>Point Digunakan:</strong> <?= esc($item['poin_digunakan']) ?><br>
+                                    <!-- Add more details as needed -->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
     </section>
 </div>
+
 
 <?= $this->endsection(); ?>

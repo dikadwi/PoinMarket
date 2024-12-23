@@ -118,6 +118,25 @@ class Jenis_Transaksi extends BaseController
         return view('PoinMarket_Admin/Page/jenis_transaksi', $data);
     }
 
+    public function konsultasi()
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('transaksi');
+        $jenis = ['106'];
+        $builder->whereIn('kode_jenis', $jenis);
+
+        $session = session();
+
+        $data = [
+            'title' => 'Konsultasi',
+            'username' => $session->get('username'),
+            'transaksi' => $this->TransaksiModel->getJenis($jenis),
+            'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+
+        ];
+        return view('PoinMarket_Admin/Page/jenis_transaksi', $data);
+    }
+
     public function save_Jenis()
     {
         if (!$this->validate([

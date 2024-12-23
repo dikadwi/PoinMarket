@@ -8,17 +8,19 @@
 <div class="content-wrapper">
 
     <div class="content-header">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <center>
-                    <h1 class="m-0 text-dark">Data <?= $title; ?> </h1>
-                </center>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active"><?= $title; ?></li>
-                </ol>
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <center>
+                        <h1 class="m-0 text-dark">Data <?= $title; ?> </h1>
+                    </center>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active"><?= $title; ?></li>
+                    </ol>
+                </div>
             </div>
         </div>
     </div>
@@ -85,7 +87,7 @@
                     <div class="form-group">
                         <label for="jenis_transaksi" class="col-form-label">Jenis Transaksi</label>
                         <div class="col-sm-10">
-                            <select name="jenis_transaksi" id="jenis_transaksi" class="form-control" required oninvalid="this.setCustomValidity('Pilih Salah Satu')" oninput="setCustomValidity('')">
+                            <select name="jenis_transaksi" id="DD_jenis_transaksi" class="form-control" required oninvalid="this.setCustomValidity('Pilih Salah Satu')" oninput="setCustomValidity('')">
                                 <option value="">Pilih Jenis Transaksi</option>
                                 <!-- Populate jenis transaksi options -->
                                 <?php foreach ($jenis_transaksi as $jenis) : ?>
@@ -98,7 +100,7 @@
                     <div class="form-group">
                         <label for="nama_transaksi" class="col-form-label">Nama Transaksi</label>
                         <div class="col-sm-10">
-                            <select name="nama_transaksi" id="nama_transaksi" class="form-control" required oninvalid="this.setCustomValidity('Pilih Salah Satu')" oninput="setCustomValidity('')">
+                            <select name="nama_transaksi" id="DD_nama_transaksi" class="form-control" required oninvalid="this.setCustomValidity('Pilih Salah Satu')" oninput="setCustomValidity('')">
                                 <option value="">Pilih Transaksi</option>
                                 <!-- Nama transaksi options will be populated dynamically based on the selection in jenis transaksi -->
                             </select>
@@ -123,8 +125,8 @@
 
 <!-- Script untuk mengatur opsi Nama Transaksi berdasarkan Jenis Transaksi yang dipilih -->
 <script>
-    var jenisTransaksiSelect = document.getElementById('jenis_transaksi');
-    var namaTransaksiSelect = document.getElementById('nama_transaksi');
+    var jenisTransaksiSelect = document.getElementById('DD_jenis_transaksi');
+    var namaTransaksiSelect = document.getElementById('DD_nama_transaksi');
     var poinDigunakanInput = document.getElementById('poin_digunakan');
 
     // Mendengarkan perubahan pada dropdown Jenis Transaksi

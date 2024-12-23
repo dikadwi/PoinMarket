@@ -37,6 +37,9 @@
                     <div class="dropdown-divider"></div>
                     <a href="/Jenis_Transaksi/misi_tambah" class="dropdown-item">
                         <i class="fas fa-clipboard-list mr-2"></i>Misi Tambahan</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="/Jenis_Transaksi/konsultasi" class="dropdown-item">
+                        <i class="fas fa-clipboard-list mr-2"></i>Konsultasi</a>
                 </div>
             </li>
             <li class="nav-item dropdown">

@@ -33,6 +33,7 @@
                             <option value="102">Pembelian</option>
                             <option value="103">Punishment</option>
                             <option value="105">Misi Tambahan</option>
+                            <option value="106">Konsultasi</option>
                         </select>
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-sm btn-primary">
@@ -80,6 +81,7 @@
             '102' => 'Pembelian',
             '103' => 'Punishment',
             '105' => 'Misi Tambahan',
+            '106' => 'Konsultasi',
         ];
 
         // Cari data transaksi berdasarkan kata kunci
@@ -158,6 +160,9 @@
                             break;
                         case '105':
                             echo 'Misi Tambahan';
+                            break;
+                        case '106':
+                            echo 'Konsultasi';
                             break;
                         default:
                             echo $data['jenis_transaksi'];
@@ -245,6 +250,9 @@
                                                         case '105':
                                                             echo 'Misi Tambahan';
                                                             break;
+                                                        case '106':
+                                                            echo 'Konsultasi';
+                                                            break;
                                                         default:
                                                             echo $data['jenis_transaksi'];
                                                     }
@@ -290,27 +298,29 @@
                 <div class="modal-body">
                     <form action="/Transaksi/update_Transaksi/<?= $data['id_transaksi']; ?>" method="post" enctype="multipart/form-data">
                         <!-- <div class="form-group ">
-                            <label for="id_transaksi" class="col-form-label">Kode Transaksi</label>
+                            <label for="id_transaksi" class="col-form-label">Id Transaksi</label>
                             <div class="col-sm-10">
                                 <input type="number" class="form-control" id="id_transaksi" name="id_transaksi" value="<?php echo $data['id_transaksi'] ?>" required readonly>
                             </div>
-                        </div>
+                        </div> -->
+                        <!-- Ketika edit Jenis dan nama aktif, dropdown input jadi Error -->
+                        <!-- Buat Jenis dan nama transaksi berkaitan dengan Dropdown -->
                         <div class="form-group ">
                             <label for="jenis_transaksi" class="col-form-label">Jenis Transaksi</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="jenis_transaksi" name="jenis_transaksi" value="<?php echo $data['jenis_transaksi'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+                                <input type="text" class="form-control" id="jenis_transaksi" name="jenis_transaksi" value="<?php echo $data['jenis_transaksi'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" disabled>
                             </div>
                         </div>
                         <div class="form-group ">
                             <label for="nama_transaksi" class="col-form-label">Nama Transaksi</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="nama_transaksi" name="nama_transaksi" value="<?php echo $data['nama_transaksi'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+                                <input type="text" class="form-control" id="nama_transaksi" name="nama_transaksi" value="<?php echo $data['nama_transaksi'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" disabled>
                             </div>
-                        </div> -->
+                        </div>
                         <div class="form-group ">
                             <label for="npm" class="col-form-label">NPM</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="npm" name="npm" value="<?php echo $data['npm'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+                                <input type="number" class="form-control" id="npm" name="npm" value="<?php echo $data['npm'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" disabled>
                             </div>
                         </div>
                         <!-- <div class="form-group ">
@@ -328,4 +338,5 @@
             </form>
         </div>
     </div>
+
 <?php endforeach ?>

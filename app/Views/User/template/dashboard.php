@@ -84,28 +84,25 @@
     <div class="wrapper">
 
 
-        <!-- Navbar -->
+        <!-- Top Menu -->
         <?= $this->include('User/template/topmenu'); ?>
-        <!-- /.navbar -->
+
 
         <!-- Sidemenu -->
         <?= $this->include('User/template/sidemenu'); ?>
         <!-- /.Sidemenu -->
 
-        <!-- <div class="content-wrapper"> -->
         <!-- Main Content -->
         <?= $this->renderSection('content_user'); ?>
-        <!-- /.Main Content -->
-        <!-- </div> -->
 
         <!-- Footer -->
         <?= $this->include('User/template/footer'); ?>
-        <!-- /.Footer -->
+
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
         </aside>
-        <!-- /.control-sidebar -->
+
 
     </div>
     <!-- ./wrapper -->

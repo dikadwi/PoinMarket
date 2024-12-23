@@ -82,6 +82,11 @@ class UserModel extends Model
     //  * @return $this
     //  */
 
+    public function getUser()
+    {
+        return $this->findAll();
+    }
+
     // Fungsi untuk menghapus user dan relasi
     public function deleteUser($id)
     {

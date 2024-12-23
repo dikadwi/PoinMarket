@@ -74,6 +74,9 @@
                         case '105':
                             echo 'Misi Tambahan';
                             break;
+                        case '106':
+                            echo 'Validasi';
+                            break;
                         default:
                             echo $data['jenis_transaksi'];
                     }
@@ -154,6 +157,9 @@
                                                         case '105':
                                                             echo 'Misi Tambahan';
                                                             break;
+                                                        case '106':
+                                                            echo 'Konsultasi';
+                                                            break;
                                                         default:
                                                             echo $data['jenis_transaksi'];
                                                     }
@@ -185,7 +191,7 @@
     </div>
 <?php endforeach; ?>
 
-<!--Data Modal Box Edit Data-->
+<!--Data Modal Validasi-->
 <?php foreach ($data_transaksi as $data) : ?>
     <div class="modal fade" id="modalEdit<?php echo $data['id_transaksi']; ?>">
         <div class="modal-dialog modal-dialog-centered">

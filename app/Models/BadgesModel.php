@@ -13,7 +13,7 @@ class BadgesModel extends Model
     protected $allowedFields = ['nama', 'point', 'detail', 'keterangan', 'badges'];
 
     // //Dates
-    // protected $useTimestamps = true;
+    protected $useTimestamps = true;
     // protected $dateFormat    = 'datetime';
     // protected $createdField  = 'created_at';
     // protected $updatedField  = 'updated_at';
