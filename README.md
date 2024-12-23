@@ -1,54 +1,56 @@
-# CodeIgniter 4 Framework
+# PointMarket
+_URL_ : https://poinmarket.my.id/
 
-## What is CodeIgniter?
+PointMarket adalah aplikasi berbasis web yang dirancang untuk meningkatkan engagement mahasiswa dengan mengimplementasikan elemen **gamifikasi**. Aplikasi ini berfungsi sebagai platform untuk berbagai transaksi berbasis poin, seperti pengambilan reward, penyelesaian misi tambahan, konsultasi, pembelian produk, hingga penanganan pelanggaran yang disertai punishment.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Fitur Utama
+1. **Gamifikasi untuk Engagement**:
+   - **Leaderboard**: Sistem peringkat mahasiswa berdasarkan poin.
+   - **Level & Badges**: Setiap mahasiswa memiliki level dan lencana berdasarkan jumlah poin yang diperoleh.
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+2. **Transaksi Berbasis Poin**:
+   - Reward. (penambahan poin dari reward yang diberikan).
+   - Misi tambahan. (penambahan poin, dengan menyelesaikan misi/tugas).
+   - Pembelian produk.(pengurangan poin untuk pembelian produk).
+   - Punishment (pengurangan poin untuk pelanggaran).
+   - Konsultasi (pengurangan poin untuk melakukan konsultasi dengan ahli).     - 
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+3. **Pengelolaan Poin**:
+   - Semua transaksi dilakukan menggunakan sistem poin.
+   - Poin mahasiswa dapat bertambah atau berkurang tergantung aktivitas mereka.
 
-The user guide corresponding to the latest version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+## Teknologi yang Digunakan
+- **Framework**: CodeIgniter
+- **Template**: AdminLTE
+- **Database**: MySQL/MariaDB
+- **Bahasa Pemrograman**: PHP, JavaScript
 
-## Important Change with index.php
+## Instalasi
+Ikuti langkah-langkah berikut untuk menjalankan aplikasi di lingkungan lokal Anda:
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+1. Clone repositori:
+   ```bash
+   git clone https://github.com/username/PointMarket.git
+   cd PointMarket
+2. Instalasi dependensi: Pastikan Anda telah menginstal Composer di sistem Anda. Kemudian, jalankan perintah berikut untuk menginstal dependensi PHP:
+   ```bash
+   composer install
+3. Konfigurasi file .env dan sesuaikan pengaturan database Anda:
+    ```arduino
+    database.default.hostname = localhost
+    database.default.database = nama_database
+    database.default.username = username_database
+    database.default.password = password_database
+    database.default.DBDriver = MySQLi
+4. Migrasi database: Jalankan migrasi untuk membuat tabel-tabel yang diperlukan di database:
+    ```bash
+    php spark migrate
+5. Jalankan aplikasi: Setelah semua konfigurasi selesai, jalankan aplikasi menggunakan perintah berikut:
+    ```bash
+    php spark serve
+6. Akses aplikasi: Buka browser Anda dan akses aplikasi melalui URL berikut:
+    ```arduino
+    http://localhost:8080
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+# Selamat Mencoba! Aplikasi PointMarket sekarang sudah berjalan di lingkungan lokal Anda.
 
-**Please** read the user guide for a better explanation of how CI4 works!
-
-## Repository Management
-
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Contributing
-
-We welcome contributions from the community.
-
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
-
-## Server Requirements
-
-PHP version 7.4 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
