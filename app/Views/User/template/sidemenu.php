@@ -16,40 +16,47 @@
              </div>
          </div>
 
-         <!-- Sidebar Menu -->
-         <nav class="mt-5">
-             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                 <!-- Add icons to the links using the .nav-icon class
+         <!-- Mengambil Session untuk melakukan filter isLoggedIn (Bisa diletakkan di Controller) -->
+         <?php
+            $session = session();
+            $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data sesi Anda
+            ?>
+         <?php if ($isLoggedIn): ?>
+             <!-- Sidebar Menu -->
+             <nav class="mt-5">
+                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                     <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                 <li class="nav-header">MENU</li>
-                 <!--Menu  -->
+                     <li class="nav-header">MENU</li>
+                     <!--Menu  -->
 
-                 <li class="nav-item">
-                     <a href="/Role_User/data_transaksi" class="nav-link">
-                         <i class="nav-icon fas fa-shopping-cart"></i>
-                         <p>
-                             Data Transaksi
-                         </p>
-                     </a>
-                 </li>
-                 <li class="nav-item">
-                     <a href="/Role_User/misi" class="nav-link">
-                         <i class="nav-icon fas fa-trophy"></i>
-                         <p>
-                             Misi Tambahan
-                         </p>
-                     </a>
-                 </li>
-                 <li class="nav-item">
-                     <a href="#Challange" class="nav-link">
-                         <i class="nav-icon fas fa-trophy"></i>
-                         <p>
-                             Challange
-                         </p>
-                     </a>
-                 </li>
-             </ul>
-         </nav>
+                     <li class="nav-item">
+                         <a href="/Role_User/data_transaksi" class="nav-link">
+                             <i class="nav-icon fas fa-shopping-cart"></i>
+                             <p>
+                                 Data Transaksi
+                             </p>
+                         </a>
+                     </li>
+                     <li class="nav-item">
+                         <a href="/Role_User/misi" class="nav-link">
+                             <i class="nav-icon fas fa-trophy"></i>
+                             <p>
+                                 Misi Tambahan
+                             </p>
+                         </a>
+                     </li>
+                     <li class="nav-item">
+                         <a href="#Challange" class="nav-link">
+                             <i class="nav-icon fas fa-trophy"></i>
+                             <p>
+                                 Challange
+                             </p>
+                         </a>
+                     </li>
+                 </ul>
+             </nav>
+         <?php endif; ?>
          <!-- /.sidebar-menu -->
      </div>
      <!-- /.sidebar -->

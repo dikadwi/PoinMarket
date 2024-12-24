@@ -83,7 +83,6 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-
         <!-- Top Menu -->
         <?= $this->include('User/template/topmenu'); ?>
 
@@ -91,6 +90,7 @@
         <!-- Sidemenu -->
         <?= $this->include('User/template/sidemenu'); ?>
         <!-- /.Sidemenu -->
+
 
         <!-- Main Content -->
         <?= $this->renderSection('content_user'); ?>
@@ -163,6 +163,16 @@
 
 
     <script>
+        <?php if (session()->getFlashdata('message')): ?>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: '<?= session()->getFlashdata('message'); ?>',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        <?php endif; ?>
+
         // Menampilkan Pesan 'sukses' (yang dikirim dari Controller)
         <?php if (session()->has("sukses")) : ?>
             Swal.fire({

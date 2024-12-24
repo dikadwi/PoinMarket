@@ -45,7 +45,20 @@
                                             <h4><?= $_SERVER['REMOTE_ADDR']; ?></h4>
                                         </li>
                                         <li class="list-group-item">
-                                            <span class="badge badge-<?= ($user->name == 'admin') ? 'success' : 'warning'; ?>"><?= $user->name; ?></span>
+                                            <!-- <span class="badge badge-<?= ($user->name == 'admin') ? 'success' : 'warning'; ?>"><?= $user->name; ?></span> -->
+                                            <span class="badge badge-<?php
+                                                                        if ($user->name === 'admin') {
+                                                                            echo 'success';
+                                                                        } elseif ($user->name === 'user') {
+                                                                            echo 'warning';
+                                                                        } elseif ($user->name === 'validator') {
+                                                                            echo 'danger';
+                                                                        } else {
+                                                                            echo 'info';
+                                                                        }
+                                                                        ?>">
+                                                <?php echo $user->name; ?>
+                                            </span>
                                         </li>
                                     </ul>
                                 </div>

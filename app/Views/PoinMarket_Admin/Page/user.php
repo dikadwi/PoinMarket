@@ -25,16 +25,33 @@
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <!-- Search Belum Jalan -->
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <!-- Button untuk membuka modal -->
                     <div class="col-md-8">
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahUser">Input</button>
                     </div>
                 </div>
-                <div class="col-md-4 ">
-                    <form action="" method="get">
+                <div class="col-md-2">
+                    <!-- Form Pencarian Role -->
+                    <form method="GET">
                         <div class="input-group">
-                            <input type="text" name="search" class="form-control" placeholder="Cari... Tambah Filter">
+                            <select name="role" class="form-control">
+                                <option value="">Semua Role</option>
+                                <option value="admin" <?= (isset($_GET['role']) && $_GET['role'] === 'admin') ? 'selected' : ''; ?>>Admin</option>
+                                <option value="validator" <?= (isset($_GET['role']) && $_GET['role'] === 'validator') ? 'selected' : ''; ?>>Validator</option>
+                                <option value="user" <?= (isset($_GET['role']) && $_GET['role'] === 'user') ? 'selected' : ''; ?>>User </option>
+                            </select>
+                            <div class="input-group-append">
+                                <button class="btn btn-success" type="submit">Filter Role</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4 ">
+                    <!-- Form Pencarian Username/Email -->
+                    <form method="GET">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control" placeholder="Cari..." value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-search"></i>
@@ -49,7 +66,6 @@
                     <?= $this->include('PoinMarket_Admin/Tabel/tabel_user'); ?>
                 </div>
             </div>
-
     </section>
 </div>
 

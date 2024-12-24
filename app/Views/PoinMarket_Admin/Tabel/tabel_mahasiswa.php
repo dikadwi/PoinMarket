@@ -1,5 +1,30 @@
+<?php
+// Tentukan jumlah data per halaman
+$limit = 10;
+
+// Ambil halaman saat ini dari URL, jika tidak ada, set ke 1
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+// Hitung total data
+$total_data = count($mahasiswa);
+
+// Hitung total halaman
+$total_pages = ceil($total_data / $limit);
+
+// Hitung offset untuk query
+$offset = ($page - 1) * $limit;
+
+// Ambil data untuk halaman saat ini
+$mahasiswa = array_slice($mahasiswa, $offset, $limit);
+
+// Hitung data yang ditampilkan
+$start = $offset + 1; // Data pertama yang ditampilkan
+$end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
+?>
+
 <!-- Tabel -->
-<table class="table table-bordered border-dark table_mahasiswa">
+<!-- <table class="table table-bordered border-dark table_mahasiswa"> -->
+<table class="table table-bordered table-striped">
     <thead class="bg-info">
         <tr>
             <th scope="col">No</th>
@@ -54,6 +79,11 @@
     <tbody>
         <?php $i = 1; ?>
         <?php
+        // Mengurutkan data mahasiswa secara numerik dengan NPM
+        usort($mahasiswa, function ($a, $b) {
+            return ($a['npm'] - $b['npm']);
+        });
+
 
         // Tambahkan filter untuk NPM
         if (isset($_GET['gaya_belajar'])) {
@@ -62,17 +92,29 @@
                 return $data['gaya_belajar'] == $gaya;
             });
         }
+
+        // Definisikan batas poin untuk setiap level
+        $level_limits = [
+            'Negative' => [-1000, 10],
+            'Master' => [10, 50],
+            'Silver' => [50, 100], // Misalnya, Gold memiliki batas 60-100
+            'Gold' => [100, 150],
+            'Platinum' => [150, 200],
+            'Diamond' => [200, 250],
+            'King' => [250, 10000],
+            // Tambahkan level lain sesuai kebutuhan
+        ];
         // Tambahkan filter untuk Level
         if (isset($_GET['level'])) {
             $level = $_GET['level'];
-            $mahasiswa = array_filter($mahasiswa, function ($data) use ($level, $badges) {
-                foreach ($badges as $badge) {
-                    if ($badge['nama'] == $level && $data['point'] >= $badge['point']) {
-                        return true;
-                    }
-                }
-                return false;
-            });
+            if (array_key_exists($level, $level_limits)) {
+                $min_point = $level_limits[$level][0];
+                $max_point = $level_limits[$level][1];
+
+                $mahasiswa = array_filter($mahasiswa, function ($data) use ($min_point, $max_point) {
+                    return $data['point'] >= $min_point && $data['point'] < $max_point;
+                });
+            }
         }
         // Tambahkan filter untuk Pencarian  semua data
         if (isset($_GET['search']) && !empty($_GET['search'])) {
@@ -94,6 +136,26 @@
                     strpos(strtolower($data['point']), $search) !== false ||
                     (isset($level) && strpos(strtolower($level), $search) !== false); // Cek level
             });
+            // Perbarui total data setelah pencarian
+            $total_data = count($mahasiswa); // Total data setelah filter
+
+            // Hitung total halaman
+            $total_pages = ceil($total_data / $limit); // Total halaman berdasarkan limit
+
+            // Hitung offset untuk query
+            $offset = ($page - 1) * $limit; // Offset untuk data yang diambil
+
+            // Ambil data untuk halaman saat ini
+            $mahasiswa = array_slice($mahasiswa, $offset, $limit); // Ambil data sesuai offset dan limit
+
+            // Hitung data yang ditampilkan
+            $start = $offset + 1; // Data pertama yang ditampilkan
+            $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
+
+            // Jika total data adalah 6, maka end akan menjadi 6
+            if ($total_data < $limit) {
+                $end = $total_data; // Set end ke total data jika kurang dari limit
+            }
         }
 
         // Tambahkan filter untuk Pencarian tiap kolom
@@ -177,10 +239,12 @@
                 <td>
                     <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $m['id']; ?>">Detail</button>
                 </td>
-                <?php if (in_groups('admin')) : ?>
+                <?php if (in_groups(['admin', 'validator'])) : ?>
                     <td>
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $m['id']; ?>">Edit</button>
                     </td>
+                <?php endif ?>
+                <?php if (in_groups(['admin'])) : ?>
                     <td>
                         <button href="/Mahasiswa/delete/<?= $m['id']; ?>" class="btn btn-danger btn-hapus">Hapus</button>
                     </td>
@@ -190,6 +254,38 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+
+<!-- Pagination -->
+<nav class="d-flex justify-content-between align-items-center" aria-label="Page navigation">
+    <!-- Menampilkan informasi jumlah data di kiri -->
+    <div class="mb-3">
+        Showing <?= $start; ?> to <?= $end; ?> of <?= $total_data; ?> entries
+    </div>
+    <!-- Menampilkan pagination di kanan -->
+    <ul class="pagination mb-0">
+        <!-- Tombol Previous -->
+        <li class="page-item <?= ($page <= 1) ? 'disabled' : ''; ?>">
+            <a class="page-link" href="?page=<?= $page - 1; ?>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+
+        <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+            <li class="page-item <?= ($i == $page) ? 'active' : ''; ?>">
+                <a class="page-link" href="?page=<?= $i; ?>">
+                    <?= $i; ?>
+                </a>
+            </li>
+        <?php endfor; ?>
+
+        <!-- Tombol Next -->
+        <li class="page-item <?= ($page >= $total_pages) ? 'disabled' : ''; ?>">
+            <a class="page-link" href="?page=<?= $page + 1; ?>" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
 
 <!-- Modal box Detail -->
 <?php foreach ($mahasiswa as $m) : ?>

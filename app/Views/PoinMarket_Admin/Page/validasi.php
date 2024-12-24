@@ -24,7 +24,7 @@
                 <div class="col-md-4 offset-md-8">
                     <form action="" method="get">
                         <div class="input-group">
-                            <input type="text" name="search" class="form-control" placeholder="Cari... Tambah Filter">
+                            <input type="text" name="search" class="form-control" placeholder="Cari... ">
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-search"></i </button>

@@ -72,22 +72,26 @@
                          </p>
                      </a>
                  </li>
-                 <li class="nav-item">
-                     <a href="/Validasi" class="nav-link">
-                         <i class="nav-icon fas fa-print"></i>
-                         <p>
-                             Validasi
-                         </p>
-                     </a>
-                 </li>
-                 <li class="nav-item">
-                     <a href="/cms" class="nav-link">
-                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                         <p>
-                             Content Management System
-                         </p>
-                     </a>
-                 </li>
+                 <?php if (in_groups(['admin', 'validator', 'user'])) : ?>
+                     <li class="nav-item">
+                         <a href="/Validasi" class="nav-link">
+                             <i class="nav-icon fas fa-print"></i>
+                             <p>
+                                 Validasi
+                             </p>
+                         </a>
+                     </li>
+                 <?php endif ?>
+                 <?php if (in_groups(['admin'])) : ?>
+                     <li class="nav-item">
+                         <a href="/cms" class="nav-link">
+                             <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                             <p>
+                                 Content Management System
+                             </p>
+                         </a>
+                     </li>
+                 <?php endif ?>
              </ul>
          </nav>
          <!-- /.sidebar-menu -->

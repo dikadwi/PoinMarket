@@ -52,7 +52,7 @@ class Validasi extends BaseController
             'nama' => $mahasiswa
 
         ];
-        return view('PoinMarket_Admin/page/validasi', $data);
+        return view('PoinMarket_Admin/Page/validasi', $data);
     }
 
     // Mengambil semua data transaksi

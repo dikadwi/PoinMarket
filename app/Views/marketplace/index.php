@@ -1,24 +1,32 @@
 <?= $this->extend('User/template/dashboard'); ?>
 
 <?= $this->section('content_user'); ?>
+<?php
+$session = session();
+$isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data sesi Anda
+?>
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <center>
-                        <h1 class="text-center">Marketplace</h1>
+                        <h1 class="text-center">Market Point</h1>
                     </center>
-                    <p class="text-center">
-                        Welcome, <?= $username ?> . <?= $npm ?> <br>
-                        <!-- Points: <strong><= $mahasiswa['point'] ?></strong> -->
-                    </p>
+                    <?php if ($isLoggedIn): ?>
+                        <p class="text-center">
+                            Welcome, <?= $username ?> . <?= $npm ?> <br>
+                            Points: <strong><?= $point ?></strong>
+                        </p>
+                    <?php endif ?>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="/Role_User">User</a></li>
-                        <li class="breadcrumb-item active"> <?= $title; ?></li>
-                    </ol>
+                    <?php if ($isLoggedIn): ?>
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/Role_User">User</a></li>
+                            <li class="breadcrumb-item active"> <?= $title; ?></li>
+                        </ol>
+                    <?php endif ?>
                 </div>
             </div>
         </div>

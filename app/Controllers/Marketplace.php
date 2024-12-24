@@ -22,19 +22,23 @@ class Marketplace extends BaseController
     public function index()
     {
         $session = session();
+        // $isLoggedIn = $session->get('isLoggedIn'); // Ambil status login dari sesi
         $username = $session->get('username');
         $npm = $session->get('npm');
-        $mahasiswa = $this->MahasiswaModel->where('nama', $username)->first();
+        // $mahasiswa = $this->MahasiswaModel->where('nama', $username)->first();
+        $point = $session->get('point');
 
         // Ambil semua transaksi yang tersedia
         $transaksi = $this->TransaksiModel->findAll(); // Pastikan model ini mengembalikan data yang sesuai
         $datatransaksi = $this->DataTransaksiModel->getRewardsByNpmAndValidation($npm, 'Sudah'); // Ambil reward yang sudah divalidasi
 
         $data = [
-            'title' => 'Marketplace',
+            'title' => 'Market Point',
+            // 'isLoggedIn' => $isLoggedIn,
             'npm' => $npm,
             'username' => $username,
-            'mahasiswa' => $mahasiswa,
+            // 'mahasiswa' => $mahasiswa,
+            'point' => $point,
             'transaksi' => $transaksi,
             'datatransaksi' => $datatransaksi
         ];

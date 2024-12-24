@@ -26,13 +26,15 @@
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-md-8">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahJenisTransaksi">Input</button>
+                    <?php if (in_groups(['admin', 'user'])) : ?>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahJenisTransaksi">Input</button>
+                    <?php endif ?>
                 </div>
                 <!-- Search Belum Jalan -->
                 <div class="col-md-4">
                     <form action="" method="get">
                         <div class="input-group">
-                            <input type="text" name="search" class="form-control" placeholder="Cari... Tambah Filter"> <!--Buat Filter Sesuai $title -->
+                            <input type="text" name="search" class="form-control" placeholder="Cari... "> <!--Buat Filter Sesuai $title -->
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-search"></i>

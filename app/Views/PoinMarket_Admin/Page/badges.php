@@ -25,13 +25,15 @@
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-md-8">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahBadges">Input</button>
+                    <?php if (in_groups(['admin', 'user'])) : ?> <!-- User yang dimaksud adalah staf bukan mahasiswa -->
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahBadges">Input</button>
+                    <?php endif ?>
                 </div>
                 <!-- Search Belum Jalan -->
                 <div class="col-md-4">
                     <form action="" method="get">
                         <div class="input-group">
-                            <input type="text" name="search" class="form-control" placeholder="Cari... Tambah Filter">
+                            <input type="text" name="search" class="form-control" placeholder="Cari...">
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-search"></i>

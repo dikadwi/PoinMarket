@@ -31,7 +31,9 @@
             <!-- Baris untuk button dan filter -->
             <div class="row">
                 <div class="col-md-8">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalDataTransaksi">Input</button>
+                    <?php if (in_groups(['admin', 'validator'])) : ?>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalDataTransaksi">Input</button>
+                    <?php endif ?>
                 </div>
                 <div class="col-md-4">
                     <form action="" method="get">

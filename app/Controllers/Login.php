@@ -84,7 +84,7 @@ class Login extends BaseController
                 $session->set('point', $mahasiswa['point']);
                 $session->set('password', $mahasiswa['password']);
 
-                return redirect()->to('/Role_User');
+                return redirect()->to('/Role_User')->with('message', 'Selamat Datang di Market Point !');;
             } else {
                 // Jika password salah, tampilkan pesan error
                 return redirect()->back()->with('pesan', 'Password salah. Silakan coba lagi !');
