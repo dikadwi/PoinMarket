@@ -3,6 +3,7 @@ _URL_ : https://poinmarket.my.id/
 
 PointMarket adalah aplikasi berbasis web yang dirancang untuk meningkatkan engagement mahasiswa dengan mengimplementasikan elemen **gamifikasi**. Aplikasi ini berfungsi sebagai platform untuk berbagai transaksi berbasis poin, seperti pengambilan reward, penyelesaian misi tambahan, konsultasi, pembelian produk, hingga penanganan pelanggaran yang disertai punishment.
 
+![Clone Repository](assets/images/Dashboard.png)
 ## Fitur Utama
 1. **Gamifikasi untuk Engagement**:
    - **Leaderboard**: Sistem peringkat mahasiswa berdasarkan poin.
