@@ -47,13 +47,21 @@
                          </a>
                      </li>
                      <li class="nav-item">
+                         <a href="#/Role_User/konsultasi" class="nav-link">
+                             <i class="nav-icon fas fa-edit"></i>
+                             <p>
+                                 Konsultasi
+                             </p>
+                         </a>
+                     </li>
+                     <!-- <li class="nav-item">
                          <a href="#Challange" class="nav-link">
                              <i class="nav-icon fas fa-trophy"></i>
                              <p>
                                  Challange
                              </p>
                          </a>
-                     </li>
+                     </li> -->
                  </ul>
              </nav>
          <?php endif; ?>

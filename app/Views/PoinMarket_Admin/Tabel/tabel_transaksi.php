@@ -158,6 +158,26 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
             $data_transaksi = array_filter($data_transaksi, function ($data) use ($jenis_transaksi) {
                 return $data['jenis_transaksi'] == $jenis_transaksi;
             });
+            // Perbarui total data setelah pencarian
+            $total_data = count($data_transaksi); // Total data setelah filter
+
+            // Hitung total halaman
+            $total_pages = ceil($total_data / $limit); // Total halaman berdasarkan limit
+
+            // Hitung offset untuk query
+            $offset = ($page - 1) * $limit; // Offset untuk data yang diambil
+
+            // Ambil data untuk halaman saat ini
+            $data_transaksi = array_slice($data_transaksi, $offset, $limit); // Ambil data sesuai offset dan limit
+
+            // Hitung data yang ditampilkan
+            $start = $offset + 1; // Data pertama yang ditampilkan
+            $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
+
+            // Jika total data adalah 6, maka end akan menjadi 6
+            if ($total_data < $limit) {
+                $end = $total_data; // Set end ke total data jika kurang dari limit
+            }
         }
 
         // Tambahkan filter untuk validasi

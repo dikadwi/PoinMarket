@@ -6,6 +6,21 @@ namespace App\Controllers;
 class LandingPage extends BaseController
 {
 
+    public function index()
+    {
+        return view('LandingPage/index');
+    }
+
+    public function gamifikasi()
+    {
+        return view('LandingPage/gamifikasi');
+    }
+
+    public function register()
+    {
+        return view('LandingPage/register');
+    }
+
     public function pilih()
     {
         return view('auth/Page/pilih');

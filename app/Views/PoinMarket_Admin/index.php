@@ -9,12 +9,12 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <center>
-                        <h1 class="m-0 text-dark">Poin Market</h1>
+                        <h1 class="m-0 text-dark">Point Market</h1>
                     </center>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
                         <li class="breadcrumb-item active"> <?= $title; ?></li>
                     </ol>
                 </div>
@@ -25,11 +25,10 @@
 
     <!-- Main content -->
     <section class="content">
-
         <div class="container-fluid">
             <!-- Row untuk Card Jumlah Tiap Jenis Transaksi -->
-            <div class="row">
-                <div class="col-lg-3 col-6 ">
+            <div class="row justify-content-center">
+                <div class="col-6 col-md-2">
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
@@ -38,13 +37,13 @@
                             <p> <?= $totalReward ?> Items </p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-ribbon-a"></i>
+                            <i class="ion ion-ribbon-b"></i>
                         </div>
                         <a href="/Transaksi/reward" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-6 ">
+                <div class="col-6 col-md-2">
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
@@ -53,13 +52,13 @@
                             <p> <?= $totalPembelian ?> Items </p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-clipboard"></i>
+                            <i class="ion ion-android-cart"></i>
                         </div>
                         <a href="/Transaksi/pembelian" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-6 ">
+                <div class="col-6 col-md-2">
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
@@ -68,17 +67,17 @@
                             <p> <?= $totalPunishment ?> Items </p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-clipboard"></i>
+                            <i class="ion ion-compose"></i>
                         </div>
                         <a href="/Transaksi/punishment" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-6 ">
+                <div class="col-6 col-md-2">
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h2>Misi Tambahan</h2>
+                            <h2>Misi</h2>
                             <!-- Total data Badges -->
                             <p> <?= $totalMisi ?> Items </p>
                         </div>
@@ -88,13 +87,28 @@
                         <a href="/Transaksi/misi_tambah" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
+
+                <div class="col-6 col-md-2">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h2>Konsultasi</h2>
+                            <!-- Total data Badges -->
+                            <p> <?= $totalKonsultasi ?> Items </p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-medkit"></i>
+                        </div>
+                        <a href="/Transaksi/konsultasi" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
             </div>
 
             <!-- Row untuk Donut,Leaderboard-->
             <div class="row">
                 <!-- Donut -->
-                <div class="col-lg-6 col-12">
-                    <div class="small-box b ">
+                <div class="col-12 col-md-6">
+                    <div class="small-box ">
                         <!-- Canvas untuk grafik donut -->
                         <div>
                             <canvas id="donutChart" width="400" height="400"></canvas>
@@ -107,14 +121,14 @@
                     </div> -->
                 </div>
                 <!-- Menampilkan Leaderboard -->
-                <div class="col-lg-6 col-6 d-flex">
-                    <div class="small-box b flex-fill">
+                <div class="col-12 col-md-6">
+                    <div class="small-box">
                         <center>
                             <h2><i class="ion ion-trophy"><b> Leaderboard</b></i></h2>
                         </center>
-                        <div class="card mb-0 flex-fill h-100">
+                        <div class="card mb-0">
                             <div class="card-body">
-                                <table class="table table-bordered border-light h-100">
+                                <table class="table table-bordered">
                                     <thead class="bg-info">
                                         <tr>
                                             <th>No</th>
@@ -236,7 +250,7 @@
                     </div>
                 </div>
                 <!-- Data Jenis Transaksi -->
-                <div class="col-lg-6 col-6">
+                <div class="col-lg-6 col-12">
                     <div class="small-box b ">
                         <center>
                             <h2> <i class="ion ion-pricetags"><b> Jenis Transaksi</b></i></h2>
@@ -275,8 +289,8 @@
             <!-- Row untuk Leaderboard & data Mahasiswa-->
             <div class="row">
                 <!-- Data Mahasiswa -->
-                <div class="col-lg-6 col-6 d-flex">
-                    <div class="small-box b flex-fill">
+                <div class="col-lg-6 col-12">
+                    <div class="small-box">
                         <center>
                             <h2><i class="ion ion-trophy"><b> Mahasiswa</b></i></h2>
                         </center>
@@ -478,6 +492,8 @@
                 return 'Punishment';
             case 105:
                 return 'Misi Tambahan';
+            case 106:
+                return 'konsultasi';
             default:
                 return null;
         }

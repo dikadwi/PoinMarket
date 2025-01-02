@@ -2,6 +2,7 @@
 
 namespace App\Controllers\PoinMarket_Admin;
 
+use App\Controllers\LandingPage;
 use App\Models\BadgesModel;
 use App\Models\DataTransaksiModel;
 use App\Models\JenisModel;
@@ -45,6 +46,7 @@ class Admin extends BaseController
             'totalPembelian' => $this->DataTransaksiModel->totalPembelian(),
             'totalPunishment' => $this->DataTransaksiModel->totalPunishment(),
             'totalMisi' => $this->DataTransaksiModel->totalMisi(),
+            'totalKonsultasi' => $this->DataTransaksiModel->totalKonsultasi(),
             'transactions' => $this->DataTransaksiModel->getTransactionsByCategory(),
             // 'totalBadges' => $this->BadgesModel->totalBadges(),
             // 'totaluser' => $this->MahasiswaModel->total(),

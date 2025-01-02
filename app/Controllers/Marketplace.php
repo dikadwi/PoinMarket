@@ -26,7 +26,12 @@ class Marketplace extends BaseController
         $username = $session->get('username');
         $npm = $session->get('npm');
         // $mahasiswa = $this->MahasiswaModel->where('nama', $username)->first();
-        $point = $session->get('point');
+
+        // Mengambil total poin dari model Mahasiswa
+        $mahasiswaData = $this->MahasiswaModel->getPointByNpm($npm);
+        $totalPoints = $mahasiswaData['point'] ?? 0; // Menggunakan null coalescing operator untuk default 0
+        // Memperbarui poin di session
+        $session->set('point', $totalPoints);
 
         // Ambil semua transaksi yang tersedia
         $transaksi = $this->TransaksiModel->findAll(); // Pastikan model ini mengembalikan data yang sesuai
@@ -38,7 +43,7 @@ class Marketplace extends BaseController
             'npm' => $npm,
             'username' => $username,
             // 'mahasiswa' => $mahasiswa,
-            'point' => $point,
+            'point' => $totalPoints,
             'transaksi' => $transaksi,
             'datatransaksi' => $datatransaksi
         ];

@@ -25,7 +25,7 @@
         <nav class="space-x-6 text-white flex items-center">
             <a class="hover:text-gray-300" href="#">HOME</a>
             <a class="hover:text-gray-300" href="#">ABOUT</a>
-            <a class="hover:text-gray-300" href="#">COMPANY</a>
+            <a class="hover:text-gray-300" href="#">COaMPANY</a>
             <a class="hover:text-gray-300" href="#">NEWS</a>
             <a class="hover:text-gray-300" href="#">CONTACT US</a>
             <button class="bg-white text-purple-600 px-4 py-2 rounded-full hover:bg-gray-200">SIGN IN</button>

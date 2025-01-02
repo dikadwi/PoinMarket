@@ -140,6 +140,27 @@ class Transaksi extends BaseController
         return view('PoinMarket_Admin/Page/transaksi_byCode', $data);
     }
 
+    public function konsultasi()
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('data_transaksi');
+        $jenis = ['106'];
+        $builder->whereIn('jenis_transaksi', $jenis);
+
+        $session = session();
+
+        $data = [
+            'username' => $session->get('username'),
+            'title' => 'Konsultasi',
+            'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
+            'transaksi' => $this->TransaksiModel->getJenis(),
+            'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+            'npm' => $this->MahasiswaModel->getMhs(),
+
+        ];
+        return view('PoinMarket_Admin/Page/transaksi_byCode', $data);
+    }
+
     // Save Transaksi (Logika untuk market place)
     public function save_Transaksi()
     {

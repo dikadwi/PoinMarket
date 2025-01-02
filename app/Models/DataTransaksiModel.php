@@ -59,6 +59,11 @@ class DataTransaksiModel extends Model
     {
         return $this->where('jenis_transaksi', 105)->countAllResults();
     }
+    // Menampilkan total jenis 106
+    public function totalKonsultasi()
+    {
+        return $this->where('jenis_transaksi', 106)->countAllResults();
+    }
 
     // Mengambil total jenis transaksi berdasarkan NPM ditampilkan di Tabel Mahasiswa
     public function Reward($npm)
@@ -76,6 +81,10 @@ class DataTransaksiModel extends Model
     public function Misi($npm)
     {
         return $this->where('jenis_transaksi', 105)->where('npm', $npm)->countAllResults();
+    }
+    public function Konsultasi($npm)
+    {
+        return $this->where('jenis_transaksi', 106)->where('npm', $npm)->countAllResults();
     }
 
     // Mengambil kode_jenis

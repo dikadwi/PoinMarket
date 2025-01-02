@@ -51,6 +51,7 @@ class Role_User extends BaseController
             'totalPembelian' => $this->DataTransaksiModel->Pembelian($npm),
             'totalPunishment' => $this->DataTransaksiModel->Punishment($npm),
             'totalMisi' => $this->DataTransaksiModel->Misi($npm),
+            'totalKonsultasi' => $this->DataTransaksiModel->Konsultasi($npm),
             'transactions' => $this->DataTransaksiModel->getTransactionsByCategory(),
             'totalBadges' => $this->BadgesModel->totalBadges(),
             'totaluser' => $this->MahasiswaModel->total(),
@@ -373,88 +374,23 @@ class Role_User extends BaseController
         return view('User/transaksi/jenis_transaksi', $data);
     }
 
-    public function transaksi_reward()
+    public function konsultasi()
     {
         $db      = \Config\Database::connect();
-        $builder = $db->table('data_transaksi');
-        $jenis = ['101'];
-        $builder->whereIn('jenis_transaksi', $jenis);
+        $builder = $db->table('transaksi');
+        $jenis = ['106'];
+        $builder->whereIn('kode_jenis', $jenis);
 
         $session = session();
 
         $data = [
+            'title' => 'Konsultasi',
             'username' => $session->get('username'),
-            'title' => 'Transaksi Rewards',
-            'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
-            'transaksi' => $this->TransaksiModel->getJenis(),
+            'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
-            'npm' => $this->MahasiswaModel->getMhs(),
 
         ];
-        return view('User/transaksi/data_transaksi', $data);
-    }
-
-    public function transaksi_pembelian()
-    {
-        $db      = \Config\Database::connect();
-        $builder = $db->table('data_transaksi');
-        $jenis = ['102'];
-        $builder->whereIn('jenis_transaksi', $jenis);
-
-        $session = session();
-
-        $data = [
-            'username' => $session->get('username'),
-            'title' => 'Transaksi Pembelian',
-            'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
-            'transaksi' => $this->TransaksiModel->getJenis(),
-            'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
-            'npm' => $this->MahasiswaModel->getMhs(),
-
-        ];
-        return view('User/transaksi/data_transaksi', $data);
-    }
-
-    public function transaksi_punishment()
-    {
-        $db      = \Config\Database::connect();
-        $builder = $db->table('data_transaksi');
-        $jenis = ['103'];
-        $builder->whereIn('jenis_transaksi', $jenis);
-
-        $session = session();
-
-        $data = [
-            'username' => $session->get('username'),
-            'title' => 'Transaksi Punishment',
-            'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
-            'transaksi' => $this->TransaksiModel->getJenis(),
-            'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
-            'npm' => $this->MahasiswaModel->getMhs(),
-
-        ];
-        return view('User/transaksi/data_transaksi', $data);
-    }
-
-    public function transaksi_misi_tambah()
-    {
-        $db      = \Config\Database::connect();
-        $builder = $db->table('data_transaksi');
-        $jenis = ['105'];
-        $builder->whereIn('jenis_transaksi', $jenis);
-
-        $session = session();
-
-        $data = [
-            'username' => $session->get('username'),
-            'title' => 'Transaksi Misi Tambahan',
-            'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
-            'transaksi' => $this->TransaksiModel->getJenis(),
-            'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
-            'npm' => $this->MahasiswaModel->getMhs(),
-
-        ];
-        return view('User/transaksi/data_transaksi', $data);
+        return view('User/transaksi/jenis_transaksi', $data);
     }
 
     public function badges()
@@ -470,4 +406,89 @@ class Role_User extends BaseController
         ];
         return view('User/Badges/badges', $data);
     }
+
+    // public function transaksi_reward()
+    // {
+    //     $db      = \Config\Database::connect();
+    //     $builder = $db->table('data_transaksi');
+    //     $jenis = ['101'];
+    //     $builder->whereIn('jenis_transaksi', $jenis);
+
+    //     $session = session();
+
+    //     $data = [
+    //         'username' => $session->get('username'),
+    //         'title' => 'Transaksi Rewards',
+    //         'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
+    //         'transaksi' => $this->TransaksiModel->getJenis(),
+    //         'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+    //         'npm' => $this->MahasiswaModel->getMhs(),
+
+    //     ];
+    //     return view('User/transaksi/data_transaksi', $data);
+    // }
+
+    // public function transaksi_pembelian()
+    // {
+    //     $db      = \Config\Database::connect();
+    //     $builder = $db->table('data_transaksi');
+    //     $jenis = ['102'];
+    //     $builder->whereIn('jenis_transaksi', $jenis);
+
+    //     $session = session();
+
+    //     $data = [
+    //         'username' => $session->get('username'),
+    //         'title' => 'Transaksi Pembelian',
+    //         'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
+    //         'transaksi' => $this->TransaksiModel->getJenis(),
+    //         'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+    //         'npm' => $this->MahasiswaModel->getMhs(),
+
+    //     ];
+    //     return view('User/transaksi/data_transaksi', $data);
+    // }
+
+    // public function transaksi_punishment()
+    // {
+    //     $db      = \Config\Database::connect();
+    //     $builder = $db->table('data_transaksi');
+    //     $jenis = ['103'];
+    //     $builder->whereIn('jenis_transaksi', $jenis);
+
+    //     $session = session();
+
+    //     $data = [
+    //         'username' => $session->get('username'),
+    //         'title' => 'Transaksi Punishment',
+    //         'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
+    //         'transaksi' => $this->TransaksiModel->getJenis(),
+    //         'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+    //         'npm' => $this->MahasiswaModel->getMhs(),
+
+    //     ];
+    //     return view('User/transaksi/data_transaksi', $data);
+    // }
+
+    // public function transaksi_misi_tambah()
+    // {
+    //     $db      = \Config\Database::connect();
+    //     $builder = $db->table('data_transaksi');
+    //     $jenis = ['105'];
+    //     $builder->whereIn('jenis_transaksi', $jenis);
+
+    //     $session = session();
+
+    //     $data = [
+    //         'username' => $session->get('username'),
+    //         'title' => 'Transaksi Misi Tambahan',
+    //         'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
+    //         'transaksi' => $this->TransaksiModel->getJenis(),
+    //         'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+    //         'npm' => $this->MahasiswaModel->getMhs(),
+
+    //     ];
+    //     return view('User/transaksi/data_transaksi', $data);
+    // }
+
 }

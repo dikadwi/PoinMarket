@@ -80,7 +80,9 @@
     </script>
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<!-- sidebar-closed sidebar-collapse"> -->
+
+<body class="hold-transition sidebar-mini sidebar-closed sidebar-collapse layout-fixed layout-navbar-fixed">
     <div class="wrapper">
 
         <!-- Top Menu -->

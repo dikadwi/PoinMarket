@@ -1,23 +1,51 @@
-<table class="table table-bordered border-dark">
+<table class="table table-bordered table-striped">
     <thead class="bg-info">
         <tr>
             <th scope="col">No</th>
-            <th scope="col">NPM</th>
+            <!-- <th scope="col">NPM</th> -->
             <th scope="col">Jenis Transaksi</th>
             <th scope="col">Nama Transaksi</th>
             <th scope="col">Poin Digunakan</th><!-- total point mahasiswa (hasil dari transaksi) -->
             <th scope="col">Tanggal Transaksi</th>
-            <th scope="col">Validasi</th>
+            <th scope="col">Status Claim (Point)</th>
             <th scope="col" colspan="3">Aksi</th>
         </tr>
     </thead>
     <tbody>
         <?php $i = 1; ?>
-        <?php foreach ($data_transaksi as $data) : ?>
+        <?php
+        // Urutkan data transaksi berdasarkan tanggal transaksi terbaru
+        usort($data_transaksi, function ($a, $b) {
+            return strtotime($b['tanggal_transaksi']) - strtotime($a['tanggal_transaksi']);
+        });
+        $jenis_transaksi_map = [
+            '101' => 'Reward',
+            '102' => 'Pembelian',
+            '103' => 'Punishment',
+            '105' => 'Misi Tambahan',
+            '106' => 'Konsultasi',
+        ];
+
+        // Cari data transaksi berdasarkan kata kunci
+        if (isset($_GET['search'])) {
+            $search = strtolower($_GET['search']);  // Mengonversi kata kunci pencarian menjadi huruf kecil
+            $data_transaksi = array_filter($data_transaksi, function ($data) use ($search, $jenis_transaksi_map) {
+                // Menyimpan nama jenis transaksi berdasarkan kode
+                $jenis_transaksi_name = isset($jenis_transaksi_map[$data['jenis_transaksi']]) ? $jenis_transaksi_map[$data['jenis_transaksi']] : '';
+
+                // Mengonversi data transaksi dan search menjadi huruf kecil
+                return strpos(strtolower($jenis_transaksi_name), $search) !== false ||
+                    strpos(strtolower(strval($data['nama_transaksi'])), $search) !== false ||
+                    strpos(strtolower(strval($data['poin_digunakan'])), $search) !== false ||
+                    strpos(strtolower(strval($data['tanggal_transaksi'])), $search) !== false;
+            });
+        }
+
+        foreach ($data_transaksi as $data) : ?>
             <tr>
                 <td><?= $i++; ?></td>
                 <!-- <td><?= $data['id_transaksi']; ?></td> -->
-                <td><?= $data['npm']; ?></td>
+                <!-- <td><?= $data['npm']; ?></td> -->
                 <td>
                     <?php
                     switch ($data['jenis_transaksi']) {
@@ -33,6 +61,9 @@
                         case '105':
                             echo 'Misi Tambahan';
                             break;
+                        case '106':
+                            echo 'Konsultasi';
+                            break;
                         default:
                             echo $data['jenis_transaksi'];
                     }
@@ -42,7 +73,7 @@
                 <td><?= $data['poin_digunakan']; ?></td>
                 <td><?= date('d-m-Y', strtotime($data['tanggal_transaksi'])); ?></td>
                 <td> <?php
-                        switch ($data['validation']) {
+                        switch ($data['claim']) {
                             case 'Sudah':
                                 echo '<span class="badge badge-success">Sudah</span>';
                                 break;

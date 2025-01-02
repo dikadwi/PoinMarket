@@ -26,13 +26,14 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <!-- Search Belum Jalan -->
-                <div class="col-md-8">
+                <!-- Fitur Input dilakukan pada marketplace -->
+                <!-- <div class="col-md-8">
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalDataTransaksi">Input</button>
-                </div>
-                <div class="col-md-4">
+                </div> -->
+                <div class="col-md-4 offset-sm-8">
                     <form action="" method="get">
                         <div class="input-group">
+                            <!-- Search Belum Jalan -->
                             <input type="text" name="search" class="form-control" placeholder="Cari...">
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-primary">

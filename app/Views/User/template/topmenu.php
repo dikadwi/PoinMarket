@@ -31,6 +31,9 @@
                     <div class="dropdown-divider"></div>
                     <a href="/Role_User/misi_tambahan" class="dropdown-item">
                         <i class="fas fa-clipboard-list mr-2"></i>Misi Tambahan</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="/Role_User/konsultasi" class="dropdown-item">
+                        <i class="fas fa-clipboard-check mr-2"></i>Konsultasi</a>
                 </div>
             </li>
             <li class="nav-item">

@@ -9,7 +9,7 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <center>
-            <h1 class="m-0 text-dark">Poin Market</h1>
+            <h1 class="m-0 text-dark">Point Market</h1>
           </center>
         </div><!-- /.col -->
         <div class="col-sm-6">
@@ -200,8 +200,8 @@
     </div>
 
     <!-- Menampilkan data -->
-    <div class="row ">
-      <div class="col-lg-3 col-md-6 mb-3 ">
+    <div class="row justify-content-center">
+      <div class="col-lg-2 col-md-2 col-sm-6">
         <!-- small box -->
         <div class="small-box bg-info">
           <div class="inner">
@@ -210,14 +210,14 @@
             <p> <?= $totalReward ?> Items </p>
           </div>
           <div class="icon">
-            <i class="ion ion-ribbon-a"></i>
+            <i class="ion ion-ribbon-b"></i>
           </div>
           <a href="javascript:void(0);" data-toggle="modal" data-target="#modalDetailReward" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
           <!-- <a href="/Role_User/transaksi_reward" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a> -->
         </div>
       </div>
 
-      <div class="col-lg-3 col-md-6 mb-3 ">
+      <div class="col-lg-2 col-md-2 col-sm-6">
         <!-- small box -->
         <div class="small-box bg-danger">
           <div class="inner">
@@ -226,14 +226,14 @@
             <p> <?= $totalPembelian ?> Items </p>
           </div>
           <div class="icon">
-            <i class="ion ion-clipboard"></i>
+            <i class="ion ion-android-cart"></i>
           </div>
           <a href="javascript:void(0);" data-toggle="modal" data-target="#modalDetailPembelian" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
           <!-- <a href="/Role_User/transaksi_pembelian" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a> -->
         </div>
       </div>
 
-      <div class="col-lg-3 col-md-6 mb-3 ">
+      <div class="col-lg-2 col-md-2 col-sm-6">
         <!-- small box -->
         <div class="small-box bg-warning">
           <div class="inner">
@@ -242,18 +242,18 @@
             <p> <?= $totalPunishment ?> Items </p>
           </div>
           <div class="icon">
-            <i class="ion ion-clipboard"></i>
+            <i class="ion ion-compose"></i>
           </div>
           <a href="javascript:void(0);" data-toggle="modal" data-target="#modalDetailPunishment" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
           <!-- <a href="/Role_User/transaksi_punishment" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a> -->
         </div>
       </div>
 
-      <div class="col-lg-3 col-md-6 mb-3 ">
+      <div class="col-lg-2 col-md-2 col-sm-6">
         <!-- small box -->
         <div class="small-box bg-success">
           <div class="inner">
-            <h2>Misi Tambahan</h2>
+            <h2>Misi</h2>
             <!-- Total Challanges  -->
             <p> <?= $totalMisi ?> Items </p>
           </div>
@@ -261,6 +261,22 @@
             <i class="ion ion-clipboard"></i>
           </div>
           <a href="javascript:void(0);" data-toggle="modal" data-target="#modalDetailMisi" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+          <!-- <a href="/Role_User/transaksi_pembelian" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a> -->
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-md-2 col-sm-6">
+        <!-- small box -->
+        <div class="small-box bg-success">
+          <div class="inner">
+            <h2>Konsultasi</h2>
+            <!-- Total Challanges  -->
+            <p> <?= $totalKonsultasi ?> Items </p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-medkit"></i>
+          </div>
+          <a href="javascript:void(0);" data-toggle="modal" data-target="#modalDetailKonsul" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
           <!-- <a href="/Role_User/transaksi_pembelian" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a> -->
         </div>
       </div>
@@ -517,6 +533,60 @@
             <?php $i = 1; ?>
             <?php foreach ($data_transaksi as $data) : ?>
               <?php if ($data['jenis_transaksi'] == '105') : ?>
+                <tr>
+                  <td><?= $i++; ?></td>
+                  <td><?= $data['nama_transaksi']; ?></td>
+                  <td><?= $data['poin_digunakan']; ?></td>
+                  <td><?= date('d-m-Y', strtotime($data['tanggal_transaksi'])); ?></td>
+                  <!-- <td>
+                    <?php
+                    switch ($data['validation']) {
+                      case 'Sudah':
+                        echo '<span class="badge badge-success">Sudah</span>';
+                        break;
+                      case 'Belum':
+                        echo '<span class="badge badge-danger">Belum</span>';
+                        break;
+                      default:
+                        echo '<span class="badge badge-secondary">Tidak Ada</span>';
+                        break;
+                    } ?>
+                  </td> -->
+                </tr>
+              <?php endif ?>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Box Detail Konsultasi -->
+<div class="modal fade" id="modalDetailKonsul">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Konsultasi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+        <table class="table table-bordered border-dark">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Transaksi</th>
+              <th>Poin Digunakan</th>
+              <th>Tanggal Transaksi</th>
+              <!-- <th>Validasi</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <?php $i = 1; ?>
+            <?php foreach ($data_transaksi as $data) : ?>
+              <?php if ($data['jenis_transaksi'] == '106') : ?>
                 <tr>
                   <td><?= $i++; ?></td>
                   <td><?= $data['nama_transaksi']; ?></td>

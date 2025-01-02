@@ -1,5 +1,5 @@
  <!-- Main Sidebar Container -->
- <aside class="main-sidebar sidebar-dark-primary elevation-6">
+ <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background: linear-gradient(to right,rgb(45, 27, 86),rgb(52, 20, 36));">
      <!-- Brand Logo -->
      <a href="/Admin/index" class="brand-link">
          <img src="#" alt="" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -64,24 +64,32 @@
                          </p>
                      </a>
                  </li>
-                 <li class="nav-item">
-                     <a href="/Misi_tambah" class="nav-link">
-                         <i class="nav-icon fas fa-edit"></i>
-                         <p>
-                             Data Misi Tambahan
-                         </p>
-                     </a>
-                 </li>
                  <?php if (in_groups(['admin', 'validator', 'user'])) : ?>
                      <li class="nav-item">
-                         <a href="/Validasi" class="nav-link">
-                             <i class="nav-icon fas fa-print"></i>
+                         <a href="/Misi_tambah" class="nav-link">
+                             <i class="nav-icon fas fa-file"></i>
                              <p>
-                                 Validasi
+                                 Data Misi Tambahan
+                             </p>
+                         </a>
+                     </li>
+                     <li class="nav-item">
+                         <a href="#/Konsultasi" class="nav-link">
+                             <i class="nav-icon fas fa-edit"></i>
+                             <p>
+                                 Data Konsultasi
                              </p>
                          </a>
                      </li>
                  <?php endif ?>
+                 <li class="nav-item">
+                     <a href="/Validasi" class="nav-link">
+                         <i class="nav-icon fas fa-print"></i>
+                         <p>
+                             Validasi
+                         </p>
+                     </a>
+                 </li>
                  <?php if (in_groups(['admin'])) : ?>
                      <li class="nav-item">
                          <a href="/cms" class="nav-link">

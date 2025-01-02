@@ -1,4 +1,4 @@
-<table class="table table-bordered border-dark">
+<table class="table table-bordered table-striped">
     <thead class="bg-info">
         <tr>
             <th scope="col">No</th>

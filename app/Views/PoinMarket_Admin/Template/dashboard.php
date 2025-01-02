@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>/template/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <link href="<?= base_url() ?>/sweetalert2/package/dist/sweetalert2.min.css">
     <style>
+        /* Mengatur SwallAlert */
         .swal2-popup {
             /* font-size: 1.6rem !important; */
             /* height: auto; */
@@ -43,6 +44,7 @@
             /* Mengatur ukuran font */
         }
 
+        /* Mengatur Legend untuk Donuts */
         #legend {
             display: flex;
             /* Gunakan flexbox untuk mengatur elemen secara horizontal */
@@ -76,6 +78,7 @@
             /* Jarak antara warna dan teks */
         }
 
+        /* Mengatur SmallBox */
         .small-box .icon {
             font-size: 36px;
             transition: font-size 0.3s ease-in-out;
@@ -103,6 +106,7 @@
             }
         }
 
+        /* Mengatur Small box-b */
         .small-box.b {
             height: 500px;
             /* Atur tinggi box */
@@ -126,7 +130,7 @@
             /* Tambahkan scrollbar jika isi tabel melebihi tinggi */
         }
 
-        /* Sticky header */
+        /* Mengatur Sticky header */
         .sticky-header {
             position: sticky;
             top: 0;
@@ -156,11 +160,41 @@
         .select option {
             font-style: normal;
         }
+
+        @media (max-width: 768px) {
+            .small-box {
+                margin-bottom: 20px;
+                /* Menambahkan jarak antar kotak */
+            }
+
+            h1 {
+                font-size: 1.5rem;
+                /* Mengurangi ukuran font untuk judul */
+            }
+
+            .table {
+                font-size: 0.9rem;
+                /* Mengurangi ukuran font tabel */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-nav .nav-link .nav-icon {
+                display: inline;
+                /* Tampilkan ikon */
+            }
+
+            .navbar-nav .nav-link span {
+                display: none;
+                /* Sembunyikan teks */
+            }
+        }
     </style>
     </script>
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+
+<body class="hold-transition sidebar-mini sidebar-closed sidebar-collapse layout-fixed layout-navbar-fixed">
     <div class="wrapper">
 
 

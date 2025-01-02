@@ -30,6 +30,11 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 // $routes->get('/', 'Login::index');
+$routes->group('page', function ($routes) {
+    $routes->get('', 'LandingPage::index');
+    $routes->get('gamifikasi', 'LandingPage::gamifikasi');
+    $routes->get('register', 'LandingPage::register');
+});
 
 // Group untuk Controller Admin
 $routes->group('Admin', ['filter' => 'login'], function ($routes) {
@@ -74,7 +79,9 @@ $routes->get('registerMhs', 'Register::registerMhs'); //Halaman Register Mahasis
 $routes->post('Register/add', 'Register::add'); //Menyimpan data register mahasiswa
 
 // Menampilkan Halaman Utama (Controller Admin)
-$routes->get('/', 'PoinMarket_Admin\Admin::index',  ['filter' => 'login']);
+$routes->get('/dashboard', 'PoinMarket_Admin\Admin::index',  ['filter' => 'login']);
+$routes->get('/', 'LandingPage::index');
+// $routes->get('/', 'PoinMarket_Admin\Admin::index',  ['filter' => 'login']);
 $routes->get('/profile/(:num)', 'PoinMarket_Admin\Admin::profile/$1',  ['filter' => 'login']);
 
 
@@ -115,6 +122,7 @@ $routes->group('Transaksi', ['filter' => 'login'], function ($routes) {
     $routes->get('pembelian', 'PoinMarket_Admin\Transaksi::pembelian');
     $routes->get('punishment', 'PoinMarket_Admin\Transaksi::punishment');
     $routes->get('misi_tambah', 'PoinMarket_Admin\Transaksi::misi_tambah');
+    $routes->get('konsultasi', 'PoinMarket_Admin\Transaksi::konsultasi');
     $routes->post('save_Transaksi', 'PoinMarket_Admin\Transaksi::save_Transaksi');
     $routes->post('update_transaksi/(:num)', 'PoinMarket_Admin\Transaksi::update_Transaksi/$1');
     $routes->get('delete_Transaksi/(:num)', 'PoinMarket_Admin\Transaksi::delete_Transaksi/$1');
@@ -157,6 +165,7 @@ $routes->group('Role_User', ['filter' => 'login_m'], function ($routes) {
     $routes->get('pembelian', 'Role_User::pembelian');
     $routes->get('punishment', 'Role_User::punishment');
     $routes->get('misi_tambahan', 'Role_User::misi');
+    $routes->get('konsultasi', 'Role_User::konsultasi');
     $routes->get('misi', 'Role_User::misi_tambah');
     $routes->get('market', 'Marketplace::index'); // Menampilkan halaman utama marketplace
     $routes->post('market/buy', 'Marketplace::buy'); // Proses pembelian

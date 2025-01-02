@@ -1,4 +1,4 @@
-<table class="table table-bordered border-dark">
+<table class="table table-bordered table-striped">
     <thead class="bg-info">
         <tr>
             <th scope="col">No</th>
@@ -6,7 +6,7 @@
             <th scope="col">Poin Diperoleh</th><!-- total point mahasiswa (hasil dari transaksi) -->
             <th scope="col">Tanggal Transaksi</th>
             <th scope="col" colspan="3">Progress</th>
-            <th scope="col">Status</th>
+            <th scope="col">Status Misi </th> <!-- Diambil dari status validasi,hanya tampilkan dengan status belum, jika validasi sudah maka point dapat diclaim pada menu market di reward -->
             <th scope="col" colspan="2">Aksi</th>
         </tr>
     </thead>

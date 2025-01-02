@@ -13,7 +13,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
                     <li class="breadcrumb-item "><a href="/Jenis_Transaksi">Jenis Transaksi</a></li>
                     <li class="breadcrumb-item active"><?= $title; ?></li>
                 </ol>
@@ -79,7 +79,7 @@
                                 <option value="102" <?php if ($title == 'Pembelian') echo 'selected'; ?>>Pembelian</option>
                                 <option value="103" <?php if ($title == 'Punishment') echo 'selected'; ?>>Punishment</option>
                                 <option value="105" <?php if ($title == 'Misi Tambahan') echo 'selected'; ?>>Misi Tambahan</option>
-                                <option value="106" <?php if ($title == 'Misi Tambahan') echo 'selected'; ?>>Konsultasi</option>
+                                <option value="106" <?php if ($title == 'Konsultasi') echo 'selected'; ?>>Konsultasi</option>
                             </select>
                         </div>
                     </div>
