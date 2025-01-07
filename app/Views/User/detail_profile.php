@@ -3,57 +3,58 @@
 <?= $this->section('content_user'); ?>
 
 <div class="content-wrapper">
-    <div class="content-header">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <center>
-                    <h1 class="m-0 text-dark"> <?= $title; ?> </h1>
-                </center>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/Role_User">User</a></li>
-                    <li class="breadcrumb-item active"><?= $title; ?></li>
-                </ol>
+    <div class="container">
+        <div class="content-header">
+            <div class="row mb-2">
+                <div class="col-sm-12 col-md-6">
+                    <center>
+                        <h1 class="m-0 text-dark"> <?= $title; ?> </h1>
+                    </center>
+                </div><!-- /.col -->
+                <div class="col-sm-12 col-md-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/Role_User">User</a></li>
+                        <li class="breadcrumb-item active"><?= $title; ?></li>
+                    </ol>
+                </div>
             </div>
         </div>
-    </div>
 
-    <section class="content">
-        <div class="container-fluid">
-            <div class="col-lg-8">
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="/img/admin.jpg" class="img-fluid rounded-start">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <ul class="list-group list-group-flush">
-                                    <h5 class="card-title"><b>Nama :</b></h5>
-                                    <li class="list-group-item">
-                                        <h4><?= $username; ?></h4>
-                                    </li>
-                                    <h5 class="card-title"><b>NPM :</b></h5>
-                                    <li class="list-group-item">
-                                        <h4><?= $npm; ?></h4>
-                                    </li>
-                                    <h5 class="card-title"><b>Email :</b></h5>
-                                    <?php if (!empty($email)) : ?>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="col-lg-8">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="/img/admin.jpg" class="img-fluid rounded-start">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <ul class="list-group list-group-flush">
+                                        <h5 class="card-title"><b>Nama :</b></h5>
                                         <li class="list-group-item">
-                                            <h4><?= $email; ?></h4>
+                                            <h4><?= $username; ?></h4>
                                         </li>
-                                    <?php else : ?>
+                                        <h5 class="card-title"><b>NPM :</b></h5>
                                         <li class="list-group-item">
-                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#modalEmail" class="small-box-footer">Tambahkan Email</a>
-                                            </h5>
+                                            <h4><?= $npm; ?></h4>
                                         </li>
-                                    <?php endif; ?>
-                                    <h5 class="card-title"><b>Alamat IP :</b></h5>
-                                    <li class="list-group-item">
-                                        <h4><?= $_SERVER['REMOTE_ADDR']; ?></h4>
-                                    </li>
-                                    <!-- <h5 class="card-title"><b>Point :</b></h5>
+                                        <h5 class="card-title"><b>Email :</b></h5>
+                                        <?php if (!empty($email)) : ?>
+                                            <li class="list-group-item">
+                                                <h4><?= $email; ?></h4>
+                                            </li>
+                                        <?php else : ?>
+                                            <li class="list-group-item">
+                                                <a href="javascript:void(0);" data-toggle="modal" data-target="#modalEmail" class="small-box-footer">Tambahkan Email</a>
+                                                </h5>
+                                            </li>
+                                        <?php endif; ?>
+                                        <h5 class="card-title"><b>Alamat IP :</b></h5>
+                                        <li class="list-group-item">
+                                            <h4><?= $_SERVER['REMOTE_ADDR']; ?></h4>
+                                        </li>
+                                        <!-- <h5 class="card-title"><b>Point :</b></h5>
                                     <li class="list-group-item">
                                         <h4><?= $point; ?></h4>
                                     </li>
@@ -97,15 +98,16 @@
                                         }
                                         ?>
                                     </li> -->
-                                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalEdit<?= $npm; ?>">Edit Profil</button>
-                                </ul>
+                                        <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalEdit<?= $npm; ?>">Edit Profil</button>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 </div>
 
 
@@ -175,7 +177,5 @@
         </form>
     </div>
 </div>
-
-
 
 <?= $this->endsection(); ?>

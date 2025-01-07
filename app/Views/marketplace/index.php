@@ -41,7 +41,7 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                 <?php foreach ($datatransaksi as $item): ?>
                     <?php if ($item['claim'] === 'Belum'): // Menampilkan Data Reward jika reward belum diambil dengan status claim "Belum" 
                     ?>
-                        <div class="col-md-3 mb-4">
+                        <div class="col-6 col-md-3">
                             <div class="card">
                                 <img src="https://cdn.prod.website-files.com/64889df33626cba8b4463219/6580a6236b0c485a43d21338_620ebadbfc0b50324e0a295b_Gamification_Blog-Feat-Image_1080x680.webp" class="card-img-top" alt="<?= $item['nama_transaksi'] ?>">
                                 <div class="card-body">
@@ -81,7 +81,7 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
             <?php foreach ($transaksi as $item): ?>
                 <?php if ($item['kode_jenis'] == '102'): // kode_jenis Pembelian 
                 ?>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-6 col-md-3">
                         <div class="card">
                             <img src="https://gapsystudio.com/storage/1746/gamification-in-ux-11zon.webp" class="card-img-top" alt="<?= $item['nama_transaksi'] ?>">
                             <div class="card-body">
@@ -89,12 +89,12 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                                 <p class="card-text">Point Harga : <strong><?= $item['poin_digunakan'] ?></strong></p>
                                 <div class="d-flex justify-content-center">
                                     <!-- <form action="<?= base_url('Role_User/market/buy') ?>" method="post" class="buy-form"> -->
-                                    <form action="<?= base_url('market/buy') ?>" method="post" class="buy-form">
+                                    <form action="<?= base_url('market/buy') ?>" method="post" class="buy-form mr-2">
                                         <input type="hidden" name="nama_transaksi" value="<?= $item['nama_transaksi'] ?>">
                                         <input type="hidden" name="poin_digunakan" value="<?= $item['poin_digunakan'] ?>">
                                         <button type="submit" class="btn btn-primary btn-beli">Buy</button>
-                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalDetail<?= esc($item['id_transaksi']) ?>">Detail</button>
                                     </form>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalDetail<?= esc($item['id_transaksi']) ?>">Detail</button>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +133,8 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
             <?php foreach ($transaksi as $item): ?>
                 <?php if ($item['kode_jenis'] == '105'): // kode_jenis Misi Tambahan 
                 ?>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-6 col-md-3">
+                        <!-- <div class="col-md-3 mb-4"> -->
                         <div class="card">
                             <img src="https://elearningindustry.com/wp-content/uploads/2014/07/Gamification_article.jpg" class="card-img-top" alt="<?= $item['nama_transaksi'] ?>">
                             <div class="card-body">
@@ -141,12 +142,12 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                                 <p class="card-text">Point Diperoleh : <strong><?= $item['poin_digunakan'] ?></strong></p>
                                 <div class="d-flex justify-content-center">
                                     <!-- <form action="<?= base_url('Role_User/market/misi_tambah') ?>" method="post" class="misi-form"> -->
-                                    <form action="<?= base_url('market/misi') ?>" method="post" class="misi-form">
+                                    <form action="<?= base_url('market/misi') ?>" method="post" class="misi-form mr-2">
                                         <input type="hidden" name="nama_transaksi" value="<?= $item['nama_transaksi'] ?>">
                                         <input type="hidden" name="poin_digunakan" value="<?= $item['poin_digunakan'] ?>">
                                         <button type="submit" class="btn btn-success btn-misi">Complete Mission</button>
-                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalDetail<?= esc($item['id_transaksi']) ?>">Detail</button>
                                     </form>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalDetail<?= esc($item['id_transaksi']) ?>">Detail</button>
                                 </div>
                             </div>
                         </div>
@@ -185,7 +186,7 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
             <?php foreach ($transaksi as $item): ?>
                 <?php if ($item['kode_jenis'] == '106'): // kode_jenis Konsultasi 
                 ?>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-6 col-md-3">
                         <div class="card">
                             <img src="https://trierconsulting.com/wp-content/uploads/2021/07/client-1024x657.png" class="card-img-top" alt="<?= $item['nama_transaksi'] ?>">
                             <div class="card-body">
@@ -193,12 +194,12 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                                 <p class="card-text">Point Digunakan : <strong><?= $item['poin_digunakan'] ?></strong></p>
                                 <div class="d-flex justify-content-center">
                                     <!-- <form action="<?= base_url('Role_User/market/konsultasi') ?>" method="post" class="misi-form"> -->
-                                    <form action="<?= base_url('market/konsultasi') ?>" method="post" class="misi-form">
+                                    <form action="<?= base_url('market/konsultasi') ?>" method="post" class="misi-form mr-2">
                                         <input type="hidden" name="nama_transaksi" value="<?= $item['nama_transaksi'] ?>">
                                         <input type="hidden" name="poin_digunakan" value="<?= $item['poin_digunakan'] ?>">
                                         <button type="submit" class="btn btn-success btn-konsul">Konsultasi</button>
-                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalDetail<?= esc($item['id_transaksi']) ?>">Detail</button>
                                     </form>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalDetail<?= esc($item['id_transaksi']) ?>">Detail</button>
                                 </div>
                             </div>
                         </div>

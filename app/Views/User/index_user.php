@@ -25,7 +25,6 @@
 
   <!-- Main content -->
   <section class="content">
-
     <div class="container-fluid">
       <!-- Small boxes (Stat box) -->
       <div class="row">
@@ -199,9 +198,9 @@
       </div>
     </div>
 
-    <!-- Menampilkan data -->
+    <!-- Menampilkan data Transaksi-->
     <div class="row justify-content-center">
-      <div class="col-lg-2 col-md-2 col-sm-6">
+      <div class="col-6 col-md-2">
         <!-- small box -->
         <div class="small-box bg-info">
           <div class="inner">
@@ -217,7 +216,7 @@
         </div>
       </div>
 
-      <div class="col-lg-2 col-md-2 col-sm-6">
+      <div class="col-6 col-md-2">
         <!-- small box -->
         <div class="small-box bg-danger">
           <div class="inner">
@@ -233,7 +232,7 @@
         </div>
       </div>
 
-      <div class="col-lg-2 col-md-2 col-sm-6">
+      <div class="col-6 col-md-2">
         <!-- small box -->
         <div class="small-box bg-warning">
           <div class="inner">
@@ -249,7 +248,7 @@
         </div>
       </div>
 
-      <div class="col-lg-2 col-md-2 col-sm-6">
+      <div class="col-6 col-md-2">
         <!-- small box -->
         <div class="small-box bg-success">
           <div class="inner">
@@ -265,7 +264,7 @@
         </div>
       </div>
 
-      <div class="col-lg-2 col-md-2 col-sm-6">
+      <div class="col-6 col-md-2">
         <!-- small box -->
         <div class="small-box bg-success">
           <div class="inner">
@@ -370,7 +369,7 @@
           <tbody>
             <?php $i = 1; ?>
             <?php foreach ($data_transaksi as $data) : ?>
-              <?php if ($data['jenis_transaksi'] == '101') : ?>
+              <?php if ($data['kode_jenis'] == '101') : ?>
                 <tr>
                   <td><?= $i++; ?></td>
                   <td><?= $data['nama_transaksi']; ?></td>
@@ -424,7 +423,7 @@
           <tbody>
             <?php $i = 1; ?>
             <?php foreach ($data_transaksi as $data) : ?>
-              <?php if ($data['jenis_transaksi'] == '102') : ?>
+              <?php if ($data['kode_jenis'] == '102') : ?>
                 <tr>
                   <td><?= $i++; ?></td>
                   <td><?= $data['nama_transaksi']; ?></td>
@@ -478,7 +477,7 @@
           <tbody>
             <?php $i = 1; ?>
             <?php foreach ($data_transaksi as $data) : ?>
-              <?php if ($data['jenis_transaksi'] == '103') : ?>
+              <?php if ($data['kode_jenis'] == '103') : ?>
                 <tr>
                   <td><?= $i++; ?></td>
                   <td><?= $data['nama_transaksi']; ?></td>
@@ -532,7 +531,7 @@
           <tbody>
             <?php $i = 1; ?>
             <?php foreach ($data_transaksi as $data) : ?>
-              <?php if ($data['jenis_transaksi'] == '105') : ?>
+              <?php if ($data['kode_jenis'] == '105') : ?>
                 <tr>
                   <td><?= $i++; ?></td>
                   <td><?= $data['nama_transaksi']; ?></td>
@@ -586,7 +585,7 @@
           <tbody>
             <?php $i = 1; ?>
             <?php foreach ($data_transaksi as $data) : ?>
-              <?php if ($data['jenis_transaksi'] == '106') : ?>
+              <?php if ($data['kode_jenis'] == '106') : ?>
                 <tr>
                   <td><?= $i++; ?></td>
                   <td><?= $data['nama_transaksi']; ?></td>
@@ -616,59 +615,5 @@
   </div>
 </div>
 
-<script>
-  // Data yang diambil dari PHP
-  var labels = <?php echo json_encode(array_column($transactions, 'jenis_transaksi')); ?>;
-  var data = <?php echo json_encode(array_column($transactions, 'total')); ?>;
-  var backgroundColor = ["#21bcdb", "#db2121", "#f0d11f", "#1ea84a"]; // Warna sesuai kategori
-
-  // Data untuk grafik donut
-  var chartData = {
-    labels: labels,
-    datasets: [{
-      data: data,
-      backgroundColor: backgroundColor
-    }]
-  };
-
-  // Atur options untuk grafik donut
-  var options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    legend: {
-      display: false // Agar legend ditampilkan secara terpisah
-    }
-  };
-
-  // Mengambil elemen canvas untuk menggambar grafik donut
-  var ctx = document.getElementById("donutChart").getContext("2d");
-
-  // Membuat grafik donut
-  var donutChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: chartData,
-    options: options
-  });
-
-  // Fungsi untuk menambahkan keterangan pada halaman
-  function addLegend() {
-    var legend = document.getElementById('legend');
-    var content = '';
-
-    labels.forEach(function(label, index) {
-      content += '<div class="legend-item"><span style="display:inline-block;width:20px;background-color:' +
-        backgroundColor[index] +
-        '">&nbsp;</span> ' +
-        label +
-        ' =' +
-        data[index] +
-        ' - ' +
-        getTransaksiJenis(parseInt(label)) +
-        '</div>';
-    });
-
-    legend.innerHTML = content;
-  }
-</script>
 
 <?= $this->endsection(); ?>

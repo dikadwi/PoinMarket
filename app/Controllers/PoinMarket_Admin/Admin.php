@@ -10,6 +10,7 @@ use App\Models\JenisTransaksiModel;
 use App\Models\MahasiswaModel;
 use App\Models\TransaksiModel;
 use App\Models\UserModel;
+use App\Models\PageModel;
 
 class Admin extends BaseController
 {
@@ -20,6 +21,7 @@ class Admin extends BaseController
     protected $TransaksiModel;
     protected $BadgesModel;
     protected $MahasiswaModel;
+    protected $PageModel;
 
     public function __construct()
     {
@@ -31,12 +33,15 @@ class Admin extends BaseController
         $this->TransaksiModel = new TransaksiModel();
         $this->BadgesModel = new BadgesModel();
         $this->MahasiswaModel = new MahasiswaModel();
+        $this->PageModel = new PageModel();
     }
 
     //Menampilkan halaman utama
     public function index()
     {
         $session = session();
+
+        $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
 
         $data = [
             'title' => 'Dashboard',
@@ -54,6 +59,7 @@ class Admin extends BaseController
             'badges' => $this->BadgesModel->getBadges(),
             'mahasiswa' => $this->MahasiswaModel->getMhs(),
             'transaksi' => $this->TransaksiModel->getTransaksi(),
+            'topMenuPages' => $topMenuPages,
         ];
 
         return view('PoinMarket_Admin/index', $data);
@@ -65,10 +71,12 @@ class Admin extends BaseController
 
         $session = session();
 
+        $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
         $data = [
             'username' => $session->get('username'),
             'title' => 'Profile',
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+            'topMenuPages' => $topMenuPages,
         ];
         // $users = new \Myth\Auth\Models\UserModel();
         // $data['users'] = $users->findAll();

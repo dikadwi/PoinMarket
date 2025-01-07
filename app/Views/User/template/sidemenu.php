@@ -54,14 +54,14 @@
                              </p>
                          </a>
                      </li>
-                     <!-- <li class="nav-item">
-                         <a href="#Challange" class="nav-link">
+                     <li class="nav-item">
+                         <a href="/Role_User/quis" class="nav-link">
                              <i class="nav-icon fas fa-trophy"></i>
                              <p>
-                                 Challange
+                                 Quis
                              </p>
                          </a>
-                     </li> -->
+                     </li>
                  </ul>
              </nav>
          <?php endif; ?>

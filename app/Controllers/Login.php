@@ -77,12 +77,13 @@ class Login extends BaseController
                 $session = session();
                 $session->set('isLoggedIn', true);
                 // Set sesuai dengan data mahasiswa dari tabel
-                $session->set('user_id', $mahasiswa['id']);
+                $session->set('user_id', $mahasiswa['npm']);
                 $session->set('username', $mahasiswa['nama']);
                 $session->set('npm', $mahasiswa['npm']);
                 $session->set('email', $mahasiswa['email']);
                 $session->set('point', $mahasiswa['point']);
                 $session->set('password', $mahasiswa['password']);
+                $session->set('gaya_belajar', $mahasiswa['gaya_belajar']);
 
                 return redirect()->to('/Role_User')->with('message', 'Selamat Datang di Market Point !');;
             } else {

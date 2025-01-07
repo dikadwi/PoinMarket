@@ -7,8 +7,7 @@ use App\Models\JenisTransaksiModel;
 use App\Models\TransaksiModel;
 use App\Models\DataTransaksiModel;
 use App\Models\MahasiswaModel;
-
-
+use App\Models\PageModel;
 
 class Misi_tambah extends BaseController
 {
@@ -17,6 +16,7 @@ class Misi_tambah extends BaseController
     protected $TransaksiModel;
     protected $DataTransaksiModel;
     protected $MahasiswaModel;
+    protected $PageModel;
 
     public function __construct()
     {
@@ -25,6 +25,7 @@ class Misi_tambah extends BaseController
         $this->TransaksiModel = new TransaksiModel();
         $this->DataTransaksiModel = new DataTransaksiModel();
         $this->MahasiswaModel = new MahasiswaModel();
+        $this->PageModel = new PageModel();
     }
 
     public function index()
@@ -36,6 +37,8 @@ class Misi_tambah extends BaseController
 
         $session = session();
 
+        $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
+
         $data = [
             'title' => 'Misi Tambahan',
             'username' => $session->get('username'),
@@ -44,6 +47,7 @@ class Misi_tambah extends BaseController
             'npm' => $this->MahasiswaModel->getMhs(),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'jenis' => $this->JenisTransaksiModel->getJenis(),
+            'topMenuPages' => $topMenuPages,
         ];
         return view('PoinMarket_Admin/Page/misi_tambah', $data);
     }
@@ -77,7 +81,7 @@ class Misi_tambah extends BaseController
                 // Siapkan data untuk disimpan ke dalam tabel transaksi
                 $data_transaksi = [
                     'id_transaksi' => $this->request->getVar('id_transaksi'),
-                    'jenis_transaksi' => $this->request->getVar('jenis_transaksi'),
+                    'kode_jenis' => $this->request->getVar('jenis_transaksi'),
                     'nama_transaksi' => $this->request->getVar('nama_transaksi'),
                     'npm' => $mahasiswaData['npm'],
                     'poin_digunakan' => $poin_digunakan,
@@ -99,7 +103,7 @@ class Misi_tambah extends BaseController
                     // $this->MahasiswaModel->update($mahasiswaData['id'], ['point' => $sisaPoin]);
                 }
 
-                $this->MahasiswaModel->update($mahasiswaData['id'], ['point' => $sisaPoin]);
+                $this->MahasiswaModel->update($mahasiswaData['npm'], ['point' => $sisaPoin]);
 
                 session()->setFlashdata("sukses", "Transaksi berhasil. Sisa poin: " . $sisaPoin);
                 return redirect()->back();

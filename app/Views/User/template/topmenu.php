@@ -11,12 +11,12 @@
         <?php if ($isLoggedIn): ?>
             <li class="nav-item">
                 <a href="/Role_User" class="nav-link">
-                    <i class="nav-icon fa fa-home"> Dashboard</i>
+                    <i class="nav-icon fa fa-home"><span> Dashboard</span></i>
                 </a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
-                    <i class="fas fa-tags">Jenis Transaksi</i> <!-- Ganti ikon sesuai kebutuhan -->
+                    <i class="fas fa-tags"><span> Jenis Transaksi</span></i> <!-- Ganti ikon sesuai kebutuhan -->
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <!-- Isi dropdown menu dengan link atau konten lain -->
@@ -38,17 +38,17 @@
             </li>
             <li class="nav-item">
                 <a href="/Role_User/badges" class="nav-link">
-                    <i class="nav-icon fa fa-ribbon"> Badges</i>
+                    <i class="nav-icon fa fa-ribbon"><span> Badges</span></i>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#Challange" class="nav-link">
-                    <i class="nav-icon fa fa-trophy"> Challange</i>
+                    <i class="nav-icon fa fa-trophy"><span> Challange</span></i>
                 </a>
             </li>
             <li class="nav-item dropdown">
                 <a href="/Role_User/market" class="nav-link">
-                    <i class="fas fa-cart-plus"> Market Place</i> <!-- Ganti ikon sesuai kebutuhan -->
+                    <i class="fas fa-cart-plus"><span> Market Place</span></i> <!-- Ganti ikon sesuai kebutuhan -->
                 </a>
             </li>
         <?php endif ?>
@@ -57,7 +57,7 @@
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <a href="#" class="nav-link">
-                <i class="nav-icon fa fa-clock"> <?php echo date(' d F Y '); ?></i>
+                <span> <i class="nav-icon fa fa-clock"> <?php echo date(' d F Y '); ?></i></span>
                 <!-- date_default_timezone_set('Asia/Jakarta'); echo date(' d-M-Y / H:i:s a'); -->
             </a>
         </li>

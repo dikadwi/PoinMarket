@@ -81,6 +81,14 @@
                              </p>
                          </a>
                      </li>
+                     <li class="nav-item">
+                         <a href="/Quis" class="nav-link">
+                             <i class="nav-icon fas fa-edit"></i>
+                             <p>
+                                 Data Quis
+                             </p>
+                         </a>
+                     </li>
                  <?php endif ?>
                  <li class="nav-item">
                      <a href="/Validasi" class="nav-link">

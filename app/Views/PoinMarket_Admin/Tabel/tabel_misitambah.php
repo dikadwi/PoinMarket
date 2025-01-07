@@ -99,7 +99,7 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                 <td><?= $data['npm']; ?></td>
                 <td>
                     <?php
-                    switch ($data['jenis_transaksi']) {
+                    switch ($data['kode_jenis']) {
                         case '101':
                             echo 'Reward';
                             break;
@@ -113,7 +113,7 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                             echo 'Misi Tambahan';
                             break;
                         default:
-                            echo $data['jenis_transaksi'];
+                            echo $data['kode_jenis'];
                     }
                     ?>
                 </td>
@@ -134,14 +134,14 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                         } ?>
                 </td>
                 <td>
-                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $data['id_transaksi']; ?>">Detail</button>
+                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $data['id_transaksi']; ?>"><i class="fas fa-eye"></i> Detail</button>
                 </td>
                 <?php if (in_groups('admin')) : ?>
                     <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $data['id_transaksi']; ?>">Edit</button>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $data['id_transaksi']; ?>"><i class="fas fa-edit"></i> Edit</button>
                     </td>
                     <td>
-                        <button href="/Misi_tambah/delete_Misi/<?= $data['id_transaksi']; ?>" class="btn btn-danger btn-hapus">Hapus</button>
+                        <button href="/Misi_tambah/delete_Misi/<?= $data['id_transaksi']; ?>" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i> Hapus</button>
                     </td>
                 <?php endif; ?>
             <?php
@@ -198,7 +198,7 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                     <div class="col-lg-13">
                         <div class="card mb-3">
                             <div class="row g-0">
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                     <div class="card-body">
                                         <ul class="list-group list-group-flush">
                                             <!-- <h5 class="card-title"><b>Kode Transaksi :</b></h5>
@@ -208,7 +208,7 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                                             <h5 class="card-title"><b>Jenis Transaksi :</b></h5>
                                             <li class="list-group-item">
                                                 <h4><?php
-                                                    switch ($data['jenis_transaksi']) {
+                                                    switch ($data['kode_jenis']) {
                                                         case '101':
                                                             echo 'Reward';
                                                             break;
@@ -222,7 +222,7 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                                                             echo 'Misi Tambahan';
                                                             break;
                                                         default:
-                                                            echo $data['jenis_transaksi'];
+                                                            echo $data['kode_jenis'];
                                                     }
                                                     ?>
                                                 </h4>
@@ -270,35 +270,26 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                 <div class="modal-body">
                     <form action="/Misi_tambah/update_Misi/<?= $data['id_transaksi']; ?>" method="post" enctype="multipart/form-data">
                         <!-- <div class="form-group ">
-                            <label for="id_transaksi" class="col-form-label">Kode Transaksi</label>
-                            <div class="col-sm-10">
+                            <label for="id_transaksi" class="col-form-label">Kode Transaksi</label>                           
                                 <input type="number" class="form-control" id="id_transaksi" name="id_transaksi" value="<?php echo $data['id_transaksi'] ?>" required readonly>
                             </div>
-                        </div>
                         <div class="form-group ">
-                            <label for="jenis_transaksi" class="col-form-label">Jenis Transaksi</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="jenis_transaksi" name="jenis_transaksi" value="<?php echo $data['jenis_transaksi'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+                            <label for="jenis_transaksi" class="col-form-label">Jenis Transaksi</label>                           
+                                <input type="text" class="form-control" id="jenis_transaksi" name="jenis_transaksi" value="<?php echo $data['kode_jenis'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
                             </div>
-                        </div>
                         <div class="form-group ">
-                            <label for="nama_transaksi" class="col-form-label">Nama Transaksi</label>
-                            <div class="col-sm-10">
+                            <label for="nama_transaksi" class="col-form-label">Nama Transaksi</label>                           
                                 <input type="text" class="form-control" id="nama_transaksi" name="nama_transaksi" value="<?php echo $data['nama_transaksi'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
                             </div>
-                        </div> -->
+                            -->
                         <div class="form-group ">
                             <label for="npm" class="col-form-label">NPM</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" id="npm" name="npm" value="<?php echo $data['npm'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                            </div>
+                            <input type="number" class="form-control" id="npm" name="npm" value="<?php echo $data['npm'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
                         </div>
                         <!-- <div class="form-group ">
-                            <label for="poin_digunakan" class="col-form-label">Poin Digunakan</label>
-                            <div class="col-sm-10">
+                            <label for="poin_digunakan" class="col-form-label">Poin Digunakan</label>                           
                                 <input type="number" class="form-control" id="poin_digunakan" name="poin_digunakan" value="<?php echo $data['poin_digunakan'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                            </div>
-                        </div> -->
+                            </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Update</button>

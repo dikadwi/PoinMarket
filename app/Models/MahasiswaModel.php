@@ -9,8 +9,8 @@ class MahasiswaModel extends Model
 
 
     protected $table = 'mahasiswa';
-    protected $primaryKey = 'id';
-    protected $allowedFields = ['email', 'nama', 'npm', 'password', 'point', 'gaya_belajar', 'created_at', 'updated_at', 'deleted_at'];
+    protected $primaryKey = 'npm';
+    protected $allowedFields = ['npm', 'email', 'nama',  'password', 'point', 'gaya_belajar', 'created_at', 'updated_at', 'deleted_at'];
 
     // //Dates
     protected $useTimestamps = true;

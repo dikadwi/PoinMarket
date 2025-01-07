@@ -1,3 +1,27 @@
+<?php
+// Tentukan jumlah data per halaman
+$limit = 10;
+
+// Ambil halaman saat ini dari URL, jika tidak ada, set ke 1
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+// Hitung total data
+$total_data = count($transaksi);
+
+// Hitung total halaman
+$total_pages = ceil($total_data / $limit);
+
+// Hitung offset untuk query
+$offset = ($page - 1) * $limit;
+
+// Ambil data untuk halaman saat ini
+$transaksi = array_slice($transaksi, $offset, $limit);
+
+// Hitung data yang ditampilkan
+$start = $offset + 1; // Data pertama yang ditampilkan
+$end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
+?>
+
 <table class="table table-bordered table-striped">
     <thead class="bg-info">
         <tr>
@@ -32,6 +56,38 @@
     </tbody>
 </table>
 
+<!-- Pagination -->
+<nav class="d-flex justify-content-between align-items-center" aria-label="Page navigation">
+    <!-- Menampilkan informasi jumlah data di kiri -->
+    <div class="mb-3">
+        Showing <?= $start; ?> to <?= $end; ?> of <?= $total_data; ?> entries
+    </div>
+    <!-- Menampilkan pagination di kanan -->
+    <ul class="pagination mb-0">
+        <!-- Tombol Previous -->
+        <li class="page-item <?= ($page <= 1) ? 'disabled' : ''; ?>">
+            <a class="page-link" href="?page=<?= $page - 1; ?>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+
+        <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+            <li class="page-item <?= ($i == $page) ? 'active' : ''; ?>">
+                <a class="page-link" href="?page=<?= $i; ?>">
+                    <?= $i; ?>
+                </a>
+            </li>
+        <?php endfor; ?>
+
+        <!-- Tombol Next -->
+        <li class="page-item <?= ($page >= $total_pages) ? 'disabled' : ''; ?>">
+            <a class="page-link" href="?page=<?= $page + 1; ?>" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
 <!-- Modal box Detail -->
 <?php foreach ($transaksi as $t) : ?>
     <div class="modal fade" id="modalDetail<?php echo $t['id_transaksi']; ?>">
@@ -47,7 +103,7 @@
                     <div class="col-lg-13">
                         <div class="card mb-3">
                             <div class="row g-0">
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                     <div class="card-body">
                                         <ul class="list-group list-group-flush">
                                             <h5 class="card-title"><b>Id Transaksi :</b></h5>

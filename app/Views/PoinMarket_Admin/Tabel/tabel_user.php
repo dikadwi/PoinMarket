@@ -92,10 +92,10 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                 <td><?= date('d-m-Y', strtotime($u->created_at)); ?></td>
                 <!-- <td><?= $u->created_at; ?></td> -->
                 <td>
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $u->userid; ?>">Detail</button>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $u->userid; ?>"><i class="fas fa-eye"></i> Detail</button>
                 </td>
                 <td>
-                    <button href="/User/delete_User/<?= $u->userid; ?>" class="btn btn-danger btn-hapus">Hapus</button>
+                    <button href="/User/delete_User/<?= $u->userid; ?>" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i> Hapus</button>
                 </td>
             </tr>
         <?php endforeach; ?>

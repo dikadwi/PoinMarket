@@ -6,12 +6,12 @@
 
     <div class="content-header">
         <div class="row mb-2">
-            <div class="col-sm-6">
+            <div class="col-sm-12 col-md-6">
                 <center>
                     <h1 class="m-0 text-dark">Data <?= $title; ?> </h1>
                 </center>
             </div><!-- /.col -->
-            <div class="col-sm-6">
+            <div class="col-sm-12 col-md-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
                     <li class="breadcrumb-item active"><?= $title; ?></li>
@@ -24,13 +24,13 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-12 col-md-6 mb-3">
                     <?php if (in_groups(['admin', 'user'])) : ?> <!-- User yang dimaksud adalah staf bukan mahasiswa -->
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahBadges">Input</button>
                     <?php endif ?>
                 </div>
                 <!-- Search Belum Jalan -->
-                <div class="col-md-4">
+                <div class="col-12 col-md-6 mb-3">
                     <form action="" method="get">
                         <div class="input-group">
                             <input type="text" name="search" class="form-control" placeholder="Cari...">
@@ -44,8 +44,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12">
-                    <?= $this->include('PoinMarket_Admin/Tabel/tabel_badges'); ?>
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <?= $this->include('PoinMarket_Admin/Tabel/tabel_badges'); ?>
+                    </div>
                 </div>
             </div>
 
@@ -66,33 +68,23 @@
                 <form action="/Badges/save_badges" method="post" enctype="multipart/form-data">
                     <div class="form-group ">
                         <label for="nama" class="col-form-label">Nama</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nama" name="nama" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
-                        </div>
+                        <input type="text" class="form-control" id="nama" name="nama" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
                     </div>
                     <div class="form-group ">
                         <label for="point" class="col-form-label">Point</label>
-                        <div class="col-sm-10">
-                            <input type="number" class="form-control" id="point" name="point" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
-                        </div>
+                        <input type="number" class="form-control" id="point" name="point" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
                     </div>
                     <div class="form-group ">
                         <label for="detail" class="col-form-label">Detail</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="detail" name="detail" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
-                        </div>
+                        <input type="text" class="form-control" id="detail" name="detail" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
                     </div>
                     <div class="form-group ">
                         <label for="keterangan" class="col-form-label">Keterangan</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="keterangan" name="keterangan" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
-                        </div>
+                        <input type="text" class="form-control" id="keterangan" name="keterangan" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
                     </div>
                     <div class="form-group ">
                         <label for="badges" class="col-form-label">Badges(Upload Gambar)</label>
-                        <div class="col-sm-10">
-                            <input type="file" class="form-control" id="badges" name="badges" accept="image/png, image/jpg, image/jpeg" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
-                        </div>
+                        <input type="file" class="form-control" id="badges" name="badges" accept="image/png, image/jpg, image/jpeg" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
                     </div>
             </div>
             <div class="modal-footer">

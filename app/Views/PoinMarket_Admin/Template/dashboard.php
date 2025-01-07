@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>/template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/template/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <link href="<?= base_url() ?>/sweetalert2/package/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         /* Mengatur SwallAlert */
         .swal2-popup {
@@ -155,6 +156,8 @@
         .table th {
             padding: 4px;
             /* Atur padding untuk mengurangi ruang di dalam sel */
+            text-align: center;
+            vertical-align: middle;
         }
 
         .select option {
@@ -181,12 +184,28 @@
         @media (max-width: 768px) {
             .navbar-nav .nav-link .nav-icon {
                 display: inline;
-                /* Tampilkan ikon */
+            }
+
+            .main-header .navbar-nav .nav-item {
+                flex: 1 1 auto;
+                text-align: center;
             }
 
             .navbar-nav .nav-link span {
                 display: none;
                 /* Sembunyikan teks */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-header .navbar-nav .nav-item {
+                flex: 1 1 100%;
+                margin-bottom: 10px;
+            }
+
+            .main-header .navbar-nav .nav-link {
+                font-size: 14px;
+                padding: 5px 10px;
             }
         }
     </style>

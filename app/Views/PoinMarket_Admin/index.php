@@ -26,6 +26,48 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-6 col-md-2">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h2>Users</h2>
+                            <!-- Total Mahasiswa  -->
+                            <h4>Total User</h4>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-2">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h2>Transaksi</h2>
+                            <!-- Total Semua Data Transaksi  -->
+                            <h4>Total Transaksi</h4>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-android-cart"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-2">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h2>Online</h2>
+                            <!-- Total Mahasiswa sedang online / login  -->
+                            <h4>User Online</h4>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
             <!-- Row untuk Card Jumlah Tiap Jenis Transaksi -->
             <div class="row justify-content-center">
                 <div class="col-6 col-md-2">
@@ -90,7 +132,7 @@
 
                 <div class="col-6 col-md-2">
                     <!-- small box -->
-                    <div class="small-box bg-success">
+                    <div class="small-box bg-gradient-purple">
                         <div class="inner">
                             <h2>Konsultasi</h2>
                             <!-- Total data Badges -->
@@ -103,7 +145,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Row untuk Donut,Leaderboard-->
             <div class="row">
                 <!-- Donut -->
@@ -113,7 +154,7 @@
                         <div>
                             <canvas id="donutChart" width="400" height="400"></canvas>
                         </div>
-                        <div id="legend"></div>
+                        <!-- <div id="legend"></div> -->
                     </div>
                     <!-- <div class="small-box border border-dark">
                         < Keterangan grafik ->
@@ -189,7 +230,7 @@
                                                     }
 
                                                     if ($selectedBadge !== null) {
-                                                        echo '<img src="data:image/png;base64,' . base64_encode($selectedBadge['badges']) . '" width="50">';
+                                                        echo '<img src="data:image/png;base64,' . base64_encode($selectedBadge['badges']) . '" width="80">';
                                                     } else {
                                                         echo 'Tidak ada badge';
                                                     }
@@ -223,7 +264,7 @@
                                             <th scope="col">Badges</th>
                                             <th scope="col">Nama</th>
                                             <th scope="col">Point</th>
-                                            <th scope="col">Aksi</th>
+                                            <th scope="col">Keterangan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -233,14 +274,12 @@
                                                 <td><?= $i++; ?></td>
                                                 <td>
                                                     <?php if ($b['badges']) : ?>
-                                                        <center> <img src="data:image/png;base64,<?= base64_encode($b['badges']); ?>" alt="Badge Image" width="85"></center>
+                                                        <center> <img src="data:image/png;base64,<?= base64_encode($b['badges']); ?>" alt="Badge Image" width="80"></center>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td><?= $b['nama']; ?></td>
                                                 <td><?= $b['point']; ?></td>
-                                                <td>
-                                                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $b['id_badges']; ?>">Detail</button>
-                                                </td>
+                                                <td><?= $b['keterangan']; ?></td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -286,7 +325,7 @@
                 </div>
             </div>
 
-            <!-- Row untuk Leaderboard & data Mahasiswa-->
+            <!-- Row data Mahasiswa-->
             <div class="row">
                 <!-- Data Mahasiswa -->
                 <div class="col-lg-6 col-12">
@@ -346,7 +385,7 @@
                                                         }
 
                                                         if ($selectedBadge !== null) {
-                                                            echo '<img src="data:image/png;base64,' . base64_encode($selectedBadge['badges']) . '" width="85">';
+                                                            echo '<img src="data:image/png;base64,' . base64_encode($selectedBadge['badges']) . '" width="80">';
                                                         } else {
                                                             echo 'Tidak ada badge';
                                                         }
@@ -366,73 +405,15 @@
     <!-- /.content -->
 </div>
 
-<!-- Modal box Detail -->
-<?php foreach ($badges as $b) : ?>
-    <div class="modal fade" id="modalDetail<?php echo $b['id_badges']; ?>">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Badges <?= $b['nama']; ?> </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-lg-13">
-                        <center>
-                            <?php if ($b['badges']) : ?>
-                                <!-- Tambahkan Border lingkaran untuk gambar badges -->
-                                <img src="data:image/png;base64,<?= base64_encode($b['badges']); ?>" alt="Badge Image" width="105">
-                            <?php endif; ?>
-                        </center>
-                        <div class="card mb-3">
-                            <table class="table table-bordered border-dark">
-                                <tbody>
-                                    <tr>
-                                        <td><b>Nama </b></td>
-                                        <td>
-                                            <h4><?= $b['nama']; ?></h4>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Poin </b></td>
-                                        <td>
-                                            <h4><?= $b['point']; ?></h4>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Detail </b></td>
-                                        <td>
-                                            <h4><?= $b['detail']; ?></h4>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Keterangan </b></td>
-                                        <td>
-                                            <h4><?= $b['keterangan']; ?></h4>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-<?php endforeach; ?>
-
 <script>
     // Data yang diambil dari PHP
-    var labels = <?php echo json_encode(array_column($transactions, 'jenis_transaksi')); ?>;
+    var labels = <?php echo json_encode(array_column($transactions, 'kode_jenis')); ?>;
     var data = <?php echo json_encode(array_column($transactions, 'total')); ?>;
-    var backgroundColor = ["#21bcdb", "#db2121", "#f0d11f", "#1ea84a"]; // Warna sesuai kategori
+    var backgroundColor = ["#21bcdb", "#db2121", "#f0d11f", "#1ea84a", '#794DAD']; // Warna sesuai kategori
 
     // Data untuk grafik donut
     var chartData = {
-        labels: labels,
+        labels: labels.map(label => getTransaksiJenis(parseInt(label))),
         datasets: [{
             data: data,
             backgroundColor: backgroundColor
@@ -458,28 +439,28 @@
         options: options
     });
 
-    // Fungsi untuk menambahkan keterangan pada halaman
-    function addLegend() {
-        var legend = document.getElementById('legend');
-        var content = '';
+    // // Fungsi untuk menambahkan keterangan pada halaman
+    // function addLegend() {
+    //     var legend = document.getElementById('legend');
+    //     var content = '';
 
-        labels.forEach(function(label, index) {
-            content += '<div class="legend-item"><span style="display:inline-block;width:20px;background-color:' +
-                backgroundColor[index] +
-                '">&nbsp;</span> ' +
-                label +
-                ' =' +
-                // data[index] +
-                // ' - ' +
-                getTransaksiJenis(parseInt(label)) +
-                '</div>';
-        });
+    //     labels.forEach(function(label, index) {
+    //         content += '<div class="legend-item"><span style="display:inline-block;width:20px;background-color:' +
+    //             backgroundColor[index] +
+    //             '">&nbsp;</span> ' +
+    //             label +
+    //             ' =' +
+    //             // data[index] +
+    //             // ' - ' +
+    //             getTransaksiJenis(parseInt(label)) +
+    //             '</div>';
+    //     });
 
-        legend.innerHTML = content;
-    }
+    //     legend.innerHTML = content;
+    // }
 
-    // Panggil fungsi untuk menambahkan keterangan
-    addLegend();
+    // // Panggil fungsi untuk menambahkan keterangan
+    // addLegend();
 
     // Fungsi untuk mendapatkan jenis transaksi
     function getTransaksiJenis(label) {

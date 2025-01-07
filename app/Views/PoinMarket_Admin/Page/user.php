@@ -6,12 +6,12 @@
 
     <div class="content-header">
         <div class="row mb-2">
-            <div class="col-sm-6">
+            <div class="col-sm-12 col-md-6">
                 <center>
                     <h1 class="m-0 text-dark">Data <?= $title; ?> </h1>
                 </center>
             </div><!-- /.col -->
-            <div class="col-sm-6">
+            <div class="col-sm-12 col-md-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
                     <li class="breadcrumb-item active"><?= $title; ?></li>
@@ -23,15 +23,12 @@
     <section class="content">
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
-            <div class="row">
+            <div class="row ">
                 <!-- Search Belum Jalan -->
-                <div class="col-md-6">
-                    <!-- Button untuk membuka modal -->
-                    <div class="col-md-8">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahUser">Input</button>
-                    </div>
+                <div class="col-12 col-md-6 mb-3">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahUser"><i class="fas fa-plus"></i> Input</button>
                 </div>
-                <div class="col-md-2">
+                <div class="col-12 col-md-3 mb-3">
                     <!-- Form Pencarian Role -->
                     <form method="GET">
                         <div class="input-group">
@@ -47,7 +44,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-4 ">
+                <div class="col-12 col-md-3 mb-3">
                     <!-- Form Pencarian Username/Email -->
                     <form method="GET">
                         <div class="input-group">
@@ -62,8 +59,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12">
-                    <?= $this->include('PoinMarket_Admin/Tabel/tabel_user'); ?>
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <?= $this->include('PoinMarket_Admin/Tabel/tabel_user'); ?>
+                    </div>
                 </div>
             </div>
     </section>
@@ -83,26 +82,20 @@
                 <form action="/User/save_Users" method="post" enctype="multipart/form-data">
                     <div class="form-group ">
                         <label for="username" class="col-form-label">Username</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="username" name="username" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
-                        </div>
+                        <input type="text" class="form-control" id="username" name="username" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
                     </div>
                     <div class="form-group ">
                         <label for="email" class="col-form-label">Email</label>
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control" id="email" name="email" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
-                        </div>
+                        <input type="email" class="form-control" id="email" name="email" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
                     </div>
                     <div class="form-group ">
                         <label for="role" class="col-form-label">Role</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" name="role_id" required>
-                                <option value="">Pilih Role</option>
-                                <?php foreach ($roles as $role): ?>
-                                    <option value="<?= $role->id ?>"><?= esc($role->name) ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
+                        <select class="form-control" name="role_id" required>
+                            <option value="">Pilih Role</option>
+                            <?php foreach ($roles as $role): ?>
+                                <option value="<?= $role->id ?>"><?= esc($role->name) ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
             </div>
             <div class="modal-footer">

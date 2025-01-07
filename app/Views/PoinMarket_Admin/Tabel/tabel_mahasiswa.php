@@ -237,16 +237,16 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                     </center>
                 </td>
                 <td>
-                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $m['id']; ?>">Detail</button>
+                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $m['npm']; ?>"><i class="fas fa-eye"></i> Detail</button>
                 </td>
                 <?php if (in_groups(['admin', 'validator'])) : ?>
                     <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $m['id']; ?>">Edit</button>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $m['npm']; ?>"><i class="fas fa-edit"></i> Edit</button>
                     </td>
                 <?php endif ?>
                 <?php if (in_groups(['admin'])) : ?>
                     <td>
-                        <button href="/Mahasiswa/delete/<?= $m['id']; ?>" class="btn btn-danger btn-hapus">Hapus</button>
+                        <button href="/Mahasiswa/delete/<?= $m['npm']; ?>" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i> Hapus</button>
                     </td>
                 <?php endif; ?>
                 </td>
@@ -291,7 +291,7 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
 <?php foreach ($mahasiswa as $m) : ?>
     <?php foreach ($badges as $b) : ?>
         <?php if ($m['point'] >= $b['point']) : ?>
-            <div class="modal fade" id="modalDetail<?php echo $m['id']; ?>">
+            <div class="modal fade" id="modalDetail<?php echo $m['npm']; ?>">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -304,7 +304,7 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                             <div class="col-lg-13">
                                 <div class="card mb-3">
                                     <div class="row g-0">
-                                        <div class="col-md-8">
+                                        <div class="col-md-12">
                                             <div class="card-body">
                                                 <ul class="list-group list-group-flush">
                                                     <h5 class="card-title"><b>NPM :</b></h5>
@@ -447,7 +447,7 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
 
 <!--Data Modal Box Edit Data-->
 <?php foreach ($mahasiswa as $m) : ?>
-    <div class="modal fade" id="modalEdit<?php echo $m['id']; ?>">
+    <div class="modal fade" id="modalEdit<?php echo $m['npm']; ?>">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content ">
                 <div class="modal-header">
@@ -458,48 +458,34 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                 </div>
 
                 <div class="modal-body">
-                    <form action="/Mahasiswa/update_Mhs/<?= $m['id']; ?>" method="post" enctype="multipart/form-data">
+                    <form action="/Mahasiswa/update_Mhs/<?= $m['npm']; ?>" method="post" enctype="multipart/form-data">
                         <div class="form-group ">
                             <label for="id" class="col-form-label"></label>
-                            <div class="col-sm-10">
-                                <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $m['id'] ?>" required>
-                            </div>
+                            <input type="hidden" class="form-control" id="id" name="id" value="" required>
                         </div>
                         <div class="form-group ">
                             <label for="nama" class="col-form-label">Nama Mahasiswa</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $m['nama'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                            </div>
+                            <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $m['nama'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
                         </div>
                         <div class="form-group ">
                             <label for="npm" class="col-form-label">NPM</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="npm" name="npm" value="<?php echo $m['npm'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                            </div>
+                            <input type="text" class="form-control" id="npm" name="npm" value="<?php echo $m['npm'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
                         </div>
                         <div class="form-group">
                             <label for="gaya_belajar" class="col-form-label">Gaya Belajar</label>
-                            <div class="col-sm-10">
-                                <select name="gaya_belajar" id="gaya_belajar" class="form-control" required>
-                                    <option value="Visual" <?php if ($m['gaya_belajar'] == 'Visual') echo 'selected'; ?>>Visual</option>
-                                    <option value="Auditori" <?php if ($m['gaya_belajar'] == 'Auditori') echo 'selected'; ?>>Auditori</option>
-                                    <option value="Kinestetik" <?php if ($m['gaya_belajar'] == 'Kinestetik') echo 'selected'; ?>>Kinestetik</option>
-                                </select>
-                            </div>
+                            <select name="gaya_belajar" id="gaya_belajar" class="form-control" required>
+                                <option value="Visual" <?php if ($m['gaya_belajar'] == 'Visual') echo 'selected'; ?>>Visual</option>
+                                <option value="Auditori" <?php if ($m['gaya_belajar'] == 'Auditori') echo 'selected'; ?>>Auditori</option>
+                                <option value="Kinestetik" <?php if ($m['gaya_belajar'] == 'Kinestetik') echo 'selected'; ?>>Kinestetik</option>
+                            </select>
                         </div>
-
-
                         <!-- <div class="form-group ">
-                            <label for="gaya_belajar" class="col-form-label">Gaya Belajar</label>
-                            <div class="col-sm-10">
+                            <label for="gaya_belajar" class="col-form-label">Gaya Belajar</label>                           
                                 <input type="text" class="form-control" id="gaya_belajar" name="gaya_belajar" value="<?php echo $m['gaya_belajar'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                            </div>
-                        </div> -->
+                                                   </div> -->
                         <div class="form-group ">
                             <label for="point" class="col-form-label">Point</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="point" name="point" value="<?php echo $m['point'] ?>" readonly>
-                            </div>
+                            <input type="text" class="form-control" id="point" name="point" value="<?php echo $m['point'] ?>" readonly>
                         </div>
                 </div>
                 <div class="modal-footer">

@@ -7,6 +7,7 @@ use App\Models\JenisTransaksiModel;
 use App\Models\MahasiswaModel;
 use App\Models\DataTransaksiModel;
 use App\Models\GayaBelajarModel;
+use App\Models\PageModel;
 
 class Mahasiswa extends BaseController
 {
@@ -15,6 +16,7 @@ class Mahasiswa extends BaseController
     protected $JenisTransaksiModel;
     protected $DataTransaksiModel;
     protected $GayaBelajarModel;
+    protected $PageModel;
 
     public function __construct()
     {
@@ -23,12 +25,14 @@ class Mahasiswa extends BaseController
         $this->JenisTransaksiModel = new JenisTransaksiModel();
         $this->DataTransaksiModel = new DataTransaksiModel();
         $this->GayaBelajarModel = new GayaBelajarModel();
+        $this->PageModel = new PageModel();
     }
 
     public function Index()
     {
         $session = session();
 
+        $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
         $npmList = $this->DataTransaksiModel->getNpmList();
 
         $data = [
@@ -39,6 +43,7 @@ class Mahasiswa extends BaseController
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'npmList' => $npmList,
             'gaya_belajar' => $this->GayaBelajarModel->getGaya(),
+            'topMenuPages' => $topMenuPages,
         ];
 
         foreach ($npmList as $npm) {
@@ -113,10 +118,10 @@ class Mahasiswa extends BaseController
     }
 
     // Menghapus data mahasiswa dengan data_transaksi dengan npm yg sama 
-    public function delete($id)
+    public function delete($npm)
     {
         // Ambil data mahasiswa berdasarkan ID atau npm
-        $mahasiswa = $this->MahasiswaModel->find($id);
+        $mahasiswa = $this->MahasiswaModel->find($npm);
         if (!$mahasiswa) {
             // Jika mahasiswa tidak ditemukan
             session()->setFlashdata('error', 'Data mahasiswa tidak ditemukan.');
@@ -127,7 +132,7 @@ class Mahasiswa extends BaseController
         $this->DataTransaksiModel->where('npm', $mahasiswa['npm'])->delete();
 
         // Hapus data mahasiswa
-        $this->MahasiswaModel->delete($id);
+        $this->MahasiswaModel->delete($npm);
 
         // Berikan pesan sukses
         session()->setFlashdata('sukses', 'Data berhasil dihapus.');

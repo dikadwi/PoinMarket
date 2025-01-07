@@ -7,6 +7,7 @@ use App\Models\DataTransaksiModel;
 use App\Models\MahasiswaModel;
 use App\Models\JenisTransaksiModel;
 use App\Models\TransaksiModel;
+use App\Models\PageModel;
 
 class Validasi extends BaseController
 {
@@ -14,6 +15,7 @@ class Validasi extends BaseController
     protected $MahasiswaModel;
     protected $JenisTransaksiModel;
     protected $TransaksiModel;
+    protected $PageModel;
 
     public function __construct()
     {
@@ -21,12 +23,15 @@ class Validasi extends BaseController
         $this->MahasiswaModel = new MahasiswaModel();
         $this->JenisTransaksiModel = new JenisTransaksiModel();
         $this->TransaksiModel = new TransaksiModel();
+        $this->PageModel = new PageModel();
     }
 
     // Menampilkan halaman validasi
     public function index()
     {
         $session = session();
+
+        $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
 
         // Ambil Semua data transaksi
         // $data_transaksi = $this->DataTransaksiModel->getDataTransaksi();
@@ -49,8 +54,8 @@ class Validasi extends BaseController
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'transaksi' => $this->TransaksiModel->getTransaksi(),
             'npm' => $this->MahasiswaModel->getMhs(),
-            'nama' => $mahasiswa
-
+            'nama' => $mahasiswa,
+            'topMenuPages' => $topMenuPages,
         ];
         return view('PoinMarket_Admin/Page/validasi', $data);
     }

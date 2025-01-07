@@ -73,7 +73,7 @@ class Role_User extends BaseController
         $filteredDataTransaksi = array_filter(
             $this->DataTransaksiModel->getDataTransaksiUser($npm),
             function ($transaksi) {
-                return $transaksi['jenis_transaksi'] == 105;
+                return $transaksi['kode_jenis'] == 105;
             }
         );
 

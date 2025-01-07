@@ -80,16 +80,16 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                 <td><?= $t['keterangan']; ?></td>
                 <td><?= $t['poin_digunakan']; ?></td>
                 <td>
-                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $t['id_transaksi']; ?>">Detail</button>
+                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $t['id_transaksi']; ?>"><i class="fas fa-eye"></i> Detail</button>
                 </td>
                 <?php if (in_groups(['admin', 'user'])) : ?>
                     <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $t['id_transaksi']; ?>">Edit</button>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $t['id_transaksi']; ?>"><i class="fas fa-edit"></i> Edit</button>
                     </td>
                 <?php endif ?>
                 <?php if (in_groups('admin')) : ?>
                     <td>
-                        <button href="/Jenis_Transaksi/delete/<?= $t['id_transaksi']; ?>" class="btn btn-danger btn-hapus">Hapus</button>
+                        <button href="/Jenis_Transaksi/delete/<?= $t['id_transaksi']; ?>" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i> Hapus</button>
                     </td>
                 <?php endif; ?>
             </tr>
@@ -144,7 +144,7 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                     <div class="col-lg-13">
                         <div class="card mb-3">
                             <div class="row g-0">
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                     <div class="card-body">
                                         <ul class="list-group list-group-flush">
                                             <h5 class="card-title"><b>Id Transaksi :</b></h5>
@@ -193,37 +193,27 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                     </button>
                 </div>
 
-                <div class="modal-body">
+                <div class="modal-body" style="max-height: 450px; overflow-y: auto;">
                     <form action="/Jenis_Transaksi/update_Jenis/<?= $t['id_transaksi']; ?>" method="post" enctype="multipart/form-data">
                         <div class="form-group ">
                             <label for="id" class="col-form-label">Id Transaksi</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" id="id" name="id" value="<?php echo $t['id_transaksi'] ?>" required readonly>
-                            </div>
+                            <input type="number" class="form-control" id="id" name="id" value="<?php echo $t['id_transaksi'] ?>" required readonly>
                         </div>
                         <div class="form-group ">
                             <label for="nama_transaksi" class="col-form-label">Nama</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="nama_transaksi" name="nama_transaksi" value="<?php echo $t['nama_transaksi'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                            </div>
+                            <input type="text" class="form-control" id="nama_transaksi" name="nama_transaksi" value="<?php echo $t['nama_transaksi'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
                         </div>
                         <div class="form-group ">
                             <label for="detail" class="col-form-label">Detail</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="detail" name="detail" value="<?php echo $t['detail'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                            </div>
+                            <input type="text" class="form-control" id="detail" name="detail" value="<?php echo $t['detail'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
                         </div>
                         <div class="form-group ">
                             <label for="keterangan" class="col-form-label">Keterangan</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?php echo $t['keterangan'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                            </div>
+                            <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?php echo $t['keterangan'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
                         </div>
                         <div class="form-group ">
                             <label for="poin_digunakan" class="col-form-label">Point</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" id="poin_digunakan" name="poin_digunakan" value="<?php echo $t['poin_digunakan'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                            </div>
+                            <input type="number" class="form-control" id="poin_digunakan" name="poin_digunakan" value="<?php echo $t['poin_digunakan'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
                         </div>
 
 

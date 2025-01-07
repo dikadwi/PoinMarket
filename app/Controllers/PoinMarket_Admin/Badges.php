@@ -4,28 +4,32 @@ namespace App\Controllers\PoinMarket_Admin;
 
 use App\Models\BadgesModel;
 use App\Models\JenisTransaksiModel;
+use App\Models\PageModel;
 
 class Badges extends BaseController
 {
     protected $BadgesModel;
     protected $JenisTransaksiModel;
+    protected $PageModel;
 
     public function __construct()
     {
         $this->BadgesModel = new BadgesModel();
         $this->JenisTransaksiModel = new JenisTransaksiModel();
+        $this->PageModel = new PageModel();
     }
 
     public function index()
     {
         $session = session();
 
+        $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
         $data = [
             'title' => 'Badges',
             'username' => $session->get('username'),
             'badges' => $this->BadgesModel->getBadges(),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
-
+            'topMenuPages' => $topMenuPages,
         ];
         return view('PoinMarket_Admin/Page/badges', $data);
     }

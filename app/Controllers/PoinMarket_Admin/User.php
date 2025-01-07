@@ -9,6 +9,7 @@ use App\Models\JenisTransaksiModel;
 use App\Models\MahasiswaModel;
 use App\Models\TransaksiModel;
 use App\Models\UserModel;
+use App\Models\PageModel;
 
 class User extends BaseController
 {
@@ -19,6 +20,8 @@ class User extends BaseController
     protected $TransaksiModel;
     protected $BadgesModel;
     protected $MahasiswaModel;
+    protected $PageModel;
+
 
     public function __construct()
     {
@@ -30,12 +33,15 @@ class User extends BaseController
         $this->TransaksiModel = new TransaksiModel();
         $this->BadgesModel = new BadgesModel();
         $this->MahasiswaModel = new MahasiswaModel();
+        $this->PageModel = new PageModel();
     }
 
     // Menampilkan semua data user
     public function index()
     {
         $session = session();
+
+        $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
 
         $db = \Config\Database::connect();
         $roleBuilder = $db->table('auth_groups');
@@ -47,6 +53,7 @@ class User extends BaseController
             'title' => ' User',
             'roles' => $roles,
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+            'topMenuPages' => $topMenuPages,
         ];
         // $users = new \Myth\Auth\Models\UserModel();
         // $data['users'] = $users->findAll();

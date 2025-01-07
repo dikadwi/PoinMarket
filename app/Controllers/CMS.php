@@ -19,6 +19,7 @@ class CMS extends BaseController
     public function index()
     {
         $sidemenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
+        // Ambil halaman dengan menu_position = 'topmenu' dan status = 'active'
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
 
         $data = array(
@@ -29,71 +30,74 @@ class CMS extends BaseController
             'topMenuPages' => $topMenuPages,
         );
 
-        return view('CMS/list', $data);
+        return view('CMS/index', $data);
     }
 
-    public function view($id)
-    {
-        $sidemenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
-        $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
+    // public function view($id)
+    // {
+    //     $sidemenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
+    //     $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
 
-        $data = array(
-            'title' => 'View',
-            'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
-            'page' => $this->PageModel->get_page_by_id($id),
-            'sidemenuPages' => $sidemenuPages,
-            'topMenuPages' => $topMenuPages,
-        );
-        return view('CMS/view', $data);
-    }
+    //     $data = array(
+    //         'title' => 'CMS',
+    //         'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+    //         'page' => $this->PageModel->get_page_by_id($id),
+    //         'sidemenuPages' => $sidemenuPages,
+    //         'topMenuPages' => $topMenuPages,
+    //     );
+    //     return view('CMS/view', $data);
+    // }
 
-    public function create()
-    {
-        $sidemenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
-        $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
+    // public function create()
+    // {
+    //     $sidemenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
+    //     $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
 
-        $data = array(
-            'title' => 'View',
-            'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
-            'sidemenuPages' => $sidemenuPages,
-            'topMenuPages' => $topMenuPages,
-        );
-        return view('CMS/create', $data);
-    }
+    //     $data = array(
+    //         'title' => 'CMS',
+    //         'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+    //         'sidemenuPages' => $sidemenuPages,
+    //         'topMenuPages' => $topMenuPages,
+    //     );
+    //     return view('CMS/create', $data);
+    // }
 
     public function store()
     {
         $this->PageModel->save([
             'title' => $this->request->getPost('title'),
             'url' => $this->request->getPost('url'),
+            'icon' => $this->request->getPost('icon'),
             'description' => $this->request->getPost('description'),
-            'status' => 'active',
+            'status' => 'inactive',
             'menu_position' => $this->request->getPost('menu_position') // Menyimpan posisi menu
         ]);
         return redirect()->to('/cms');
     }
 
-    public function edit($id)
-    {
-        $sidemenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
-        $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
+    // public function edit($id)
+    // {
+    //     $sidemenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
+    //     $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
 
-        $data = array(
-            'title' => 'View',
-            'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
-            'page' => $this->PageModel->get_page_by_id($id),
-            'sidemenuPages' => $sidemenuPages,
-            'topMenuPages' => $topMenuPages,
-        );
+    //     $data = array(
+    //         'title' => 'CMS',
+    //         'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+    //         'page' => $this->PageModel->get_page_by_id($id),
+    //         'sidemenuPages' => $sidemenuPages,
+    //         'topMenuPages' => $topMenuPages,
+    //     );
 
-        return view('CMS/edit', $data);
-    }
+    //     return view('CMS/edit', $data);
+    // }
 
     public function update($id)
     {
         $this->PageModel->update($id, [
             'title' => $this->request->getPost('title'),
             'url' => $this->request->getPost('url'),
+            'icon' => $this->request->getPost('icon'),
+            'status' => $this->request->getPost('status'),
             'description' => $this->request->getPost('description'),
             'menu_position' => $this->request->getPost('menu_position') // Memperbarui posisi menu
         ]);

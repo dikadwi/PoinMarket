@@ -8,11 +8,11 @@ class PageModel extends Model
 {
     protected $table = 'pages';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['title', 'url', 'description', 'status', 'menu_position'];
+    protected $allowedFields = ['title', 'url', 'icon', 'description', 'status', 'menu_position'];
 
     public function get_all_pages()
     {
-        return $this->where('status', 'active')->findAll();
+        return $this->findAll();
     }
 
     public function get_page_by_id($id)

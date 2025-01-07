@@ -30,9 +30,11 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 // $routes->get('/', 'Login::index');
+
 $routes->group('page', function ($routes) {
     $routes->get('', 'LandingPage::index');
     $routes->get('gamifikasi', 'LandingPage::gamifikasi');
+    $routes->get('gaya_belajar', 'LandingPage::gaya_belajar');
     $routes->get('register', 'LandingPage::register');
 });
 
@@ -100,7 +102,7 @@ $routes->group('Mahasiswa', ['filter' => 'login'], function ($routes) {
     $routes->get('delete/(:num)', 'PoinMarket_Admin\Mahasiswa::delete/$1');
 });
 
-// Jenis Transaksi
+// Controller Jenis Transaksi
 $routes->group('Jenis_Transaksi', ['filter' => 'login'], function ($routes) {
     // ['filter' => 'role:admin']
     $routes->get('', 'PoinMarket_Admin\Jenis_Transaksi::all');
@@ -114,7 +116,15 @@ $routes->group('Jenis_Transaksi', ['filter' => 'login'], function ($routes) {
     $routes->get('delete/(:num)', 'PoinMarket_Admin\Jenis_Transaksi::delete_Jenis/$1');
 });
 
-// Group untuk Controller Transaksi
+// Group Routes untuk Controller Badges
+$routes->group('Badges', ['filter' => 'login'], function ($routes) {
+    $routes->get('', 'PoinMarket_Admin\Badges::index');
+    $routes->post('save_badges', 'PoinMarket_Admin\Badges::save_badges');
+    $routes->post('update_badges/(:num)', 'PoinMarket_Admin\Badges::update_badges/$1');
+    $routes->get('delete_badges/(:num)', 'PoinMarket_Admin\Badges::delete_badges/$1');
+});
+
+// Group untuk Controller Transaksi (Data Transaksi)
 $routes->group('Transaksi', ['filter' => 'login'], function ($routes) {
     // ['filter' => 'role:admin']
     $routes->get('', 'PoinMarket_Admin\Transaksi::index');
@@ -137,19 +147,21 @@ $routes->group('Misi_tambah', ['filter' => 'login'], function ($routes) {
     $routes->get('delete_Misi/(:num)', 'PoinMarket_Admin\Misi_tambah::delete_Misi/$1');
 });
 
-// Group Routes untuk Controller Badges
-$routes->group('Badges', ['filter' => 'login'], function ($routes) {
-    $routes->get('', 'PoinMarket_Admin\Badges::index');
-    $routes->post('save_badges', 'PoinMarket_Admin\Badges::save_badges');
-    $routes->post('update_badges/(:num)', 'PoinMarket_Admin\Badges::update_badges/$1');
-    $routes->get('delete_badges/(:num)', 'PoinMarket_Admin\Badges::delete_badges/$1');
+// Controller Quis
+$routes->group('Quis', ['filter' => 'login'], function ($routes) {
+    $routes->get('', 'PoinMarket_Admin\Quis::index');
+    $routes->post('simpanQuis', 'PoinMarket_Admin\Quis::simpanpertanyaan');
+    $routes->post('updateQuis/(:num)', 'PoinMarket_Admin\Quis::updateQuis/$1');
+    $routes->get('delete/(:num)', 'PoinMarket_Admin\Quis::hapus/$1');
 });
 
-// Validasi
+// Controller Validasi
 $routes->group('Validasi', ['filter' => 'login'], function ($routes) {
     $routes->get('', 'PoinMarket_Admin\Validasi::index');
     $routes->post('aksi/(:num)', 'PoinMarket_Admin\Validasi::validasiTransaksi/$1');
 });
+
+
 
 // Group untuk Controller Mahasiswa
 $routes->group('Role_User', ['filter' => 'login_m'], function ($routes) {
@@ -173,6 +185,9 @@ $routes->group('Role_User', ['filter' => 'login_m'], function ($routes) {
     $routes->post('market/claim', 'Marketplace::claimReward'); // Proses reward
     $routes->post('market/punishment', 'Marketplace::punishment'); // Proses punishment
     $routes->post('market/misi_tambah', 'Marketplace::misi_tambah'); // Proses misi tambahan
+    $routes->get('quis', 'Marketplace::quis');
+    $routes->post('submitQuiz', 'Marketplace::submitQuiz');
+    $routes->post('kirimJawaban', 'Marketplace::kirimJawaban');
 });
 
 // MarketPlace tanpa Login

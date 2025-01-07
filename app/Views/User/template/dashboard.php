@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>/template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/template/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <link href="<?= base_url() ?>/sweetalert2/package/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         .swal2-popup {
             /* font-size: 1.6rem !important; */
@@ -43,37 +44,136 @@
             /* Mengatur ukuran font */
         }
 
-        #legend {
-            display: flex;
-            /* Gunakan flexbox untuk mengatur elemen secara horizontal */
-            flex-wrap: wrap;
-            /* Pindah ke baris baru jika konten tidak cukup */
-            gap: 10px;
-            /* Jarak antar item dalam legend */
-            justify-content: center;
-            /* Pusatkan konten secara horizontal */
-            align-items: center;
-            /* Pusatkan konten secara vertikal */
-            border: 1px solid #ccc;
-            /* Tambahkan border jika diperlukan */
+        /* Mengatur SmallBox */
+        .small-box .icon {
+            font-size: 36px;
+            transition: font-size 0.3s ease-in-out;
+        }
+
+        .small-box .icon:hover {
+            font-size: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .small-box .icon {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .small-box .icon {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .small-box .icon {
+                font-size: 14px;
+            }
+        }
+
+        /* Mengatur Small box-b */
+        .small-box.b {
+            height: 500px;
+            /* Atur tinggi box */
+            overflow-y: auto;
+            /* Tambahkan scrollbar jika isi box melebihi tinggi */
+        }
+
+        .small-box.b canvas {
+            width: 100% !important;
+            /* Atur lebar grafik */
+            height: 400px !important;
+            /* Atur tinggi grafik */
+        }
+
+        .small-box.b table {
+            width: 100% !important;
+            /* Atur lebar tabel */
+            height: 400px !important;
+            /* Atur tinggi tabel */
+            overflow-y: auto;
+            /* Tambahkan scrollbar jika isi tabel melebihi tinggi */
+        }
+
+        /* Mengatur Sticky header */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            background-color: #fff;
             padding: 10px;
-            /* Atur padding jika diperlukan */
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .legend-item {
-            display: flex;
-            /* Gunakan flexbox untuk mengatur elemen secara horizontal */
-            align-items: center;
-            /* Pusatkan konten secara vertikal */
+        /* Optional: Add a shadow for better readability when scrolled */
+        .fixed-header {
+            position: relative;
         }
 
-        .legend-color {
-            width: 20px;
-            /* Atur lebar warna */
-            height: 10px;
-            /* Atur tinggi warna */
-            margin-right: 5px;
-            /* Jarak antara warna dan teks */
+        /* CSS untuk mengatur tinggi baris pada tabel dengan kelas 'table_mahasiswa' */
+        .table tr {
+            height: 50px;
+            /* Atur tinggi baris sesuai kebutuhan */
+        }
+
+        .table td,
+        .table th {
+            padding: 4px;
+            /* Atur padding untuk mengurangi ruang di dalam sel */
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .select option {
+            font-style: normal;
+        }
+
+        @media (max-width: 768px) {
+            .small-box {
+                margin-bottom: 20px;
+                /* Menambahkan jarak antar kotak */
+            }
+
+            h1 {
+                font-size: 1.5rem;
+                /* Mengurangi ukuran font untuk judul */
+            }
+
+            .table {
+                font-size: 0.9rem;
+                /* Mengurangi ukuran font tabel */
+            }
+        }
+
+
+
+        @media (max-width: 768px) {
+            .navbar-nav .nav-link .nav-icon {
+                display: inline;
+            }
+
+            .main-header .navbar-nav .nav-item {
+                flex: 1 1 auto;
+                text-align: center;
+            }
+
+            .navbar-nav .nav-link span {
+                display: none;
+                /* Sembunyikan teks */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-header .navbar-nav .nav-item {
+                flex: 1 1 100%;
+                margin-bottom: 10px;
+            }
+
+            .main-header .navbar-nav .nav-link {
+                font-size: 14px;
+                padding: 5px 10px;
+            }
         }
     </style>
 

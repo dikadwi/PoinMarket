@@ -7,9 +7,7 @@ use App\Models\JenisTransaksiModel;
 use App\Models\TransaksiModel;
 use App\Models\DataTransaksiModel;
 use App\Models\MahasiswaModel;
-
-
-
+use App\Models\PageModel;
 
 class Transaksi extends BaseController
 {
@@ -18,6 +16,7 @@ class Transaksi extends BaseController
     protected $TransaksiModel;
     protected $DataTransaksiModel;
     protected $MahasiswaModel;
+    protected $PageModel;
 
     public function __construct()
     {
@@ -26,11 +25,14 @@ class Transaksi extends BaseController
         $this->TransaksiModel = new TransaksiModel();
         $this->DataTransaksiModel = new DataTransaksiModel();
         $this->MahasiswaModel = new MahasiswaModel();
+        $this->PageModel = new PageModel();
     }
 
     public function index()
     {
         $session = session();
+
+        $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
 
         // Ambil data transaksi
         $data_transaksi = $this->DataTransaksiModel->getDataTransaksi();
@@ -52,19 +54,21 @@ class Transaksi extends BaseController
             'nama' => $mahasiswa,
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'jenis' => $this->JenisTransaksiModel->getJenis(),
+            'topMenuPages' => $topMenuPages,
         ];
         return view('PoinMarket_Admin/Page/transaksi', $data);
     }
 
     public function reward()
     {
-        $db      = \Config\Database::connect();
-        $builder = $db->table('data_transaksi');
+        // $db      = \Config\Database::connect();
+        // $builder = $db->table('data_transaksi');
         $jenis = ['101'];
-        $builder->whereIn('jenis_transaksi', $jenis);
+        // $builder->whereIn('kode_jenis', $jenis);
 
         $session = session();
 
+        $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
         $data = [
             'username' => $session->get('username'),
             'title' => 'Rewards',
@@ -72,20 +76,18 @@ class Transaksi extends BaseController
             'transaksi' => $this->TransaksiModel->getJenis(),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'npm' => $this->MahasiswaModel->getMhs(),
-
+            'topMenuPages' => $topMenuPages,
         ];
         return view('PoinMarket_Admin/Page/transaksi_byCode', $data);
     }
 
     public function pembelian()
     {
-        $db      = \Config\Database::connect();
-        $builder = $db->table('data_transaksi');
         $jenis = ['102'];
-        $builder->whereIn('jenis_transaksi', $jenis);
 
         $session = session();
 
+        $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
         $data = [
             'username' => $session->get('username'),
             'title' => 'Pembelian',
@@ -93,20 +95,18 @@ class Transaksi extends BaseController
             'transaksi' => $this->TransaksiModel->getJenis(),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'npm' => $this->MahasiswaModel->getMhs(),
-
+            'topMenuPages' => $topMenuPages,
         ];
         return view('PoinMarket_Admin/Page/transaksi_byCode', $data);
     }
 
     public function punishment()
     {
-        $db      = \Config\Database::connect();
-        $builder = $db->table('data_transaksi');
         $jenis = ['103'];
-        $builder->whereIn('jenis_transaksi', $jenis);
 
         $session = session();
 
+        $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
         $data = [
             'username' => $session->get('username'),
             'title' => 'Punishment',
@@ -114,20 +114,18 @@ class Transaksi extends BaseController
             'transaksi' => $this->TransaksiModel->getJenis(),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'npm' => $this->MahasiswaModel->getMhs(),
-
+            'topMenuPages' => $topMenuPages,
         ];
         return view('PoinMarket_Admin/Page/transaksi_byCode', $data);
     }
 
     public function misi_tambah()
     {
-        $db      = \Config\Database::connect();
-        $builder = $db->table('data_transaksi');
         $jenis = ['105'];
-        $builder->whereIn('jenis_transaksi', $jenis);
 
         $session = session();
 
+        $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
         $data = [
             'username' => $session->get('username'),
             'title' => 'Misi Tambahan',
@@ -135,20 +133,18 @@ class Transaksi extends BaseController
             'transaksi' => $this->TransaksiModel->getJenis(),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'npm' => $this->MahasiswaModel->getMhs(),
-
+            'topMenuPages' => $topMenuPages,
         ];
         return view('PoinMarket_Admin/Page/transaksi_byCode', $data);
     }
 
     public function konsultasi()
     {
-        $db      = \Config\Database::connect();
-        $builder = $db->table('data_transaksi');
         $jenis = ['106'];
-        $builder->whereIn('jenis_transaksi', $jenis);
 
         $session = session();
 
+        $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
         $data = [
             'username' => $session->get('username'),
             'title' => 'Konsultasi',
@@ -156,7 +152,7 @@ class Transaksi extends BaseController
             'transaksi' => $this->TransaksiModel->getJenis(),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'npm' => $this->MahasiswaModel->getMhs(),
-
+            'topMenuPages' => $topMenuPages,
         ];
         return view('PoinMarket_Admin/Page/transaksi_byCode', $data);
     }
@@ -186,7 +182,7 @@ class Transaksi extends BaseController
             $totalPoinMahasiswa = $mahasiswaData['point']; // Sesuaikan dengan nama kolom yang menyimpan total poin mahasiswa
 
             // Tentukan status validasi berdasarkan jenis transaksi
-            $jenis_transaksi = $this->request->getVar('jenis_transaksi');
+            $jenis_transaksi = $this->request->getVar('kode_jenis');
             $validationStatus = '';
             $claim = '';
 
@@ -211,7 +207,7 @@ class Transaksi extends BaseController
                     // Simpan data transaksi ke dalam tabel transaksi
                     $data_transaksi = [
                         'id_transaksi' => $this->request->getVar('id_transaksi'),
-                        'jenis_transaksi' => $jenis_transaksi,
+                        'kode_jenis' => $jenis_transaksi,
                         'nama_transaksi' => $this->request->getVar('nama_transaksi'),
                         'npm' => $mahasiswaData['npm'],
                         'poin_digunakan' => $poin_digunakan,
@@ -221,7 +217,7 @@ class Transaksi extends BaseController
                     ];
                     // Simpan data transaksi ke dalam tabel transaksi
                     $this->DataTransaksiModel->insert($data_transaksi);
-                    $this->MahasiswaModel->update($mahasiswaData['id'], ['point' => $sisaPoin]);
+                    $this->MahasiswaModel->update($mahasiswaData['npm'], ['point' => $sisaPoin]);
                     session()->setFlashdata("sukses", "Transaksi Berhasil. Total poin sekarang: " . $sisaPoin);
                 }
             } elseif ($jenis_transaksi == '103') {
@@ -230,7 +226,7 @@ class Transaksi extends BaseController
                 // Simpan data transaksi ke dalam tabel transaksi
                 $data_transaksi = [
                     'id_transaksi' => $this->request->getVar('id_transaksi'),
-                    'jenis_transaksi' => $jenis_transaksi,
+                    'kode_jenis' => $jenis_transaksi,
                     'nama_transaksi' => $this->request->getVar('nama_transaksi'),
                     'npm' => $mahasiswaData['npm'],
                     'poin_digunakan' => $poin_digunakan,
@@ -240,13 +236,13 @@ class Transaksi extends BaseController
                 ];
                 // Simpan data transaksi ke dalam tabel transaksi
                 $this->DataTransaksiModel->insert($data_transaksi);
-                $this->MahasiswaModel->update($mahasiswaData['id'], ['point' => $sisaPoin]);
+                $this->MahasiswaModel->update($mahasiswaData['npm'], ['point' => $sisaPoin]);
                 session()->setFlashdata("sukses", "Transaksi Berhasil. Total poin sekarang: " . $sisaPoin);
             } else {
                 // Untuk jenis transaksi lainnya ( 101, 105), simpan data transaksi tanpa memeriksa poin
                 $data_transaksi = [
                     'id_transaksi' => $this->request->getVar('id_transaksi'),
-                    'jenis_transaksi' => $jenis_transaksi,
+                    'kode_jenis' => $jenis_transaksi,
                     'nama_transaksi' => $this->request->getVar('nama_transaksi'),
                     'npm' => $mahasiswaData['npm'],
                     'poin_digunakan' => $poin_digunakan,
@@ -295,7 +291,7 @@ class Transaksi extends BaseController
             if ($mahasiswaData) {
                 $totalPoinMahasiswa = $mahasiswaData['point'];
                 $poin_digunakan = $transaksiData['poin_digunakan'];
-                $jenis_transaksi = $transaksiData['jenis_transaksi'];
+                $jenis_transaksi = $transaksiData['kode_jenis'];
                 $statusValidasi = $transaksiData['validation']; // Ambil status validasi transaksi
 
                 // Jika transaksi belum divalidasi, tidak ada perubahan poin yang dilakukan

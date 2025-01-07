@@ -10,7 +10,7 @@ class DataTransaksiModel extends Model
 
     protected $table = 'data_transaksi';
     protected $primaryKey = 'id_transaksi';
-    protected $allowedFields = ['jenis_transaksi', 'nama_transaksi', 'npm', 'poin_digunakan', 'validation', 'claim', 'tanggal_transaksi'];
+    protected $allowedFields = ['kode_jenis', 'nama_transaksi', 'npm', 'poin_digunakan', 'validation', 'claim', 'tanggal_transaksi'];
     protected $createdField  = 'tanggal_transaksi';
 
     // Mengambil Semua Data
@@ -42,63 +42,63 @@ class DataTransaksiModel extends Model
     // Menampilkan total jenis 101
     public function totalReward()
     {
-        return $this->where('jenis_transaksi', 101)->countAllResults();
+        return $this->where('kode_jenis', 101)->countAllResults();
     }
     // Menampilkan total jenis 102
     public function totalPembelian()
     {
-        return $this->where('jenis_transaksi', 102)->countAllResults();
+        return $this->where('kode_jenis', 102)->countAllResults();
     }
     // Menampilkan total jenis 103
     public function totalPunishment()
     {
-        return $this->where('jenis_transaksi', 103)->countAllResults();
+        return $this->where('kode_jenis', 103)->countAllResults();
     }
     // Menampilkan total jenis 105
     public function totalMisi()
     {
-        return $this->where('jenis_transaksi', 105)->countAllResults();
+        return $this->where('kode_jenis', 105)->countAllResults();
     }
     // Menampilkan total jenis 106
     public function totalKonsultasi()
     {
-        return $this->where('jenis_transaksi', 106)->countAllResults();
+        return $this->where('kode_jenis', 106)->countAllResults();
     }
 
     // Mengambil total jenis transaksi berdasarkan NPM ditampilkan di Tabel Mahasiswa
     public function Reward($npm)
     {
-        return $this->where('jenis_transaksi', 101)->where('npm', $npm)->countAllResults();
+        return $this->where('kode_jenis', 101)->where('npm', $npm)->countAllResults();
     }
     public function Pembelian($npm)
     {
-        return $this->where('jenis_transaksi', 102)->where('npm', $npm)->countAllResults();
+        return $this->where('kode_jenis', 102)->where('npm', $npm)->countAllResults();
     }
     public function Punishment($npm)
     {
-        return $this->where('jenis_transaksi', 103)->where('npm', $npm)->countAllResults();
+        return $this->where('kode_jenis', 103)->where('npm', $npm)->countAllResults();
     }
     public function Misi($npm)
     {
-        return $this->where('jenis_transaksi', 105)->where('npm', $npm)->countAllResults();
+        return $this->where('kode_jenis', 105)->where('npm', $npm)->countAllResults();
     }
     public function Konsultasi($npm)
     {
-        return $this->where('jenis_transaksi', 106)->where('npm', $npm)->countAllResults();
+        return $this->where('kode_jenis', 106)->where('npm', $npm)->countAllResults();
     }
 
     // Mengambil kode_jenis
     public function getJenis($jenis = false)
     {
-        return $this->where(['jenis_transaksi' => $jenis])->find();
+        return $this->where(['kode_jenis' => $jenis])->find();
     }
 
     // Menampilkan Data di Diagram Donut
     public function getTransactionsByCategory()
     {
         $builder = $this->builder();
-        $builder->select('COUNT(*) as total, jenis_transaksi');
-        $builder->groupBy('jenis_transaksi');
+        $builder->select('COUNT(*) as total, kode_jenis');
+        $builder->groupBy('kode_jenis');
         return $builder->get()->getResultArray();
     }
 
@@ -107,8 +107,9 @@ class DataTransaksiModel extends Model
     {
         return $this->where('npm', $npm) // Ambil berdasarkan NPM
             ->groupStart() // Mulai grup kondisi
-            ->where('jenis_transaksi', '101') // Pastikan ini adalah kode untuk reward
-            ->orWhere('jenis_transaksi', '105') // Tambahkan kondisi untuk kode 105
+            ->where('kode_jenis', '101') // Pastikan ini adalah kode untuk reward
+            ->orWhere('kode_jenis', '105')
+            ->orWhere('kode_jenis', '102') // Tambahkan kondisi untuk kode 105
             ->groupEnd() // Akhiri grup kondisi
             ->where('validation', $validationStatus) // Hanya ambil yang sudah divalidasi
             ->findAll();
@@ -122,6 +123,6 @@ class DataTransaksiModel extends Model
     // Method untuk mengambil transaksi berdasarkan jenis
     public function getTransaksiByJenis($jenisId)
     {
-        return $this->where('jenis_transaksi', $jenisId)->findAll();
+        return $this->where('kode_jenis', $jenisId)->findAll();
     }
 }
