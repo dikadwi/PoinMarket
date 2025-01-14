@@ -9,8 +9,8 @@ class MahasiswaModel extends Model
 
 
     protected $table = 'mahasiswa';
-    protected $primaryKey = 'npm';
-    protected $allowedFields = ['npm', 'email', 'nama',  'password', 'point', 'gaya_belajar', 'created_at', 'updated_at', 'deleted_at'];
+    protected $primaryKey = 'id';
+    protected $allowedFields = ['user_id', 'npm', 'nama', 'email', 'password', 'point', 'gaya_belajar', 'created_at', 'updated_at', 'deleted_at', 'token'];
 
     // //Dates
     protected $useTimestamps = true;
@@ -18,6 +18,7 @@ class MahasiswaModel extends Model
     // protected $createdField  = 'created_at';
     // protected $updatedField  = 'updated_at';
     // protected $deletedField  = 'deleted_at';
+
 
     public function total()
     {

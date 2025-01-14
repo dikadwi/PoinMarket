@@ -167,14 +167,14 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                                 break;
                         } ?>
                 </td>
-                <?php if (in_groups(['admin', 'validator'])) : ?>
+                <td>
+                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $data['id_transaksi']; ?>"><i class="fas fa-eye"></i><span class="d-none d-md-inline"> Detail</span></button>
+                </td>
+                <?php if (in_groups(['superadmin', 'dosen'])) : ?>
                     <td>
-                        <button type=" button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $data['id_transaksi']; ?>"><i class="fas fa-check"></i> Validasi</button>
+                        <button type=" button" class="btn btn-secondary data-toggle=" modal" data-target="#modalEdit<?php echo $data['id_transaksi']; ?>"><i class="fas fa-check-circle"></i><span class="d-none d-md-inline"> Validasi</span></button>
                     </td>
                 <?php endif ?>
-                <td>
-                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $data['id_transaksi']; ?>"><i class="fas fa-eye"></i> Detail</button>
-                </td>
             <?php
         }
             ?>
@@ -350,7 +350,7 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" class="btn btn-primary">Validasi</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 </div>
             </div>

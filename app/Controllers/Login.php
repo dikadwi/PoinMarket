@@ -73,7 +73,16 @@ class Login extends BaseController
             // Verifikasi password
             if (password_verify($password, $mahasiswa['password'])) {
                 // Login berhasil, simpan data ke session atau lakukan sesuatu yang diperlukan
-                // Contoh: Simpan data ke session
+
+                // Generate token
+                $token = bin2hex(random_bytes(32)); // Token acak 32 karakter
+                // Simpan token ke database
+                $mahasiswaModel->update($mahasiswa['npm'], ['token' => $token]);
+
+                // Ambil token dari database
+                // $token = $mahasiswa['token'];
+
+                // Simpan data ke session
                 $session = session();
                 $session->set('isLoggedIn', true);
                 // Set sesuai dengan data mahasiswa dari tabel
@@ -84,6 +93,8 @@ class Login extends BaseController
                 $session->set('point', $mahasiswa['point']);
                 $session->set('password', $mahasiswa['password']);
                 $session->set('gaya_belajar', $mahasiswa['gaya_belajar']);
+                $session->set('quis_selesai', false);
+                $session->set('token', $token); // Simpan token di session
 
                 return redirect()->to('/Role_User')->with('message', 'Selamat Datang di Market Point !');;
             } else {
@@ -106,6 +117,7 @@ class Login extends BaseController
         $session->remove('email');
         $session->remove('point');
         $session->remove('password');
+        $session->remove('token');
         // $session->destroy();
 
         return redirect()->to('/loginMhs');

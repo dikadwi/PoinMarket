@@ -24,12 +24,15 @@ class Badges extends BaseController
         $session = session();
 
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
+        $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
+
         $data = [
             'title' => 'Badges',
             'username' => $session->get('username'),
             'badges' => $this->BadgesModel->getBadges(),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'topMenuPages' => $topMenuPages,
+            'sideMenuPages' => $sideMenuPages,
         ];
         return view('PoinMarket_Admin/Page/badges', $data);
     }
@@ -89,7 +92,7 @@ class Badges extends BaseController
 
         $this->BadgesModel->update($id_badges, $data);
 
-        session()->setFlashdata("sukses", "Data Berhasil Di Update.");
+        session()->setFlashdata("sukses", "Badges " . $nama . " Berhasil Di Update.");
         return redirect()->back();
     }
 

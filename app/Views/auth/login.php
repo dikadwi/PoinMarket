@@ -40,11 +40,11 @@
 
                     <?php if ('') : ?>
                         <div class="input-group mb-3">
-                            <input type="email" class="form-control <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="<?= lang('Auth.email') ?>" <?= session('errors.login') ?>>
+                            <input type="email" class="form-control <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="<?= lang('Auth.email') ?>" <?= session('errors.login') ?> autocomplete="on">
                         </div>
                     <?php else : ?>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="<?= lang('Auth.emailOrUsername') ?>" <?= session('errors.login') ?>>
+                            <input type="text" class="form-control <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="<?= lang('Auth.emailOrUsername') ?>" <?= session('errors.login') ?> autocomplete="on">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>
@@ -54,7 +54,7 @@
                     <?php endif; ?>
 
                     <div class="input-group mb-3">
-                        <input type="password" name="password" class="form-control <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder=" <?= lang('Auth.password') ?>" <?= session('errors.password') ?>>
+                        <input type="password" name="password" class="form-control <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder=" <?= lang('Auth.password') ?>" <?= session('errors.password') ?> autocomplete="on">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>

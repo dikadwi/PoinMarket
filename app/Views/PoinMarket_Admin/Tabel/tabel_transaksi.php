@@ -5,6 +5,11 @@ $limit = 10;
 // Ambil halaman saat ini dari URL, jika tidak ada, set ke 1
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
+// Urutkan data transaksi berdasarkan tanggal transaksi terbaru
+usort($data_transaksi, function ($a, $b) {
+    return strtotime($b['tanggal_transaksi']) - strtotime($a['tanggal_transaksi']);
+});
+
 // Hitung total data
 $total_data = count($data_transaksi);
 
@@ -52,7 +57,7 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                 <form action="" method="get">
                     <div class="input-group mb-2">
                         <select id="filter_jenis_transaksi" name="filter_jenis_transaksi" class="form-control form-control-sm select font-italic">
-                            <option value="" disabled selected class="font-italic">Jenis Transaksi</option>
+                            <option value="" disabled selected class="font-italic">Jenis Item</option>
                             <option value="101">Reward</option>
                             <option value="102">Pembelian</option>
                             <option value="103">Punishment</option>
@@ -66,9 +71,9 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                         </div>
                     </div>
                 </form>
-                <span>Jenis Transaksi</span>
+                <span>Jenis Item</span>
             </th>
-            <th scope="col">Nama Transaksi</th>
+            <th scope="col">Item</th>
             <th scope="col">Poin Digunakan</th><!-- total point mahasiswa (hasil dari transaksi) -->
             <th scope="col">Tanggal Transaksi</th>
             <th scope="col">Jam</th>
@@ -95,16 +100,11 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
     <tbody>
         <?php $i = $offset + 1; ?>
         <?php
-        // Urutkan data transaksi berdasarkan tanggal transaksi terbaru
-        usort($data_transaksi, function ($a, $b) {
-            return strtotime($b['tanggal_transaksi']) - strtotime($a['tanggal_transaksi']);
-        });
-
         $jenis_transaksi_map = [
             '101' => 'Reward',
-            '102' => 'Pembelian',
+            '102' => 'Belanja',
             '103' => 'Punishment',
-            '105' => 'Misi Tambahan',
+            '105' => 'Misi',
             '106' => 'Konsultasi',
         ];
 
@@ -217,13 +217,13 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                             echo 'Reward';
                             break;
                         case '102':
-                            echo 'Pembelian';
+                            echo 'Belanja';
                             break;
                         case '103':
                             echo 'Punishment';
                             break;
                         case '105':
-                            echo 'Misi Tambahan';
+                            echo 'Misi';
                             break;
                         case '106':
                             echo 'Konsultasi';
@@ -251,18 +251,14 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                             } ?>
                 </td> -->
                 <td>
-                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $data['id_transaksi']; ?>"><i class="fas fa-eye"></i> Detail</button>
+                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $data['id_transaksi']; ?>"><i class="fas fa-eye"></i><span class="d-none d-md-inline"> Detail</span></button>
                 </td>
-                <?php if (in_groups(['admin', 'validator'])) : ?>
-                    <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $data['id_transaksi']; ?>"><i class="fas fa-edit"></i> Edit</button>
-                    </td>
-                <?php endif ?>
-                <?php if (in_groups(['admin'])) : ?>
-                    <td>
-                        <button href="/Transaksi/delete_Transaksi/<?= $data['id_transaksi']; ?>" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i> Hapus</button>
-                    </td>
-                <?php endif; ?>
+                <td>
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $data['id_transaksi']; ?>"><i class="fas fa-edit"></i><span class="d-none d-md-inline"> Edit</span></button>
+                </td>
+                <td>
+                    <button href="/Transaksi/delete/<?= $data['id_transaksi']; ?>" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i><span class="d-none d-md-inline"> Hapus</span></button>
+                </td>
             <?php
         }
         // }
@@ -341,13 +337,13 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                                                             echo 'Reward';
                                                             break;
                                                         case '102':
-                                                            echo 'Pembelian';
+                                                            echo 'Belanja';
                                                             break;
                                                         case '103':
                                                             echo 'Punishment';
                                                             break;
                                                         case '105':
-                                                            echo 'Misi Tambahan';
+                                                            echo 'Misi';
                                                             break;
                                                         case '106':
                                                             echo 'Konsultasi';

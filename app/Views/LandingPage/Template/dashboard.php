@@ -7,6 +7,8 @@
         Point Market
     </title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" type="image/png" href="/fafavicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet" />
     <style>
@@ -168,19 +170,46 @@
             padding-top: 100px;
             /* Adjust based on header height */
         }
+
+        .d-flex {
+            display: flex;
+        }
+
+        .justify-content-between {
+            justify-content: space-between;
+        }
+
+        .align-items-center {
+            align-items: center;
+        }
+
+        .custom-card .fas {
+            animation-play-state: paused;
+            /* Matikan animasi secara default */
+        }
+
+        .custom-card:hover .fas {
+            animation-play-state: running;
+            /* Aktifkan animasi saat card dihover */
+        }
     </style>
 </head>
 
-<body class="bg-white">
+<body class="flex flex-col min-h-screen">
+
     <!-- Header/TopMenu -->
     <?= $this->include('LandingPage/Template/header'); ?>
 
-    <!-- Main Content -->
-    <?= $this->renderSection('content'); ?>
+    <main class="flex-grow">
+        <!-- Main Content -->
+        <?= $this->renderSection('content'); ?>
+    </main>
 
-    <!-- Footer -->
-    <?= $this->include('LandingPage/Template/footer'); ?>
-    <!-- /.Footer -->
+    <footer class="bg-gray-800 text-white text-center p-4">
+        <!-- Footer -->
+        <?= $this->include('LandingPage/Template/footer'); ?>
+        <!-- /.Footer -->
+    </footer>
 
 
 </body>

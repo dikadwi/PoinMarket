@@ -1,6 +1,6 @@
 <?php
 // Tentukan jumlah data per halaman
-$limit = 10;
+$limit = 100;
 
 // Ambil halaman saat ini dari URL, jika tidak ada, set ke 1
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -22,16 +22,17 @@ $start = $offset + 1; // Data pertama yang ditampilkan
 $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
 ?>
 
+
 <table class="table table-bordered table-striped">
     <thead class="bg-info">
         <tr>
             <th scope="col">No</th>
-            <th scope="col">Kode Transaksi</th>
-            <!-- <th scope="col">Jenis Transaksi</th> -->
+            <th scope="col">Kode Item</th>
             <th scope="col">Nama</th>
-            <th scope="col">Detail</th>
-            <th scope="col">Keterangan</th>
+            <th scope="col">Rule Item</th>
+            <th scope="col">Feedback</th>
             <th scope="col">Poin Harga</th>
+            <th scope="col">Status Validasi</th>
             <th scope="col" colspan="3">Aksi</th>
         </tr>
     </thead>
@@ -73,25 +74,20 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
             <tr>
                 <td><?= $i++; ?></td>
                 <td><?= $t['id_transaksi']; ?></td>
-                <!-- <td><?= $t['kode_jenis'] ?></td> -->
                 <td><?= $t['nama_transaksi']; ?></td>
                 <td><?= $t['detail']; ?></td>
-                <!-- Detail pada misi tambahan tambahkan untuk misi berupa file upload atau data  -->
                 <td><?= $t['keterangan']; ?></td>
                 <td><?= $t['poin_digunakan']; ?></td>
+                <td><?= $t['valid']; ?></td>
                 <td>
-                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $t['id_transaksi']; ?>"><i class="fas fa-eye"></i> Detail</button>
+                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $t['id_transaksi']; ?>"><i class="fas fa-eye"></i><span class="d-none d-md-inline"> Detail</span></button>
                 </td>
-                <?php if (in_groups(['admin', 'user'])) : ?>
-                    <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $t['id_transaksi']; ?>"><i class="fas fa-edit"></i> Edit</button>
-                    </td>
-                <?php endif ?>
-                <?php if (in_groups('admin')) : ?>
-                    <td>
-                        <button href="/Jenis_Transaksi/delete/<?= $t['id_transaksi']; ?>" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i> Hapus</button>
-                    </td>
-                <?php endif; ?>
+                <td>
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $t['id_transaksi']; ?>"><i class="fas fa-edit"></i><span class="d-none d-md-inline"> Edit</span></button>
+                </td>
+                <td>
+                    <button href="/Jenis_Transaksi/delete/<?= $t['id_transaksi']; ?>" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i><span class="d-none d-md-inline"> Hapus</span></button>
+                </td>
             </tr>
         <?php endforeach; ?>
     </tbody>

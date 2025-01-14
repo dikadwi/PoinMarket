@@ -25,6 +25,7 @@ class Filters extends BaseConfig
         'login'      => \Myth\Auth\Filters\LoginFilter::class,
         'role'       => \Myth\Auth\Filters\RoleFilter::class,
         'permission' => \Myth\Auth\Filters\PermissionFilter::class,
+        // 'tokenAuth' => \App\Filters\TokenAuth::class,
     ];
 
     /**
@@ -69,5 +70,6 @@ class Filters extends BaseConfig
     public array $filters = [
         'login_m'      => \App\Filters\LoginFilter::class,
         'login'      => \Myth\Auth\Filters\LoginFilter::class,
+        // 'tokenAuth' => ['before' => ['api/*']],
     ];
 }

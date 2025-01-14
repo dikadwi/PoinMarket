@@ -25,8 +25,8 @@
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-12 col-md-6 mb-3">
-                    <?php if (in_groups(['admin', 'user'])) : ?> <!-- User yang dimaksud adalah staf bukan mahasiswa -->
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahBadges">Input</button>
+                    <?php if (in_groups(['superadmin', 'admin'])) : ?>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahBadges"><i class="fas fa-plus"></i><span class="d-none d-md-inline"> Input</button>
                     <?php endif ?>
                 </div>
                 <!-- Search Belum Jalan -->
@@ -45,10 +45,15 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="table-responsive">
-                        <?= $this->include('PoinMarket_Admin/Tabel/tabel_badges'); ?>
-                    </div>
+                    <?= $this->include('PoinMarket_Admin/Card/badges'); ?>
                 </div>
+                <?php if (in_groups(['superadmin'])) : ?>
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <?= $this->include('PoinMarket_Admin/Tabel/tabel_badges'); ?>
+                        </div>
+                    </div>
+                <?php endif ?>
             </div>
 
     </section>

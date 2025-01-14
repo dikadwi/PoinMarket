@@ -167,13 +167,22 @@
         @media (max-width: 768px) {
             .main-header .navbar-nav .nav-item {
                 flex: 1 1 100%;
-                margin-bottom: 10px;
+                margin-bottom: 5px;
             }
 
             .main-header .navbar-nav .nav-link {
-                font-size: 14px;
+                font-size: 20px;
                 padding: 5px 10px;
             }
+        }
+
+        .navbar-toggler-icon {
+            transform: scale(0.8) !important;
+        }
+
+        .navbar-toggler-icon {
+            font-size: 0.8em;
+            /* Mengurangi ukuran ikon menjadi 80% dari ukuran aslinya */
         }
     </style>
 
@@ -183,14 +192,16 @@
 <!-- sidebar-closed sidebar-collapse"> -->
 
 <body class="hold-transition sidebar-mini sidebar-closed sidebar-collapse layout-fixed layout-navbar-fixed">
+
+    <!-- <body class="layout-top-nav layout-navbar-fixed" style="height: auto;"> -->
     <div class="wrapper">
 
         <!-- Top Menu -->
-        <?= $this->include('User/template/topmenu'); ?>
+        <?= $this->include('User/Template/topmenu'); ?>
 
 
         <!-- Sidemenu -->
-        <?= $this->include('User/template/sidemenu'); ?>
+        <?= $this->include('User/Template/sidemenu'); ?>
         <!-- /.Sidemenu -->
 
 
@@ -198,7 +209,7 @@
         <?= $this->renderSection('content_user'); ?>
 
         <!-- Footer -->
-        <?= $this->include('User/template/footer'); ?>
+        <?= $this->include('User/Template/footer'); ?>
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
@@ -280,7 +291,7 @@
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil',
-                text: '<?= session("sukses") ?>',
+                html: '<?= session("sukses") ?>',
                 showConfirmButton: false,
                 timer: 1300
             })
@@ -341,6 +352,30 @@
             })
         })
 
+        // Button Konfirmasi Claim
+        $(document).on('click', '.btn-claim', function(e) {
+            e.preventDefault();
+            const form = $(this).closest('.claim-form'); // Ambil form terdekat
+            const idTransaksi = form.find('input[name="id_transaksi"]').val();
+            const namaTransaksi = form.find('input[name="nama_transaksi"]').val();
+            const poinDigunakan = form.find('input[name="poin_digunakan"]').val();
+
+            Swal.fire({
+                title: 'Claim Reward ?',
+                html: `<p>Apakah Anda yakin ingin Claim <strong>${namaTransaksi}</strong> !</p>`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Claim',
+                cancelButtonText: 'Batal',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit(); // Submit form jika pengguna mengonfirmasi
+                }
+            });
+        })
+
         // Button Konfirmasi Pembelian
         $(document).on('click', '.btn-beli', function(e) {
             e.preventDefault();
@@ -349,7 +384,7 @@
             const poinDigunakan = form.find('input[name="poin_digunakan"]').val();
 
             Swal.fire({
-                // title: 'Beli ?',
+                title: 'Beli Item?',
                 // text: "Apakah Anda Yakin Ingin Membeli " + namaTransaksi + "!",
                 html: `<p>Apakah Anda yakin ingin membeli <strong>${namaTransaksi}</strong> !</p>
                <p>Harga : <strong>${poinDigunakan}</strong> Poin</p>`,
@@ -377,6 +412,30 @@
                 title: 'Ambil Misi ?',
                 // text: "Apakah Anda Yakin Ingin Mengerjakan Misi " + namaTransaksi + "!",
                 html: `<p>Apakah Anda yakin ingin Mengerjakan Misi <strong>${namaTransaksi}</strong> !</p>`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Kerjakan',
+                cancelButtonText: 'Batal',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit(); // Submit form jika pengguna mengonfirmasi
+                }
+            });
+        })
+
+        // Button Konfirmasi Konsultasi
+        $(document).on('click', '.btn-konsul', function(e) {
+            e.preventDefault();
+            const form = $(this).closest('.konsul-form'); // Ambil form terdekat
+            const namaTransaksi = form.find('input[name="nama_transaksi"]').val();
+            const poinDigunakan = form.find('input[name="poin_digunakan"]').val();
+
+            Swal.fire({
+                title: 'Konsultasi ?',
+                // text: "Apakah Anda Yakin Ingin Mengerjakan Misi " + namaTransaksi + "!",
+                html: `<p>Apakah Anda yakin ingin <strong>${namaTransaksi}</strong> !</p>`,
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

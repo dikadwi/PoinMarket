@@ -35,6 +35,8 @@ $routes->group('page', function ($routes) {
     $routes->get('', 'LandingPage::index');
     $routes->get('gamifikasi', 'LandingPage::gamifikasi');
     $routes->get('gaya_belajar', 'LandingPage::gaya_belajar');
+    $routes->get('about', 'LandingPage::about');
+    $routes->get('contact', 'LandingPage::contact');
     $routes->get('register', 'LandingPage::register');
 });
 
@@ -42,6 +44,8 @@ $routes->group('page', function ($routes) {
 $routes->group('Admin', ['filter' => 'login'], function ($routes) {
     $routes->get('market_place', 'Market_Place::market');
 });
+
+$routes->get('portofolio', 'Portofolio::index');
 
 $routes->get('learning', 'Learning::index');
 
@@ -121,7 +125,7 @@ $routes->group('Badges', ['filter' => 'login'], function ($routes) {
     $routes->get('', 'PoinMarket_Admin\Badges::index');
     $routes->post('save_badges', 'PoinMarket_Admin\Badges::save_badges');
     $routes->post('update_badges/(:num)', 'PoinMarket_Admin\Badges::update_badges/$1');
-    $routes->get('delete_badges/(:num)', 'PoinMarket_Admin\Badges::delete_badges/$1');
+    $routes->get('delete/(:num)', 'PoinMarket_Admin\Badges::delete_badges/$1');
 });
 
 // Group untuk Controller Transaksi (Data Transaksi)
@@ -135,7 +139,17 @@ $routes->group('Transaksi', ['filter' => 'login'], function ($routes) {
     $routes->get('konsultasi', 'PoinMarket_Admin\Transaksi::konsultasi');
     $routes->post('save_Transaksi', 'PoinMarket_Admin\Transaksi::save_Transaksi');
     $routes->post('update_transaksi/(:num)', 'PoinMarket_Admin\Transaksi::update_Transaksi/$1');
-    $routes->get('delete_Transaksi/(:num)', 'PoinMarket_Admin\Transaksi::delete_Transaksi/$1');
+    $routes->post('validate/(:num)', 'PoinMarket_Admin\Transaksi::validasi/$1');
+    $routes->get('delete/(:num)', 'PoinMarket_Admin\Transaksi::delete_Transaksi/$1');
+});
+
+// Gaya Belajar
+$routes->group('Gaya_Belajar', ['filter' => 'login'], function ($routes) {
+    // ['filter' => 'role:admin']
+    $routes->get('', 'PoinMarket_Admin\Gaya_Belajar::index');
+    $routes->get('visual', 'PoinMarket_Admin\Gaya_Belajar::visual');
+    $routes->get('audio', 'PoinMarket_Admin\Gaya_Belajar::audio');
+    $routes->get('kinestetik', 'PoinMarket_Admin\Gaya_Belajar::kinestetik');
 });
 
 // Group untuk Controller Misi_Tambah
@@ -161,16 +175,29 @@ $routes->group('Validasi', ['filter' => 'login'], function ($routes) {
     $routes->post('aksi/(:num)', 'PoinMarket_Admin\Validasi::validasiTransaksi/$1');
 });
 
+// Group untuk Controller Transaksi (Data Transaksi)
+$routes->group('Marketplace', ['filter' => 'login'], function ($routes) {
+    // ['filter' => 'role:admin']
+    $routes->get('', 'PoinMarket_Admin\Marketplace::index');
+    $routes->post('edit', 'PoinMarket_Admin\Marketplace::edit');
+    $routes->post('validasi', 'PoinMarket_Admin\Marketplace::validasi');
+});
+
 
 
 // Group untuk Controller Mahasiswa
 $routes->group('Role_User', ['filter' => 'login_m'], function ($routes) {
     $routes->get('', 'Role_User::index');
-    $routes->get('profile', 'Role_User::detail');
+    $routes->get('my_pembelian', 'Role_User::my_pembelian');
+    $routes->get('my_reward', 'Role_User::my_reward');
+    $routes->get('my_punishment', 'Role_User::my_punishment');
+    $routes->get('my_misi', 'Role_User::my_misi');
+    $routes->get('my_konsultasi', 'Role_User::my_konsultasi');
+    $routes->get('misi', 'Role_User::misi_tambah');
+    $routes->get('profile', 'Role_User::profile');
     $routes->post('save_email', 'Role_User::save_email');
     $routes->post('change_password', 'Role_User::change_password');
     $routes->post('Update_Profile', 'Role_User::Update_Profile');
-    $routes->get('data_transaksi', 'Role_User::data_transaksi');
     $routes->post('save_Transaksi', 'Role_User::save_Transaksi');
     $routes->get('badges', 'Role_User::badges');
     $routes->get('reward', 'Role_User::reward');
@@ -178,7 +205,6 @@ $routes->group('Role_User', ['filter' => 'login_m'], function ($routes) {
     $routes->get('punishment', 'Role_User::punishment');
     $routes->get('misi_tambahan', 'Role_User::misi');
     $routes->get('konsultasi', 'Role_User::konsultasi');
-    $routes->get('misi', 'Role_User::misi_tambah');
     $routes->get('market', 'Marketplace::index'); // Menampilkan halaman utama marketplace
     $routes->post('market/buy', 'Marketplace::buy'); // Proses pembelian
     $routes->post('market/reward', 'Marketplace::reward'); // Proses reward
@@ -191,12 +217,15 @@ $routes->group('Role_User', ['filter' => 'login_m'], function ($routes) {
 });
 
 // MarketPlace tanpa Login
+$routes->get('toko', 'Marketplace::toko');
+// $routes->get('toko', 'Marketplace::toko');
+$routes->post('toko/edit', 'Marketplace::edit');
 $routes->get('market', 'Marketplace::index'); // Menampilkan halaman utama marketplace
 $routes->post('market/buy', 'Marketplace::buy'); // Proses pembelian
 $routes->post('market/misi', 'Marketplace::misi_tambah'); // Proses pembelian
 
 // Content Management System
-$routes->group('cms',  function ($routes) {
+$routes->group('cms', ['filter' => 'login'],  function ($routes) {
     $routes->get('', 'CMS::index');
     $routes->get('view/(:num)', 'CMS::view/$1');
     $routes->get('create', 'CMS::create');
@@ -206,7 +235,8 @@ $routes->group('cms',  function ($routes) {
     $routes->get('delete/(:num)', 'CMS::delete/$1');
 });
 
-// Routes untuk API
+// Routes untuk API (Protected by Token Authentication)
+// $routes->group('api', ['filter' => 'tokenAuth'], function ($routes) {
 $routes->group('api', function ($routes) {
     // $routes->get('transaksi', 'PoinMarket_Admin\Validasi::getAllTransaksi');
     // $routes->post('transaksi/validasi/(:num)', 'PoinMarket_Admin\Validasi::validateTransaksi/$1');

@@ -33,6 +33,8 @@ class Mahasiswa extends BaseController
         $session = session();
 
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
+        $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
+
         $npmList = $this->DataTransaksiModel->getNpmList();
 
         $data = [
@@ -44,6 +46,7 @@ class Mahasiswa extends BaseController
             'npmList' => $npmList,
             'gaya_belajar' => $this->GayaBelajarModel->getGaya(),
             'topMenuPages' => $topMenuPages,
+            'sideMenuPages' => $sideMenuPages,
         ];
 
         foreach ($npmList as $npm) {
@@ -118,10 +121,10 @@ class Mahasiswa extends BaseController
     }
 
     // Menghapus data mahasiswa dengan data_transaksi dengan npm yg sama 
-    public function delete($npm)
+    public function delete($id)
     {
         // Ambil data mahasiswa berdasarkan ID atau npm
-        $mahasiswa = $this->MahasiswaModel->find($npm);
+        $mahasiswa = $this->MahasiswaModel->find($id);
         if (!$mahasiswa) {
             // Jika mahasiswa tidak ditemukan
             session()->setFlashdata('error', 'Data mahasiswa tidak ditemukan.');
@@ -132,7 +135,7 @@ class Mahasiswa extends BaseController
         $this->DataTransaksiModel->where('npm', $mahasiswa['npm'])->delete();
 
         // Hapus data mahasiswa
-        $this->MahasiswaModel->delete($npm);
+        $this->MahasiswaModel->delete($id);
 
         // Berikan pesan sukses
         session()->setFlashdata('sukses', 'Data berhasil dihapus.');

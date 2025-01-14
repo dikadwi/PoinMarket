@@ -18,13 +18,13 @@
                 <td><?= esc($page['status']); ?></td>
                 <td><?= esc($page['menu_position']); ?></td>
                 <td>
-                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $page['id']; ?>"><i class="fas fa-eye"></i> Detail</button>
+                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $page['id']; ?>"><i class="fas fa-eye"></i><span class="d-none d-md-inline"> Detail</span></button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $page['id']; ?>"><i class="fas fa-edit"></i> Edit</button>
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $page['id']; ?>"><i class="fas fa-edit"></i><span class="d-none d-md-inline"> Edit</span></button>
                 </td>
                 <td>
-                    <a href="/cms/delete/<?= $page['id']; ?>" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i> Hapus</a>
+                    <a href="/cms/delete/<?= $page['id']; ?>" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i><span class="d-none d-md-inline"> Hapus</span></a>
                 </td>
                 </tr>
             <?php endforeach; ?>
@@ -59,7 +59,7 @@
                                             </li>
                                             <h5 class="card-title"><b>Icon :</b></h5>
                                             <li class="list-group-item">
-                                                <h4><?= $page['icon']; ?></h4>
+                                                <i class="fas <?= esc($page['icon']); ?>"></i>
                                             </li>
                                             <h5 class="card-title"><b>Status :</b></h5>
                                             <li class="list-group-item">
@@ -104,18 +104,29 @@
                             <input type="text" name="url" class="form-control" value="<?= esc($page['url']); ?>" required>
                         </div>
                         <div class="form-group">
-                            <label for="icon">Pilih Ikon:</label> <i id="iconPreview" class="fas ml-2"></i>
+                            <label for="icon">Pilih Ikon:</label>
+                            <i id="icon-preview" class="fas <?= esc($page['icon']); ?>"></i>
                             <select name="icon" id="icon" class="form-control" required onchange="updateIconPreview(this.value)">
                                 <option value="">-- Pilih Ikon --</option>
                                 <option value="fa-home" <?= ($page['icon'] == 'fa-home') ? 'selected' : ''; ?>>Home</option>
                                 <option value="fa-info" <?= ($page['icon'] == 'fa-info') ? 'selected' : ''; ?>>Info</option>
+                                <option value="fa-edit" <?= ($page['icon'] == 'fa-edit') ? 'selected' : ''; ?>>Edit</option>
+                                <option value="fa-money-check-alt" <?= ($page['icon'] == 'fa-money-check-alt') ? 'selected' : ''; ?>>Money</option>
                                 <option value="fa-envelope" <?= ($page['icon'] == 'fa-envelope') ? 'selected' : ''; ?>>Envelope</option>
-                                <option value="fa-user" <?= ($page['icon'] == 'fa-user') ? 'selected' : ''; ?>>User </option>
+                                <option value="fa-user" <?= ($page['icon'] == 'fa-user') ? 'selected' : ''; ?>>User</option>
+                                <option value="fa-users" <?= ($page['icon'] == 'fa-users') ? 'selected' : ''; ?>>Users </option>
+                                <option value="fa-user-cog" <?= ($page['icon'] == 'fa-user-cog') ? 'selected' : ''; ?>>User Cog</option>
+                                <option value="fa-print" <?= ($page['icon'] == 'fa-print') ? 'selected' : ''; ?>>Print</option>
+                                <option value="fa-gift" <?= ($page['icon'] == 'fa-gift') ? 'selected' : ''; ?>>Gift</option>
+                                <option value="fa-shopping-cart" <?= ($page['icon'] == 'fa-shopping-cart') ? 'selected' : ''; ?>>Shopping Cart</option>
+                                <option value="fa-flag" <?= ($page['icon'] == 'fa-flag') ? 'selected' : ''; ?>>Flag</option>
+                                <option value="fa-rocket" <?= ($page['icon'] == 'fa-rocket') ? 'selected' : ''; ?>>Rocket</option>
+                                <option value="fa-comments" <?= ($page['icon'] == 'fa-comments') ? 'selected' : ''; ?>>Comments</option>
                                 <option value="fa-cog" <?= ($page['icon'] == 'fa-cog') ? 'selected' : ''; ?>>Settings</option>
                                 <option value="fa-star" <?= ($page['icon'] == 'fa-star') ? 'selected' : ''; ?>>Star</option>
                                 <option value="fa-search" <?= ($page['icon'] == 'fa-search') ? 'selected' : ''; ?>>Search</option>
                                 <option value="fa-bell" <?= ($page['icon'] == 'fa-bell') ? 'selected' : ''; ?>>Bell</option>
-                                <option value="fa-calendar" <?= ($page['icon'] == 'fa-calendar') ? 'selected' : ''; ?>>Calendar</option>
+                                <option value="fa-calendar" <?= ($page['icon'] == 'fa-calender') ? 'selected' : ''; ?>>Calendar</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -148,6 +159,12 @@
     </div>
 
     <script>
+        function updateIconPreview(icon) {
+            document.getElementById('icon-preview').className = 'fas ' + icon;
+        }
+    </script>
+
+    <!-- <script>
         // Fungsi untuk mengupdate preview ikon
         function updateIconPreview(icon) {
             const iconPreview = document.getElementById('iconPreview');
@@ -161,5 +178,5 @@
                 updateIconPreview(selectedIcon);
             }
         });
-    </script>
+    </script> -->
 <?php endforeach; ?>

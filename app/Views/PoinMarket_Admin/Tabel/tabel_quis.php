@@ -85,7 +85,14 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                 <td><?= $quiz['opsi_d'] ?></td>
                 <td><?= $quiz['jawaban_benar'] ?></td>
                 <td><?= $quiz['poin'] ?></td>
-                <td><?= $quiz['kategori'] ?></td>
+                <td>
+                    <?php $kategori = explode(', ', $quiz['kategori']); ?>
+                    <ul>
+                        <?php foreach ($kategori as $kategori_item) : ?>
+                            <li><?= $kategori_item; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </td>
                 <td>
                     <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $quiz['id']; ?>"><i class="fas fa-eye"></i> Detail</button>
                 </td>
@@ -178,9 +185,18 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                                             <li class="list-group-item">
                                                 <h4><?= $q['poin']; ?></h4>
                                             </li>
+                                            <!-- <h5 class="card-title"><b>Kategori :</b></h5>
+                                            <ul>
+                                                <?php $kategori = explode(', ', $q['kategori']); ?>
+                                                <?php foreach ($kategori as $kategori_item) : ?>
+                                                    <h4>
+                                                        <p>- <?= $kategori_item; ?></p>
+                                                    </h4>
+                                                <?php endforeach; ?>
+                                            </ul> -->
                                             <h5 class="card-title"><b>Kategori :</b></h5>
                                             <li class="list-group-item">
-                                                <h4><?= $q['kategori']; ?></h4>
+                                                <h4><?= $q['kategori']; ?>.</h4>
                                             </li>
                                         </ul>
                                     </div>
@@ -248,73 +264,19 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                         </div>
                         <div class="form-group ">
                             <label for="kategori" class="col-form-label">Kategori</label>
-                            <input type="text" class="form-control" id="kategori" name="kategori" value="<?php echo $q['kategori'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Update</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                </div>
-            </div>
-            </form>
-        </div>
-    </div>
-<?php endforeach ?>
-
-<!--Data Modal Box Edit Data-->
-<?php foreach ($quis as $q) : ?>
-    <div class="modal fade" id="modalEdit<?php echo $q['id']; ?>">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Edit Quis </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
-                    <form action="/Badges/update_badges/<?= $q['id']; ?>" method="post" enctype="multipart/form-data">
-                        <div class="form-group ">
-                            <label for="id" class="col-form-label"></label>
-                            <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $q['id'] ?>" required>
-                        </div>
-                        <div class="form-group ">
-                            <label for="pertanyaan" class="col-form-label">Pertanyaan </label>
-                            <input type="text" class="form-control" id="pertanyaan" name="pertanyaan" value="<?php echo $q['pertanyaan'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group ">
-                                    <label for="opsi_a" class="col-form-label">Opsi A</label>
-                                    <input type="text" class="form-control" id="opsi_a" name="opsi_a" value="<?php echo $q['opsi_a'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                                </div>
-                                <div class="form-group ">
-                                    <label for="opsi_b" class="col-form-label">Opsi B</label>
-                                    <input type="text" class="form-control" id="opsi_b" name="opsi_b" value="<?php echo $q['opsi_b'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                                </div>
+                            <?php $kategori = explode(', ', $q['kategori']); ?>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="kategori[]" value="Kinestetik" id="kinestetik" <?php if (in_array('Kinestetik', $kategori)) echo 'checked'; ?>>
+                                <label class="form-check-label" for="kinestetik">Kinestetik</label>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group ">
-                                    <label for="opsi_c" class="col-form-label">Opsi C</label>
-                                    <input type="text" class="form-control" id="opsi_c" name="opsi_c" value="<?php echo $q['opsi_c'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                                </div>
-                                <div class="form-group ">
-                                    <label for="opsi_d" class="col-form-label">Opsi D</label>
-                                    <input type="text" class="form-control" id="opsi_d" name="opsi_d" value="<?php echo $q['opsi_d'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                                </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="kategori[]" value="Auditori" id="auditori" <?php if (in_array('Auditori', $kategori)) echo 'checked'; ?>>
+                                <label class="form-check-label" for="auditori">Auditori</label>
                             </div>
-                        </div>
-                        <div class="form-group ">
-                            <label for="jawaban_benar" class="col-form-label">Jawaban Benar</label>
-                            <input type="text" class="form-control" id="jawaban_benar" name="jawaban_benar" value="<?php echo $q['jawaban_benar'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                        </div>
-                        <div class="form-group ">
-                            <label for="poin" class="col-form-label">Point</label>
-                            <input type="number" class="form-control" id="poin" name="poin" value="<?php echo $q['poin'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                        </div>
-                        <div class="form-group ">
-                            <label for="kategori" class="col-form-label">Kategori</label>
-                            <input type="text" class="form-control" id="kategori" name="kategori" value="<?php echo $q['kategori'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="kategori[]" value="Visual" id="visual" <?php if (in_array('Visual', $kategori)) echo 'checked'; ?>>
+                                <label class="form-check-label" for="visual">Visual</label>
+                            </div>
                         </div>
                 </div>
                 <div class="modal-footer">

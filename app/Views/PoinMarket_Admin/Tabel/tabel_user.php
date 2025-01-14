@@ -76,11 +76,11 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                 <td><?= $u->email; ?></td>
                 <td>
                     <span class="badge badge-<?php
-                                                if ($u->name === 'admin') {
+                                                if ($u->name === 'superadmin') {
                                                     echo 'success';
-                                                } elseif ($u->name === 'user') {
+                                                } elseif ($u->name === 'admin') {
                                                     echo 'warning';
-                                                } elseif ($u->name === 'validator') {
+                                                } elseif ($u->name === 'dosen') {
                                                     echo 'danger';
                                                 } else {
                                                     echo 'info';
@@ -92,11 +92,13 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                 <td><?= date('d-m-Y', strtotime($u->created_at)); ?></td>
                 <!-- <td><?= $u->created_at; ?></td> -->
                 <td>
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $u->userid; ?>"><i class="fas fa-eye"></i> Detail</button>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $u->userid; ?>"><i class="fas fa-eye"></i><span class="d-none d-md-inline"> Detail</span></button>
                 </td>
-                <td>
-                    <button href="/User/delete_User/<?= $u->userid; ?>" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i> Hapus</button>
-                </td>
+                <?php if (in_groups('superadmin')) : ?>
+                    <td>
+                        <button href="/User/delete_User/<?= $u->userid; ?>" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i><span class="d-none d-md-inline"> Hapus</span></button>
+                    </td>
+                <?php endif ?>
             </tr>
         <?php endforeach; ?>
     </tbody>
@@ -150,9 +152,9 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                     <div class="col-lg-13">
                         <div class="card mb-3">
                             <div class="row g-0">
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4">
                                     <img src="/img/admin.jpg" class="img-fluid rounded-start" alt="<?= $u->username; ?>">
-                                </div>
+                                </div> -->
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <ul class="list-group list-group-flush">
@@ -166,12 +168,14 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                                             </li>
                                             <li class="list-group-item">
                                                 <span class="badge badge-<?php
-                                                                            if ($u->name === 'admin') {
+                                                                            if ($u->name === 'superadmin') {
                                                                                 echo 'success';
-                                                                            } elseif ($u->name === 'user') {
+                                                                            } elseif ($u->name === 'admin') {
                                                                                 echo 'warning';
-                                                                            } else {
+                                                                            } elseif ($u->name === 'dosen') {
                                                                                 echo 'danger';
+                                                                            } else {
+                                                                                echo 'info';
                                                                             }
                                                                             ?>">
                                                     <?php echo $u->name; ?>

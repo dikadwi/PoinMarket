@@ -32,6 +32,7 @@ class Validasi extends BaseController
         $session = session();
 
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
+        $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
 
         // Ambil Semua data transaksi
         // $data_transaksi = $this->DataTransaksiModel->getDataTransaksi();
@@ -56,6 +57,7 @@ class Validasi extends BaseController
             'npm' => $this->MahasiswaModel->getMhs(),
             'nama' => $mahasiswa,
             'topMenuPages' => $topMenuPages,
+            'sideMenuPages' => $sideMenuPages,
         ];
         return view('PoinMarket_Admin/Page/validasi', $data);
     }

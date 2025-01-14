@@ -20,7 +20,10 @@
         <div class="flex flex-col md:flex-row overflow-x space-x-0 md:space-x-8">
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
-                    Meningkatkan Keterlibatan
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>Meningkatkan Keterlibatan</span>
+                        <i class="fas fa-users fa-2x fa-beat"></i> <!-- Ikon Tangan Bersalaman -->
+                    </div>
                 </div>
                 <div class="card-body">
                     <p class="text-gray-600">Gamifikasi membuat proses monoton menjadi interaktif. Audiens Anda akan lebih terhubung dengan produk atau layanan Anda.</p>
@@ -31,7 +34,10 @@
             </div>
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
-                    Mendorong Motivasi
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>Mendorong Motivasi</span>
+                        <i class="fas fa-bullseye fa-2x fa-beat"></i> <!-- Ikon Tangan Bersalaman -->
+                    </div>
                 </div>
                 <div class="card-body">
                     <p class="text-gray-600">Hadiah seperti lencana, poin, atau papan peringkat menciptakan rasa pencapaian yang mendorong pengguna untuk terus terlibat.</p>
@@ -42,7 +48,10 @@
             </div>
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
-                    Meningkatkan Loyalitas
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>Meningkatkan Loyalitas</span>
+                        <i class="fas fa-heart fa-2x fa-beat"></i> <!-- Ikon Hati -->
+                    </div>
                 </div>
                 <div class="card-body">
                     <p class="text-gray-600">Elemen permainan yang menyenangkan dapat menciptakan pengalaman positif dan membangun loyalitas jangka panjang.</p>
@@ -53,7 +62,10 @@
             </div>
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
-                    Mengoptimalkan Hasil
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>Mengoptimalkan Hasil</span>
+                        <i class="fas fa-chart-line fa-2x fa-beat"></i> <!-- Ikon Grafik -->
+                    </div>
                 </div>
                 <div class="card-body">
                     <p class="text-gray-600">Dengan desain yang tepat, gamifikasi dapat membantu meningkatkan performa, baik dalam bisnis, pendidikan, maupun pengembangan pribadi.</p>
@@ -69,7 +81,10 @@
         <div class="flex flex-col md:flex-row overflow-x space-x-0 md:space-x-8">
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
-                    Strategi Gamifikasi
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>Strategi Gamifikasi</span>
+                        <i class="fas fa-dice fa-2x fa-bounce"></i> <!-- Ikon Papan Catur -->
+                    </div>
                 </div>
                 <div class="card-body">
                     <p class="text-gray-600">Identifikasi elemen permainan yang sesuai dengan tujuan bisnis atau proyek Anda.</p>
@@ -80,7 +95,10 @@
             </div>
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
-                    Desain Interaktif
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>Desain Interaktif</span>
+                        <i class="fas fa-palette fa-2x fa-bounce"></i> <!-- Ikon Mouse -->
+                    </div>
                 </div>
                 <div class="card-body">
                     <p class="text-gray-600">Membangun pengalaman yang menarik untuk meningkatkan engagement audiens.</p>
@@ -91,7 +109,10 @@
             </div>
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
-                    Implementasi & Analisis
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>Implementasi & Analisis</span>
+                        <i class="fas fa-clipboard-list fa-2x fa-bounce"></i> <!-- Ikon Papan Catur -->
+                    </div>
                 </div>
                 <div class="card-body">
                     <p class="text-gray-600">Eksekusi strategi gamifikasi dan evaluasi kinerja secara berkelanjutan.</p>
@@ -108,7 +129,7 @@
         <div class="flex-item w-full">
             <section class="text-center">
                 <h2 class="text-3xl font-bold text-purple-600 mb-4">Mulai Transformasi Anda Hari Ini!</h2>
-                <p class="text-gray-600 mb-6">Dengan gamifikasi, Anda tidak hanya memikat perhatian audiens, tetapi juga menciptakan pengalaman yang tak terlupakan.
+                <p class="text-gray-600 mb-6">Dengan gamifikasi, Anda tidak hanya memikat perhatian audiens, tetapi juga menciptakan pengalaman yang tak terlupakan. <br>
                     Biarkan kami membantu Anda merancang solusi yang membawa dampak nyata.
                     Untuk konsultasi gratis dan lihat bagaimana gamifikasi dapat bekerja untuk Anda!
                 </p>

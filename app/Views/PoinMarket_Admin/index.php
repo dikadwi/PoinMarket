@@ -35,8 +35,8 @@
                             <!-- Total Mahasiswa  -->
                             <h4>Total User</h4>
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-person"></i>
+                        <div class="icon d-block">
+                            <i class="ion ion-person-stalker"></i>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                             <!-- Total Semua Data Transaksi  -->
                             <h4>Total Transaksi</h4>
                         </div>
-                        <div class="icon">
+                        <div class="icon d-block">
                             <i class="ion ion-android-cart"></i>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                             <!-- Total Mahasiswa sedang online / login  -->
                             <h4>User Online</h4>
                         </div>
-                        <div class="icon">
+                        <div class="icon d-block">
                             <i class="ion ion-person"></i>
                         </div>
                     </div>
@@ -76,10 +76,10 @@
                         <div class="inner">
                             <h2>Rewards</h2>
                             <!-- Total Rewards -->
-                            <p> <?= $totalReward ?> Items </p>
+                            <h5> <?= $totalReward ?> Items </h5>
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-ribbon-b"></i>
+                        <div class="icon d-block">
+                            <i class="ion ion-ribbon-a"></i>
                         </div>
                         <a href="/Transaksi/reward" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
@@ -89,11 +89,11 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h2>Pembelian</h2>
+                            <h2>Belanja</h2>
                             <!-- Total Challanges  -->
-                            <p> <?= $totalPembelian ?> Items </p>
+                            <h5> <?= $totalPembelian ?> Items </h5>
                         </div>
-                        <div class="icon">
+                        <div class="icon d-block">
                             <i class="ion ion-android-cart"></i>
                         </div>
                         <a href="/Transaksi/pembelian" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
@@ -106,10 +106,10 @@
                         <div class="inner">
                             <h2>Punishment</h2>
                             <!-- Total data Badges -->
-                            <p> <?= $totalPunishment ?> Items </p>
+                            <h5> <?= $totalPunishment ?> Items </h5>
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-compose"></i>
+                        <div class="icon d-block">
+                            <i class="ion ion-flag"></i>
                         </div>
                         <a href="/Transaksi/punishment" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
@@ -121,10 +121,10 @@
                         <div class="inner">
                             <h2>Misi</h2>
                             <!-- Total data Badges -->
-                            <p> <?= $totalMisi ?> Items </p>
+                            <h5> <?= $totalMisi ?> Items </h5>
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-clipboard"></i>
+                        <div class="icon d-block">
+                            <i class="ion ion-ionic"></i>
                         </div>
                         <a href="/Transaksi/misi_tambah" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
@@ -136,10 +136,10 @@
                         <div class="inner">
                             <h2>Konsultasi</h2>
                             <!-- Total data Badges -->
-                            <p> <?= $totalKonsultasi ?> Items </p>
+                            <h5> <?= $totalKonsultasi ?> Items </h5>
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-medkit"></i>
+                        <div class="icon d-block">
+                            <i class="ion ion-chatboxes"></i>
                         </div>
                         <a href="/Transaksi/konsultasi" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
@@ -169,78 +169,80 @@
                         </center>
                         <div class="card mb-0">
                             <div class="card-body">
-                                <table class="table table-bordered">
-                                    <thead class="bg-info">
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Poin</th>
-                                            <th>Level</th>
-                                            <th>Badges</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        // Mengurutkan mahasiswa berdasarkan poin tertinggi
-                                        usort($mahasiswa, function ($a, $b) {
-                                            return $b['point'] <=> $a['point']; // Urutkan secara descending
-                                        });
-
-                                        // Mengambil 5 mahasiswa dengan poin tertinggi
-                                        $topMahasiswa = array_slice($mahasiswa, 0, 5);
-                                        $i = 1;
-                                        foreach ($topMahasiswa as $user) : ?>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead class="bg-info">
                                             <tr>
-                                                <td class="<?= ($i == 1) ? 'gold' : (($i == 2) ? 'silver' : (($i == 3) ? 'bronze' : '')) ?>">
-                                                    <!-- Menampilkan ikon sesuai peringkat -->
-                                                    <i class="fas <?= ($i == 1) ? 'fa-trophy' : (($i == 2) ? 'fa-trophy' : (($i == 3) ? 'fa-trophy' : (($i == 4) ? 'fa-medal' : (($i == 5) ? 'fa-medal' : '')))) ?>"
-                                                        style="color: <?= ($i == 1) ? 'gold' : (($i == 2) ? 'silver' : (($i == 3) ? 'bronze' : (($i == 4) ? 'gold' : 'silver'))) ?>"></i>
-                                                    <?php echo $i++; ?>
-                                                </td>
-                                                <td><?= $user['nama']; ?></td>
-                                                <td><?= $user['point']; ?></td>
-                                                <td>
-                                                    <?php
-                                                    $selectedBadge = null;
-                                                    foreach ($badges as $badge) {
-                                                        if ($user['point'] >= $badge['point']) {
-                                                            $selectedBadge = $badge;
-                                                        } else {
-                                                            break; // Menghentikan iterasi jika poin mahasiswa tidak cukup untuk badge berikutnya
-                                                        }
-                                                    }
-
-                                                    if ($selectedBadge !== null) {
-                                                        echo $selectedBadge['nama'];
-                                                    } else {
-                                                        echo 'Tidak ada Level';
-                                                    }
-                                                    ?>
-                                                </td>
-                                                <td>
-
-                                                    <?php
-                                                    $selectedBadge = null;
-                                                    foreach ($badges as $badge) {
-                                                        if ($user['point'] >= $badge['point']) {
-                                                            $selectedBadge = $badge;
-                                                        } else {
-                                                            break; // Menghentikan iterasi jika poin mahasiswa tidak cukup untuk badge berikutnya
-                                                        }
-                                                    }
-
-                                                    if ($selectedBadge !== null) {
-                                                        echo '<img src="data:image/png;base64,' . base64_encode($selectedBadge['badges']) . '" width="80">';
-                                                    } else {
-                                                        echo 'Tidak ada badge';
-                                                    }
-                                                    ?>
-
-                                                </td>
+                                                <th>No</th>
+                                                <th>Nama</th>
+                                                <th>Poin</th>
+                                                <th>Level</th>
+                                                <th>Badges</th>
                                             </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            // Mengurutkan mahasiswa berdasarkan poin tertinggi
+                                            usort($mahasiswa, function ($a, $b) {
+                                                return $b['point'] <=> $a['point']; // Urutkan secara descending
+                                            });
+
+                                            // Mengambil 5 mahasiswa dengan poin tertinggi
+                                            $topMahasiswa = array_slice($mahasiswa, 0, 5);
+                                            $i = 1;
+                                            foreach ($topMahasiswa as $user) : ?>
+                                                <tr>
+                                                    <td class="<?= ($i == 1) ? 'gold' : (($i == 2) ? 'silver' : (($i == 3) ? 'bronze' : '')) ?>">
+                                                        <!-- Menampilkan ikon sesuai peringkat -->
+                                                        <i class="fas <?= ($i == 1) ? 'fa-trophy' : (($i == 2) ? 'fa-trophy' : (($i == 3) ? 'fa-trophy' : (($i == 4) ? 'fa-medal' : (($i == 5) ? 'fa-medal' : '')))) ?>"
+                                                            style="color: <?= ($i == 1) ? 'gold' : (($i == 2) ? 'silver' : (($i == 3) ? 'bronze' : (($i == 4) ? 'gold' : 'silver'))) ?>"></i>
+                                                        <?php echo $i++; ?>
+                                                    </td>
+                                                    <td><?= $user['nama']; ?></td>
+                                                    <td><?= $user['point']; ?></td>
+                                                    <td>
+                                                        <?php
+                                                        $selectedBadge = null;
+                                                        foreach ($badges as $badge) {
+                                                            if ($user['point'] >= $badge['point']) {
+                                                                $selectedBadge = $badge;
+                                                            } else {
+                                                                break; // Menghentikan iterasi jika poin mahasiswa tidak cukup untuk badge berikutnya
+                                                            }
+                                                        }
+
+                                                        if ($selectedBadge !== null) {
+                                                            echo $selectedBadge['nama'];
+                                                        } else {
+                                                            echo 'Tidak ada Level';
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td>
+
+                                                        <?php
+                                                        $selectedBadge = null;
+                                                        foreach ($badges as $badge) {
+                                                            if ($user['point'] >= $badge['point']) {
+                                                                $selectedBadge = $badge;
+                                                            } else {
+                                                                break; // Menghentikan iterasi jika poin mahasiswa tidak cukup untuk badge berikutnya
+                                                            }
+                                                        }
+
+                                                        if ($selectedBadge !== null) {
+                                                            echo '<img src="data:image/png;base64,' . base64_encode($selectedBadge['badges']) . '" width="80">';
+                                                        } else {
+                                                            echo 'Tidak ada badge';
+                                                        }
+                                                        ?>
+
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -257,68 +259,72 @@
                         </center>
                         <div class="card mb-0 flex-fill">
                             <div class="card-body">
-                                <table class="table table-bordered border-light">
-                                    <thead class="bg-info">
-                                        <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Badges</th>
-                                            <th scope="col">Nama</th>
-                                            <th scope="col">Point</th>
-                                            <th scope="col">Keterangan</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $i = 1; ?>
-                                        <?php foreach ($badges as $b) : ?>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered border-light">
+                                        <thead class="bg-info">
                                             <tr>
-                                                <td><?= $i++; ?></td>
-                                                <td>
-                                                    <?php if ($b['badges']) : ?>
-                                                        <center> <img src="data:image/png;base64,<?= base64_encode($b['badges']); ?>" alt="Badge Image" width="80"></center>
-                                                    <?php endif; ?>
-                                                </td>
-                                                <td><?= $b['nama']; ?></td>
-                                                <td><?= $b['point']; ?></td>
-                                                <td><?= $b['keterangan']; ?></td>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Badges</th>
+                                                <th scope="col">Nama</th>
+                                                <th scope="col">Point</th>
+                                                <th scope="col">Keterangan</th>
                                             </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($badges as $b) : ?>
+                                                <tr>
+                                                    <td><?= $i++; ?></td>
+                                                    <td>
+                                                        <?php if ($b['badges']) : ?>
+                                                            <center> <img src="data:image/png;base64,<?= base64_encode($b['badges']); ?>" alt="Badge Image" width="80"></center>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                    <td><?= $b['nama']; ?></td>
+                                                    <td><?= $b['point']; ?></td>
+                                                    <td><?= $b['keterangan']; ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Data Jenis Transaksi -->
                 <div class="col-lg-6 col-12">
-                    <div class="small-box b ">
+                    <div class="small-box b flex-fill">
                         <center>
-                            <h2> <i class="ion ion-pricetags"><b> Jenis Transaksi</b></i></h2>
+                            <h2> <i class="ion ion-pricetags"><b> Item</b></i></h2>
                         </center>
                         <div class="card mb-0 flex-fill">
                             <div class="card-body">
-                                <table class="table table-bordered border-light">
-                                    <thead class="bg-info">
-                                        <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Nama</th>
-                                            <th scope="col">Detail</th>
-                                            <th scope="col">Keterangan</th>
-                                            <th scope="col">Poin Harga</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $i = 1; ?>
-                                        <?php foreach ($transaksi as $trx) : ?>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered border-light">
+                                        <thead class="bg-info">
                                             <tr>
-                                                <td><?= $i++; ?></td>
-                                                <td><?= $trx['nama_transaksi']; ?></td>
-                                                <td><?= $trx['detail']; ?></td>
-                                                <td><?= $trx['keterangan']; ?></td>
-                                                <td><?= $trx['poin_digunakan']; ?></td>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Nama</th>
+                                                <th scope="col">Detail</th>
+                                                <th scope="col">Keterangan</th>
+                                                <th scope="col">Poin Harga</th>
                                             </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($transaksi as $trx) : ?>
+                                                <tr>
+                                                    <td><?= $i++; ?></td>
+                                                    <td><?= $trx['nama_transaksi']; ?></td>
+                                                    <td><?= $trx['detail']; ?></td>
+                                                    <td><?= $trx['keterangan']; ?></td>
+                                                    <td><?= $trx['poin_digunakan']; ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -335,45 +341,27 @@
                         </center>
                         <div class="card mb-0 flex-fill h-100">
                             <div class="card-body">
-                                <table class="table table-bordered border-light h-100">
-                                    <thead class="bg-info">
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Npm</th>
-                                            <th>Poin</th>
-                                            <th>Level</th>
-                                            <th>Badges</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $i = 1; ?>
-                                        <?php foreach ($mahasiswa as $mhs) : ?>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered border-light h-100">
+                                        <thead class="bg-info">
                                             <tr>
-                                                <td><?= $i++; ?></td>
-                                                <td><?= $mhs['nama']; ?></td>
-                                                <td><?= $mhs['npm']; ?></td>
-                                                <td><?= $mhs['point']; ?></td>
-                                                <td>
-                                                    <?php
-                                                    $selectedBadge = null;
-                                                    foreach ($badges as $badge) {
-                                                        if ($mhs['point'] >= $badge['point']) {
-                                                            $selectedBadge = $badge;
-                                                        } else {
-                                                            break; // Menghentikan iterasi jika poin mahasiswa tidak cukup untuk badge berikutnya
-                                                        }
-                                                    }
-
-                                                    if ($selectedBadge !== null) {
-                                                        echo $selectedBadge['nama'];
-                                                    } else {
-                                                        echo 'Tidak ada badge';
-                                                    }
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <center>
+                                                <th>No</th>
+                                                <th>Nama</th>
+                                                <th>Npm</th>
+                                                <th>Poin</th>
+                                                <th>Level</th>
+                                                <th>Badges</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($mahasiswa as $mhs) : ?>
+                                                <tr>
+                                                    <td><?= $i++; ?></td>
+                                                    <td><?= $mhs['nama']; ?></td>
+                                                    <td><?= $mhs['npm']; ?></td>
+                                                    <td><?= $mhs['point']; ?></td>
+                                                    <td>
                                                         <?php
                                                         $selectedBadge = null;
                                                         foreach ($badges as $badge) {
@@ -385,17 +373,37 @@
                                                         }
 
                                                         if ($selectedBadge !== null) {
-                                                            echo '<img src="data:image/png;base64,' . base64_encode($selectedBadge['badges']) . '" width="80">';
+                                                            echo $selectedBadge['nama'];
                                                         } else {
                                                             echo 'Tidak ada badge';
                                                         }
                                                         ?>
-                                                    </center>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
+                                                    </td>
+                                                    <td>
+                                                        <center>
+                                                            <?php
+                                                            $selectedBadge = null;
+                                                            foreach ($badges as $badge) {
+                                                                if ($mhs['point'] >= $badge['point']) {
+                                                                    $selectedBadge = $badge;
+                                                                } else {
+                                                                    break; // Menghentikan iterasi jika poin mahasiswa tidak cukup untuk badge berikutnya
+                                                                }
+                                                            }
+
+                                                            if ($selectedBadge !== null) {
+                                                                echo '<img src="data:image/png;base64,' . base64_encode($selectedBadge['badges']) . '" width="80">';
+                                                            } else {
+                                                                echo 'Tidak ada badge';
+                                                            }
+                                                            ?>
+                                                        </center>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

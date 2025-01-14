@@ -64,6 +64,141 @@ class Role_User extends BaseController
         return view('User/index_user', $data);
     }
 
+    public function my_pembelian()
+    {
+        $session = session();
+
+        //Mengambil npm yg sedang login
+        $npm = $session->get('npm');
+
+        // Ambil data transaksi yang hanya memiliki kode_jenis 106
+        $filteredDataTransaksi = array_filter(
+            $this->DataTransaksiModel->getDataTransaksiUser($npm),
+            function ($transaksi) {
+                return $transaksi['kode_jenis'] == 102;
+            }
+        );
+
+        $data = [
+            'title' => 'Pembelian Saya',
+            'username' => $session->get('username'),
+            'data_transaksi' =>  $filteredDataTransaksi,
+            'transaksi' => $this->TransaksiModel->getTransaksi(),
+            'npm' => $this->MahasiswaModel->getMhs(),
+            'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+            'jenis' => $this->JenisTransaksiModel->getJenis(),
+        ];
+        return view('User/Page/data_transaksi', $data);
+    }
+
+    public function my_reward()
+    {
+        $session = session();
+
+        //Mengambil npm yg sedang login
+        $npm = $session->get('npm');
+
+        // Ambil data transaksi yang hanya memiliki kode_jenis 106
+        $filteredDataTransaksi = array_filter(
+            $this->DataTransaksiModel->getDataTransaksiUser($npm),
+            function ($transaksi) {
+                return $transaksi['kode_jenis'] == 101;
+            }
+        );
+
+        $data = [
+            'title' => 'Reward Saya',
+            'username' => $session->get('username'),
+            'data_transaksi' => $filteredDataTransaksi,
+            'transaksi' => $this->TransaksiModel->getTransaksi(),
+            'npm' => $this->MahasiswaModel->getMhs(),
+            'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+            'jenis' => $this->JenisTransaksiModel->getJenis(),
+        ];
+        return view('User/Page/data_transaksi', $data);
+    }
+
+    public function my_punishment()
+    {
+        $session = session();
+
+        //Mengambil npm yg sedang login
+        $npm = $session->get('npm');
+
+        // Ambil data transaksi yang hanya memiliki kode_jenis 106
+        $filteredDataTransaksi = array_filter(
+            $this->DataTransaksiModel->getDataTransaksiUser($npm),
+            function ($transaksi) {
+                return $transaksi['kode_jenis'] == 103;
+            }
+        );
+
+        $data = [
+            'title' => 'Punishment Saya',
+            'username' => $session->get('username'),
+            'data_transaksi' => $filteredDataTransaksi,
+            'transaksi' => $this->TransaksiModel->getTransaksi(),
+            'npm' => $this->MahasiswaModel->getMhs(),
+            'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+            'jenis' => $this->JenisTransaksiModel->getJenis(),
+        ];
+        return view('User/Page/data_transaksi', $data);
+    }
+
+    public function my_misi()
+    {
+        $session = session();
+
+        //Mengambil npm yg sedang login
+        $npm = $session->get('npm');
+
+        // Ambil data transaksi yang hanya memiliki kode_jenis 106
+        $filteredDataTransaksi = array_filter(
+            $this->DataTransaksiModel->getDataTransaksiUser($npm),
+            function ($transaksi) {
+                return $transaksi['kode_jenis'] == 105;
+            }
+        );
+
+        $data = [
+            'title' => 'Misi Saya',
+            'username' => $session->get('username'),
+            'data_transaksi' => $filteredDataTransaksi,
+            'transaksi' => $this->TransaksiModel->getTransaksi(),
+            'npm' => $this->MahasiswaModel->getMhs(),
+            'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+            'jenis' => $this->JenisTransaksiModel->getJenis(),
+        ];
+        return view('User/Page/data_transaksi', $data);
+    }
+
+    public function my_konsultasi()
+    {
+        $session = session();
+
+        //Mengambil npm yg sedang login
+        $npm = $session->get('npm');
+
+        // Ambil data transaksi yang hanya memiliki kode_jenis 106
+        $filteredDataTransaksi = array_filter(
+            $this->DataTransaksiModel->getDataTransaksiUser($npm),
+            function ($transaksi) {
+                return $transaksi['kode_jenis'] == 106;
+            }
+        );
+
+        $data = [
+            'title' => 'Konsultasi Saya',
+            'username' => $session->get('username'),
+            'data_transaksi' => $filteredDataTransaksi,
+            'transaksi' => $this->TransaksiModel->getTransaksi(),
+            'npm' => $this->MahasiswaModel->getMhs(),
+            'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+            'jenis' => $this->JenisTransaksiModel->getJenis(),
+        ];
+        return view('User/Page/data_transaksi', $data);
+    }
+
     public function misi_tambah()
     {
         $session = session();
@@ -85,121 +220,7 @@ class Role_User extends BaseController
             'data_transaksi' => $filteredDataTransaksi,
         ];
 
-        return view('User/misi', $data);
-    }
-
-
-
-    public function detail()
-    {
-        $session = session();
-
-        $data = array(
-            'title' => 'Profile',
-            'username' => $session->get('username'),
-            'id' => $session->get('user_id'),
-            'npm' => $session->get('npm'),
-            'email' => $session->get('email'),
-            'point' => $session->get('point'),
-            'badges' => $this->BadgesModel->getBadges(),
-            'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
-        );
-
-        return view('User/detail_profile', $data);
-    }
-
-    public function save_email()
-    {
-        $id = $this->request->getPost('id');
-        $email = $this->request->getPost('email');
-
-        $data = [
-            'email' => $email
-        ];
-
-        $this->MahasiswaModel->update($id, $data);
-
-        $session = session();
-        $session->set('email', $email);
-
-        session()->setFlashdata("sukses", "Email Berhasil ditambahkan.");
-        return redirect()->back();
-    }
-
-    public function change_password()
-    {
-        $session = session();
-        $id = $session->get('user_id');
-
-        if ($this->request->getMethod() == 'post') {
-            $old_password = $this->request->getPost('old_password');
-            $new_password = $this->request->getPost('new_password');
-            $confirm_password = $this->request->getPost('confirm_password');
-
-            if ($new_password != $confirm_password) {
-                session()->setFlashdata("gagal", "Konfirmasi Password tidak cocok.");
-                return redirect()->back();
-            }
-
-            $user = $this->MahasiswaModel->find($id);
-            if (!password_verify($old_password, $user['password'])) {
-                session()->setFlashdata("gagal", "Password Lama tidak Cocok");
-                return redirect()->back();
-            }
-
-            $data_update = [
-                'password' => password_hash($new_password, PASSWORD_DEFAULT),
-            ];
-
-            $this->MahasiswaModel->update($id, $data_update);
-
-            session()->setFlashdata("sukses", "Password Berhasil diubah.");
-
-            return redirect()->back();
-        }
-    }
-    public function Update_Profile()
-    {
-        $id = $this->request->getPost('id');
-        $nama = $this->request->getPost('nama');
-        $npm = $this->request->getPost('npm');
-        $email = $this->request->getPost('email');
-
-        $data = [
-            'nama' => $nama,
-            'npm' => $npm,
-            'email' => $email
-        ];
-
-        $this->MahasiswaModel->update($id, $data);
-
-        // Update session data dengan data yg diupdate
-        $session = session();
-        $session->set('username', $nama);
-        $session->set('npm', $npm);
-        $session->set('email', $email);
-
-        session()->setFlashdata("sukses", "Data Berhasil di Update.");
-        return redirect()->back();
-    }
-
-    public function data_transaksi()
-    {
-        $session = session();
-
-        //Mengambil npm yg sedang login
-        $npm = $session->get('npm');
-
-        $data = [
-            'title' => 'Transaksi',
-            'username' => $session->get('username'),
-            'data_transaksi' => $this->DataTransaksiModel->getDataTransaksiUser($npm),
-            'transaksi' => $this->TransaksiModel->getTransaksi(),
-            'npm' => $this->MahasiswaModel->getMhs(),
-            'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
-            'jenis' => $this->JenisTransaksiModel->getJenis(),
-        ];
-        return view('User/transaksi/data_transaksi', $data);
+        return view('User/Page/misi', $data);
     }
 
     // Save Transaksi (Logika untuk market place)
@@ -298,6 +319,99 @@ class Role_User extends BaseController
         }
     }
 
+    // Profile
+    public function profile()
+    {
+        $session = session();
+
+        $data = array(
+            'title' => 'Profile',
+            'username' => $session->get('username'),
+            'id' => $session->get('user_id'),
+            'npm' => $session->get('npm'),
+            'email' => $session->get('email'),
+            'point' => $session->get('point'),
+            'badges' => $this->BadgesModel->getBadges(),
+            'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+        );
+
+        return view('User/Page/profile', $data);
+    }
+
+    public function save_email()
+    {
+        $id = $this->request->getPost('id');
+        $email = $this->request->getPost('email');
+
+        $data = [
+            'email' => $email
+        ];
+
+        $this->MahasiswaModel->update($id, $data);
+
+        $session = session();
+        $session->set('email', $email);
+
+        session()->setFlashdata("sukses", "Email Berhasil ditambahkan.");
+        return redirect()->back();
+    }
+
+    public function change_password()
+    {
+        $session = session();
+        $id = $session->get('user_id');
+
+        if ($this->request->getMethod() == 'post') {
+            $old_password = $this->request->getPost('old_password');
+            $new_password = $this->request->getPost('new_password');
+            $confirm_password = $this->request->getPost('confirm_password');
+
+            if ($new_password != $confirm_password) {
+                session()->setFlashdata("gagal", "Konfirmasi Password tidak cocok.");
+                return redirect()->back();
+            }
+
+            $user = $this->MahasiswaModel->find($id);
+            if (!password_verify($old_password, $user['password'])) {
+                session()->setFlashdata("gagal", "Password Lama tidak Cocok");
+                return redirect()->back();
+            }
+
+            $data_update = [
+                'password' => password_hash($new_password, PASSWORD_DEFAULT),
+            ];
+
+            $this->MahasiswaModel->update($id, $data_update);
+
+            session()->setFlashdata("sukses", "Password Berhasil diubah.");
+
+            return redirect()->back();
+        }
+    }
+    public function Update_Profile()
+    {
+        $id = $this->request->getPost('id');
+        $nama = $this->request->getPost('nama');
+        $npm = $this->request->getPost('npm');
+        $email = $this->request->getPost('email');
+
+        $data = [
+            'nama' => $nama,
+            'npm' => $npm,
+            'email' => $email
+        ];
+
+        $this->MahasiswaModel->update($id, $data);
+
+        // Update session data dengan data yg diupdate
+        $session = session();
+        $session->set('username', $nama);
+        $session->set('npm', $npm);
+        $session->set('email', $email);
+
+        session()->setFlashdata("sukses", "Data Berhasil di Update.");
+        return redirect()->back();
+    }
     public function reward()
     {
         $db      = \Config\Database::connect();
@@ -314,7 +428,7 @@ class Role_User extends BaseController
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
 
         ];
-        return view('User/transaksi/jenis_transaksi', $data);
+        return view('User/Page/jenis_transaksi', $data);
     }
 
     public function pembelian()
@@ -333,7 +447,7 @@ class Role_User extends BaseController
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
 
         ];
-        return view('User/transaksi/jenis_transaksi', $data);
+        return view('User/Page/jenis_transaksi', $data);
     }
 
     public function punishment()
@@ -352,7 +466,7 @@ class Role_User extends BaseController
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
 
         ];
-        return view('User/transaksi/jenis_transaksi', $data);
+        return view('User/Page/jenis_transaksi', $data);
     }
 
     public function misi()
@@ -371,7 +485,7 @@ class Role_User extends BaseController
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
 
         ];
-        return view('User/transaksi/jenis_transaksi', $data);
+        return view('User/Page/jenis_transaksi', $data);
     }
 
     public function konsultasi()
@@ -390,7 +504,7 @@ class Role_User extends BaseController
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
 
         ];
-        return view('User/transaksi/jenis_transaksi', $data);
+        return view('User/Page/jenis_transaksi', $data);
     }
 
     public function badges()
@@ -404,7 +518,7 @@ class Role_User extends BaseController
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
 
         ];
-        return view('User/Badges/badges', $data);
+        return view('User/Page/badges', $data);
     }
 
     // public function transaksi_reward()

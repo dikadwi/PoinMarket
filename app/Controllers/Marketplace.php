@@ -22,6 +22,39 @@ class Marketplace extends BaseController
         $this->QuisModel = new QuisModel();
     }
 
+    public function toko()
+    {
+        $transaksi = $this->TransaksiModel->findAll(); // Pastikan model ini mengembalikan data yang sesuai
+
+        $data = array(
+            'title' => 'Market Place',
+            'transaksi' => $transaksi,
+        );
+        return view('Marketplace/toko', $data);
+    }
+
+    public function edit()
+    {
+        $id_transaksi = $this->request->getPost('id_transaksi');
+        $nama_transaksi = $this->request->getPost('nama_transaksi');
+        $poin_digunakan = $this->request->getPost('poin_digunakan');
+        $detail = $this->request->getPost('detail');
+
+        // Lakukan validasi data jika diperlukan
+
+        // Update data transaksi
+        $data = [
+            'nama_transaksi' => $nama_transaksi,
+            'poin_digunakan' => $poin_digunakan,
+            'detail' => $detail,
+        ];
+
+        $this->TransaksiModel->update($id_transaksi, $data);
+
+        // Redirect atau tampilkan pesan sukses
+        return redirect()->to('/toko')->with('sukses', 'Data transaksi berhasil diupdate');
+    }
+
     public function index()
     {
         $session = session();
@@ -51,7 +84,7 @@ class Marketplace extends BaseController
             'datatransaksi' => $datatransaksi
         ];
 
-        return view('marketplace/index', $data);
+        return view('Marketplace/index', $data);
     }
 
     // Fungsi untuk mengklaim reward
@@ -90,9 +123,9 @@ class Marketplace extends BaseController
             if ($updateStatus) {
                 // Jika berhasil, update poin mahasiswa
                 $sisaPoin = $mahasiswa['point'] + $poin_digunakan; // Hitung sisa poin
-                $this->MahasiswaModel->update($mahasiswa['npm'], ['point' => $sisaPoin]); // Update poin mahasiswa
+                $this->MahasiswaModel->update($mahasiswa['id'], ['point' => $sisaPoin]); // Update poin mahasiswa
 
-                return redirect()->back()->with('success', 'Reward claimed successfully! Total points now: ' . $sisaPoin);
+                return redirect()->back()->with('sukses', 'Reward Berhasil di Claim! Total points sekarang: ' . $sisaPoin);
             } else {
                 return redirect()->back()->with('error', 'Failed to update claim status. Please try again.');
             }
@@ -127,7 +160,7 @@ class Marketplace extends BaseController
 
         // Proses pembelian
         $sisaPoin = $mahasiswa['point'] - $poin_digunakan;
-        $this->MahasiswaModel->update($mahasiswa['npm'], ['point' => $sisaPoin]);
+        $this->MahasiswaModel->update($mahasiswa['id'], ['point' => $sisaPoin]);
 
         // Simpan transaksi ke dalam tabel data_transaksi
         $data_transaksi = [
@@ -143,7 +176,7 @@ class Marketplace extends BaseController
         // Simpan data transaksi
         $this->DataTransaksiModel->insert($data_transaksi);
 
-        return redirect()->back()->with('sukses', 'Pembelian Berhasil ! Total points : ' . $sisaPoin);
+        return redirect()->back()->with('sukses', 'Pembelian Berhasil ! Total points : ' . $sisaPoin . ' <br> Silahkan Tunggu Validasi');
     }
 
     // Fungsi untuk mengajukan misi tambahan
@@ -202,51 +235,7 @@ class Marketplace extends BaseController
             'username' => $username,
             'quis' => $this->QuisModel->findAll(), // Ambil semua data kuis dari database
         ];
-        return view('User/quis', $data);
-    }
-    // Method untuk menangani pengiriman kuis
-    public function submitQuiz()
-    {
-        $session = session();
-        $npm = $session->get('npm');
-
-        // Validasi NPM
-        if ($npm === null) {
-            return redirect()->back()->with('gagal1', 'Silahkan login terlebih dahulu.');
-        }
-
-        // Jawaban yang benar
-        $correctAnswers = [
-            '1' => 'A', // Thomas Edison
-            '2' => 'A', // Jakarta
-            '3' => 'B', // 56
-            '4' => 'C', // Soekarno
-            '5' => 'C'  // Merkurius
-        ];
-
-        // Ambil jawaban dari pengguna
-        $userAnswers = $this->request->getPost();
-
-        // Hitung poin
-        $totalPoints = 0;
-        foreach ($correctAnswers as $question => $correctAnswer) {
-            if (isset($userAnswers[$question]) && $userAnswers[$question] === $correctAnswer) {
-                $totalPoints += 10; // 10 poin per jawaban benar
-            }
-        }
-
-        // Ambil data mahasiswa berdasarkan NPM
-        $mahasiswa = $this->MahasiswaModel->findByNpm($npm);
-        if ($mahasiswa === null) {
-            return redirect()->back()->with('gagal1', 'Mahasiswa tidak ditemukan.');
-        }
-
-        // Update poin mahasiswa
-        $newPoints = $mahasiswa['point'] + $totalPoints;
-        $this->MahasiswaModel->update($mahasiswa['npm'], ['point' => $newPoints]);
-
-        // Set flashdata untuk pesan sukses
-        return redirect()->back()->with('sukses', "Selamat! Anda mendapatkan $totalPoints poin tambahan. Total poin Anda sekarang adalah $newPoints.");
+        return view('User/Page/quis', $data);
     }
 
     public function kirimJawaban()
@@ -295,8 +284,10 @@ class Marketplace extends BaseController
 
         // Update poin mahasiswa
         $newPoints = $mahasiswa['point'] + $totalPoints;
-        $this->MahasiswaModel->update($mahasiswa['npm'], ['point' => $newPoints]);
+        $this->MahasiswaModel->update($mahasiswa['id'], ['point' => $newPoints]);
 
+        // Setelah quis selesai dikerjakan
+        session()->set('quis_selesai', true);
         // Set flashdata untuk pesan sukses
         return redirect()->back()->with('sukses', "Selamat! Anda mendapatkan $totalPoints poin tambahan. Total poin Anda sekarang adalah $newPoints.");
     }

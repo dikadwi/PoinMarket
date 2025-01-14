@@ -95,6 +95,12 @@
             }
         }
 
+        @media (max-width: 768px) {
+            .icon {
+                display: block;
+            }
+        }
+
         @media (max-width: 576px) {
             .small-box .icon {
                 font-size: 18px;
@@ -195,6 +201,7 @@
                 display: none;
                 /* Sembunyikan teks */
             }
+
         }
 
         @media (max-width: 768px) {
@@ -314,7 +321,7 @@
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil',
-                text: '<?= session("sukses") ?>',
+                html: '<?= session("sukses") ?>', //merender pesan sebagai HTML
                 showConfirmButton: false,
                 timer: 1300
             })

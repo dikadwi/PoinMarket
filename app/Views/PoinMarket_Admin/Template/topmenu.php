@@ -22,7 +22,8 @@
         <!-- <php if (in_groups('admin')) : ?> Mengambil Role, Jika Role sesuai Menu akan tampil -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="fas fa-tags"> <span> Jenis Transaksi</span></i> <!-- Ganti ikon sesuai kebutuhan -->
+                <!-- <i class="fas fa-tags"> <span> Jenis Transaksi</span></i> Ganti ikon sesuai kebutuhan -->
+                <i class="fas fa-tags"> <span>Kategori Item</span></i> <!-- Ganti ikon sesuai kebutuhan -->
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- Isi dropdown menu dengan link atau konten lain -->
@@ -30,7 +31,7 @@
                     <i class="fas fa-ribbon mr-2"></i>Rewards</a>
                 <div class="dropdown-divider"></div>
                 <a href="/Jenis_Transaksi/pembelian" class="dropdown-item">
-                    <i class="fas fa-cart-plus mr-2"></i>Pembelian</a>
+                    <i class="fas fa-cart-plus mr-2"></i>Belanja</a>
                 <div class="dropdown-divider"></div>
                 <a href="/Jenis_Transaksi/punishment" class="dropdown-item">
                     <i class="fas fa-clipboard mr-2"></i>Punishment</a>
@@ -42,20 +43,31 @@
                     <i class="fas fa-clipboard-check mr-2"></i>Konsultasi</a>
             </div>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item ">
             <a href="/Badges" class="nav-link">
                 <i class="fas fa-ribbon"><span> Badges</span></i> <!-- Ganti ikon sesuai kebutuhan -->
             </a>
         </li>
-        <li class="nav-item dropdown">
-            <a href="#/Admin/market_place" class="nav-link">
-                <i class="fas fa-cart-plus"><span> Market Place</span></i> <!-- Ganti ikon sesuai kebutuhan -->
+        <li class="nav-item">
+            <a href="/Marketplace" class="nav-link">
+                <i class="fas fa-cart-plus"><span> Market Management</span></i> <!-- Ganti ikon sesuai kebutuhan -->
             </a>
         </li>
         <li class="nav-item dropdown">
-            <a href="#/Admin/market_place" class="nav-link">
+            <a href="#" data-toggle="dropdown" class="nav-link">
                 <i class="fas fa-newspaper"><span> Gaya Belajar</span></i> <!-- Ganti ikon sesuai kebutuhan -->
             </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <!-- Isi dropdown menu dengan link atau konten lain -->
+                <a href="/Gaya_Belajar/visual" class="dropdown-item">
+                    <i class="fas fa-eye mr-2"></i>Visual</a>
+                <div class="dropdown-divider"></div>
+                <a href="/Gaya_Belajar/audio" class="dropdown-item">
+                    <i class="fas fa-headphones-alt mr-2"></i>Audio</a>
+                <div class="dropdown-divider"></div>
+                <a href="/Gaya_Belajar/kinestetik" class="dropdown-item">
+                    <i class="fas fa-running mr-2"></i>Kinestetik</a>
+            </div>
         </li>
 
         <!-- <php endif; ?> -->
@@ -74,7 +86,11 @@
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-user"></i>
             </a>
+
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <div class="dropdown-divider"></div>
+                <span class="dropdown-item dropdown-header"><?= $username ?></span>
+                <div class="dropdown-divider"></div>
                 <a href="/profile/<?= user()->id; ?>" class="dropdown-item">
                     <i class="fas fa-user mr-2"></i> Profil
                 </a>
@@ -84,6 +100,7 @@
                 </a>
             </div>
         </li>
+
         <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                 <i class="fas fa-expand-arrows-alt"></i>

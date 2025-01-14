@@ -8,6 +8,7 @@ use Myth\Auth\Config\Auth as AuthConfig;
 use Myth\Auth\Entities\User;
 use Myth\Auth\Models\UserModel;
 
+
 class AuthController extends Controller
 {
     protected $auth;
@@ -65,7 +66,7 @@ class AuthController extends Controller
     public function attemptLogin()
     {
         $rules = [
-            'login'    => 'required',
+            'username'    => 'required',
             'password' => 'required',
         ];
         if ($this->config->validFields === ['email']) {
@@ -76,7 +77,7 @@ class AuthController extends Controller
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        $login    = $this->request->getPost('login');
+        $login    = $this->request->getPost('username');
         $password = $this->request->getPost('password');
         $remember = (bool) $this->request->getPost('remember');
 
@@ -91,6 +92,30 @@ class AuthController extends Controller
         // Simpan alamat IP pengguna ke dalam sesi
         $user_ip = $this->request->getIPAddress(); // Mendapatkan alamat IP
         $this->session->set('user_ip', $user_ip); // Menyimpan alamat IP ke dalam sesi
+
+        // Jika pengguna berhasil login, generate token dan simpan ke tabel users
+        $user = $this->auth->user(); // Ambil data pengguna yang login
+
+        if ($user) {
+            $token = bin2hex(random_bytes(32)); // Generate token acak
+            $userModel = new UserModel();
+
+            // Simpan token ke tabel users
+            $updated = $userModel->update($user->id, ['token' => $token]);
+
+            if ($updated) {
+                // Simpan token ke session
+                session()->set('token', $token);
+                log_message('debug', 'Token updated and saved to session for user ID: ' . $user->id);
+            } else {
+                log_message('error', 'Failed to update token for user ID: ' . $user->id);
+            }
+            // Set username ke dalam session
+            $this->session->set('username', $user->username);
+        } else {
+            log_message('error', 'No user data found.');
+            return redirect()->back()->with('error', 'No user data found.');
+        }
 
         // Is the user being forced to reset their password?
         if ($this->auth->user()->force_pass_reset === true) {

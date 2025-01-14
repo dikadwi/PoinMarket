@@ -35,12 +35,15 @@ class Jenis_Transaksi extends BaseController
         $session = session();
 
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
+        $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
+
         $data = [
-            'title' => 'Jenis Transaksi',
+            'title' => 'Item',
             'username' => $session->get('username'),
             'transaksi' => $this->TransaksiModel->getTransaksi(),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'topMenuPages' => $topMenuPages,
+            'sideMenuPages' => $sideMenuPages,
         ];
         return view('PoinMarket_Admin/Page/jenis_transaksi_all', $data);
     }
@@ -55,12 +58,15 @@ class Jenis_Transaksi extends BaseController
         $session = session();
 
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
+        $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
+
         $data = [
             'title' => 'Rewards',
             'username' => $session->get('username'),
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'topMenuPages' => $topMenuPages,
+            'sideMenuPages' => $sideMenuPages,
         ];
         return view('PoinMarket_Admin/Page/jenis_transaksi', $data);
     }
@@ -75,12 +81,15 @@ class Jenis_Transaksi extends BaseController
         $session = session();
 
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
+        $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
+
         $data = [
             'title' => 'Pembelian',
             'username' => $session->get('username'),
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'topMenuPages' => $topMenuPages,
+            'sideMenuPages' => $sideMenuPages,
         ];
         return view('PoinMarket_Admin/Page/jenis_transaksi', $data);
     }
@@ -95,12 +104,15 @@ class Jenis_Transaksi extends BaseController
         $session = session();
 
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
+        $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
+
         $data = [
             'title' => 'Punishment',
             'username' => $session->get('username'),
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'topMenuPages' => $topMenuPages,
+            'sideMenuPages' => $sideMenuPages,
         ];
         return view('PoinMarket_Admin/Page/jenis_transaksi', $data);
     }
@@ -115,12 +127,15 @@ class Jenis_Transaksi extends BaseController
         $session = session();
 
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
+        $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
+
         $data = [
             'title' => 'Misi Tambahan',
             'username' => $session->get('username'),
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'topMenuPages' => $topMenuPages,
+            'sideMenuPages' => $sideMenuPages,
         ];
         return view('PoinMarket_Admin/Page/jenis_transaksi', $data);
     }
@@ -135,12 +150,15 @@ class Jenis_Transaksi extends BaseController
         $session = session();
 
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
+        $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
+
         $data = [
             'title' => 'Konsultasi',
             'username' => $session->get('username'),
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'topMenuPages' => $topMenuPages,
+            'sideMenuPages' => $sideMenuPages,
         ];
         return view('PoinMarket_Admin/Page/jenis_transaksi', $data);
     }
@@ -175,7 +193,8 @@ class Jenis_Transaksi extends BaseController
             'nama_transaksi' => $this->request->getVar('nama_transaksi'),
             'detail' => $this->request->getVar('detail'),
             'keterangan' => $this->request->getVar('keterangan'),
-            'poin_digunakan' => $this->request->getVar('poin_digunakan')
+            'poin_digunakan' => $this->request->getVar('poin_digunakan'),
+            'valid' => 'wait'
         ];
 
         // Melakukan insert ke database dengan penanganan kesalahan
@@ -196,12 +215,14 @@ class Jenis_Transaksi extends BaseController
         $detail = $this->request->getPost('detail');
         $keterangan = $this->request->getPost('keterangan');
         $poin_digunakan = $this->request->getPost('poin_digunakan');
+        $status = $this->request->getPost('status');
 
         $data = [
             'nama_transaksi' => $nama,
             'detail' => $detail,
             'keterangan' => $keterangan,
-            'poin_digunakan' => $poin_digunakan
+            'poin_digunakan' => $poin_digunakan,
+            'status' => $status
         ];
         $this->TransaksiModel->update($id_transaksi, $data);
 

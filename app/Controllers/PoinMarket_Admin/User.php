@@ -42,6 +42,7 @@ class User extends BaseController
         $session = session();
 
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
+        $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
 
         $db = \Config\Database::connect();
         $roleBuilder = $db->table('auth_groups');
@@ -54,6 +55,7 @@ class User extends BaseController
             'roles' => $roles,
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'topMenuPages' => $topMenuPages,
+            'sideMenuPages' => $sideMenuPages,
         ];
         // $users = new \Myth\Auth\Models\UserModel();
         // $data['users'] = $users->findAll();

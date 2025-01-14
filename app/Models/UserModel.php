@@ -20,6 +20,7 @@ class UserModel extends Model
         'email',
         'username',
         'password_hash',
+        'token',
         'reset_hash',
         'reset_at',
         'reset_expires',

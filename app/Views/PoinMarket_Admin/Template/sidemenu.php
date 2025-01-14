@@ -12,12 +12,13 @@
                  <img src="/img/admin.jpg" class="img-circle elevation-2" alt="User Image">
              </div>
              <div class="info">
-                 <a href="#" class="d-block">Admin</a>
+                 <a href="#" class="d-block"><?= $username; ?></a>
              </div>
          </div>
 
          <!-- Sidebar Menu -->
          <nav class="mt-5">
+
              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                  <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
@@ -33,9 +34,18 @@
                          </a>
                      </li>
                  <php endforeach; ?> -->
-
+                 <?php foreach ($sideMenuPages as $page): ?>
+                     <?php if ($page['status'] === 'active'): ?> <!-- Hanya tampilkan jika status active -->
+                         <li class="nav-item">
+                             <a class="nav-link" href="<?= esc($page['url']); ?>">
+                                 <i class="nav-icon fas <?= esc($page['icon']); ?>"></i>
+                                 <p> <?= esc($page['title']); ?></p>
+                             </a>
+                         </li>
+                     <?php endif; ?>
+                 <?php endforeach; ?>
                  <!--Menu  Admin-->
-                 <?php if (in_groups('admin')) : ?>
+                 <?php if (in_groups(['superadmin', 'admin'])) : ?>
                      <li class="nav-item">
                          <a href="/User" class="nav-link">
                              <!-- <i class="nav-icon fas fa-users"></i> -->
@@ -55,32 +65,89 @@
                          </p>
                      </a>
                  </li>
-                 <li class="nav-item">
-                     <a href="/Transaksi" class="nav-link">
-                         <!-- <i class="nav-icon fas fa-shopping-cart"></i> -->
-                         <i class="nav-icon fas fa-money-check-alt"></i>
+                 <!-- <php if (in_groups(['admin', 'validator'])) : ?> -->
+                 <!-- <li class="nav-item">
+                     <a href="/Jenis_Transaksi" class="nav-link">
+                         <i class="nav-icon fas fa-edit"></i>
                          <p>
-                             Data Transaksi
+                             Data Item
+                         </p>
+                     </a>
+                 </li> -->
+                 <!-- <php endif; ?> -->
+                 <li class="nav-item">
+                     <a href="/Transaksi/pembelian" class="nav-link">
+                         <!-- <i class="nav-icon fas fa-shopping-cart"></i> -->
+                         <i class="nav-icon fas fa-shopping-cart"></i>
+                         <p>
+                             <!-- Data Transaksi -->
+                             Data Pembelian
                          </p>
                      </a>
                  </li>
-                 <?php if (in_groups(['admin', 'validator', 'user'])) : ?>
-                     <li class="nav-item">
+                 <li class="nav-item">
+                     <a href="/Transaksi/reward" class="nav-link">
+                         <!-- <i class="nav-icon fas fa-shopping-cart"></i> -->
+                         <i class="nav-icon fas fa-gift"></i>
+                         <p>
+                             <!-- Data Transaksi -->
+                             Data Reward
+                         </p>
+                     </a>
+                 </li>
+                 <li class="nav-item">
+                     <a href="/Transaksi/punishment" class="nav-link">
+                         <!-- <i class="nav-icon fas fa-shopping-cart"></i> -->
+                         <i class="nav-icon fas fa-flag"></i>
+                         <p>
+                             <!-- Data Transaksi -->
+                             Data Punishment
+                         </p>
+                     </a>
+                 </li>
+                 <li class="nav-item">
+                     <a href="/Transaksi/misi_tambah" class="nav-link">
+                         <i class="nav-icon fas fa-bullseye"></i>
+                         <p>
+                             Data Misi
+                         </p>
+                     </a>
+                 </li>
+                 <li class="nav-item">
+                     <a href="/Transaksi/konsultasi" class="nav-link">
+                         <!-- <i class="nav-icon fas fa-shopping-cart"></i> -->
+                         <i class="nav-icon fas fa-comments"></i>
+                         <p>
+                             <!-- Data Transaksi -->
+                             Data Konsultasi
+                         </p>
+                     </a>
+                 </li>
+                 <li class="nav-item">
+                     <a href="/Validasi" class="nav-link">
+                         <i class="nav-icon fas fa-print"></i>
+                         <p>
+                             Validasi Pesanan
+                         </p>
+                     </a>
+                 </li>
+                 <?php if (in_groups(['superadmin', 'validator', 'user'])) : ?>
+                     <!-- <li class="nav-item">
                          <a href="/Misi_tambah" class="nav-link">
                              <i class="nav-icon fas fa-file"></i>
                              <p>
-                                 Data Misi Tambahan
+                                 Item Misi
                              </p>
                          </a>
-                     </li>
-                     <li class="nav-item">
+                     </li> -->
+                     <!-- <li class="nav-item">
                          <a href="#/Konsultasi" class="nav-link">
                              <i class="nav-icon fas fa-edit"></i>
                              <p>
-                                 Data Konsultasi
+                                 Item Konsultasi
                              </p>
                          </a>
-                     </li>
+                     </li> -->
                      <li class="nav-item">
                          <a href="/Quis" class="nav-link">
                              <i class="nav-icon fas fa-edit"></i>
@@ -90,15 +157,7 @@
                          </a>
                      </li>
                  <?php endif ?>
-                 <li class="nav-item">
-                     <a href="/Validasi" class="nav-link">
-                         <i class="nav-icon fas fa-print"></i>
-                         <p>
-                             Validasi
-                         </p>
-                     </a>
-                 </li>
-                 <?php if (in_groups(['admin'])) : ?>
+                 <?php if (in_groups(['superadmin'])) : ?>
                      <li class="nav-item">
                          <a href="/cms" class="nav-link">
                              <i class="nav-icon fas fa-chalkboard-teacher"></i>

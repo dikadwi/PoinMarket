@@ -1,6 +1,7 @@
 <?= $this->extend('PoinMarket_Admin/Template/dashboard'); ?>
 
 <?= $this->section('content'); ?>
+
 <div class="content-wrapper">
     <div class="content-header">
         <div class="row mb-2">
@@ -57,13 +58,24 @@
                         <input type="text" name="url" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="icon">Pilih Ikon:</label> <i id="iconPreview" class="fas ml-2"></i>
-                        <select name="icon" id="icon" class="form-control" required onchange="updateIconPreview(this.value)">
+                        <label for="icon">Pilih Ikon:</label>
+                        <i id="AddiconPreview" class="fas ml-2"></i>
+                        <select name="icon" id="icon" class="form-control" required onchange="AddIconPreview(this.value)">
                             <option value="">-- Pilih Ikon --</option>
                             <option value="fa-home">Home</option>
                             <option value="fa-info">Info</option>
+                            <option value="fa-edit">Edit</option>
+                            <option value="fa-money-check-alt">Money</option>
                             <option value="fa-envelope">Envelope</option>
-                            <option value="fa-user">User </option>
+                            <option value="fa-user">User</option>
+                            <option value="fa-users">Users </option>
+                            <option value="fa-user-cog">User Cog</option>
+                            <option value="fa-print">Print</option>
+                            <option value="fa-gift">Gift</option>
+                            <option value="fa-shopping-cart">Shopping Cart</option>
+                            <option value="fa-flag">Flag</option>
+                            <option value="fa-rocket">Rocket</option>
+                            <option value="fa-comments">Comments</option>
                             <option value="fa-cog">Settings</option>
                             <option value="fa-star">Star</option>
                             <option value="fa-search">Search</option>
@@ -94,9 +106,8 @@
 </div>
 
 <script>
-    function updateIconPreview(icon) {
-        const iconPreview = document.getElementById('iconPreview');
-        iconPreview.className = `fas ${icon}`;
+    function AddIconPreview(icon) {
+        document.getElementById("AddiconPreview").className = "fas " + icon;
     }
 </script>
 <?= $this->endSection(); ?>

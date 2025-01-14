@@ -2,8 +2,14 @@
 // Tentukan jumlah data per halaman
 $limit = 10;
 
+
 // Ambil halaman saat ini dari URL, jika tidak ada, set ke 1
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+// Mengurutkan data mahasiswa secara numerik dengan NPM
+usort($mahasiswa, function ($a, $b) {
+    return ($a['npm'] - $b['npm']);
+});
 
 // Hitung total data
 $total_data = count($mahasiswa);
@@ -79,12 +85,6 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
     <tbody>
         <?php $i = 1; ?>
         <?php
-        // Mengurutkan data mahasiswa secara numerik dengan NPM
-        usort($mahasiswa, function ($a, $b) {
-            return ($a['npm'] - $b['npm']);
-        });
-
-
         // Tambahkan filter untuk NPM
         if (isset($_GET['gaya_belajar'])) {
             $gaya = $_GET['gaya_belajar'];
@@ -237,16 +237,14 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                     </center>
                 </td>
                 <td>
-                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $m['npm']; ?>"><i class="fas fa-eye"></i> Detail</button>
+                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $m['id']; ?>"><i class="fas fa-eye"></i><span class="d-none d-md-inline"> Detail</span></button>
                 </td>
-                <?php if (in_groups(['admin', 'validator'])) : ?>
+                <?php if (in_groups(['superadmin', 'dosen'])) : ?>
                     <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $m['npm']; ?>"><i class="fas fa-edit"></i> Edit</button>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $m['id']; ?>"><i class="fas fa-edit"></i><span class="d-none d-md-inline"> Edit</span></button>
                     </td>
-                <?php endif ?>
-                <?php if (in_groups(['admin'])) : ?>
                     <td>
-                        <button href="/Mahasiswa/delete/<?= $m['npm']; ?>" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i> Hapus</button>
+                        <button href="/Mahasiswa/delete/<?= $m['id']; ?>" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i><span class="d-none d-md-inline"> Hapus</span></button>
                     </td>
                 <?php endif; ?>
                 </td>
@@ -291,7 +289,7 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
 <?php foreach ($mahasiswa as $m) : ?>
     <?php foreach ($badges as $b) : ?>
         <?php if ($m['point'] >= $b['point']) : ?>
-            <div class="modal fade" id="modalDetail<?php echo $m['npm']; ?>">
+            <div class="modal fade" id="modalDetail<?php echo $m['id']; ?>">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -447,7 +445,7 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
 
 <!--Data Modal Box Edit Data-->
 <?php foreach ($mahasiswa as $m) : ?>
-    <div class="modal fade" id="modalEdit<?php echo $m['npm']; ?>">
+    <div class="modal fade" id="modalEdit<?php echo $m['id']; ?>">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content ">
                 <div class="modal-header">
@@ -458,7 +456,7 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                 </div>
 
                 <div class="modal-body">
-                    <form action="/Mahasiswa/update_Mhs/<?= $m['npm']; ?>" method="post" enctype="multipart/form-data">
+                    <form action="/Mahasiswa/update_Mhs/<?= $m['id']; ?>" method="post" enctype="multipart/form-data">
                         <div class="form-group ">
                             <label for="id" class="col-form-label"></label>
                             <input type="hidden" class="form-control" id="id" name="id" value="" required>

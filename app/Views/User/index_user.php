@@ -1,4 +1,4 @@
-<?= $this->extend('User/template/dashboard'); ?>
+<?= $this->extend('User/Template/dashboard'); ?>
 
 <?= $this->section('content_user'); ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
@@ -117,7 +117,7 @@
         <div class="col-lg-6 col-md-12 mb-3">
           <div class="small-box b flex-fill">
             <center>
-              <h2><i class="ion ion-trophy"><b> Leaderboard</b></i></h2>
+              <h2><i class="ion ion-podium"><b> Leaderboard</b></i></h2>
             </center>
             <div class="card mb-0 flex-fill">
               <table class="table table-bordered border-light h-100">
@@ -356,20 +356,30 @@
         </button>
       </div>
       <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
-        <table class="table table-bordered border-dark">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Nama Transaksi</th>
-              <th>Poin Digunakan</th>
-              <th>Tanggal Transaksi</th>
-              <!-- <th>Validasi</th> -->
-            </tr>
-          </thead>
-          <tbody>
-            <?php $i = 1; ?>
-            <?php foreach ($data_transaksi as $data) : ?>
-              <?php if ($data['kode_jenis'] == '101') : ?>
+        <?php
+        // Filter data berdasarkan kode_jenis
+        $filteredData = array_filter($data_transaksi, function ($item) {
+          return $item['kode_jenis'] == '101'; // Sesuaikan dengan kode_jenis yang diinginkan
+        });
+
+        if (empty($filteredData)): ?>
+          <div class="col-12 text-center">
+            <p class="text-muted"><strong>Tidak ada data yang tersedia.</strong></p>
+          </div>
+        <?php else: ?>
+          <table class="table table-bordered border-dark">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama Transaksi</th>
+                <th>Poin Digunakan</th>
+                <th>Tanggal Transaksi</th>
+                <!-- <th>Validasi</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <?php $i = 1; ?>
+              <?php foreach ($filteredData as $data): ?>
                 <tr>
                   <td><?= $i++; ?></td>
                   <td><?= $data['nama_transaksi']; ?></td>
@@ -390,10 +400,10 @@
                     } ?>
                   </td> -->
                 </tr>
-              <?php endif ?>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        <?php endif ?>
       </div>
     </div>
   </div>
@@ -410,20 +420,30 @@
         </button>
       </div>
       <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
-        <table class="table table-bordered border-dark">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Nama Transaksi</th>
-              <th>Poin Digunakan</th>
-              <th>Tanggal Transaksi</th>
-              <!-- <th>Validasi</th> -->
-            </tr>
-          </thead>
-          <tbody>
-            <?php $i = 1; ?>
-            <?php foreach ($data_transaksi as $data) : ?>
-              <?php if ($data['kode_jenis'] == '102') : ?>
+        <?php
+        // Filter data berdasarkan kode_jenis
+        $filteredData = array_filter($data_transaksi, function ($item) {
+          return $item['kode_jenis'] == '102'; // Sesuaikan dengan kode_jenis yang diinginkan
+        });
+
+        if (empty($filteredData)): ?>
+          <div class="col-12 text-center">
+            <p class="text-muted"><strong>Tidak ada data yang tersedia.</strong></p>
+          </div>
+        <?php else: ?>
+          <table class="table table-bordered border-dark">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama Transaksi</th>
+                <th>Poin Digunakan</th>
+                <th>Tanggal Transaksi</th>
+                <!-- <th>Validasi</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <?php $i = 1; ?>
+              <?php foreach ($filteredData as $data): ?>
                 <tr>
                   <td><?= $i++; ?></td>
                   <td><?= $data['nama_transaksi']; ?></td>
@@ -444,10 +464,10 @@
                     } ?>
                   </td> -->
                 </tr>
-              <?php endif ?>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        <?php endif ?>
       </div>
     </div>
   </div>
@@ -464,20 +484,30 @@
         </button>
       </div>
       <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
-        <table class="table table-bordered border-dark">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Nama Transaksi</th>
-              <th>Poin Digunakan</th>
-              <th>Tanggal Transaksi</th>
-              <!-- <th>Validasi</th> -->
-            </tr>
-          </thead>
-          <tbody>
-            <?php $i = 1; ?>
-            <?php foreach ($data_transaksi as $data) : ?>
-              <?php if ($data['kode_jenis'] == '103') : ?>
+        <?php
+        // Filter data berdasarkan kode_jenis
+        $filteredData = array_filter($data_transaksi, function ($item) {
+          return $item['kode_jenis'] == '103'; // Sesuaikan dengan kode_jenis yang diinginkan
+        });
+
+        if (empty($filteredData)): ?>
+          <div class="col-12 text-center">
+            <p class="text-muted"><strong>Tidak ada data yang tersedia.</strong></p>
+          </div>
+        <?php else: ?>
+          <table class="table table-bordered border-dark">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama Transaksi</th>
+                <th>Poin Digunakan</th>
+                <th>Tanggal Transaksi</th>
+                <!-- <th>Validasi</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <?php $i = 1; ?>
+              <?php foreach ($filteredData as $data): ?>
                 <tr>
                   <td><?= $i++; ?></td>
                   <td><?= $data['nama_transaksi']; ?></td>
@@ -498,10 +528,10 @@
                     } ?>
                   </td> -->
                 </tr>
-              <?php endif ?>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        <?php endif ?>
       </div>
     </div>
   </div>
@@ -518,20 +548,30 @@
         </button>
       </div>
       <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
-        <table class="table table-bordered border-dark">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Nama Transaksi</th>
-              <th>Poin Digunakan</th>
-              <th>Tanggal Transaksi</th>
-              <!-- <th>Validasi</th> -->
-            </tr>
-          </thead>
-          <tbody>
-            <?php $i = 1; ?>
-            <?php foreach ($data_transaksi as $data) : ?>
-              <?php if ($data['kode_jenis'] == '105') : ?>
+        <?php
+        // Filter data berdasarkan kode_jenis
+        $filteredData = array_filter($data_transaksi, function ($item) {
+          return $item['kode_jenis'] == '105'; // Sesuaikan dengan kode_jenis yang diinginkan
+        });
+
+        if (empty($filteredData)): ?>
+          <div class="col-12 text-center">
+            <p class="text-muted"><strong>Tidak ada data yang tersedia.</strong></p>
+          </div>
+        <?php else: ?>
+          <table class="table table-bordered border-dark">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama Transaksi</th>
+                <th>Poin Digunakan</th>
+                <th>Tanggal Transaksi</th>
+                <!-- <th>Validasi</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <?php $i = 1; ?>
+              <?php foreach ($filteredData as $data): ?>
                 <tr>
                   <td><?= $i++; ?></td>
                   <td><?= $data['nama_transaksi']; ?></td>
@@ -552,10 +592,10 @@
                     } ?>
                   </td> -->
                 </tr>
-              <?php endif ?>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        <?php endif ?>
       </div>
     </div>
   </div>
@@ -572,20 +612,30 @@
         </button>
       </div>
       <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
-        <table class="table table-bordered border-dark">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Nama Transaksi</th>
-              <th>Poin Digunakan</th>
-              <th>Tanggal Transaksi</th>
-              <!-- <th>Validasi</th> -->
-            </tr>
-          </thead>
-          <tbody>
-            <?php $i = 1; ?>
-            <?php foreach ($data_transaksi as $data) : ?>
-              <?php if ($data['kode_jenis'] == '106') : ?>
+        <?php
+        // Filter data berdasarkan kode_jenis
+        $filteredData = array_filter($data_transaksi, function ($item) {
+          return $item['kode_jenis'] == '106'; // Sesuaikan dengan kode_jenis yang diinginkan
+        });
+
+        if (empty($filteredData)): ?>
+          <div class="col-12 text-center">
+            <p class="text-muted"><strong>Tidak ada data yang tersedia.</strong></p>
+          </div>
+        <?php else: ?>
+          <table class="table table-bordered border-dark">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama Transaksi</th>
+                <th>Poin Digunakan</th>
+                <th>Tanggal Transaksi</th>
+                <!-- <th>Validasi</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <?php $i = 1; ?>
+              <?php foreach ($filteredData as $data): ?>
                 <tr>
                   <td><?= $i++; ?></td>
                   <td><?= $data['nama_transaksi']; ?></td>
@@ -606,10 +656,10 @@
                     } ?>
                   </td> -->
                 </tr>
-              <?php endif ?>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        <?php endif ?>
       </div>
     </div>
   </div>

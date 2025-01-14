@@ -25,8 +25,8 @@
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-12 col-md-6 mb-3">
-                    <?php if (in_groups(['admin', 'validator'])) : ?>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahMahasiswa"><i class="fas fa-plus"></i> Input </button>
+                    <?php if (in_groups(['superadmin', 'dosen'])) : ?>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahMahasiswa"><i class="fas fa-plus"></i><span class="d-none d-md-inline"> Input</span></button>
                     <?php endif ?>
                 </div>
                 <div class="col-12 col-md-6 mb-3">

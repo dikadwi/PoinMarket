@@ -6,7 +6,7 @@
         <div class="row mb-2">
             <div class="col-sm-12 col-md-6">
                 <center>
-                    <h1 class="m-0 text-dark"> <?= $title; ?> </h1>
+                    <h1 class="m-0 text-dark">Approval / <?= $title; ?> </h1>
                 </center>
             </div>
             <div class="col-sm-12 col-md-6">
@@ -34,6 +34,9 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-12">
+                    <?= $this->include('PoinMarket_Admin/Card/validasi'); ?>
+                </div>
                 <div class="col-12">
                     <div class="table-responsive">
                         <?= $this->include('PoinMarket_Admin/Tabel/tabel_validasi'); ?>

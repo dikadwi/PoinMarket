@@ -42,6 +42,7 @@ class Admin extends BaseController
         $session = session();
 
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
+        $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
 
         $data = [
             'title' => 'Dashboard',
@@ -60,6 +61,7 @@ class Admin extends BaseController
             'mahasiswa' => $this->MahasiswaModel->getMhs(),
             'transaksi' => $this->TransaksiModel->getTransaksi(),
             'topMenuPages' => $topMenuPages,
+            'sideMenuPages' => $sideMenuPages,
         ];
 
         return view('PoinMarket_Admin/index', $data);
@@ -72,11 +74,14 @@ class Admin extends BaseController
         $session = session();
 
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
+        $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
+
         $data = [
             'username' => $session->get('username'),
             'title' => 'Profile',
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'topMenuPages' => $topMenuPages,
+            'sideMenuPages' => $sideMenuPages,
         ];
         // $users = new \Myth\Auth\Models\UserModel();
         // $data['users'] = $users->findAll();

@@ -8,13 +8,14 @@
         <div class="row mb-2">
             <div class="col-sm-12 col-md-6">
                 <center>
-                    <h1 class="m-0 text-dark">Data <?= $title; ?> </h1>
+                    <!-- <h1 class="m-0 text-dark">Data <?= $title; ?> </h1> -->
+                    <h1 class="m-0 text-dark">Item <?= $title; ?> </h1>
                 </center>
             </div><!-- /.col -->
             <div class="col-sm-12 col-md-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                    <li class="breadcrumb-item "><a href="/Jenis_Transaksi">Jenis Transaksi</a></li>
+                    <li class="breadcrumb-item "><a href="/Jenis_Transaksi">Kategori Item</a></li>
                     <li class="breadcrumb-item active"><?= $title; ?></li>
                 </ol>
             </div>
@@ -26,8 +27,8 @@
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-12 col-md-6 mb-3">
-                    <?php if (in_groups(['admin', 'user'])) : ?>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahJenisTransaksi"><i class="fas fa-plus"></i> Input</button>
+                    <?php if (in_groups(['superadmin', 'dosen'])) : ?>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahJenisTransaksi"><i class="fas fa-plus"></i><span class="d-none d-md-inline"> Input</span></button>
                     <?php endif ?>
                 </div>
                 <!-- Search Belum Jalan -->
@@ -46,10 +47,15 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="table-responsive">
-                        <?= $this->include('PoinMarket_Admin/Tabel/tabel_jenis'); ?>
-                    </div>
+                    <?= $this->include('PoinMarket_Admin/Card/item'); ?>
                 </div>
+                <?php if (in_groups(['superadmin'])) : ?>
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <?= $this->include('PoinMarket_Admin/Tabel/tabel_jenis'); ?>
+                        </div>
+                    </div>
+                <?php endif ?>
             </div>
     </section>
 </div>
@@ -66,9 +72,13 @@
             </div>
             <div class="modal-body">
                 <form action="/Jenis_Transaksi/save_Jenis" method="post" enctype="multipart/form-data">
+                    <!-- Input Hidden untuk id_transaksi & Valid -->
                     <div class="form-group ">
                         <label for="id_transaksi" class="col-form-label"></label>
                         <input type="hidden" class="form-control" id="id_transaksi" name="id_transaksi" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="valid" name="valid" value="wait">
                     </div>
                     <!-- Bagian Jenis Transaksi -->
                     <div class="form-group">
@@ -81,7 +91,6 @@
                             <option value="106" <?php if ($title == 'Konsultasi') echo 'selected'; ?>>Konsultasi</option>
                         </select>
                     </div>
-
                     <!-- Bagian Nama Transaksi -->
                     <div class="form-group">
                         <label for="nama_transaksi" class="col-form-label">Nama Transaksi</label>

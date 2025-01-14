@@ -100,12 +100,27 @@
                     </div>
                     <div class="form-group">
                         <label for="kategori">Kategori</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="kategori[]" value="Kinestetik" id="kinestetik">
+                            <label class="form-check-label" for="kinestetik">Kinestetik</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="kategori[]" value="Auditori" id="auditori">
+                            <label class="form-check-label" for="auditori">Auditori</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="kategori[]" value="Visual" id="visual">
+                            <label class="form-check-label" for="visual">Visual</label>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="kategori">Kategori</label>
                         <select class="form-control" id="kategori" name="kategori" required>
                             <option value="Kinestetik">Kinestetik</option>
                             <option value="Auditori">Auditori</option>
                             <option value="Visual">Visual</option>
                         </select>
-                    </div>
+                    </div> -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary">Simpan</button>

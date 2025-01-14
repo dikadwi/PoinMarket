@@ -18,15 +18,18 @@ class CMS extends BaseController
 
     public function index()
     {
-        $sidemenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
+        $session = session();
+
+        $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
         // Ambil halaman dengan menu_position = 'topmenu' dan status = 'active'
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
 
         $data = array(
             'title' => 'Content Management System',
+            'username' => $session->get('username'),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'pages' => $this->PageModel->get_all_pages(),
-            'sidemenuPages' => $sidemenuPages,
+            'sideMenuPages' => $sideMenuPages,
             'topMenuPages' => $topMenuPages,
         );
 

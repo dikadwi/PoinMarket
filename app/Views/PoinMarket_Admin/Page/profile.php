@@ -47,11 +47,11 @@
                                         <li class="list-group-item">
                                             <!-- <span class="badge badge-<?= ($user->name == 'admin') ? 'success' : 'warning'; ?>"><?= $user->name; ?></span> -->
                                             <span class="badge badge-<?php
-                                                                        if ($user->name === 'admin') {
+                                                                        if ($user->name === 'superadmin') {
                                                                             echo 'success';
-                                                                        } elseif ($user->name === 'user') {
+                                                                        } elseif ($user->name === 'admin') {
                                                                             echo 'warning';
-                                                                        } elseif ($user->name === 'validator') {
+                                                                        } elseif ($user->name === 'dosen') {
                                                                             echo 'danger';
                                                                         } else {
                                                                             echo 'info';

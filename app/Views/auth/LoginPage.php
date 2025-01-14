@@ -73,10 +73,10 @@
 
             <form class="w-full max-w-sm" action="<?= url_to('login') ?>" method="post">
                 <div class="mb-4">
-                    <input class="w-full px-4 py-2 rounded-full text-center text-black" placeholder="Username" type="text" name="login" autocomplete="off">
+                    <input class="w-full px-4 py-2 rounded-full text-center text-black" placeholder="Username" type="text" name="username" autocomplete="username">
                 </div>
                 <div class="mb-4">
-                    <input class="w-full px-4 py-2 rounded-full text-center text-black" placeholder="Password" type="password" name="password" autocomplete="off">
+                    <input class="w-full px-4 py-2 rounded-full text-center text-black" placeholder="Password" type="password" name="password" autocomplete="current-password">
                 </div>
 
                 <div class="flex items-center justify-between mb-6">
@@ -90,10 +90,13 @@
                         Forgot Password?
                     </a>
                 </div>
-                <button class="w-full bg-green-500 text-white py-2 rounded-full font-bold">
+                <button class="w-full bg-green-500 hover:bg-green-700 text-white py-2 rounded-full font-bold">
                     SUBMIT
                 </button>
             </form>
+            <button type="button" onclick="location.href='<?= base_url() ?>'" class="w-full bg-blue-400 hover:bg-blue-800 text-white py-2 rounded-full font-bold">
+                Kembali ke Home
+            </button>
         </div>
         <!-- Right Side -->
         <div class="bg-white p-8 flex justify-center items-center w-full md:w-1/2">

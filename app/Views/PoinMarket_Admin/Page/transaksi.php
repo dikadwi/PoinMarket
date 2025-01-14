@@ -18,7 +18,7 @@
                 <div class="col-sm-12 col-md-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                        <li class="breadcrumb-item active"><?= $title; ?></li>
+                        <li class="breadcrumb-item active">Semua <?= $title; ?></li>
                     </ol>
                 </div>
             </div>
@@ -31,8 +31,8 @@
             <!-- Baris untuk button dan filter -->
             <div class="row">
                 <div class="col-12 col-md-6 mb-3">
-                    <?php if (in_groups(['admin', 'validator'])) : ?>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalDataTransaksi"><i class="fas fa-plus"></i> Input</button>
+                    <?php if (in_groups(['superadmin', 'dosen'])) : ?>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalDataTransaksi"><i class="fas fa-plus"></i><span class="d-none d-md-inline"> Input</span></button>
                     <?php endif ?>
                 </div>
                 <div class="col-12 col-md-6 mb-3">
@@ -49,11 +49,17 @@
                 </div>
             </div>
             <div class="row">
+                <h3>Semua Kategori</h3>
                 <div class="col-12">
-                    <div class="table-responsive">
-                        <?= $this->include('PoinMarket_Admin/Tabel/tabel_transaksi'); ?>
-                    </div>
+                    <?= $this->include('PoinMarket_Admin/Card/pesanan'); ?>
                 </div>
+                <?php if (in_groups(['superadmin'])) : ?>
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <?= $this->include('PoinMarket_Admin/Tabel/tabel_transaksi'); ?>
+                        </div>
+                    </div>
+                <?php endif ?>
             </div>
     </section>
 </div>

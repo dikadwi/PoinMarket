@@ -79,18 +79,14 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                     <?php endif; ?>
                 </td>
                 <td>
-                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $b['id_badges']; ?>"><i class="fas fa-eye"></i> Detail</button>
+                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $b['id_badges']; ?>"><i class="fas fa-eye"></i><span class="d-none d-md-inline"> Detail</span></button>
                 </td>
-                <?php if (in_groups(['admin', 'user'])) : ?> <!--Role admin-->
-                    <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $b['id_badges']; ?>"><i class="fas fa-edit"></i> Edit</button>
-                    </td>
-                <?php endif ?>
-                <?php if (in_groups('admin')) : ?>
-                    <td>
-                        <a href="/Badges/delete_badges/<?= $b['id_badges']; ?>" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i> Hapus</a>
-                    </td>
-                <?php endif; ?>
+                <td>
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $b['id_badges']; ?>"><i class="fas fa-edit"></i><span class="d-none d-md-inline"> Edit</span></button>
+                </td>
+                <td>
+                    <a href="/Badges/delete/<?= $b['id_badges']; ?>" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i><span class="d-none d-md-inline"> Hapus</span></a>
+                </td>
                 </td>
             </tr>
         <?php endforeach; ?>

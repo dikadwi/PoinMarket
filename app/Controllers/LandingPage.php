@@ -21,6 +21,16 @@ class LandingPage extends BaseController
         return view('LandingPage/gaya_belajar');
     }
 
+    public function about()
+    {
+        return view('LandingPage/about');
+    }
+
+    public function contact()
+    {
+        return view('LandingPage/contact');
+    }
+
     public function register()
     {
         return view('LandingPage/register');
