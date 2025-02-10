@@ -13,14 +13,15 @@
             <p class="text-gray-600 mb-6">
                 <strong>PointMarket</strong> dirancang untuk membantu mahasiswa meningkatkan keterlibatan dan motivasi dalam proses pembelajaran. Dengan menggunakan sistem poin, leaderboard, level, dan badges, setiap pencapaian Anda terasa lebih nyata dan memotivasi. Sistem ini menciptakan lingkungan belajar yang kompetitif namun tetap menyenangkan.
             </p>
-            <button class="bg-purple-600 text-white px-6 py-3 rounded-full hover:bg-purple-700">EXPLORE</button>
+            <button class="bg-purple-600 text-white px-6 py-3 rounded-full hover:bg-purple-700" onclick="scrollToSection('fitur')">EXPLORE</button>
+            <!-- <button class="bg-purple-600 text-white px-6 py-3 rounded-full hover:bg-purple-700" onclick="scrollToSection('fitur')">EXPLORE</button> -->
         </div>
         <div class="md:w-1/2 mt-10 md:mt-0 relative">
             <img alt="Illustration of people around two large dice" class="w-full h-auto" src="/img/dice.png" />
         </div>
     </section>
 
-    <section class="mb-10">
+    <section class="mb-10" id="fitur">
         <h2 class="text-3xl font-bold text-purple-600 mb-4">Fitur Utama PointMarket</h2>
         <div class="flex flex-col md:flex-row overflow-x space-x-0 md:space-x-8">
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
@@ -49,7 +50,7 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
                         <span>Punishment</span>
-                        <i class="fas fa-flag fa-2x fa-beat"></i>
+                        <i class="fas fa-flag fa-2x "></i>
                     </div>
                 </div>
                 <div class="card-body">
@@ -197,10 +198,21 @@
             <section class="text-center">
                 <h2 class=" text-3xl font-bold text-purple-600 mb-4">Mulai Petualangan Belajar Anda Sekarang!</h2>
                 <p class="text-gray-600 mb-6">Daftar sekarang di <stong>PointMarket</stong> dan rasakan pengalaman belajar yang berbeda dari yang pernah Anda rasakan sebelumnya. Tingkatkan kemampuan, raih prestasi, dan dapatkan reward di setiap langkah perjalanan Anda!</p>
-                <a href="/page/register"><button class="bg-purple-600 text-white px-6 py-3 rounded-full hover:bg-purple-700">DAFTAR SEKARANG</button></a>
+                <a href="/register"><button class="bg-purple-600 text-white px-6 py-3 rounded-full hover:bg-purple-700">DAFTAR SEKARANG</button></a>
             </section>
         </div>
     </div>
 </main>
 
+<script>
+    function scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        const offset = 85; // offset untuk header
+        section.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+        window.scrollTo(0, window.scrollY + section.getBoundingClientRect().top - offset);
+    }
+</script>
 <?= $this->endsection(); ?>

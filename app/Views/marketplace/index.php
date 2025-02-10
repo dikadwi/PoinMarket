@@ -11,7 +11,7 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <center>
-                        <h1 class="text-center">Market Point</h1>
+                        <h1 class="text-center">Marketplace</h1>
                     </center>
                     <?php if ($isLoggedIn): ?>
                         <p class="text-center">
@@ -48,7 +48,9 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                                 <img src="https://cdn.prod.website-files.com/64889df33626cba8b4463219/6580a6236b0c485a43d21338_620ebadbfc0b50324e0a295b_Gamification_Blog-Feat-Image_1080x680.webp" class="card-img-top" alt="<?= $item['nama_transaksi'] ?>">
                                 <div class="card-body">
                                     <h5 class="card-title"><strong><?= esc($item['nama_transaksi']) ?></strong></h5>
-                                    <p class="card-text">Point Diperoleh: <?= esc($item['poin_digunakan']) ?></p>
+                                    <p class="card-text">
+                                        Point Diperoleh: <?= esc($item['poin_diberikan']) ?>
+                                    </p>
                                 </div>
                                 <div class="card-footer">
                                     <div class="row d-flex justify-content-center">
@@ -57,7 +59,8 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                                             <form action="<?= base_url('Role_User/market/claim') ?>" method="post" class="claim-form">
                                                 <input type="hidden" name="id_transaksi" value="<?= esc($item['id_transaksi']) ?>">
                                                 <input type="hidden" name="nama_transaksi" value="<?= esc($item['nama_transaksi']) ?>">
-                                                <input type="hidden" name="poin_digunakan" value="<?= esc($item['poin_digunakan']) ?>">
+                                                <!-- <input type="hidden" name="poin_digunakan" value="<= esc($item['poin_digunakan']) ?>"> -->
+                                                <input type="hidden" name="poin_diberikan" value="<?= esc($item['poin_diberikan']) ?>">
                                                 <button type="submit" class="btn btn-success btn-block btn-claim d-flex flex-column align-items-center">
                                                     <i class="fas fa-gift"></i>
                                                     <span class="d-none d-md-inline">Claim</span>
@@ -145,7 +148,7 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                             <img src="https://gapsystudio.com/storage/1746/gamification-in-ux-11zon.webp" class="card-img-top" alt="<?= $item['nama_transaksi'] ?>">
                             <div class="card-body">
                                 <h5 class="card-title"><strong><?= $item['nama_transaksi'] ?></strong></h5>
-                                <p class="card-text">Point Harga : <strong><?= $item['poin_digunakan'] ?></strong></p>
+                                <p class="card-text">Harga : <strong><?= $item['poin_digunakan'] ?></strong> Point</p>
                             </div>
                             <div class="card-footer">
                                 <div class="row d-flex justify-content-center">
@@ -154,10 +157,20 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                                         <form action="<?= base_url('market/buy') ?>" method="post" class="buy-form mr-2">
                                             <input type="hidden" name="nama_transaksi" value="<?= $item['nama_transaksi'] ?>">
                                             <input type="hidden" name="poin_digunakan" value="<?= $item['poin_digunakan'] ?>">
-                                            <button type="submit" class="btn btn-success btn-block btn-beli d-flex flex-column align-items-center">
+                                            <!-- <button type="submit" class="btn btn-success btn-block btn-beli d-flex flex-column align-items-center">
                                                 <i class="fas fa-shopping-cart"></i>
                                                 <span class="d-none d-md-inline">Buy</span>
+                                                <span id="redeem-code"></span>
+                                            </button> -->
+                                            <button type="button" class="btn btn-success btn-block btn-beli d-flex flex-column align-items-center">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                <span class="d-none d-md-inline">Buy</span>
+                                                <input type="text" class="form-control" id="redeem_code" name="redeem_code" placeholder="Masukkan kode redeem" style="display: none;">
                                             </button>
+                                            <!-- <div class="form-group" style="display: none;" id="redeem-code-input">
+                                                <label for="redeem_code">Redeem Code</label>
+                                                <input type="text" class="form-control" id="redeem_code" name="redeem_code" placeholder="Masukkan kode redeem">
+                                            </div> -->
                                         </form>
                                     </div>
                                     <!-- Tombol Detail -->
@@ -209,7 +222,10 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                             <img src="https://elearningindustry.com/wp-content/uploads/2014/07/Gamification_article.jpg" class="card-img-top" alt="<?= $item['nama_transaksi'] ?>">
                             <div class="card-body">
                                 <h5 class="card-title"><strong><?= $item['nama_transaksi'] ?></strong></h5>
-                                <p class="card-text">Point Diperoleh : <strong><?= $item['poin_digunakan'] ?></strong></p>
+                                <p class="card-text">
+                                    Harga : <strong><?= $item['poin_digunakan'] ?></strong> Point<br>
+                                    Reward : <strong><?= $item['poin_diberikan'] ?></strong> Point
+                                </p>
                             </div>
                             <div class="card-footer">
                                 <div class="row d-flex justify-content-center">
@@ -219,6 +235,7 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                                         <form action="<?= base_url('market/misi') ?>" method="post" class="misi-form mr-2">
                                             <input type="hidden" name="nama_transaksi" value="<?= $item['nama_transaksi'] ?>">
                                             <input type="hidden" name="poin_digunakan" value="<?= $item['poin_digunakan'] ?>">
+                                            <input type="hidden" name="poin_diberikan" value="<?= $item['poin_diberikan'] ?>">
                                             <button type="submit" class="btn btn-success btn-block btn-misi d-flex flex-column align-items-center">
                                                 <i class="fas fa-rocket"></i>
                                                 <span class="d-none d-md-inline">Complete Mission</span>
@@ -328,5 +345,12 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
     </section>
 </div>
 
+<script>
+    $(document).ready(function() {
+        $('.btn-beli').on('click', function() {
+            $(this).find('#redeem_code').toggle();
+        });
+    });
+</script>
 
 <?= $this->endsection(); ?>

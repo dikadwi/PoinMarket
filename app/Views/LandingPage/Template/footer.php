@@ -10,8 +10,8 @@
     <p><i class="fas fa-map-pin"></i> : Bandung, Indonesia</p>
 </div>
 <div class="text-sm">
-    <a href="#" class="hover:text-gray-300">Privacy Policy</a> |
-    <a href="#" class="hover:text-gray-300">Terms of Service</a> |
-    <a href="#" class="hover:text-gray-300">Help Center</a>
+    <a href="/page/privacy_policy" class="hover:text-gray-300">Privacy Policy</a> |
+    <a href="/page/terms_of_service" class="hover:text-gray-300">Terms of Service</a> |
+    <a href="/page/help_center" class="hover:text-gray-300">Help Center</a>
 </div>
 <p>&copy; 2024 PointMarket. All rights reserved.</p>

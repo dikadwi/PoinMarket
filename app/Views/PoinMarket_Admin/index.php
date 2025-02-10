@@ -33,24 +33,26 @@
                         <div class="inner">
                             <h2>Users</h2>
                             <!-- Total Mahasiswa  -->
-                            <h4>Total User</h4>
+                            <h4><?= $totalMhs; ?> User</h4>
                         </div>
                         <div class="icon d-block">
                             <i class="ion ion-person-stalker"></i>
                         </div>
+                        <a href="#" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-6 col-md-2">
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h2>Transaksi</h2>
+                            <h2>Pemesanan</h2>
                             <!-- Total Semua Data Transaksi  -->
-                            <h4>Total Transaksi</h4>
+                            <h4><?= $totalPemesanan; ?> Pesanan</h4>
                         </div>
                         <div class="icon d-block">
                             <i class="ion ion-android-cart"></i>
                         </div>
+                        <a href="#" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-6 col-md-2">
@@ -59,14 +61,30 @@
                         <div class="inner">
                             <h2>Online</h2>
                             <!-- Total Mahasiswa sedang online / login  -->
+                            <!-- Simpan Session mahasiswa untuk mengetahui status Online -->
                             <h4>User Online</h4>
                         </div>
                         <div class="icon d-block">
                             <i class="ion ion-person"></i>
                         </div>
+                        <a href="#" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-
+                <div class="col-6 col-md-2">
+                    <!-- small box -->
+                    <div class="small-box bg-gradient-purple">
+                        <div class="inner">
+                            <h2>Validasi</h2>
+                            <!-- Total data yang belum tervalidasi -->
+                            <!-- tambahkan grafik validasi -->
+                            <h5> <?= $totalValidasi ?> Pesanan </h5>
+                        </div>
+                        <div class="icon d-block">
+                            <i class="ion ion-chatboxes"></i>
+                        </div>
+                        <a href="/Validasi" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
             </div>
             <!-- Row untuk Card Jumlah Tiap Jenis Transaksi -->
             <div class="row justify-content-center">

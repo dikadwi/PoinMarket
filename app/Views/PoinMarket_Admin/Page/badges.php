@@ -70,7 +70,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/Badges/save_badges" method="post" enctype="multipart/form-data">
+                <form action="/Badges" method="post" enctype="multipart/form-data">
                     <div class="form-group ">
                         <label for="nama" class="col-form-label">Nama</label>
                         <input type="text" class="form-control" id="nama" name="nama" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">

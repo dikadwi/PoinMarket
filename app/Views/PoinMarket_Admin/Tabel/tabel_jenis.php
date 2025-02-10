@@ -32,6 +32,7 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
             <th scope="col">Rule Item</th>
             <th scope="col">Feedback</th>
             <th scope="col">Poin Harga</th>
+            <th scope="col">Poin Reward</th>
             <th scope="col">Status Validasi</th>
             <th scope="col" colspan="3">Aksi</th>
         </tr>
@@ -77,7 +78,8 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                 <td><?= $t['nama_transaksi']; ?></td>
                 <td><?= $t['detail']; ?></td>
                 <td><?= $t['keterangan']; ?></td>
-                <td><?= $t['poin_digunakan']; ?></td>
+                <td><?= $t['poin_digunakan'] !== null ? $t['poin_digunakan'] : '-'; ?></td>
+                <td><?= $t['poin_diberikan'] !== null ? $t['poin_diberikan'] : '-'; ?></td>
                 <td><?= $t['valid']; ?></td>
                 <td>
                     <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $t['id_transaksi']; ?>"><i class="fas fa-eye"></i><span class="d-none d-md-inline"> Detail</span></button>

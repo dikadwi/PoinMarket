@@ -71,7 +71,7 @@
                 WELCOME
             </h2>
 
-            <form class="w-full max-w-sm" action="<?= url_to('login') ?>" method="post">
+            <form class="w-full max-w-sm" action="/login" method="post">
                 <div class="mb-4">
                     <input class="w-full px-4 py-2 rounded-full text-center text-black" placeholder="Username" type="text" name="username" autocomplete="username">
                 </div>
@@ -86,7 +86,7 @@
                             Remember
                         </span>
                     </label>
-                    <a class="text-white" href="#">
+                    <a class="text-white hover:text-gray-600" href="#">
                         Forgot Password?
                     </a>
                 </div>
@@ -94,13 +94,16 @@
                     SUBMIT
                 </button>
             </form>
-            <button type="button" onclick="location.href='<?= base_url() ?>'" class="w-full bg-blue-400 hover:bg-blue-800 text-white py-2 rounded-full font-bold">
-                Kembali ke Home
-            </button>
+            <!-- <div class="mb-6 text-center">
+                <p class="text-white"><a href="/page" class=" hover:text-blue-100 font-bold">Back To Home</a></p>
+            </div> -->
+            <div class="mb-6 text-center">
+                <p class="text-white"><a href="<?= base_url('page') ?>" class=" hover:text-blue-100 font-bold">Back To Home</a></p>
+            </div>
         </div>
         <!-- Right Side -->
         <div class="bg-white p-8 flex justify-center items-center w-full md:w-1/2">
-            <img alt="Illustration of a woman pointing at a large mobile phone screen and a man sitting with a laptop" height="400" src="https://storage.googleapis.com/a1aa/image/mbF73hot3hoxK90ZHuua0ybpea2ybzJBT2RDdSTSMfdKZC5TA.jpg" width="400" />
+            <img alt="Illustration of a woman pointing at a large mobile phone screen and a man sitting with a laptop" height="400" src="https://img.freepik.com/premium-vector/man-standing-top-laptop-computer-analyze-growth-process-online-investment-simple-minimalist-flat-vector-illustration_538213-50398.jpg" width="400" />
         </div>
     </div>
 </body>

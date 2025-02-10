@@ -75,17 +75,22 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                             <!-- Feedback -->
                             <strong>Feedback:</strong> <?= $t['keterangan']; ?><br>
                             <!-- Poin (Reward, Penalti, atau Harga) -->
-                            <strong>
-                                <?php
-                                if ($kode_jenis == '101') {
-                                    echo 'Reward :';
-                                } else if ($kode_jenis == '103') {
-                                    echo 'Penalti :';
-                                } else {
-                                    echo 'Harga :';
-                                }
-                                ?>
-                            </strong> <?= $t['poin_digunakan']; ?> Point <br>
+                            <!-- Untuk Poin Harga -->
+                            <?php if (in_array($t['kode_jenis'], ['102', '103', '105', '106'])) : ?>
+                                <strong>
+                                    <?php
+                                    if ($kode_jenis == '103') {
+                                        echo 'Penalti :';
+                                    } else {
+                                        echo 'Harga :';
+                                    }
+                                    ?>
+                                </strong> <?= $t['poin_digunakan']; ?> Point <br>
+                            <?php endif; ?>
+                            <!-- Reward Untuk Kode Jenis 101 dan 105 -->
+                            <?php if (in_array($t['kode_jenis'], ['101', '105'])) : ?>
+                                <strong>Reward:</strong> <?= $t['poin_diberikan']; ?> Point<br>
+                            <?php endif; ?>
                             <?php
                             $status = esc($t['valid']);
                             if ($status == 'Yes') {
@@ -184,10 +189,28 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                                             <li class="list-group-item">
                                                 <h4><?= $t['keterangan']; ?></h4>
                                             </li>
-                                            <h5 class="card-title"><b>Poin :</b></h5>
-                                            <li class="list-group-item">
-                                                <h4><?= $t['poin_digunakan']; ?></h4>
-                                            </li>
+                                            <!-- Untuk Poin Harga -->
+                                            <?php if (in_array($t['kode_jenis'], ['102', '103', '105', '106'])) : ?>
+                                                <h5 class="card-title"><b>
+                                                        <?php
+                                                        if ($kode_jenis == '103') {
+                                                            echo 'Penalti :';
+                                                        } else {
+                                                            echo 'Harga :';
+                                                        }
+                                                        ?>
+                                                    </b></h5>
+                                                <li class="list-group-item">
+                                                    <h4> <?= $t['poin_digunakan']; ?> Point </h4>
+                                                </li>
+                                            <?php endif; ?>
+                                            <!-- Reward Untuk Kode Jenis 101 dan 105 -->
+                                            <?php if (in_array($t['kode_jenis'], ['101', '105'])) : ?>
+                                                <h5 class="card-title"><b>Reward :</b></h5>
+                                                <li class="list-group-item">
+                                                    <h4> <?= $t['poin_diberikan']; ?> Point</h4>
+                                                </li>
+                                            <?php endif; ?>
                                         </ul>
                                     </div>
                                 </div>

@@ -182,6 +182,7 @@ class Transaksi extends BaseController
     {
         $npm = $this->request->getVar('npm');
         $poin_digunakan = $this->request->getVar('poin_digunakan');
+        $poin_diberikan = $this->request->getVar('poin_diberikan');
 
         // Periksa apakah nilai `$npm` kosong
         if (empty($npm)) {
@@ -189,9 +190,9 @@ class Transaksi extends BaseController
             return redirect()->back();
         }
 
-        // Periksa apakah nilai `$poin_digunakan` kosong
-        if (empty($poin_digunakan)) {
-            session()->setFlashdata("gagal", "Poin yang digunakan tidak boleh kosong.");
+        // Periksa apakah nilai `$poin_digunakan` atau `$poin_diberikan` kosong
+        if (empty($poin_digunakan) && empty($poin_diberikan)) {
+            session()->setFlashdata("gagal", "Poin yang digunakan atau diberikan tidak boleh kosong.");
             return redirect()->back();
         }
 
@@ -231,6 +232,7 @@ class Transaksi extends BaseController
                         'nama_transaksi' => $this->request->getVar('nama_transaksi'),
                         'npm' => $mahasiswaData['npm'],
                         'poin_digunakan' => $poin_digunakan,
+                        'poin_diberikan' => $poin_diberikan,
                         'tanggal_transaksi' => date('Y-m-d H:i:s'), // Sesuaikan dengan format tanggal
                         'validation' => $validationStatus, // Status validasi sesuai dengan jenis transaksi
                         'claim' => $claim // Tambahkan claim ke data transaksi
@@ -250,6 +252,7 @@ class Transaksi extends BaseController
                     'nama_transaksi' => $this->request->getVar('nama_transaksi'),
                     'npm' => $mahasiswaData['npm'],
                     'poin_digunakan' => $poin_digunakan,
+                    'poin_diberikan' => $poin_diberikan,
                     'tanggal_transaksi' => date('Y-m-d H:i:s'), // Sesuaikan dengan format tanggal
                     'validation' => $validationStatus, // Status validasi sesuai dengan jenis transaksi
                     'claim' => $claim // Tambahkan claim ke data transaksi
@@ -266,6 +269,7 @@ class Transaksi extends BaseController
                     'nama_transaksi' => $this->request->getVar('nama_transaksi'),
                     'npm' => $mahasiswaData['npm'],
                     'poin_digunakan' => $poin_digunakan,
+                    'poin_diberikan' => $poin_diberikan,
                     'tanggal_transaksi' => date('Y-m-d H:i:s'), // Sesuaikan dengan format tanggal
                     'validation' => $validationStatus, // Status validasi sesuai dengan jenis transaksi
                     'claim' => $claim // Tambahkan claim ke data transaksi

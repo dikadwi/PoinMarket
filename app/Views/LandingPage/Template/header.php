@@ -9,10 +9,12 @@
         <a class="hover:text-gray-300" href="/page/gaya_belajar">GAYA BELAJAR</a>
         <a class="hover:text-gray-300" href="/page/about">ABOUT</a>
         <a class="hover:text-gray-300" href="/page/contact">CONTACT</a>
-        <a href="/login" target="_blank">
+        <!-- <a href="/login" target="_blank"> -->
+        <a href="/login">
             <button class="bg-white text-purple-600 px-3 py-1.5 rounded-full hover:bg-gray-200">ADMIN</button>
         </a>
-        <a href="/loginMhs" target="_blank">
+        <!-- <a href="/loginMhs" target="_blank"> -->
+        <a href="/loginMhs">
             <button class="bg-white text-purple-600 px-3 py-1.5 rounded-full hover:bg-gray-200">SIGN IN</button>
         </a>
     </nav>

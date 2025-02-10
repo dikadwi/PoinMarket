@@ -19,16 +19,42 @@ class BadgesModel extends Model
     protected $updatedField  = 'updated_at';
     // protected $deletedField  = 'deleted_at';
 
+    // Menampilkan semua badges
     public function getBadges()
     {
         return $this->findAll();
     }
 
-    public function saveBadge($data)
-    {
-        return $this->insert($data);
-    }
+    // public function saveBadge($data)
+    // {
+    //     return $this->insert($data);
+    // }
 
+    // // Membuat badges baru
+    // public function createBadge($data)
+    // {
+    //     return $this->insert($data);
+    // }
+
+    // // Menampilkan detail badges
+    // public function findBadge($id_badges)
+    // {
+    //     return $this->find($id_badges);
+    // }
+
+    // // Mengupdate badges
+    // public function updateBadge($id_badges, $data)
+    // {
+    //     return $this->update($id_badges, $data);
+    // }
+
+    // // Menghapus badges
+    // public function deleteBadge($id_badges)
+    // {
+    //     return $this->delete($id_badges);
+    // }
+
+    // Menghitung total badges
     public function totalBadges()
     {
         return $this->countAll();

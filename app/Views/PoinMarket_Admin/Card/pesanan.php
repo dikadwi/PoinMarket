@@ -78,7 +78,24 @@
                                                         }
                                                         ?><br>
                             <strong>Feedback:</strong> <?= $t['tanggal_transaksi']; ?><br>
-                            <strong>Harga:</strong> <?= $t['poin_digunakan']; ?> Point <br>
+                            <?php if (in_array($t['kode_jenis'], ['102', '103', '105'])) : ?>
+                                <strong> <?php
+                                            switch ($t['kode_jenis']) {
+                                                case '102':
+                                                case '105':
+                                                    echo 'Harga:';
+                                                    break;
+                                                case '103':
+                                                    echo 'Penalty:';
+                                                    break;
+                                            }
+                                            ?>
+                                </strong> <?= $t['poin_digunakan']; ?> Point <br>
+                            <?php endif; ?>
+                            <!-- Menampilkan Reward Point untuk Misi -->
+                            <?php if (in_array($t['kode_jenis'], ['101', '105'])) : ?>
+                                <strong>Reward:</strong> <?= $t['poin_diberikan']; ?> Point<br>
+                            <?php endif; ?>
                             <strong>Status Validasi :</strong> <?= $t['validation']; ?><br>
                         </p>
                         <!-- Card Footer untuk Tombol -->
@@ -176,10 +193,33 @@
                                             <li class="list-group-item">
                                                 <h4><?= $data['nama_transaksi']; ?></h4>
                                             </li>
-                                            <h5 class="card-title"><b>Poin Digunakan :</b></h5>
-                                            <li class="list-group-item">
-                                                <h4><?= $data['poin_digunakan']; ?></h4>
-                                            </li>
+                                            <?php if (in_array($data['kode_jenis'], ['102', '103', '105'])) : ?>
+                                                <h5><b>
+                                                        <?php
+                                                        switch ($data['kode_jenis']) {
+                                                            case '102':
+                                                            case '105':
+                                                                echo 'Harga:';
+                                                                break;
+                                                            case '103':
+                                                                echo 'Penalty:';
+                                                                break;
+                                                        }
+                                                        ?>
+                                                    </b></h5>
+                                                <li class="list-group-item">
+                                                    <h4> <?= $data['poin_digunakan']; ?> Point </h4>
+                                                </li>
+                                            <?php endif; ?>
+                                            <!-- Menampilkan Reward Point untuk Misi -->
+                                            <?php if (in_array($data['kode_jenis'], ['101', '105'])) : ?>
+                                                <h5><b>
+                                                        Reward:
+                                                    </b></h5>
+                                                <li class="list-group-item">
+                                                    <h4> <?= $t['poin_diberikan']; ?> point</h4>
+                                                </li>
+                                            <?php endif; ?>
                                             <h5 class="card-title"><b>Tanggal Transaksi :</b></h5>
                                             <li class="list-group-item">
                                                 <h4><?= $data['tanggal_transaksi']; ?></h4>

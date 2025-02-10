@@ -21,20 +21,46 @@
     </div>
     <section class="content">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <!-- Reward Transactions -->
-                    <!-- <= $this->include('Marketplace/Card/reward'); ?> -->
-                    <!-- Pembelian Transactions -->
-                    <?= $this->include('Marketplace/Card/belanja'); ?>
-                    <!-- Pembelian Transactions -->
-                    <?= $this->include('Marketplace/Card/misi'); ?>
-                    <!-- Konsultasi Transactions -->
-                    <?= $this->include('Marketplace/Card/konsultasi'); ?>
+            <div class="row justify-content-center">
+                <div class="col-6 col-md-2">
+                    <button type="button" class="btn btn-info mr-2 btn-lg" data-toggle="modal">
+                        <i class="fas fa-eye"></i> <span class="d-none d-md-inline">Detail</span>
+                    </button>
+                </div>
+                <div class="col-6 col-md-2">
+                    <div class="small-box bg-success">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Misi</span>
+                                <i class="fas fa-bullseye fa-2x fa-bounce"></i> <!-- Ikon Mouse -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-2">
+                    <div class="small-box bg-warning">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Konsultasi</span>
+                                <i class="fas fa-comments fa-2x fa-bounce"></i> <!-- Ikon Mouse -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="col-12">
+                <!-- Reward Transactions -->
+                <!-- <= $this->include('Marketplace/Card/reward'); ?> -->
+                <!-- Pembelian Transactions -->
+                <?= $this->include('Marketplace/Card/belanja'); ?>
+                <!-- Pembelian Transactions -->
+                <?= $this->include('Marketplace/Card/misi'); ?>
+                <!-- Konsultasi Transactions -->
+                <?= $this->include('Marketplace/Card/konsultasi'); ?>
+            </div>
         </div>
-    </section>
+</div>
+</section>
 </div>
 
 <?= $this->endsection(); ?>

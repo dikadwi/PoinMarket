@@ -10,7 +10,7 @@ class DataTransaksiModel extends Model
 
     protected $table = 'data_transaksi';
     protected $primaryKey = 'id_transaksi';
-    protected $allowedFields = ['kode_jenis', 'nama_transaksi', 'npm', 'poin_digunakan', 'validation', 'claim', 'tanggal_transaksi'];
+    protected $allowedFields = ['kode_jenis', 'nama_transaksi', 'npm', 'poin_digunakan', 'poin_diberikan', 'validation', 'claim', 'tanggal_transaksi'];
     protected $createdField  = 'tanggal_transaksi';
 
     // Mengambil Semua Data
@@ -63,6 +63,14 @@ class DataTransaksiModel extends Model
     public function totalKonsultasi()
     {
         return $this->where('kode_jenis', 106)->countAllResults();
+    }
+    public function totalTransaksi()
+    {
+        return $this->where('validation', 'Sudah')->countAllResults();
+    }
+    public function totalValidasi()
+    {
+        return $this->where('validation', 'Belum')->countAllResults();
     }
 
     // Mengambil total jenis transaksi berdasarkan NPM ditampilkan di Tabel Mahasiswa

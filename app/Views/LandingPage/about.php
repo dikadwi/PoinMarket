@@ -114,7 +114,7 @@
             <section class="text-center">
                 <h2 class="text-3xl font-bold text-purple-600 mb-4">Bergabunglah dengan Kami!</h2>
                 <p class="text-gray-600 mb-6">Kami mengundang Anda untuk menjadi bagian dari komunitas <strong>PointMarket</strong>. Daftar sekarang dan mulai perjalanan belajar Anda yang menyenangkan!</p>
-                <a href="/page/register"><button class="bg-purple-600 text-white px-6 py-3 rounded-full hover:bg-purple-700">DAFTAR SEKARANG</button></a>
+                <a href="/register"><button class="bg-purple-600 text-white px-6 py-3 rounded-full hover:bg-purple-700">DAFTAR SEKARANG</button></a>
             </section>
         </div>
     </div>

@@ -44,6 +44,18 @@
                     <p class="text-gray-600">Belajar melalui suara dan musik. <!--Dapatkan poin untuk setiap podcast atau rekaman yang didengarkan dan dipahami.--></p>
                 </div>
             </div>
+            <!-- Reading -->
+            <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>Reading</span>
+                        <i class="fas fa-book fa-2x fa-beat-fade"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="text-gray-600">Belajar melalui membaca Buku , Artikel. <!--Dapatkan poin untuk setiap podcast atau rekaman yang didengarkan dan dipahami.--></p>
+                </div>
+            </div>
             <!-- Kinestetik -->
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
@@ -168,6 +180,17 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
+                        <span>Reading</span>
+                        <i class="fas fa-book fa-2x fa-fade"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="text-gray-600">Membaca Buku, Artikel. Dapatkan poin untuk setiap aktivitas yang dilakukan.</p>
+                </div>
+            </div>
+            <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
                         <span>Kinestetik</span>
                         <i class="fas fa-running fa-2x fa-flip"></i>
                     </div>
@@ -191,7 +214,7 @@
             <section class="text-center">
                 <h2 class="text-3xl font-bold text-purple-600 mb-4">Hubungi Kami</h2>
                 <p class="text-gray-600 mb-6">Jika Anda membutuhkan bantuan lebih lanjut atau ingin konsultasi, jangan ragu untuk menghubungi kami.</p>
-                <a href="#Contact"><button class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700">Hubungi Kami</button></a>
+                <a href="/page/contact"><button class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700">Hubungi Kami</button></a>
             </section>
         </div>
     </div>

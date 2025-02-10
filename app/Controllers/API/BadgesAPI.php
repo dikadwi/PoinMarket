@@ -11,6 +11,26 @@ class BadgesAPI extends ResourceController
     protected $format = 'json';
 
     // Menampilkan semua data badge
+    // public function index()
+    // {
+    //     $data = $this->model->findAll();
+
+    //     // Memeriksa apakah data valid UTF-8
+    //     foreach ($data as &$item) {
+    //         // Mengonversi ke UTF-8 jika perlu
+    //         // $item['nama'] = mb_convert_encoding($item['nama'], 'UTF-8', 'UTF-8');
+    //         // $item['detail'] = mb_convert_encoding($item['detail'], 'UTF-8', 'UTF-8');
+    //         // $item['keterangan'] = mb_convert_encoding($item['keterangan'], 'UTF-8', 'UTF-8');
+    //         $item['badges'] = mb_convert_encoding($item['badges'], 'UTF-8', 'UTF-8');
+    //     }
+
+    //     if (empty($data)) {
+    //         return $this->failNotFound('Tidak ada data badge ditemukan');
+    //     }
+
+    //     return $this->respond($data, 200);
+    // }
+
     public function index()
     {
         $data = $this->model->findAll();
@@ -18,9 +38,6 @@ class BadgesAPI extends ResourceController
         // Memeriksa apakah data valid UTF-8
         foreach ($data as &$item) {
             // Mengonversi ke UTF-8 jika perlu
-            // $item['nama'] = mb_convert_encoding($item['nama'], 'UTF-8', 'UTF-8');
-            // $item['detail'] = mb_convert_encoding($item['detail'], 'UTF-8', 'UTF-8');
-            // $item['keterangan'] = mb_convert_encoding($item['keterangan'], 'UTF-8', 'UTF-8');
             $item['badges'] = mb_convert_encoding($item['badges'], 'UTF-8', 'UTF-8');
         }
 
@@ -28,7 +45,8 @@ class BadgesAPI extends ResourceController
             return $this->failNotFound('Tidak ada data badge ditemukan');
         }
 
-        return $this->respond($data, 200);
+        // Mengembalikan data dalam format JSON
+        return $this->respond($data, 200, 'application/json');
     }
 
     // Menampilkan data badge berdasarkan ID
@@ -63,7 +81,11 @@ class BadgesAPI extends ResourceController
             return $this->failValidationErrors($this->model->errors());
         }
 
-        return $this->respondCreated(['status' => 'success', 'message' => 'Data badge berhasil ditambahkan']);
+        return $this->respondCreated([
+            'data' => $input,
+            'status' => 'success',
+            'message' => 'Data berhasil ditambahkan'
+        ]);
     }
 
     // Memperbarui data badge berdasarkan ID
@@ -86,22 +108,31 @@ class BadgesAPI extends ResourceController
             return $this->failValidationErrors($this->model->errors());
         }
 
-        return $this->respond(['status' => 'success', 'message' => 'Data badge berhasil diperbarui']);
+        return $this->respond([
+            'id' => $id,
+            'data' => $input,
+            'status' => 'success',
+            'message' => 'Data berhasil diperbarui',
+        ]);
     }
 
     // Menghapus data badge berdasarkan ID
     public function delete($id = null)
     {
-        // Cek apakah ID valid
-        if (!$this->model->find($id)) {
+        $data = $this->model->find($id);
+        if (!$data) {
             return $this->failNotFound('Data tidak ditemukan');
         }
 
-        // Menghapus data badge
         if (!$this->model->delete($id)) {
-            return $this->fail('Gagal menghapus data badge', 500);
+            return $this->fail('Gagal menghapus data', 500);
         }
 
-        return $this->respondDeleted(['status' => 'success', 'message' => 'Data badge berhasil dihapus']);
+        return $this->respondDeleted([
+            'id' => $id,
+            'data' => $data,
+            'status' => 'success',
+            'message' => 'Data berhasil dihapus',
+        ]);
     }
 }

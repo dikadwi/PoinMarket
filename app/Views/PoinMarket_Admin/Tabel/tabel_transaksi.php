@@ -75,6 +75,7 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
             </th>
             <th scope="col">Item</th>
             <th scope="col">Poin Digunakan</th><!-- total point mahasiswa (hasil dari transaksi) -->
+            <th scope="col">Poin Diberikan</th>
             <th scope="col">Tanggal Transaksi</th>
             <th scope="col">Jam</th>
             <!-- <th scope="col">
@@ -234,7 +235,8 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                     ?>
                 </td>
                 <td><?= $data['nama_transaksi']; ?></td>
-                <td><?= $data['poin_digunakan']; ?></td>
+                <td><?= $data['poin_digunakan'] !== null ? $data['poin_digunakan'] : '-'; ?></td>
+                <td><?= $data['poin_diberikan'] !== null ? $data['poin_diberikan'] : '-'; ?></td>
                 <td><?= date('d-m-Y', strtotime($data['tanggal_transaksi'])); ?></td>
                 <td><?= date('H:i', strtotime($data['tanggal_transaksi'])); ?></td>
                 <!-- <td> <?php

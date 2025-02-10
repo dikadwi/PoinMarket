@@ -37,8 +37,17 @@ $routes->group('page', function ($routes) {
     $routes->get('gaya_belajar', 'LandingPage::gaya_belajar');
     $routes->get('about', 'LandingPage::about');
     $routes->get('contact', 'LandingPage::contact');
+    $routes->get('privacy_policy', 'LandingPage::privacy');
+    $routes->get('terms_of_service', 'LandingPage::terms_service');
+    $routes->get('help_center', 'LandingPage::help');
     $routes->get('register', 'LandingPage::register');
 });
+
+$routes->get('invitation', 'LandingPage::invitation');
+
+$routes->get('/messages', 'MessageController::index');
+$routes->post('/messages', 'MessageController::create');
+$routes->patch('/messages/(:num)/read', 'MessageController::markRead/$1');
 
 // Group untuk Controller Admin
 $routes->group('Admin', ['filter' => 'login'], function ($routes) {
@@ -82,6 +91,8 @@ $routes->get('logoutM', 'Login::logoutM'); //Logout Mahasiswa Ketika logout tamb
 
 // Register User (Mahasiswa)
 $routes->get('registerMhs', 'Register::registerMhs'); //Halaman Register Mahasiswa
+$routes->get('register', 'Login::registerMhs');
+$routes->post('register/process', 'Register::add');
 $routes->post('Register/add', 'Register::add'); //Menyimpan data register mahasiswa
 
 // Menampilkan Halaman Utama (Controller Admin)
@@ -120,11 +131,20 @@ $routes->group('Jenis_Transaksi', ['filter' => 'login'], function ($routes) {
     $routes->get('delete/(:num)', 'PoinMarket_Admin\Jenis_Transaksi::delete_Jenis/$1');
 });
 
+// // Group Routes untuk Controller Badges
+// $routes->group('Badges', ['filter' => 'login'], function ($routes) {
+//     $routes->get('', 'PoinMarket_Admin\Badges::index'); // Menampilkan daftar badges
+//     $routes->post('', 'PoinMarket_Admin\Badges::create_badges'); // Membuat badges baru
+//     // $routes->get('(:num)', 'PoinMarket_Admin\Badges::show_badges/$1'); // Menampilkan detail badges
+//     $routes->put('(:num)', 'PoinMarket_Admin\Badges::update_badges/$1'); // Mengupdate badges
+//     $routes->delete('(:num)', 'PoinMarket_Admin\Badges::delete_badges/$1'); // Menghapus badges
+// });
+
 // Group Routes untuk Controller Badges
 $routes->group('Badges', ['filter' => 'login'], function ($routes) {
     $routes->get('', 'PoinMarket_Admin\Badges::index');
-    $routes->post('save_badges', 'PoinMarket_Admin\Badges::save_badges');
-    $routes->post('update_badges/(:num)', 'PoinMarket_Admin\Badges::update_badges/$1');
+    $routes->post('', 'PoinMarket_Admin\Badges::create_badges');
+    $routes->post('update/(:num)', 'PoinMarket_Admin\Badges::update_badges/$1');
     $routes->get('delete/(:num)', 'PoinMarket_Admin\Badges::delete_badges/$1');
 });
 
@@ -243,15 +263,27 @@ $routes->group('api', function ($routes) {
     // API User
     $routes->get('user', 'API\UserAPI::index'); //Mengambil semua data
     $routes->get('user/(:num)', 'API\UserAPI::show/$1'); //Mengambil data berdasarkan id
+    $routes->post('user', 'API\UserAPI::create'); //Menambahkan data
+    $routes->put('user/(:num)', 'API\UserAPI::update/$1'); //Mengedit data
+    $routes->delete('user/(:num)', 'API\UserAPI::delete/$1'); //Menghapus data
     // API JenisTransaksi (Data Nama Transaksi)
     $routes->get('jenis_transaksi', 'API\JenisTransaksiAPI::index'); //Mengambil semua data
     $routes->get('jenis_transaksi/(:num)', 'API\JenisTransaksiAPI::show/$1'); //Mengambil data berdasarkan id
+    $routes->post('jenis_transaksi', 'API\JenisTransaksiAPI::create'); //Menambahkan data
+    $routes->put('jenis_transaksi/(:num)', 'API\JenisTransaksiAPI::update/$1'); //Mengedit data
+    $routes->delete('jenis_transaksi/(:num)', 'API\JenisTransaksiAPI::delete/$1'); //Menghapus data
     // API Transaksi (Data Transaksi Mahasiswa)
     $routes->get('transaksi', 'API\TransaksiAPI::index'); //Mengambil semua data
     $routes->get('transaksi/(:num)', 'API\TransaksiAPI::show/$1'); //Mengambil data berdasarkan id
+    $routes->post('transaksi', 'API\TransaksiAPI::create'); //Menambahkan data
+    $routes->put('transaksi/(:num)', 'API\TransaksiAPI::update/$1'); //Mengedit data
+    $routes->delete('transaksi/(:num)', 'API\TransaksiAPI::delete/$1'); //Menghapus data
     // API Badges
     $routes->get('badges', 'API\BadgesAPI::index'); //Mengambil semua data
     $routes->get('badges/(:num)', 'API\BadgesAPI::show/$1'); //Mengambil data berdasarkan id
+    $routes->post('badges', 'API\BadgesAPI::create'); //Menambahkan data
+    $routes->put('badges/(:num)', 'API\BadgesAPI::update/$1'); //Mengedit data
+    $routes->delete('badges/(:num)', 'API\BadgesAPI::delete/$1'); //Menghapus data
     // API Mahasiswa
     $routes->get('mahasiswa', 'API\MahasiswaAPI::index'); //Mengambil semua data
     $routes->get('mahasiswa/(:num)', 'API\MahasiswaAPI::show/$1'); //Mengambil data berdasarkan id
@@ -268,7 +300,7 @@ $routes->group('api', function ($routes) {
 // $routes->get('home/add', 'Home::add');
 // $routes->post('home/save', 'Home::save');
 
-
+$routes->get('supabase', 'Home::index');
 
 /*
  * --------------------------------------------------------------------

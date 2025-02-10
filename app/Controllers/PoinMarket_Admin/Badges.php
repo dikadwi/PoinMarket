@@ -37,12 +37,13 @@ class Badges extends BaseController
         return view('PoinMarket_Admin/Page/badges', $data);
     }
 
-    public function save_badges()
+    public function create_badges()
     {
         if (!$this->validate([
             'nama' => 'required|is_unique[badges.nama]'
         ])) {
             session()->setFlashdata("gagal", "Data Sudah Ada !");
+            return redirect()->back();
         }
 
         $id_badges = $this->request->getPost('id_badges');

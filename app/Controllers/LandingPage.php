@@ -31,9 +31,31 @@ class LandingPage extends BaseController
         return view('LandingPage/contact');
     }
 
+    public function privacy()
+    {
+        return view('LandingPage/privacy_policy');
+    }
+
+    public function terms_service()
+    {
+        return view('LandingPage/terms_of_service');
+    }
+
+    public function help()
+    {
+        return view('LandingPage/help_center');
+    }
+
     public function register()
     {
         return view('LandingPage/register');
+    }
+
+
+    // Template
+    public function invitation()
+    {
+        return view('auth/Page/invitation');
     }
 
     public function pilih()

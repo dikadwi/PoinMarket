@@ -75,7 +75,6 @@
                 <div class="mb-4">
                     <input class="w-full px-4 py-2 rounded-full text-center text-black" placeholder="Password" type="password" name="password" autocomplete="current-password" />
                 </div>
-
                 <div class="flex items-center justify-between mb-6">
                     <label class="flex items-center text-white">
                         <input class="form-checkbox" type="checkbox" />
@@ -83,17 +82,26 @@
                             Remember
                         </span>
                     </label>
-                    <a class="text-white" href="#">
-                        Forgot Password?
+                    <a class="text-white hover:text-gray-600" href="#">
+                        Forgot Password ?
                     </a>
+                </div>
+                <!-- <div class="mb-6 text-center">
+                    <p class="text-white">Belum punya akun ? <a href="/register" class=" hover:text-blue-100 font-bold">Register </a></p>
+                </div> -->
+                <div class="mb-6 text-center">
+                    <p class="text-white">Belum punya akun ? <a href="<?= base_url('register') ?>" class=" hover:text-blue-100 font-bold">Register </a></p>
                 </div>
                 <button class="w-full bg-green-500 hover:bg-green-700 text-white py-2 rounded-full font-bold">
                     SUBMIT
                 </button>
             </form>
-            <button type="button" onclick="location.href='<?= base_url() ?>'" class="w-full bg-orange-300 hover:bg-orange-600 text-white py-2 rounded-full font-bold">
-                Kembali ke Home
-            </button>
+            <!-- <div class="mb-6 text-center">
+                <p class="text-white"><a href="/page" class=" hover:text-blue-100 font-bold">Back To Home</a></p>
+            </div> -->
+            <div class="mb-6 text-center">
+                <p class="text-white"><a href="<?= base_url('page') ?>" class=" hover:text-blue-100 font-bold">Back To Home</a></p>
+            </div>
         </div>
         <!-- Right Side -->
         <div class="bg-white p-8 flex justify-center items-center w-full md:w-1/2">

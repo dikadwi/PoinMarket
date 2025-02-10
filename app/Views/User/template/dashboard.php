@@ -358,7 +358,8 @@
             const form = $(this).closest('.claim-form'); // Ambil form terdekat
             const idTransaksi = form.find('input[name="id_transaksi"]').val();
             const namaTransaksi = form.find('input[name="nama_transaksi"]').val();
-            const poinDigunakan = form.find('input[name="poin_digunakan"]').val();
+            // const poinDigunakan = form.find('input[name="poin_digunakan"]').val();
+            const poinDiberikan = form.find('input[name="poin_diberikan"]').val();
 
             Swal.fire({
                 title: 'Claim Reward ?',
@@ -376,6 +377,44 @@
             });
         })
 
+        // // Button Konfirmasi Pembelian
+        // $(document).on('click', '.btn-beli', function(e) {
+        //     e.preventDefault();
+        //     const form = $(this).closest('.buy-form'); // Ambil form terdekat
+        //     const namaTransaksi = form.find('input[name="nama_transaksi"]').val();
+        //     const poinDigunakan = form.find('input[name="poin_digunakan"]').val();
+        //     const redeemCode = form.find('input[name="redeem_code"]').val();
+
+        //     Swal.fire({
+        //         title: 'Beli Item?',
+        //         // text: "Apakah Anda Yakin Ingin Membeli " + namaTransaksi + "!",
+        //         html: `<p>Apakah Anda yakin ingin membeli <strong>${namaTransaksi}</strong> !</p>
+        //         <p>Harga : <strong>${poinDigunakan}</strong> Poin</p>`,
+        //         // <p>Redeem Code : <strong>${redeemCode}</strong></p>`,
+        //         icon: 'question',
+        //         showCancelButton: true,
+        //         confirmButtonColor: '#3085d6',
+        //         cancelButtonColor: '#d33',
+        //         confirmButtonText: 'Beli',
+        //         cancelButtonText: 'Batal',
+        //     }).then((result) => {
+        //         if (result.isConfirmed) {
+        //             form.submit(); // Submit form jika pengguna mengonfirmasi
+        //         }
+        //     });
+        // })
+
+        //         public function cek_redeem_code() {
+        //     $redeem_code = $this->input->post('redeem_code');
+        //     // Lakukan pengecekan apakah kode redeem benar
+        //     // ...
+        //     if ($benar) {
+        //         echo 'benar';
+        //     } else {
+        //         echo 'salah';
+        //     }
+        // }
+
         // Button Konfirmasi Pembelian
         $(document).on('click', '.btn-beli', function(e) {
             e.preventDefault();
@@ -385,9 +424,9 @@
 
             Swal.fire({
                 title: 'Beli Item?',
-                // text: "Apakah Anda Yakin Ingin Membeli " + namaTransaksi + "!",
                 html: `<p>Apakah Anda yakin ingin membeli <strong>${namaTransaksi}</strong> !</p>
-               <p>Harga : <strong>${poinDigunakan}</strong> Poin</p>`,
+                <p>Harga : <strong>${poinDigunakan}</strong> Poin</p>
+                <p><strong>Redeem Code : </strong><input type="text" id="redeem_code" placeholder="Masukkan kode redeem"></p>`,
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -396,7 +435,26 @@
                 cancelButtonText: 'Batal',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    form.submit(); // Submit form jika pengguna mengonfirmasi
+                    const redeemCode = document.getElementById('redeem_code').value;
+                    $.ajax({
+                        type: 'POST',
+                        url: '<?= base_url('cek_redeem_code') ?>',
+                        data: {
+                            redeem_code: redeemCode
+                        },
+                        success: function(data) {
+                            if (data == 'benar') {
+                                // Lakukan submit form dengan redeem code
+                                form.submit(); // Submit form jika pengguna mengonfirmasi
+                            } else {
+                                Swal.fire({
+                                    title: 'Kode Redeem Salah',
+                                    text: 'Kode redeem yang Anda masukkan salah. Silakan coba lagi.',
+                                    icon: 'error',
+                                });
+                            }
+                        }
+                    });
                 }
             });
         })
@@ -407,6 +465,7 @@
             const form = $(this).closest('.misi-form'); // Ambil form terdekat
             const namaTransaksi = form.find('input[name="nama_transaksi"]').val();
             const poinDigunakan = form.find('input[name="poin_digunakan"]').val();
+            const poinDiberikan = form.find('input[name="poin_diberikan"]').val();
 
             Swal.fire({
                 title: 'Ambil Misi ?',

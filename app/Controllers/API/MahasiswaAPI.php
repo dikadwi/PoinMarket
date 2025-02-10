@@ -32,7 +32,11 @@ class MahasiswaAPI extends ResourceController
             return $this->failValidationErrors($this->model->errors());
         }
 
-        return $this->respondCreated(['status' => 'success', 'message' => 'Data berhasil ditambahkan']);
+        return $this->respondCreated([
+            'data' => $input,
+            'status' => 'success',
+            'message' => 'Data berhasil ditambahkan'
+        ]);
     }
 
     public function update($id = null)
@@ -43,15 +47,30 @@ class MahasiswaAPI extends ResourceController
             return $this->failValidationErrors($this->model->errors());
         }
 
-        return $this->respond(['status' => 'success', 'message' => 'Data berhasil diperbarui']);
+        return $this->respond([
+            'id' => $id,
+            'data' => $input,
+            'status' => 'success',
+            'message' => 'Data berhasil diperbarui',
+        ]);
     }
 
     public function delete($id = null)
     {
-        if (!$this->model->delete($id)) {
+        $data = $this->model->find($id);
+        if (!$data) {
             return $this->failNotFound('Data tidak ditemukan');
         }
 
-        return $this->respondDeleted(['status' => 'success', 'message' => 'Data berhasil dihapus']);
+        if (!$this->model->delete($id)) {
+            return $this->fail('Gagal menghapus data', 500);
+        }
+
+        return $this->respondDeleted([
+            'id' => $id,
+            'data' => $data,
+            'status' => 'success',
+            'message' => 'Data berhasil dihapus',
+        ]);
     }
 }

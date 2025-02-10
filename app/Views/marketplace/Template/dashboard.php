@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>/template/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <link href="<?= base_url() ?>/sweetalert2/package/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     <style>
         .swal2-popup {
             /* font-size: 1.6rem !important; */

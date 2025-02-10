@@ -21,12 +21,41 @@
         <!-- <php if (in_groups(['admin', 'validator'])) : ?> Mengambil 2 Role -->
         <!-- <php if (in_groups('admin')) : ?> Mengambil Role, Jika Role sesuai Menu akan tampil -->
         <li class="nav-item dropdown">
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">
+                <i class="fas fa-tags"> <span> Kategori Item </span></i>
+            </a>
+            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
+                <!-- Level three dropdown-->
+                <div class="dropdown-submenu dropdown-hover">
+                    <a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">
+                        <i class="fas fa-plus mr-2"></i> Add Point
+                    </a>
+                    <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
+                        <li><a href="/Jenis_Transaksi/reward" class="dropdown-item"><i class="fas fa-ribbon mr-2"></i>Reward</a></li>
+                        <li><a href="/Jenis_Transaksi/misi_tambah" class="dropdown-item"><i class="fas fa-bullseye mr-2"></i>Misi</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-submenu dropdown-hover">
+                    <a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">
+                        <i class="fas fa-minus mr-2"></i> Deduct Point
+                    </a>
+                    <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
+                        <li><a href="/Jenis_Transaksi/pembelian" class="dropdown-item"><i class="fas fa-cart-plus mr-2"></i>Pembelian</a></li>
+                        <li><a href="/Jenis_Transaksi/punishment" class="dropdown-item"><i class="fas fa-flag mr-2"></i>Punishment</a></li>
+                        <li><a href="/Jenis_Transaksi/konsultasi" class="dropdown-item"><i class="fas fa-comments mr-2"></i>Konsultasi</a></li>
+                    </ul>
+                </div>
+                <!-- End Level three -->
+            </ul>
+        </li>
+        <!-- <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <!-- <i class="fas fa-tags"> <span> Jenis Transaksi</span></i> Ganti ikon sesuai kebutuhan -->
-                <i class="fas fa-tags"> <span>Kategori Item</span></i> <!-- Ganti ikon sesuai kebutuhan -->
+                <-- <i class="fas fa-tags"> <span> Jenis Transaksi</span></i> Ganti ikon sesuai kebutuhan ->
+                <i class="fas fa-tags"> <span>Kategori Item</span></i> <-- Ganti ikon sesuai kebutuhan ->
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <!-- Isi dropdown menu dengan link atau konten lain -->
+                <-- Isi dropdown menu dengan link atau konten lain ->
                 <a href="/Jenis_Transaksi/reward" class="dropdown-item">
                     <i class="fas fa-ribbon mr-2"></i>Rewards</a>
                 <div class="dropdown-divider"></div>
@@ -42,7 +71,7 @@
                 <a href="/Jenis_Transaksi/konsultasi" class="dropdown-item">
                     <i class="fas fa-clipboard-check mr-2"></i>Konsultasi</a>
             </div>
-        </li>
+        </li> -->
         <li class="nav-item ">
             <a href="/Badges" class="nav-link">
                 <i class="fas fa-ribbon"><span> Badges</span></i> <!-- Ganti ikon sesuai kebutuhan -->

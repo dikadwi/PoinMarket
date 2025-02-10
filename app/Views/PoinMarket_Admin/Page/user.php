@@ -25,11 +25,11 @@
             <!-- Small boxes (Stat box) -->
             <div class="row ">
                 <!-- Search Belum Jalan -->
-                <?php if (in_groups(['superadmin'])) : ?>
-                    <div class="col-12 col-md-6 mb-3">
+                <div class="col-12 col-md-6 mb-3">
+                    <?php if (in_groups(['superadmin'])) : ?>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahUser"><i class="fas fa-plus"></i> Input</button>
-                    </div>
-                <?php endif ?>
+                    <?php endif ?>
+                </div>
                 <div class="col-12 col-md-3 mb-3">
                     <!-- Form Pencarian Role -->
                     <form method="GET">

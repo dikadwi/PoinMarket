@@ -538,3 +538,301 @@ INFO - 2025-01-14 07:30:33 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2025-01-14 07:30:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2025-01-14 07:30:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2025-01-14 07:30:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:04:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:04:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:04:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:04:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:04:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:04:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:05:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:05:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:05:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:05:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:05:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:05:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:05:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:05:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:05:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:05:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:05:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:05:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:05:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:05:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:06:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:06:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:06:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:06:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:24:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:24:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:24:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:24:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:24:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:24:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:25:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:25:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:25:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:25:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:28:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:28:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:28:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:28:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 08:28:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 14:47:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 14:47:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 14:47:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 14:47:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 14:47:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 14:52:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 14:52:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-14 14:52:40 --> mysqli_sql_exception: Duplicate entry '10106' for key 'PRIMARY' in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tr...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tr...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tr...')
+#3 C:\xampp\htdocs\PoinMarket\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tr...', Array, false)
+#4 C:\xampp\htdocs\PoinMarket\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\PoinMarket\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\PoinMarket\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\PoinMarket\app\Controllers\API\JenisTransaksiAPI.php(31): CodeIgniter\Model->insert(Object(stdClass))
+#8 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\API\JenisTransaksiAPI->create()
+#9 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\JenisTransaksiAPI))
+#10 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2025-01-14 14:52:40 --> Duplicate entry '10106' for key 'PRIMARY'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (\'10106\', \'101\', \'Login \', \'Login pada platform \', \'Point reward didapatkan\', \'20\', \'No\', \'No\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (\'10106\', \'101\', \'Login \', \'Login pada platform \', \'Point reward didapatkan\', \'20\', \'No\', \'No\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (\'10106\', \'101\', \'Login \', \'Login pada platform \', \'Point reward didapatkan\', \'20\', \'No\', \'No\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (:id_transaksi:, :kode_jenis:, :nama_transaksi:, :detail:, :keterangan:, :poin_digunakan:, :valid:, :status:)', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\API\JenisTransaksiAPI.php(31): CodeIgniter\Model->insert(Object(stdClass))
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\JenisTransaksiAPI->create()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\JenisTransaksiAPI))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-01-14 14:55:33 --> There is no data to update.
+in SYSTEMPATH\BaseModel.php on line 1680.
+ 1 SYSTEMPATH\BaseModel.php(1680): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+ 2 SYSTEMPATH\BaseModel.php(910): CodeIgniter\BaseModel->transformDataToArray(null, 'update')
+ 3 SYSTEMPATH\Model.php(756): CodeIgniter\BaseModel->update([...], null)
+ 4 APPPATH\Controllers\API\JenisTransaksiAPI.php(42): CodeIgniter\Model->update('1', null)
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\JenisTransaksiAPI->update('1')
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\JenisTransaksiAPI))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-01-14 14:56:32 --> There is no data to update.
+in SYSTEMPATH\BaseModel.php on line 1680.
+ 1 SYSTEMPATH\BaseModel.php(1680): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+ 2 SYSTEMPATH\BaseModel.php(910): CodeIgniter\BaseModel->transformDataToArray(null, 'update')
+ 3 SYSTEMPATH\Model.php(756): CodeIgniter\BaseModel->update([...], null)
+ 4 APPPATH\Controllers\API\JenisTransaksiAPI.php(42): CodeIgniter\Model->update('10106', null)
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\JenisTransaksiAPI->update('10106')
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\JenisTransaksiAPI))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+INFO - 2025-01-14 14:56:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-14 14:56:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-14 15:03:10 --> mysqli_sql_exception: Duplicate entry '10109' for key 'PRIMARY' in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tr...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tr...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tr...')
+#3 C:\xampp\htdocs\PoinMarket\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tr...', Array, false)
+#4 C:\xampp\htdocs\PoinMarket\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\PoinMarket\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\PoinMarket\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\PoinMarket\app\Controllers\API\JenisTransaksiAPI.php(31): CodeIgniter\Model->insert(Object(stdClass))
+#8 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\API\JenisTransaksiAPI->create()
+#9 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\JenisTransaksiAPI))
+#10 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2025-01-14 15:03:10 --> Duplicate entry '10109' for key 'PRIMARY'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (\'10109\', \'101\', \'Login \', \'Login pada platform \', \'Point reward didapatkan\', \'20\', \'No\', \'No\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (\'10109\', \'101\', \'Login \', \'Login pada platform \', \'Point reward didapatkan\', \'20\', \'No\', \'No\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (\'10109\', \'101\', \'Login \', \'Login pada platform \', \'Point reward didapatkan\', \'20\', \'No\', \'No\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (:id_transaksi:, :kode_jenis:, :nama_transaksi:, :detail:, :keterangan:, :poin_digunakan:, :valid:, :status:)', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\API\JenisTransaksiAPI.php(31): CodeIgniter\Model->insert(Object(stdClass))
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\JenisTransaksiAPI->create()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\JenisTransaksiAPI))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+ERROR - 2025-01-14 15:12:41 --> mysqli_sql_exception: Duplicate entry '10109' for key 'PRIMARY' in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tr...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tr...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tr...')
+#3 C:\xampp\htdocs\PoinMarket\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tr...', Array, false)
+#4 C:\xampp\htdocs\PoinMarket\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\PoinMarket\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\PoinMarket\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\PoinMarket\app\Controllers\API\JenisTransaksiAPI.php(43): CodeIgniter\Model->insert(Object(stdClass))
+#8 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\API\JenisTransaksiAPI->create()
+#9 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\JenisTransaksiAPI))
+#10 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2025-01-14 15:12:41 --> Duplicate entry '10109' for key 'PRIMARY'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (\'10109\', \'101\', \'Login \', \'Login pada platform \', \'Point reward didapatkan\', \'20\', \'No\', \'No\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (\'10109\', \'101\', \'Login \', \'Login pada platform \', \'Point reward didapatkan\', \'20\', \'No\', \'No\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (\'10109\', \'101\', \'Login \', \'Login pada platform \', \'Point reward didapatkan\', \'20\', \'No\', \'No\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (:id_transaksi:, :kode_jenis:, :nama_transaksi:, :detail:, :keterangan:, :poin_digunakan:, :valid:, :status:)', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\API\JenisTransaksiAPI.php(43): CodeIgniter\Model->insert(Object(stdClass))
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\JenisTransaksiAPI->create()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\JenisTransaksiAPI))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+ERROR - 2025-01-14 15:13:13 --> mysqli_sql_exception: Duplicate entry '' for key 'PRIMARY' in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tr...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tr...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tr...')
+#3 C:\xampp\htdocs\PoinMarket\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tr...', Array, false)
+#4 C:\xampp\htdocs\PoinMarket\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\PoinMarket\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\PoinMarket\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\PoinMarket\app\Controllers\API\JenisTransaksiAPI.php(43): CodeIgniter\Model->insert(Object(stdClass))
+#8 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\API\JenisTransaksiAPI->create()
+#9 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\JenisTransaksiAPI))
+#10 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2025-01-14 15:13:13 --> Duplicate entry '' for key 'PRIMARY'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (\'\', \'101\', \'Login \', \'Login pada platform \', \'Point reward didapatkan\', \'20\', \'No\', \'No\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (\'\', \'101\', \'Login \', \'Login pada platform \', \'Point reward didapatkan\', \'20\', \'No\', \'No\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (\'\', \'101\', \'Login \', \'Login pada platform \', \'Point reward didapatkan\', \'20\', \'No\', \'No\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (:id_transaksi:, :kode_jenis:, :nama_transaksi:, :detail:, :keterangan:, :poin_digunakan:, :valid:, :status:)', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\API\JenisTransaksiAPI.php(43): CodeIgniter\Model->insert(Object(stdClass))
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\JenisTransaksiAPI->create()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\JenisTransaksiAPI))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+ERROR - 2025-01-14 15:14:46 --> mysqli_sql_exception: Duplicate entry '10101' for key 'PRIMARY' in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tr...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tr...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tr...')
+#3 C:\xampp\htdocs\PoinMarket\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tr...', Array, false)
+#4 C:\xampp\htdocs\PoinMarket\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\PoinMarket\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\PoinMarket\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\PoinMarket\app\Controllers\API\JenisTransaksiAPI.php(43): CodeIgniter\Model->insert(Object(stdClass))
+#8 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\API\JenisTransaksiAPI->create()
+#9 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\JenisTransaksiAPI))
+#10 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2025-01-14 15:14:46 --> Duplicate entry '10101' for key 'PRIMARY'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (\'10101\', \'101\', \'Login \', \'Login pada platform \', \'Point reward didapatkan\', \'20\', \'No\', \'No\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (\'10101\', \'101\', \'Login \', \'Login pada platform \', \'Point reward didapatkan\', \'20\', \'No\', \'No\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (\'10101\', \'101\', \'Login \', \'Login pada platform \', \'Point reward didapatkan\', \'20\', \'No\', \'No\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `transaksi` (`id_transaksi`, `kode_jenis`, `nama_transaksi`, `detail`, `keterangan`, `poin_digunakan`, `valid`, `status`) VALUES (:id_transaksi:, :kode_jenis:, :nama_transaksi:, :detail:, :keterangan:, :poin_digunakan:, :valid:, :status:)', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\API\JenisTransaksiAPI.php(43): CodeIgniter\Model->insert(Object(stdClass))
+ 9 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\JenisTransaksiAPI->create()
+10 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\JenisTransaksiAPI))
+11 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-01-14 15:22:19 --> There is no data to insert.
+in SYSTEMPATH\BaseModel.php on line 1680.
+ 1 SYSTEMPATH\BaseModel.php(1680): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('insert')
+ 2 SYSTEMPATH\BaseModel.php(742): CodeIgniter\BaseModel->transformDataToArray(null, 'insert')
+ 3 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert(null, true)
+ 4 APPPATH\Controllers\API\MahasiswaAPI.php(31): CodeIgniter\Model->insert(null)
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\MahasiswaAPI->create()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\MahasiswaAPI))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-01-14 15:31:20 --> Object of class stdClass could not be converted to string
+in APPPATH\Controllers\API\JenisTransaksiAPI.php on line 47.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\JenisTransaksiAPI->update('10110')
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\JenisTransaksiAPI))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-01-14 15:43:14 --> There is no data to insert.
+in SYSTEMPATH\BaseModel.php on line 1680.
+ 1 SYSTEMPATH\BaseModel.php(1680): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('insert')
+ 2 SYSTEMPATH\BaseModel.php(742): CodeIgniter\BaseModel->transformDataToArray(null, 'insert')
+ 3 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert(null, true)
+ 4 APPPATH\Controllers\API\MahasiswaAPI.php(31): CodeIgniter\Model->insert(null)
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\MahasiswaAPI->create()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\MahasiswaAPI))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-01-14 16:12:23 --> There is no data to update.
+in SYSTEMPATH\BaseModel.php on line 1680.
+ 1 SYSTEMPATH\BaseModel.php(1680): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+ 2 SYSTEMPATH\BaseModel.php(910): CodeIgniter\BaseModel->transformDataToArray(null, 'update')
+ 3 SYSTEMPATH\Model.php(756): CodeIgniter\BaseModel->update([...], null)
+ 4 APPPATH\Controllers\API\TransaksiAPI.php(46): CodeIgniter\Model->update('170', null)
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\TransaksiAPI->update('170')
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\TransaksiAPI))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-01-14 16:18:55 --> There is no data to update.
+in SYSTEMPATH\BaseModel.php on line 1680.
+ 1 SYSTEMPATH\BaseModel.php(1680): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+ 2 SYSTEMPATH\BaseModel.php(910): CodeIgniter\BaseModel->transformDataToArray(null, 'update')
+ 3 SYSTEMPATH\Model.php(756): CodeIgniter\BaseModel->update([...], null)
+ 4 APPPATH\Controllers\API\BadgesAPI.php(85): CodeIgniter\Model->update('1', null)
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\BadgesAPI->update('1')
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\BadgesAPI))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-01-14 16:23:48 --> There is no data to update.
+in SYSTEMPATH\BaseModel.php on line 1680.
+ 1 SYSTEMPATH\BaseModel.php(1680): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+ 2 SYSTEMPATH\BaseModel.php(910): CodeIgniter\BaseModel->transformDataToArray(null, 'update')
+ 3 SYSTEMPATH\Model.php(756): CodeIgniter\BaseModel->update([...], null)
+ 4 APPPATH\Controllers\API\BadgesAPI.php(103): CodeIgniter\Model->update('1', null)
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\BadgesAPI->update('1')
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\BadgesAPI))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-01-14 16:24:02 --> There is no data to update.
+in SYSTEMPATH\BaseModel.php on line 1680.
+ 1 SYSTEMPATH\BaseModel.php(1680): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+ 2 SYSTEMPATH\BaseModel.php(910): CodeIgniter\BaseModel->transformDataToArray(null, 'update')
+ 3 SYSTEMPATH\Model.php(756): CodeIgniter\BaseModel->update([...], null)
+ 4 APPPATH\Controllers\API\BadgesAPI.php(103): CodeIgniter\Model->update('1', null)
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\BadgesAPI->update('1')
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\BadgesAPI))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')

@@ -191,7 +191,7 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                     </button>
                 </div>
                 <div class="modal-body" style="max-height: 450px; overflow-y: auto;">
-                    <form action="/Badges/update_badges/<?= $b['id_badges']; ?>" method="post" enctype="multipart/form-data">
+                    <form action="/Badges/update/<?= $b['id_badges']; ?>" method="post" enctype="multipart/form-data">
                         <div class="form-group ">
                             <label for="id" class="col-form-label"></label>
                             <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $b['id_badges'] ?>" required>

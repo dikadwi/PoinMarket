@@ -1,0 +1,285 @@
+INFO - 2025-02-07 07:03:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-07 07:03:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-02-07 07:15:47 --> Class "App\Services\SupabaseService" not found
+in APPPATH\Controllers\SupabaseController.php on line 14.
+ 1 SYSTEMPATH\CodeIgniter.php(904): App\Controllers\SupabaseController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-07 07:17:26 --> 22 : The requested URL returned error: 404
+in SYSTEMPATH\HTTP\CURLRequest.php on line 675.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(675): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 404')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(143): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://gtuuulibrmfpvjcjiwzm.supabase.co/rest/v1/users')
+ 4 APPPATH\Services\SupabaseService.php(31): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://gtuuulibrmfpvjcjiwzm.supabase.co/rest/v1/users', [...])
+ 5 APPPATH\Controllers\SupabaseController.php(20): App\Services\SupabaseService->getData('users')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\SupabaseController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SupabaseController))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-07 07:19:25 --> 22 : The requested URL returned error: 404
+in SYSTEMPATH\HTTP\CURLRequest.php on line 675.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(675): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 404')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(143): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://gtuuulibrmfpvjcjiwzm.supabase.co/rest/v1/rest/v1/users')
+ 4 APPPATH\Services\SupabaseService.php(31): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://gtuuulibrmfpvjcjiwzm.supabase.co/rest/v1/rest/v1/users', [...])
+ 5 APPPATH\Controllers\SupabaseController.php(20): App\Services\SupabaseService->getData('users')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\SupabaseController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SupabaseController))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-07 07:21:47 --> 22 : The requested URL returned error: 404
+in SYSTEMPATH\HTTP\CURLRequest.php on line 675.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(675): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 404')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(143): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://gtuuulibrmfpvjcjiwzm.supabase.co/rest/v1/badgesusers')
+ 4 APPPATH\Services\SupabaseService.php(31): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://gtuuulibrmfpvjcjiwzm.supabase.co/rest/v1/badgesusers', [...])
+ 5 APPPATH\Controllers\SupabaseController.php(20): App\Services\SupabaseService->getData('users')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\SupabaseController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SupabaseController))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-07 07:22:10 --> 22 : The requested URL returned error: 404
+in SYSTEMPATH\HTTP\CURLRequest.php on line 675.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(675): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 404')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(143): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://gtuuulibrmfpvjcjiwzm.supabase.co/badges/badgesusers')
+ 4 APPPATH\Services\SupabaseService.php(31): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://gtuuulibrmfpvjcjiwzm.supabase.co/badges/badgesusers', [...])
+ 5 APPPATH\Controllers\SupabaseController.php(20): App\Services\SupabaseService->getData('users')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\SupabaseController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SupabaseController))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-07 07:22:18 --> 22 : The requested URL returned error: 404
+in SYSTEMPATH\HTTP\CURLRequest.php on line 675.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(675): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 404')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(143): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://gtuuulibrmfpvjcjiwzm.supabase.co/badgesusers')
+ 4 APPPATH\Services\SupabaseService.php(31): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://gtuuulibrmfpvjcjiwzm.supabase.co/badgesusers', [...])
+ 5 APPPATH\Controllers\SupabaseController.php(20): App\Services\SupabaseService->getData('users')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\SupabaseController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SupabaseController))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-07 07:22:57 --> 22 : The requested URL returned error: 404
+in SYSTEMPATH\HTTP\CURLRequest.php on line 675.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(675): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 404')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(143): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://gtuuulibrmfpvjcjiwzm.supabase.co/badgesbadges')
+ 4 APPPATH\Services\SupabaseService.php(31): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://gtuuulibrmfpvjcjiwzm.supabase.co/badgesbadges', [...])
+ 5 APPPATH\Controllers\SupabaseController.php(20): App\Services\SupabaseService->getData('badges')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\SupabaseController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SupabaseController))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-07 07:23:08 --> 22 : The requested URL returned error: 404
+in SYSTEMPATH\HTTP\CURLRequest.php on line 675.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(675): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 404')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(143): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://gtuuulibrmfpvjcjiwzm.supabase.co/badgesbadges')
+ 4 APPPATH\Services\SupabaseService.php(31): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://gtuuulibrmfpvjcjiwzm.supabase.co/badgesbadges', [...])
+ 5 APPPATH\Controllers\SupabaseController.php(20): App\Services\SupabaseService->getData('badges')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\SupabaseController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SupabaseController))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-07 07:26:00 --> 22 : The requested URL returned error: 404
+in SYSTEMPATH\HTTP\CURLRequest.php on line 675.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(675): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 404')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(143): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://gtuuulibrmfpvjcjiwzm.supabase.co/badgesbadges')
+ 4 APPPATH\Services\SupabaseService.php(31): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://gtuuulibrmfpvjcjiwzm.supabase.co/badgesbadges', [...])
+ 5 APPPATH\Controllers\SupabaseController.php(20): App\Services\SupabaseService->getData('badges')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\SupabaseController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SupabaseController))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-07 07:30:48 --> 22 : The requested URL returned error: 404
+in SYSTEMPATH\HTTP\CURLRequest.php on line 675.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(675): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 404')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(143): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://gtuuulibrmfpvjcjiwzm.supabase.co/rest/v1//rest/v1/users')
+ 4 APPPATH\Services\SupabaseService.php(31): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://gtuuulibrmfpvjcjiwzm.supabase.co/rest/v1//rest/v1/users', [...])
+ 5 APPPATH\Controllers\SupabaseController.php(20): App\Services\SupabaseService->getData('users')
+ 6 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\SupabaseController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SupabaseController))
+ 8 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-07 07:38:04 --> default is not a valid database connection group.
+in SYSTEMPATH\Database\Config.php on line 70.
+ 1 SYSTEMPATH\Model.php(155): CodeIgniter\Database\Config::connect('default')
+ 2 SYSTEMPATH\Config\Factories.php(113): CodeIgniter\Model->__construct(null)
+ 3 SYSTEMPATH\Common.php(825): CodeIgniter\Config\Factories::__callStatic('models', [...])
+ 4 VENDORPATH\myth\auth\src\Config\Services.php(27): model('Myth\\Auth\\Models\\UserModel')
+ 5 SYSTEMPATH\Config\BaseService.php(252): Myth\Auth\Config\Services::authentication('local', null, null, false)
+ 6 SYSTEMPATH\Config\BaseService.php(193): CodeIgniter\Config\BaseService::__callStatic('authentication', [...])
+ 7 VENDORPATH\myth\auth\src\Config\Services.php(24): CodeIgniter\Config\BaseService::getSharedInstance('authentication', 'local', null, null)
+ 8 SYSTEMPATH\Config\BaseService.php(252): Myth\Auth\Config\Services::authentication()
+ 9 SYSTEMPATH\Common.php(1012): CodeIgniter\Config\BaseService::__callStatic('authentication', [])
+10 VENDORPATH\myth\auth\src\Filters\BaseFilter.php(42): service('authentication')
+11 SYSTEMPATH\Filters\Filters.php(166): Myth\Auth\Filters\BaseFilter->__construct()
+12 SYSTEMPATH\CodeIgniter.php(471): CodeIgniter\Filters\Filters->run('Badges', 'before')
+13 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+15 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+INFO - 2025-02-07 07:38:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-07 07:38:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-02-07 07:41:30 --> mysqli_sql_exception: Table 'poin_market.your_table_name' doesn't exist in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT * FROM y...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM y...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM y...')
+#3 C:\xampp\htdocs\PoinMarket\app\Controllers\Home.php(10): CodeIgniter\Database\BaseConnection->query('SELECT * FROM y...')
+#4 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+CRITICAL - 2025-02-07 07:41:30 --> Table 'poin_market.your_table_name' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT * FROM your_table_name', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM your_table_name')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM your_table_name')
+ 4 APPPATH\Controllers\Home.php(10): CodeIgniter\Database\BaseConnection->query('SELECT * FROM your_table_name')
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Home->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+ERROR - 2025-02-07 07:42:02 --> mysqli_sql_exception: Table 'poin_market.your_table_name' doesn't exist in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT * FROM y...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM y...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM y...')
+#3 C:\xampp\htdocs\PoinMarket\app\Controllers\Home.php(10): CodeIgniter\Database\BaseConnection->query('SELECT * FROM y...')
+#4 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+CRITICAL - 2025-02-07 07:42:02 --> Table 'poin_market.your_table_name' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT * FROM your_table_name', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM your_table_name')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM your_table_name')
+ 4 APPPATH\Controllers\Home.php(10): CodeIgniter\Database\BaseConnection->query('SELECT * FROM your_table_name')
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Home->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+ERROR - 2025-02-07 07:45:10 --> mysqli_sql_exception: Table 'poin_market.your_table_name' doesn't exist in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT * FROM y...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM y...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM y...')
+#3 C:\xampp\htdocs\PoinMarket\app\Controllers\Home.php(10): CodeIgniter\Database\BaseConnection->query('SELECT * FROM y...')
+#4 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+CRITICAL - 2025-02-07 07:45:10 --> Table 'poin_market.your_table_name' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT * FROM your_table_name', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM your_table_name')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM your_table_name')
+ 4 APPPATH\Controllers\Home.php(10): CodeIgniter\Database\BaseConnection->query('SELECT * FROM your_table_name')
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Home->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+ERROR - 2025-02-07 07:45:30 --> mysqli_sql_exception: Table 'poin_market.your_table_name' doesn't exist in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT * FROM y...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM y...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM y...')
+#3 C:\xampp\htdocs\PoinMarket\app\Controllers\Home.php(10): CodeIgniter\Database\BaseConnection->query('SELECT * FROM y...')
+#4 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+CRITICAL - 2025-02-07 07:45:30 --> Table 'poin_market.your_table_name' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT * FROM your_table_name', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM your_table_name')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM your_table_name')
+ 4 APPPATH\Controllers\Home.php(10): CodeIgniter\Database\BaseConnection->query('SELECT * FROM your_table_name')
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Home->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+ERROR - 2025-02-07 07:52:53 --> Error connecting to the database: mysqli_sql_exception: Unknown database 'poin_marke' in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:173
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(173): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'poin_marke', 3306, '', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\PoinMarket\app\Controllers\Home.php(10): CodeIgniter\Database\BaseConnection->query('SELECT * FROM b...')
+#4 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown database 'poin_marke' in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\PoinMarket\app\Controllers\Home.php(10): CodeIgniter\Database\BaseConnection->query('SELECT * FROM b...')
+#3 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\Home->index()
+#4 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+CRITICAL - 2025-02-07 07:52:53 --> Unable to connect to the database.
+Main connection [MySQLi]: Unknown database 'poin_marke'
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Controllers\Home.php(10): CodeIgniter\Database\BaseConnection->query('SELECT * FROM badges')
+ 3 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Home->index()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 5 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+ERROR - 2025-02-07 07:53:03 --> mysqli_sql_exception: Table 'poin_market.badssges' doesn't exist in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT * FROM b...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM b...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM b...')
+#3 C:\xampp\htdocs\PoinMarket\app\Controllers\Home.php(10): CodeIgniter\Database\BaseConnection->query('SELECT * FROM b...')
+#4 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+CRITICAL - 2025-02-07 07:53:03 --> Table 'poin_market.badssges' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT * FROM badssges', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM badssges')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM badssges')
+ 4 APPPATH\Controllers\Home.php(10): CodeIgniter\Database\BaseConnection->query('SELECT * FROM badssges')
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Home->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')

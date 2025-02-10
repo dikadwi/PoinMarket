@@ -104,8 +104,12 @@ class Marketplace extends BaseController
             return redirect()->back()->with('error', 'Mahasiswa not found.');
         }
 
-        // Ambil poin yang digunakan untuk klaim dari request
-        $poin_digunakan = $this->request->getPost('poin_digunakan');
+        // // Ambil poin yang digunakan untuk klaim dari request
+        // $poin_digunakan = $this->request->getPost('poin_digunakan');
+        // $transaksi_id = $this->request->getPost('id_transaksi'); // Ambil ID transaksi
+
+        // Ambil poin yang diberikan untuk klaim dari request
+        $poin_diberikan = $this->request->getPost('poin_diberikan');
         $transaksi_id = $this->request->getPost('id_transaksi'); // Ambil ID transaksi
 
         // Validasi poin yang cukup
@@ -122,7 +126,7 @@ class Marketplace extends BaseController
             // Periksa apakah pembaruan status berhasil
             if ($updateStatus) {
                 // Jika berhasil, update poin mahasiswa
-                $sisaPoin = $mahasiswa['point'] + $poin_digunakan; // Hitung sisa poin
+                $sisaPoin = $mahasiswa['point'] + $poin_diberikan; // Hitung sisa poin
                 $this->MahasiswaModel->update($mahasiswa['id'], ['point' => $sisaPoin]); // Update poin mahasiswa
 
                 return redirect()->back()->with('sukses', 'Reward Berhasil di Claim! Total points sekarang: ' . $sisaPoin);
@@ -135,6 +139,7 @@ class Marketplace extends BaseController
     }
 
     // Fungsi Untuk Pembelian Produk
+    // Tambahkan menggunakan redeem untuk belanja, dalam redeem terdapat point
     public function buy()
     {
         $session = session();
@@ -169,7 +174,7 @@ class Marketplace extends BaseController
             'nama_transaksi' => $this->request->getPost('nama_transaksi'), // Ambil nama transaksi dari input
             'poin_digunakan' => $poin_digunakan,
             'tanggal_transaksi' => date('Y-m-d H:i:s'), // Format tanggal, Atur Format Zona Waktu
-            'validation' => 'Sudah', // Status validasi
+            'validation' => 'Belum', // Status validasi
             'claim' => 'Sudah' // Status claim
         ];
 
@@ -179,7 +184,69 @@ class Marketplace extends BaseController
         return redirect()->back()->with('sukses', 'Pembelian Berhasil ! Total points : ' . $sisaPoin . ' <br> Silahkan Tunggu Validasi');
     }
 
-    // Fungsi untuk mengajukan misi tambahan
+    // public function redeem()
+    // {
+    //     // Panggil fungsi cek_redeem_code
+    //     $result = $this->your_model->cek_redeem_code();
+    //     // tambahkan cek_redeem_code pada modelm untuk mengecek database
+
+    //     // Proses hasil dari fungsi
+    //     if ($result['status']) {
+    //         // Jika redeem code valid
+    //         $data = $result['data'];
+    //         echo "Redeem code valid! Data: " . json_encode($data);
+    //     } else {
+    //         // Jika redeem code tidak valid atau terjadi error
+    //         echo "Error: " . $result['message'];
+    //     }
+    // }
+
+    // // Fungsi untuk mengajukan misi tambahan
+    // public function misi_tambah()
+    // {
+    //     $session = session();
+    //     $npm = $session->get('npm');
+
+    //     // Validasi NPM
+    //     if ($npm === null) {
+    //         // return redirect()->back()->with('gagal', 'User  not logged in.');
+    //         return redirect()->back()->with('gagal1', 'Silahkan Login Terlebih Dahulu .');
+    //     }
+
+    //     // Ambil data mahasiswa berdasarkan NPM
+    //     $mahasiswa = $this->MahasiswaModel->findByNpm($npm);
+    //     if ($mahasiswa === null) {
+    //         return redirect()->back()->with('gagal1', 'Mahasiswa not found.');
+    //     }
+
+    //     // Pastikan request adalah POST
+    //     if ($this->request->getMethod() === 'post') {
+    //         // Ambil data dari form
+    //         $nama_transaksi = $this->request->getPost('nama_transaksi');
+    //         $poin_digunakan = $this->request->getPost('poin_digunakan');
+
+    //         // Simpan transaksi misi tanpa menambahkan poin
+    //         $data_transaksi = [
+    //             'npm' => $npm,
+    //             'kode_jenis' => '105', // Kode untuk misi tambahan
+    //             'nama_transaksi' => $nama_transaksi,
+    //             'poin_digunakan' => $poin_digunakan,
+    //             'tanggal_transaksi' => date('Y-m-d H:i:s'), // Format tanggal
+    //             'validation' => 'Belum', // Status validasi, misalnya 'Belum' sampai misi selesai
+    //             'claim' => 'Belum' // Status klaim
+    //         ];
+
+    //         // Simpan data transaksi
+    //         $this->DataTransaksiModel->insert($data_transaksi);
+
+    //         // Set flashdata untuk pesan sukses
+    //         return redirect()->back()->with('sukses', 'Misi berhasil diajukan. Tunggu konfirmasi untuk penambahan poin.');
+    //     } else {
+    //         // Set flashdata untuk pesan error jika request bukan POST
+    //         return redirect()->back()->with('gagal1', 'Request tidak valid.');
+    //     }
+    // }
+
     public function misi_tambah()
     {
         $session = session();
@@ -187,7 +254,6 @@ class Marketplace extends BaseController
 
         // Validasi NPM
         if ($npm === null) {
-            // return redirect()->back()->with('gagal', 'User  not logged in.');
             return redirect()->back()->with('gagal1', 'Silahkan Login Terlebih Dahulu .');
         }
 
@@ -202,13 +268,24 @@ class Marketplace extends BaseController
             // Ambil data dari form
             $nama_transaksi = $this->request->getPost('nama_transaksi');
             $poin_digunakan = $this->request->getPost('poin_digunakan');
+            $poin_diberikan = $this->request->getPost('poin_diberikan');
 
-            // Simpan transaksi misi tanpa menambahkan poin
+            // Validasi poin yang cukup
+            if ($mahasiswa['point'] < $poin_digunakan) {
+                return redirect()->back()->with('gagal1', 'Poin Tidak Cukup untuk mengajukan misi.');
+            }
+
+            // Kurangi poin mahasiswa
+            $sisaPoin = $mahasiswa['point'] - $poin_digunakan;
+            $this->MahasiswaModel->update($mahasiswa['id'], ['point' => $sisaPoin]);
+
+            // Simpan transaksi misi
             $data_transaksi = [
                 'npm' => $npm,
                 'kode_jenis' => '105', // Kode untuk misi tambahan
                 'nama_transaksi' => $nama_transaksi,
                 'poin_digunakan' => $poin_digunakan,
+                'poin_diberikan' => $poin_diberikan,
                 'tanggal_transaksi' => date('Y-m-d H:i:s'), // Format tanggal
                 'validation' => 'Belum', // Status validasi, misalnya 'Belum' sampai misi selesai
                 'claim' => 'Belum' // Status klaim
@@ -218,7 +295,7 @@ class Marketplace extends BaseController
             $this->DataTransaksiModel->insert($data_transaksi);
 
             // Set flashdata untuk pesan sukses
-            return redirect()->back()->with('sukses', 'Misi berhasil diajukan. Tunggu konfirmasi untuk penambahan poin.');
+            return redirect()->back()->with('sukses', 'Misi berhasil diajukan. Tunggu konfirmasi untuk penambahan poin. Total points sekarang: ' . $sisaPoin);
         } else {
             // Set flashdata untuk pesan error jika request bukan POST
             return redirect()->back()->with('gagal1', 'Request tidak valid.');

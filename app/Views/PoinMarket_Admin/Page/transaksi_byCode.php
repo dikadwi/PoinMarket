@@ -102,21 +102,30 @@
                         </select>
                     </div>
                     <!-- Bagian Nama Transaksi -->
-                    <!-- Bagian Nama Transaksi -->
                     <div class="form-group">
                         <label for="nama_transaksi" class="col-form-label">Item</label>
                         <select name="nama_transaksi" id="DD_nama_transaksi" class="form-control" required oninvalid="this.setCustomValidity('Pilih Salah Satu')" oninput="setCustomValidity('')">
                             <option value="">Pilih Item</option>
                             <?php foreach ($transaksi as $nama) : ?>
-                                <option value="<?= $nama['nama_transaksi'] ?>" data-poin="<?= $nama['poin_digunakan'] ?>"><?= $nama['nama_transaksi'] ?></option>
+                                <?php if ($nama['poin_digunakan'] !== null && $nama['poin_diberikan'] !== null) : ?>
+                                    <option value="<?= $nama['nama_transaksi'] ?>" data-poin="<?= $nama['poin_digunakan'] ?>" data-poin-diberikan="<?= $nama['poin_diberikan'] ?>"><?= $nama['nama_transaksi'] ?></option>
+                                <?php elseif ($nama['poin_digunakan'] !== null) : ?>
+                                    <option value="<?= $nama['nama_transaksi'] ?>" data-poin="<?= $nama['poin_digunakan'] ?>"><?= $nama['nama_transaksi'] ?></option>
+                                <?php elseif ($nama['poin_diberikan'] !== null) : ?>
+                                    <option value="<?= $nama['nama_transaksi'] ?>" data-poin-diberikan="<?= $nama['poin_diberikan'] ?>"><?= $nama['nama_transaksi'] ?></option>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
                     </div>
-
                     <!-- Input untuk menampilkan Point yang dipilih -->
-                    <div class="form-group ">
+                    <div class="form-group" id="poin-digunakan-group" style="display: none;">
                         <label for="poin_digunakan" class="col-form-label">Point Digunakan</label>
                         <input type="text" class="form-control" id="poin_digunakan" name="poin_digunakan" readonly>
+                    </div>
+                    <!-- Input untuk menampilkan Point yang diberikan -->
+                    <div class="form-group" id="poin-diberikan-group" style="display: none;">
+                        <label for="poin_diberikan" class="col-form-label">Point Diberikan</label>
+                        <input type="text" class="form-control" id="poin_diberikan" name="poin_diberikan" readonly>
                     </div>
             </div>
             <div class="modal-footer">
@@ -134,14 +143,22 @@
     $(document).ready(function() {
         $('#DD_nama_transaksi').change(function() {
             var selectedPoin = $(this).find(':selected').data('poin');
-            $('#poin_digunakan').val(selectedPoin);
-        });
-    });
+            var selectedPoinDiberikan = $(this).find(':selected').data('poin-diberikan');
 
-    document.getElementById('nama_transaksi').addEventListener('change', function() {
-        const selectedOption = this.options[this.selectedIndex];
-        const poinDigunakan = selectedOption.getAttribute('data-poin');
-        document.getElementById('poin_digunakan').value = poinDigunakan || '';
+            if (selectedPoin !== undefined) {
+                $('#poin_digunakan').val(selectedPoin);
+                $('#poin-digunakan-group').show();
+            } else {
+                $('#poin-digunakan-group').hide();
+            }
+
+            if (selectedPoinDiberikan !== null && selectedPoinDiberikan !== undefined) {
+                $('#poin_diberikan').val(selectedPoinDiberikan);
+                $('#poin-diberikan-group').show();
+            } else {
+                $('#poin-diberikan-group').hide();
+            }
+        });
     });
 </script>
 

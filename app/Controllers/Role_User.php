@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\UserModel;
 use App\Models\BadgesModel;
 use App\Models\JenisTransaksiModel;
 use App\Models\MahasiswaModel;
@@ -10,6 +11,7 @@ use App\Models\TransaksiModel;
 
 class Role_User extends BaseController
 {
+    protected $UserModel;
     protected $MahasiswaModel;
     protected $BadgesModel;
     protected $JenisTransaksiModel;
@@ -18,6 +20,7 @@ class Role_User extends BaseController
 
     public function __construct()
     {
+        $this->UserModel = new UserModel();
         $this->BadgesModel = new BadgesModel();
         $this->MahasiswaModel = new MahasiswaModel();
         $this->JenisTransaksiModel = new JenisTransaksiModel();

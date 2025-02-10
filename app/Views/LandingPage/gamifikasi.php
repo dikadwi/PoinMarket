@@ -133,7 +133,7 @@
                     Biarkan kami membantu Anda merancang solusi yang membawa dampak nyata.
                     Untuk konsultasi gratis dan lihat bagaimana gamifikasi dapat bekerja untuk Anda!
                 </p>
-                <a href="#Contact"><button class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700">Hubungi Kami</button></a>
+                <a href="/page/contact"><button class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700">Hubungi Kami</button></a>
             </section>
         </div>
     </div>

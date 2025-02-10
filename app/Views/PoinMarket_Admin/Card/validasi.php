@@ -74,3 +74,149 @@
         <?php endforeach; ?>
     <?php endif; ?>
 </div>
+
+<!-- Modal box Detail -->
+<?php foreach ($data_transaksi as $data) : ?>
+    <div class="modal fade" id="modalDetail<?php echo $data['id_transaksi']; ?>">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Detail Transaksi <?= $data['npm']; ?> </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+                    <div class="col-lg-13">
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-12">
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            <!-- <h5 class="card-title"><b>Kode Transaksi :</b></h5>
+                                            <li class="list-group-item">
+                                                <h4><?= $data['id_transaksi']; ?></h4>
+                                            </li> -->
+                                            <h5 class="card-title"><b>NPM :</b></h5>
+                                            <li class="list-group-item">
+                                                <h4><?= $data['npm']; ?></h4>
+                                            </li>
+                                            <h5 class="card-title"><b>Nama Mahasiswa :</b></h5>
+                                            <li class="list-group-item">
+                                                <h4><?= isset($nama[$data['npm']]) ? $nama[$data['npm']] : '-'; ?></h4>
+                                            </li>
+                                            <h5 class="card-title"><b>Jenis Transaksi :</b></h5>
+                                            <li class="list-group-item">
+                                                <h4><?php
+                                                    switch ($data['kode_jenis']) {
+                                                        case '101':
+                                                            echo 'Reward';
+                                                            break;
+                                                        case '102':
+                                                            echo 'Pembelian';
+                                                            break;
+                                                        case '103':
+                                                            echo 'Punishment';
+                                                            break;
+                                                        case '105':
+                                                            echo 'Misi Tambahan';
+                                                            break;
+                                                        case '106':
+                                                            echo 'Konsultasi';
+                                                            break;
+                                                        default:
+                                                            echo $data['kode_jenis'];
+                                                    }
+                                                    ?>
+                                                </h4>
+                                            </li>
+                                            <h5 class="card-title"><b>Nama Transaksi:</b></h5>
+                                            <li class="list-group-item">
+                                                <h4><?= $data['nama_transaksi']; ?></h4>
+                                            </li>
+                                            <h5 class="card-title"><b>Poin Digunakan :</b></h5>
+                                            <li class="list-group-item">
+                                                <h4><?= $data['poin_digunakan']; ?></h4>
+                                            </li>
+                                            <h5 class="card-title"><b>Tanggal Transaksi :</b></h5>
+                                            <li class="list-group-item">
+                                                <h4><?= $data['tanggal_transaksi']; ?></h4>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+<!--Data Modal Validasi-->
+<?php foreach ($data_transaksi as $data) : ?>
+    <div class="modal fade" id="modalValidasi<?php echo $data['id_transaksi']; ?>">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"><?= $title; ?> </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/Validasi/aksi/<?= $data['id_transaksi']; ?>" method="post" enctype="multipart/form-data">
+                        <!-- <div class="form-group ">
+                            <label for="id_transaksi" class="col-form-label">Kode Transaksi</label>
+                           
+                                <input type="number" class="form-control" id="id_transaksi" name="id_transaksi" value="<?php echo $data['id_transaksi'] ?>" required readonly>
+                            </div> -->
+                        <div class="form-group ">
+                            <label for="jenis_transaksi" class="col-form-label">Jenis Transaksi</label>
+
+                            <input type="text" class="form-control" id="jenis_transaksi" name="jenis_transaksi" value=" <?php
+                                                                                                                        switch ($data['kode_jenis']) {
+                                                                                                                            case '101':
+                                                                                                                                echo 'Reward';
+                                                                                                                                break;
+                                                                                                                            case '102':
+                                                                                                                                echo 'Pembelian';
+                                                                                                                                break;
+                                                                                                                            case '103':
+                                                                                                                                echo 'Punishment';
+                                                                                                                                break;
+                                                                                                                            case '105':
+                                                                                                                                echo 'Misi Tambahan';
+                                                                                                                                break;
+                                                                                                                            default:
+                                                                                                                                echo $data['kode_jenis'];
+                                                                                                                        }
+                                                                                                                        ?>" readonly>
+                        </div>
+                        <div class="form-group ">
+                            <label for="nama_transaksi" class="col-form-label">Nama Transaksi</label>
+                            <input type="text" class="form-control" id="nama_transaksi" name="nama_transaksi" value="<?php echo $data['nama_transaksi'] ?>" readonly>
+                        </div>
+                        <div class="form-group ">
+                            <label for="npm" class="col-form-label">NPM</label>
+                            <input type="number" class="form-control" id="npm" name="npm" value="<?php echo $data['npm'] ?>" readonly>
+                        </div>
+                        <div class="form-group ">
+                            <label for="validation" class="col-form-label">Validasi</label>
+                            <select name="validation" id="validation" class="form-control" required oninvalid="this.setCustomValidity('Pilih Salah Satu')" oninput="setCustomValidity('')">
+                                <option value="Sudah">Ya</option>
+                                <option value="Belum">Tidak</option>
+                            </select>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Validasi</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+<?php endforeach ?>

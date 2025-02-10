@@ -30,13 +30,31 @@ class UserAPI extends ResourceController
     // Menambahkan data user baru
     public function create()
     {
+        // Ambil data JSON dari request
         $input = $this->request->getJSON();
 
-        if (!$this->model->insert($input)) {
-            return $this->failValidationErrors($this->model->errors());
+        // Validasi input
+        if (empty($input)) {
+            return $this->fail('Data input tidak boleh kosong', 400);
         }
 
-        return $this->respondCreated(['status' => 'success', 'message' => 'Data berhasil ditambahkan']);
+        // Coba insert data ke model
+        try {
+            if (!$this->model->insert($input)) {
+                // Jika gagal, kembalikan error validasi
+                return $this->failValidationErrors($this->model->errors());
+            }
+
+            // Jika berhasil, kembalikan respons sukses
+            return $this->respondCreated([
+                'status' => 'success',
+                'message' => 'Data berhasil ditambahkan',
+                'data' => $input // Opsional: kembalikan data yang baru saja ditambahkan
+            ]);
+        } catch (\Exception $e) {
+            // Tangani exception yang tidak terduga
+            return $this->failServerError('Terjadi kesalahan pada server: ' . $e->getMessage());
+        }
     }
 
     // Memperbarui data user berdasarkan ID
@@ -48,16 +66,31 @@ class UserAPI extends ResourceController
             return $this->failValidationErrors($this->model->errors());
         }
 
-        return $this->respond(['status' => 'success', 'message' => 'Data berhasil diperbarui']);
+        return $this->respond([
+            'id' => $id,
+            'data' => $input,
+            'status' => 'success',
+            'message' => 'Data berhasil diperbarui',
+        ]);
     }
 
     // Menghapus data user berdasarkan ID
     public function delete($id = null)
     {
-        if (!$this->model->delete($id)) {
+        $data = $this->model->find($id);
+        if (!$data) {
             return $this->failNotFound('Data tidak ditemukan');
         }
 
-        return $this->respondDeleted(['status' => 'success', 'message' => 'Data berhasil dihapus']);
+        if (!$this->model->delete($id)) {
+            return $this->fail('Gagal menghapus data', 500);
+        }
+
+        return $this->respondDeleted([
+            'id' => $id,
+            'data' => $data,
+            'status' => 'success',
+            'message' => 'Data berhasil dihapus',
+        ]);
     }
 }

@@ -39,7 +39,9 @@
                 </div>
                 <div class="col-12">
                     <div class="table-responsive">
-                        <?= $this->include('PoinMarket_Admin/Tabel/tabel_validasi'); ?>
+                        <?php if (in_groups(['admin', 'validator'])) : ?>
+                            <?= $this->include('PoinMarket_Admin/Tabel/tabel_validasi'); ?>
+                        <?php endif ?>
                     </div>
                 </div>
             </div>

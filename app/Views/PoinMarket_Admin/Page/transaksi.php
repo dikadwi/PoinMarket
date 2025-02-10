@@ -109,9 +109,14 @@
                         </select>
                     </div>
                     <!-- Input untuk menampilkan Point yang dipilih -->
-                    <div class="form-group ">
+                    <div class="form-group " style="display: none;">
                         <label for="poin_digunakan" class="col-form-label">Point Digunakan</label>
-                        <input type="text" class="form-control" id="poin_digunakan" name="poin_digunakan">
+                        <input type="text" class="form-control" id="poin_digunakan" name="poin_digunakan" readonly>
+                    </div>
+                    <!-- Input untuk menampilkan Point yang diberikan -->
+                    <div class="form-group " style="display: none;">
+                        <label for="poin_diberikan" class="col-form-label">Point Diberikan</label>
+                        <input type="text" class="form-control" id="poin_diberikan" name="poin_diberikan" readonly>
                     </div>
             </div>
             <div class="modal-footer">
@@ -128,6 +133,7 @@
     var jenisTransaksiSelect = document.getElementById('DD_jenis_transaksi');
     var namaTransaksiSelect = document.getElementById('DD_nama_transaksi');
     var poinDigunakanInput = document.getElementById('poin_digunakan');
+    var poinDiberikanInput = document.getElementById('poin_diberikan');
 
     // Mendengarkan perubahan pada dropdown Jenis Transaksi
     jenisTransaksiSelect.addEventListener('change', function() {
@@ -136,6 +142,7 @@
         // Mengosongkan opsi Nama Transaksi terlebih dahulu
         namaTransaksiSelect.innerHTML = '<option value="">Pilih Transaksi</option>';
         poinDigunakanInput.value = '';
+        poinDiberikanInput.value = '';
 
         // Memperoleh daftar Nama Transaksi yang sesuai dengan Jenis Transaksi yang dipilih
         var transaksiOptions = <?php echo json_encode($transaksi); ?>;
@@ -158,7 +165,12 @@
         // Memperoleh point yang dipilih sesuai dengan Nama Transaksi yang dipilih
         for (var i = 0; i < transaksiOptions.length; i++) {
             if (transaksiOptions[i]['nama_transaksi'] == selectedNamaTransaksi) {
+                // Tampilkan input untuk poin digunakan dan poin diberikan
+                poinDigunakanInput.parentNode.style.display = (transaksiOptions[i]['poin_digunakan'] != null && transaksiOptions[i]['poin_digunakan'] != '') ? 'block' : 'none';
                 poinDigunakanInput.value = transaksiOptions[i]['poin_digunakan'];
+
+                poinDiberikanInput.parentNode.style.display = (transaksiOptions[i]['poin_diberikan'] != null && transaksiOptions[i]['poin_diberikan'] != '') ? 'block' : 'none';
+                poinDiberikanInput.value = transaksiOptions[i]['poin_diberikan'];
                 break; // Hentikan perulangan setelah menemukan nilai Point
             }
         }

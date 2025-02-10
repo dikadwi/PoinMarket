@@ -23,6 +23,11 @@ class Login extends BaseController
         return view('auth/login');
     }
 
+    public function loginMhs()
+    {
+        return view('auth/loginMhs');
+    }
+
     public function login()
     {
         return view('auth/LoginPage');
@@ -33,9 +38,9 @@ class Login extends BaseController
         return view('auth/LoginPageMhs');
     }
 
-    public function loginMhs()
+    public function registerMhs()
     {
-        return view('auth/loginMhs');
+        return view('auth/RegisterPageMhs');
     }
 
     public function detail()
@@ -84,6 +89,7 @@ class Login extends BaseController
 
                 // Simpan data ke session
                 $session = session();
+                // Atur session untuk mahasiswa (ganti kondisi agar tidak bertabrakan dengan session admin) 
                 $session->set('isLoggedIn', true);
                 // Set sesuai dengan data mahasiswa dari tabel
                 $session->set('user_id', $mahasiswa['npm']);
