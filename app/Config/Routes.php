@@ -300,7 +300,11 @@ $routes->group('api', function ($routes) {
 // $routes->get('home/add', 'Home::add');
 // $routes->post('home/save', 'Home::save');
 
-$routes->get('supabase', 'Home::index');
+$routes->get('supabase/users', 'SupabaseController::getUsers');
+$routes->post('supabase/adduser', 'SupabaseController::addUser');
+$routes->delete('supabase/users/(:num)', 'SupabaseController::delete/$1');
+
+
 
 /*
  * --------------------------------------------------------------------
