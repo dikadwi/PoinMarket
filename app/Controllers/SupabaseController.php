@@ -28,13 +28,15 @@ class SupabaseController extends ResourceController
             'email' => 'johndoe@example.com'
         ];
 
-        $response = $this->supabase->insertData('users', $data);
+        $response = $this->supabase->insertData('users', $data); //simpan data ke tabel
         return $this->respond($response);
     }
 
     // public function update($id = null)
     // {
     //     $data = [];
+    //     $response = $this->supabase->insertData('users', $data); //simpan data ke tabel
+    //     return $this->respond($response);
     // }
 
     public function delete($id = null)
@@ -45,7 +47,7 @@ class SupabaseController extends ResourceController
         }
 
         // Hapus data pengguna dari Supabase
-        $response = $this->supabase->deleteData('users', $id);
+        $response = $this->supabase->deleteData('users', $id); // hapus data dari tabel
 
         // Jika berhasil, return response success
         if ($response) {
