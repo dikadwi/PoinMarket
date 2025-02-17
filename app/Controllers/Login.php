@@ -93,7 +93,7 @@ class Login extends BaseController
                 $session->set('isLoggedIn', true);
                 // Set sesuai dengan data mahasiswa dari tabel
                 $session->set('user_id', $mahasiswa['npm']);
-                $session->set('username', $mahasiswa['nama']);
+                $session->set('nama', $mahasiswa['nama']);
                 $session->set('npm', $mahasiswa['npm']);
                 $session->set('email', $mahasiswa['email']);
                 $session->set('point', $mahasiswa['point']);
@@ -118,7 +118,7 @@ class Login extends BaseController
         $session = session();
         $session->remove('isLoggedIn');
         $session->remove('user_id');
-        $session->remove('username');
+        $session->remove('nama');
         $session->remove('npm');
         $session->remove('email');
         $session->remove('point');

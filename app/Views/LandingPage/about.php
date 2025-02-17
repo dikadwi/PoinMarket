@@ -69,21 +69,21 @@
                 <div class="card-body text-center">
                     <img src="https://c8.alamy.com/comp/2D69TKH/business-team-at-the-video-conference-call-in-boardroom-vector-flat-cartoon-illustration-online-meeting-with-ceo-manager-or-director-consulting-an-2D69TKH.jpg" alt="Foto Tim" class="rounded-full mx-auto mb-4">
                     <h3 class="text-2xl font-bold text-purple-600 mb-2">. . . .</h3>
-                    <!-- <p class="text-gray-600 font-bold">CEO & Founder</p> -->
+                    <p class="text-purple-600 font-bold">Nama</p>
                     <p class="text-gray-600">Seorang visioner yang percaya bahwa gamifikasi dapat mengubah cara kita belajar.</p>
                 </div>
             </div>
-            <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
+            <!-- <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header text-center">
                     <span>CTO</span>
                 </div>
                 <div class="card-body text-center">
                     <img src="https://static.vecteezy.com/system/resources/previews/004/579/151/non_2x/the-web-developer-team-is-building-a-smartphone-app-in-flat-design-free-vector.jpg" alt="Foto Tim" class="rounded-full mx-auto mb-4">
                     <h3 class="text-2xl font-bold text-purple-600 mb-2">. . . .</h3>
-                    <!-- <p class="text-gray-600 font-bold">CTO</p> -->
+                    <-- <p class="text-gray-600 font-bold">CTO</p> ->
                     <p class="text-gray-600">Ahli teknologi yang bertanggung jawab atas inovasi teknologi dan pengembangan platform PointMarket.</p>
                 </div>
-            </div>
+            </div> -->
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header text-center">
                     <span>Developer</span>
@@ -91,21 +91,21 @@
                 <div class="card-body text-center">
                     <img src="https://static.vecteezy.com/system/resources/previews/007/814/266/non_2x/programmer-and-engineering-development-coding-web-development-website-design-developer-flat-vector.jpg" alt="Foto Tim" class="rounded-full mx-auto mb-4">
                     <h3 class="text-2xl font-bold text-purple-600 mb-2">. . . .</h3>
-                    <!-- <p class="text-gray-600 font-bold">Developer</p> -->
+                    <p class="text-purple-600 font-bold">Nama</p>
                     <p class="text-gray-600">Ahli pengembang aplikasi yang bertanggung jawab atas platform PointMarket.</p>
                 </div>
             </div>
-            <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
+            <!-- <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header text-center">
                     <span>Marketing Manager</span>
                 </div>
                 <div class="card-body text-center">
                     <img src="https://static.vecteezy.com/system/resources/previews/002/314/283/non_2x/mobile-marketing-web-concept-with-people-vector.jpg" alt="Foto Tim" class="rounded-full mx-auto mb-4">
                     <h3 class="text-2xl font-bold text-purple-600 mb-2">. . . .</h3>
-                    <!-- <p class="text-gray-600 font-bold">Marketing Manager</p> -->
+                    <-- <p class="text-gray-600 font-bold">Marketing Manager</p> ->
                     <p class="text-gray-600">Bertanggung jawab untuk mempromosikan PointMarket dan menjangkau lebih banyak mahasiswa.</p>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 

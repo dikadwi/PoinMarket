@@ -59,9 +59,9 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
 
                     <!-- Card Image -->
                     <div class="card-img-container">
-                        <img src="https://mycred.me/wp-content/uploads/2023/08/mycred-blog_Ecommerce-Gamification-Level-Up-Your-Online-Sales-with-Fun-and-Rewards-Social-Media.jpg"
+                        <img src="<?= base_url('uploads/' . $t['gambar']); ?>"
                             class="card-img-top"
-                            alt=""
+                            alt="Gambar_Item"
                             style="width: 100%; height: auto;">
                     </div>
 
@@ -105,9 +105,18 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                             ?>
                             <strong>Status Validasi :</strong> <?= $statusText ?><br>
                         </p>
-
                     </div>
-
+                    <div class="d-flex justify-content-between mb-2 mx-3">
+                        <!-- Creator -->
+                        <!-- <button type="button" class="btn btn-info btn-block d-flex flex-column align-items-center">
+                            <i class="fas fa-user"></i>
+                            <span class="d-none d-md-inline"><?= $t['creator']; ?></span>
+                        </button> -->
+                        <button type="button" class="btn btn-pembuat btn-primary d-inline-block text-center opacity-50" data-toggle="modal" data-target="">
+                            <i class="fas fa-user"></i> <!-- Ikon di atas teks -->
+                            <span> <?= $t['creator']; ?></span> <!-- Teks di bawah ikon -->
+                        </button>
+                    </div>
                     <!-- Card Footer (Tombol Aksi) -->
                     <div class="card-footer">
                         <div class="row d-flex justify-content-center">
@@ -120,7 +129,7 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                             </div>
 
                             <!-- Tombol Edit (Hanya untuk Admin & Dosen) -->
-                            <?php if (in_groups(['superadmin', 'dosen'])) : ?>
+                            <?php if (in_groups(['superadmin', 'dosen']) && ($t['kode_jenis'] != '103' || in_groups(['superadmin']))) : ?>
                                 <div class="col-6 col-md-3 mb-2 mb-md-0">
                                     <button type="button" class="btn btn-warning btn-block d-flex flex-column align-items-center" data-toggle="modal" data-target="#modalEdit<?= esc($t['id_transaksi']) ?>">
                                         <i class="fas fa-edit"></i>
@@ -139,7 +148,7 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                                 </div>
                             <?php endif; ?>
                             <!-- Tombol Hapus (Hanya untuk SuperAdmin & Admin) -->
-                            <?php if (in_groups(['superadmin', 'dosen'])) : ?>
+                            <?php if (in_groups(['superadmin', 'dosen']) && ($t['kode_jenis'] != '103' || in_groups(['superadmin']))) : ?>
                                 <div class="col-6 col-md-3 mb-2 mb-md-0">
                                     <button href="/Jenis_Transaksi/delete/<?= $t['id_transaksi']; ?>" class="btn btn-danger btn-hapus btn-block d-flex flex-column align-items-center">
                                         <i class="fas fa-trash"></i>
@@ -255,12 +264,37 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                             <label for="keterangan" class="col-form-label">Feedback</label>
                             <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?php echo $t['keterangan'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
                         </div>
-                        <div class="form-group ">
+                        <!-- <div class="form-group ">
                             <label for="poin_digunakan" class="col-form-label">Point</label>
                             <input type="number" class="form-control" id="poin_digunakan" name="poin_digunakan" value="<?php echo $t['poin_digunakan'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+                        </div> -->
+                        <!-- Menampilkan poin berdasarkan kode_jenis -->
+                        <?php if (in_array($t['kode_jenis'], [102, 103, 105, 106])): ?>
+                            <div class="form-group">
+                                <label for="poin_digunakan" class="col-form-label">Poin Harga</label>
+                                <input type="number" class="form-control" id="poin_digunakan" name="poin_digunakan" value="<?php echo $t['poin_digunakan']; ?>" required>
+                            </div>
+                        <?php endif; ?>
+                        <?php if (in_array($t['kode_jenis'], [101, 105])): ?>
+                            <div class="form-group">
+                                <label for="poin_diberikan" class="col-form-label">Poin Reward</label>
+                                <input type="number" class="form-control" id="poin_diberikan" name="poin_diberikan" value="<?php echo isset($t['poin_diberikan']) ? $t['poin_diberikan'] : ''; ?>" required>
+                            </div>
+                        <?php endif; ?>
+                        <div class="form-group ">
+                            <label for="gambar" class="col-form-label">Gambar</label>
+                            <img src="<?= base_url('uploads/' . $t['gambar']); ?>" alt="Gambar" width="100" height="100">
+                            <input type="hidden" name="gambar_lama" value="<?= $t['gambar']; ?>">
+                            <input type="file" class="form-control" id="gambar" name="gambar">
                         </div>
-
-
+                        <?php if (in_groups(['superadmin'])) : ?>
+                            <div class="form-group ">
+                                <label for="creator" class="col-form-label">Creator</label>
+                                <input type="text" class="form-control" id="creator" name="creator" value="<?php echo $t['creator'] ?>">
+                            </div>
+                        <?php else : ?>
+                            <input type="hidden" name="creator" value="<?php echo $t['creator'] ?>">
+                        <?php endif; ?>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Update</button>

@@ -12,46 +12,10 @@
                         <h5 class="card-title"><strong><?= $t['nama_transaksi']; ?></strong></h5>
                     </div>
                     <div class="card-img-container">
-                        <?php
-                        switch ($t['kode_jenis']) {
-                            case '101': // Reward
-                                echo '<img src="https://gapsystudio.com/storage/1746/gamification-in-ux-11zon.webp"
-                  class="card-img-top"
-                  alt="Gamification in UX"
-                  style="width: 100%; height: auto;">';
-                                break;
-                            case '102': // Belanja
-                                echo '<img src="https://mycred.me/wp-content/uploads/2023/08/mycred-blog_Ecommerce-Gamification-Level-Up-Your-Online-Sales-with-Fun-and-Rewards-Social-Media.jpg"
-                  class="card-img-top"
-                  alt="Ecommerce Gamification"
-                  style="width: 100%; height: auto;">';
-                                break;
-                            case '103': // Punishment
-                                echo '<img src="https://media.istockphoto.com/id/1716492017/vector/traffic-charge-bill-concept-penalty-fine-to-pay-for-prohibited-legal-charge-and-expense.jpg?s=612x612&w=0&k=20&c=cX-1hbVddLdeb8nFN8rCDRVsJ6YHP4Y2OCMkdSYBN1s="
-                  class="card-img-top"
-                  alt="Punishment"
-                  style="width: 100%; height: auto;">';
-                                break;
-                            case '105': // Misi
-                                echo '<img src="https://elearningindustry.com/wp-content/uploads/2014/07/Gamification_article.jpg"
-                  class="card-img-top"
-                  alt="Misi"
-                  style="width: 100%; height: auto;">';
-                                break;
-                            case '106': // Konsultasi
-                                echo '<img src="https://trierconsulting.com/wp-content/uploads/2021/07/client-1024x657.png"
-                  class="card-img-top"
-                  alt="Konsultasi"
-                  style="width: 100%; height: auto;">';
-                                break;
-                            default: // Default image
-                                echo '<img src="https://via.placeholder.com/300x200.png?text=Default+Image"
-                  class="card-img-top"
-                  alt="Default Image"
-                  style="width: 100%; height: auto;">';
-                                break;
-                        }
-                        ?>
+                        <img src="<?= base_url('uploads/' . $t['gambar']); ?>"
+                            class="card-img-top"
+                            alt="Gambar_Item"
+                            style="width: 100%; height: auto;">
                     </div>
                     <div class="card-body">
                         <p class="card-text">

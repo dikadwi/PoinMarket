@@ -11,12 +11,17 @@ if (isset($_GET['search'])) {
     });
 }
 
-// Filter data berdasarkan role dan status validasi
-if (in_groups(['dosen'])) {
-    $transaksi = array_filter($transaksi, function ($data) {
-        return $data['valid'] == 'Yes'; // Hanya tampilkan data dengan status validasi "Yes" (Sudah)
-    });
-}
+// // Filter data berdasarkan role dan status validasi
+// if (in_groups(['dosen'])) {
+//     $transaksi = array_filter($transaksi, function ($data) {
+//         return $data['valid'] == 'Yes'; // Hanya tampilkan data dengan status validasi "Yes" (Sudah)
+//     });
+// }
+
+// Filter data berdasarkan status validasi
+$transaksi = array_filter($transaksi, function ($data) {
+    return $data['valid'] == 'Yes'; // Hanya tampilkan data dengan status validasi "Yes" (Sudah)
+});
 
 // Kelompokkan transaksi berdasarkan kode_jenis
 $grouped_transaksi = [];
@@ -67,33 +72,12 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
 
                     <!-- Card Image -->
                     <div class="card-img-container">
-                        <?php if ($kode_jenis == 101): ?>
-                            <img src="https://gapsystudio.com/storage/1746/gamification-in-ux-11zon.webp"
-                                class="card-img-top"
-                                alt="Gamification in UX"
-                                style="width: 100%; height: auto;">
-                        <?php elseif ($kode_jenis == 102): ?>
-                            <img src="https://mycred.me/wp-content/uploads/2023/08/mycred-blog_Ecommerce-Gamification-Level-Up-Your-Online-Sales-with-Fun-and-Rewards-Social-Media.jpg"
-                                class="card-img-top"
-                                alt=""
-                                style="width: 100%; height: auto;">
-                        <?php elseif ($kode_jenis == 105): ?>
-                            <img src="https://elearningindustry.com/wp-content/uploads/2014/07/Gamification_article.jpg"
-                                class="card-img-top"
-                                alt=""
-                                style="width: 100%; height: auto;">
-                        <?php elseif ($kode_jenis == 106): ?>
-                            <img src="https://trierconsulting.com/wp-content/uploads/2021/07/client-1024x657.png"
-                                class="card-img-top"
-                                alt=""
-                                style="width: 100%; height: auto;">
-                        <?php else: ?>
-                            <img src="https://media.istockphoto.com/id/1716492017/vector/traffic-charge-bill-concept-penalty-fine-to-pay-for-prohibited-legal-charge-and-expense.jpg?s=612x612&w=0&k=20&c=cX-1hbVddLdeb8nFN8rCDRVsJ6YHP4Y2OCMkdSYBN1s="
-                                class="card-img-top"
-                                alt="Ecommerce Gamification"
-                                style="width: 100%; height: auto;">
-                        <?php endif; ?>
+                        <img src="<?= base_url('uploads/' . $t['gambar']); ?>"
+                            class="card-img-top"
+                            alt="Gambar_Item"
+                            style="width: 100%; height: auto;">
                     </div>
+
                     <!-- Card Body -->
                     <div class="card-body">
                         <p class="card-text">
@@ -134,9 +118,18 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                         ?>
                         <strong>Status Item :</strong> <?= $itemstatusText ?><br>
                         </p>
-
                     </div>
-
+                    <div class="d-flex justify-content-between mb-2 mx-3">
+                        <!-- Creator -->
+                        <!-- <button type="button" class="btn btn-info btn-block d-flex flex-column align-items-center">
+                            <i class="fas fa-user"></i>
+                            <span class="d-none d-md-inline"><?= $t['creator']; ?></span>
+                        </button> -->
+                        <button type="button" class="btn btn-pembuat btn-primary d-inline-block text-center opacity-50" data-toggle="modal" data-target="">
+                            <i class="fas fa-user"></i> <!-- Ikon di atas teks -->
+                            <span> <?= $t['creator']; ?></span> <!-- Teks di bawah ikon -->
+                        </button>
+                    </div>
                     <!-- Card Footer (Tombol Aksi) -->
                     <div class="card-footer">
                         <div class="row d-flex justify-content-center">
@@ -236,13 +229,13 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
 
 <?php endforeach; ?>
 
-<!--Data Modal Box Edit Data-->
+<!--Data Modal Box Aktivasi Item-->
 <?php foreach ($transaksi as $t) : ?>
     <div class="modal fade" id="modalEdit<?php echo $t['id_transaksi']; ?>">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content ">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Edit <?= $title; ?> </h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Aktivasi Item </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -259,16 +252,31 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                             <input type="text" class="form-control" id="nama_transaksi" name="nama_transaksi" value="<?php echo $t['nama_transaksi'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
                         </div>
                         <div class="form-group ">
-                            <label for="detail" class="col-form-label">Detail</label>
+                            <label for="detail" class="col-form-label">Rule Item</label>
                             <input type="text" class="form-control" id="detail" name="detail" value="<?php echo $t['detail'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
                         </div>
                         <div class="form-group ">
-                            <label for="keterangan" class="col-form-label">Keterangan</label>
+                            <label for="keterangan" class="col-form-label">Feedback</label>
                             <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?php echo $t['keterangan'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
                         </div>
+                        <!-- Menampilkan poin berdasarkan kode_jenis -->
+                        <?php if (in_array($t['kode_jenis'], [102, 103, 105, 106])): ?>
+                            <div class="form-group">
+                                <label for="poin_digunakan" class="col-form-label">Poin Harga</label>
+                                <input type="number" class="form-control" id="poin_digunakan" name="poin_digunakan" value="<?php echo $t['poin_digunakan']; ?>" required>
+                            </div>
+                        <?php endif; ?>
+                        <?php if (in_array($t['kode_jenis'], [101, 105])): ?>
+                            <div class="form-group">
+                                <label for="poin_diberikan" class="col-form-label">Poin Reward</label>
+                                <input type="number" class="form-control" id="poin_diberikan" name="poin_diberikan" value="<?php echo isset($t['poin_diberikan']) ? $t['poin_diberikan'] : ''; ?>" required>
+                            </div>
+                        <?php endif; ?>
                         <div class="form-group ">
-                            <label for="poin_digunakan" class="col-form-label">Point</label>
-                            <input type="number" class="form-control" id="poin_digunakan" name="poin_digunakan" value="<?php echo $t['poin_digunakan'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+                            <label for="gambar" class="col-form-label">Gambar</label>
+                            <img src="<?= base_url('uploads/' . $t['gambar']); ?>" alt="Gambar" width="100" height="100">
+                            <input type="hidden" name="gambar_lama" value="<?= $t['gambar']; ?>">
+                            <input type="file" class="form-control" id="gambar" name="gambar">
                         </div>
                         <div class="form-group">
                             <label for="status" class="col-form-label">Status Item</label>
@@ -277,6 +285,14 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                                 <option value="No" <?php echo ($t['status'] == 'No') ? 'selected' : ''; ?>>Tidak Aktif</option>
                             </select>
                         </div>
+                        <?php if (in_groups(['superadmin'])) : ?>
+                            <div class="form-group ">
+                                <label for="creator" class="col-form-label">Creator</label>
+                                <input type="text" class="form-control" id="creator" name="creator" value="<?php echo $t['creator'] ?>">
+                            </div>
+                        <?php else : ?>
+                            <input type="hidden" name="creator" value="<?php echo $t['creator'] ?>">
+                        <?php endif; ?>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Update</button>

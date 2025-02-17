@@ -81,7 +81,7 @@
                         <select name="kode_jenis" id="kode_jenis" class="form-control" required>
                             <option value="101" <?php if ($title == 'Reward') echo 'selected'; ?>>Reward</option>
                             <option value="102" <?php if ($title == 'Pembelian') echo 'selected'; ?>>Pembelian</option>
-                            <option value="103" <?php if ($title == 'Punishment') echo 'selected'; ?>>Punishment</option>
+                            <!-- <option value="103" <php if ($title == 'Punishment') echo 'selected'; ?>>Punishment</option> -->
                             <option value="105" <?php if ($title == 'Misi Tambahan') echo 'selected'; ?>>Misi Tambahan</option>
                             <option value="106" <?php if ($title == 'Misi Tambahan') echo 'selected'; ?>>Konsultasi</option>
                         </select>

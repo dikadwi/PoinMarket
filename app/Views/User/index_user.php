@@ -44,7 +44,7 @@
                   <div class="card-body">
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item">
-                        <h5 class="card-title"><b>Nama : </b><?= $username; ?></h5>
+                        <h5 class="card-title"><b>Nama : </b><?= $nama; ?></h5>
                       </li>
                       <li class="list-group-item">
                         <h5 class="card-title"><b>NPM : </b><?= $npm; ?></h5>

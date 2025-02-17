@@ -55,11 +55,11 @@ class Marketplace extends BaseController
         return redirect()->to('/toko')->with('sukses', 'Data transaksi berhasil diupdate');
     }
 
-    public function index()
+    public function market()
     {
         $session = session();
         // $isLoggedIn = $session->get('isLoggedIn'); // Ambil status login dari sesi
-        $username = $session->get('username');
+        $nama = $session->get('nama');
         $npm = $session->get('npm');
         // $mahasiswa = $this->MahasiswaModel->where('nama', $username)->first();
 
@@ -74,17 +74,81 @@ class Marketplace extends BaseController
         $datatransaksi = $this->DataTransaksiModel->getRewardsByNpmAndValidation($npm, 'Sudah'); // Ambil reward yang sudah divalidasi
 
         $data = [
-            'title' => 'Market Point',
+            'title' => 'MarketPlace',
             // 'isLoggedIn' => $isLoggedIn,
             'npm' => $npm,
-            'username' => $username,
+            'nama' => $nama,
             // 'mahasiswa' => $mahasiswa,
             'point' => $totalPoints,
             'transaksi' => $transaksi,
             'datatransaksi' => $datatransaksi
         ];
 
-        return view('Marketplace/index', $data);
+        return view('Marketplace/marketplace', $data);
+    }
+
+    public function misi()
+    {
+        $session = session();
+        // $isLoggedIn = $session->get('isLoggedIn'); // Ambil status login dari sesi
+        $nama = $session->get('nama');
+        $npm = $session->get('npm');
+        // $mahasiswa = $this->MahasiswaModel->where('nama', $username)->first();
+
+        // Mengambil total poin dari model Mahasiswa
+        $mahasiswaData = $this->MahasiswaModel->getPointByNpm($npm);
+        $totalPoints = $mahasiswaData['point'] ?? 0; // Menggunakan null coalescing operator untuk default 0
+        // Memperbarui poin di session
+        $session->set('point', $totalPoints);
+
+        // Ambil semua transaksi yang tersedia
+        $transaksi = $this->TransaksiModel->findAll(); // Pastikan model ini mengembalikan data yang sesuai
+        $datatransaksi = $this->DataTransaksiModel->getRewardsByNpmAndValidation($npm, 'Sudah'); // Ambil reward yang sudah divalidasi
+
+        $data = [
+            'title' => 'Misi',
+            // 'isLoggedIn' => $isLoggedIn,
+            'npm' => $npm,
+            'nama' => $nama,
+            // 'mahasiswa' => $mahasiswa,
+            'point' => $totalPoints,
+            'transaksi' => $transaksi,
+            'datatransaksi' => $datatransaksi
+        ];
+
+        return view('Marketplace/misi', $data);
+    }
+
+    public function reward()
+    {
+        $session = session();
+        // $isLoggedIn = $session->get('isLoggedIn'); // Ambil status login dari sesi
+        $nama = $session->get('nama');
+        $npm = $session->get('npm');
+        // $mahasiswa = $this->MahasiswaModel->where('nama', $username)->first();
+
+        // Mengambil total poin dari model Mahasiswa
+        $mahasiswaData = $this->MahasiswaModel->getPointByNpm($npm);
+        $totalPoints = $mahasiswaData['point'] ?? 0; // Menggunakan null coalescing operator untuk default 0
+        // Memperbarui poin di session
+        $session->set('point', $totalPoints);
+
+        // Ambil semua transaksi yang tersedia
+        $transaksi = $this->TransaksiModel->findAll(); // Pastikan model ini mengembalikan data yang sesuai
+        $datatransaksi = $this->DataTransaksiModel->getRewardsByNpmAndValidation($npm, 'Sudah'); // Ambil reward yang sudah divalidasi
+
+        $data = [
+            'title' => 'Reward',
+            // 'isLoggedIn' => $isLoggedIn,
+            'npm' => $npm,
+            'nama' => $nama,
+            // 'mahasiswa' => $mahasiswa,
+            'point' => $totalPoints,
+            'transaksi' => $transaksi,
+            'datatransaksi' => $datatransaksi
+        ];
+
+        return view('Marketplace/reward', $data);
     }
 
     // Fungsi untuk mengklaim reward
@@ -305,11 +369,11 @@ class Marketplace extends BaseController
     public function quis()
     {
         $session = session();
-        $username = $session->get('username');
+        $nama = $session->get('nama');
 
         $data = [
             'title' => 'Market Point',
-            'username' => $username,
+            'nama' => $nama,
             'quis' => $this->QuisModel->findAll(), // Ambil semua data kuis dari database
         ];
         return view('User/Page/quis', $data);

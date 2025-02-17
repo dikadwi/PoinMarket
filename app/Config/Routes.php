@@ -35,6 +35,7 @@ $routes->group('page', function ($routes) {
     $routes->get('', 'LandingPage::index');
     $routes->get('gamifikasi', 'LandingPage::gamifikasi');
     $routes->get('gaya_belajar', 'LandingPage::gaya_belajar');
+    $routes->get('panduan', 'LandingPage::panduan');
     $routes->get('about', 'LandingPage::about');
     $routes->get('contact', 'LandingPage::contact');
     $routes->get('privacy_policy', 'LandingPage::privacy');
@@ -225,12 +226,14 @@ $routes->group('Role_User', ['filter' => 'login_m'], function ($routes) {
     $routes->get('punishment', 'Role_User::punishment');
     $routes->get('misi_tambahan', 'Role_User::misi');
     $routes->get('konsultasi', 'Role_User::konsultasi');
-    $routes->get('market', 'Marketplace::index'); // Menampilkan halaman utama marketplace
+    $routes->get('market', 'Marketplace::market'); // Menampilkan halaman utama marketplace
     $routes->post('market/buy', 'Marketplace::buy'); // Proses pembelian
     $routes->post('market/reward', 'Marketplace::reward'); // Proses reward
     $routes->post('market/claim', 'Marketplace::claimReward'); // Proses reward
     $routes->post('market/punishment', 'Marketplace::punishment'); // Proses punishment
     $routes->post('market/misi_tambah', 'Marketplace::misi_tambah'); // Proses misi tambahan
+    $routes->get('market/misi', 'Marketplace::misi'); // Menampilkan halaman utama marketplace misi
+    $routes->get('market/reward', 'Marketplace::reward'); // Menampilkan halaman utama marketplace reward
     $routes->get('quis', 'Marketplace::quis');
     $routes->post('submitQuiz', 'Marketplace::submitQuiz');
     $routes->post('kirimJawaban', 'Marketplace::kirimJawaban');
@@ -302,6 +305,7 @@ $routes->group('api', function ($routes) {
 
 $routes->get('supabase/users', 'SupabaseController::getUsers');
 $routes->post('supabase/adduser', 'SupabaseController::addUser');
+$routes->patch('supabase/edit/(:num)', 'SupabaseController::updateUser/$1');
 $routes->delete('supabase/users/(:num)', 'SupabaseController::delete/$1');
 
 

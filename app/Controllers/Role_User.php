@@ -44,7 +44,7 @@ class Role_User extends BaseController
 
         $data = [
             'title' => 'Dashboard',
-            'username' => $session->get('username'),
+            'nama' => $session->get('nama'),
             'id' => $session->get('user_id'),
             'npm' => $session->get('npm'),
             'email' => $session->get('email'),
@@ -84,7 +84,7 @@ class Role_User extends BaseController
 
         $data = [
             'title' => 'Pembelian Saya',
-            'username' => $session->get('username'),
+            'nama' => $session->get('nama'),
             'data_transaksi' =>  $filteredDataTransaksi,
             'transaksi' => $this->TransaksiModel->getTransaksi(),
             'npm' => $this->MahasiswaModel->getMhs(),
@@ -111,7 +111,7 @@ class Role_User extends BaseController
 
         $data = [
             'title' => 'Reward Saya',
-            'username' => $session->get('username'),
+            'nama' => $session->get('nama'),
             'data_transaksi' => $filteredDataTransaksi,
             'transaksi' => $this->TransaksiModel->getTransaksi(),
             'npm' => $this->MahasiswaModel->getMhs(),
@@ -138,7 +138,7 @@ class Role_User extends BaseController
 
         $data = [
             'title' => 'Punishment Saya',
-            'username' => $session->get('username'),
+            'nama' => $session->get('nama'),
             'data_transaksi' => $filteredDataTransaksi,
             'transaksi' => $this->TransaksiModel->getTransaksi(),
             'npm' => $this->MahasiswaModel->getMhs(),
@@ -165,7 +165,7 @@ class Role_User extends BaseController
 
         $data = [
             'title' => 'Misi Saya',
-            'username' => $session->get('username'),
+            'nama' => $session->get('nama'),
             'data_transaksi' => $filteredDataTransaksi,
             'transaksi' => $this->TransaksiModel->getTransaksi(),
             'npm' => $this->MahasiswaModel->getMhs(),
@@ -192,7 +192,7 @@ class Role_User extends BaseController
 
         $data = [
             'title' => 'Konsultasi Saya',
-            'username' => $session->get('username'),
+            'nama' => $session->get('nama'),
             'data_transaksi' => $filteredDataTransaksi,
             'transaksi' => $this->TransaksiModel->getTransaksi(),
             'npm' => $this->MahasiswaModel->getMhs(),
@@ -217,7 +217,7 @@ class Role_User extends BaseController
 
         $data = [
             'title' => 'Misi Tambahan',
-            'username' => $session->get('username'),
+            'nama' => $session->get('nama'),
             'npm' => $session->get('npm'),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'data_transaksi' => $filteredDataTransaksi,
@@ -329,7 +329,7 @@ class Role_User extends BaseController
 
         $data = array(
             'title' => 'Profile',
-            'username' => $session->get('username'),
+            'nama' => $session->get('nama'),
             'id' => $session->get('user_id'),
             'npm' => $session->get('npm'),
             'email' => $session->get('email'),
@@ -426,7 +426,7 @@ class Role_User extends BaseController
 
         $data = [
             'title' => 'Rewards',
-            'username' => $session->get('username'),
+            'nama' => $session->get('nama'),
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
 
@@ -445,7 +445,7 @@ class Role_User extends BaseController
 
         $data = [
             'title' => 'Pembelian',
-            'username' => $session->get('username'),
+            'nama' => $session->get('nama'),
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
 
@@ -464,7 +464,7 @@ class Role_User extends BaseController
 
         $data = [
             'title' => 'Punishment',
-            'username' => $session->get('username'),
+            'nama' => $session->get('nama'),
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
 
@@ -483,7 +483,7 @@ class Role_User extends BaseController
 
         $data = [
             'title' => 'Misi Tambahan',
-            'username' => $session->get('username'),
+            'nama' => $session->get('nama'),
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
 
@@ -502,7 +502,7 @@ class Role_User extends BaseController
 
         $data = [
             'title' => 'Konsultasi',
-            'username' => $session->get('username'),
+            'nama' => $session->get('nama'),
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
 
@@ -516,7 +516,7 @@ class Role_User extends BaseController
 
         $data = [
             'title' => 'Badges',
-            'username' => $session->get('username'),
+            'nama' => $session->get('nama'),
             'badges' => $this->BadgesModel->getBadges(),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
 
@@ -534,7 +534,7 @@ class Role_User extends BaseController
     //     $session = session();
 
     //     $data = [
-    //         'username' => $session->get('username'),
+    //         'nama' => $session->get('nama'),
     //         'title' => 'Transaksi Rewards',
     //         'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
     //         'transaksi' => $this->TransaksiModel->getJenis(),
@@ -555,7 +555,7 @@ class Role_User extends BaseController
     //     $session = session();
 
     //     $data = [
-    //         'username' => $session->get('username'),
+    //         'nama' => $session->get('nama'),
     //         'title' => 'Transaksi Pembelian',
     //         'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
     //         'transaksi' => $this->TransaksiModel->getJenis(),
@@ -576,7 +576,7 @@ class Role_User extends BaseController
     //     $session = session();
 
     //     $data = [
-    //         'username' => $session->get('username'),
+    //         'nama' => $session->get('nama'),
     //         'title' => 'Transaksi Punishment',
     //         'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
     //         'transaksi' => $this->TransaksiModel->getJenis(),
@@ -597,7 +597,7 @@ class Role_User extends BaseController
     //     $session = session();
 
     //     $data = [
-    //         'username' => $session->get('username'),
+    //         'nama' => $session->get('nama'),
     //         'title' => 'Transaksi Misi Tambahan',
     //         'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
     //         'transaksi' => $this->TransaksiModel->getJenis(),

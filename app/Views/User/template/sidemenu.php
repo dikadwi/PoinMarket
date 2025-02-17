@@ -12,7 +12,7 @@
                  <img src="/img/admin.jpg" class="img-circle elevation-2" alt="User Image">
              </div>
              <div class="info">
-                 <a href="#" class="d-block"><?= $username; ?></a>
+                 <a href="#" class="d-block"><?= $nama; ?></a>
              </div>
          </div>
 
@@ -34,7 +34,7 @@
                          <a href="/Role_User/my_pembelian" class="nav-link">
                              <i class="nav-icon fas fa-shopping-cart"></i>
                              <p>
-                                 Data Pembelian
+                                 Pembelian Saya
                                  <!-- Data Transaksi -->
                              </p>
                          </a>
@@ -43,7 +43,7 @@
                          <a href="/Role_User/my_reward" class="nav-link">
                              <i class="nav-icon fas fa-gift"></i>
                              <p>
-                                 Data Reward
+                                 Reward Saya
                              </p>
                          </a>
                      </li>
@@ -51,7 +51,7 @@
                          <a href="/Role_User/my_punishment" class="nav-link">
                              <i class="nav-icon fas fa-gavel"></i>
                              <p>
-                                 Data Punishment
+                                 Punishment Saya
                              </p>
                          </a>
                      </li>
@@ -59,7 +59,7 @@
                          <a href="/Role_User/my_misi" class="nav-link">
                              <i class="nav-icon fas fa-bullseye"></i>
                              <p>
-                                 Data Misi
+                                 Misi Saya
                              </p>
                          </a>
                      </li>
@@ -67,7 +67,7 @@
                          <a href="/Role_User/my_konsultasi" class="nav-link">
                              <i class="nav-icon fas fa-comments"></i>
                              <p>
-                                 Data Konsultasi
+                                 Konsultasi Saya
                              </p>
                          </a>
                      </li>

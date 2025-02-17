@@ -24,12 +24,11 @@
                             <i class="nav-icon fa fa-home"><span> Dashboard</span></i>
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <!-- <li class="nav-item dropdown">
                         <a class="nav-link" data-toggle="dropdown" href="#">
-                            <i class="fas fa-shopping-cart"><span> Pembelian</span></i> <!-- Ganti ikon sesuai kebutuhan -->
+                            <i class="fas fa-shopping-cart"><span> Pembelian</span></i> 
                         </a>
                         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                            <!-- Isi dropdown menu dengan link atau konten lain -->
                             <a href="/Role_User/my_reward" class="dropdown-item">
                                 <i class="fas fa-ribbon mr-2"></i>Rewards</a>
                             <div class="dropdown-divider"></div>
@@ -45,7 +44,7 @@
                             <a href="/Role_User/my_konsultasi" class="dropdown-item">
                                 <i class="fas fa-clipboard-check mr-2"></i>Konsultasi</a>
                         </div>
-                    </li>
+                    </li> -->
                     <!-- <li class="nav-item dropdown">
                         <a class="nav-link" data-toggle="dropdown" href="#">
                             <i class="fas fa-tags"><span> Jenis Item</span></i> Ganti ikon sesuai kebutuhan
@@ -73,14 +72,24 @@
                             <i class="nav-icon fa fa-ribbon"><span> Badges</span></i>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="#Challange" class="nav-link">
                             <i class="nav-icon fa fa-trophy"><span> Challange</span></i>
+                        </a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a href="/Role_User/market/reward" class="nav-link">
+                            <i class="nav-icon fa fa-trophy"><span> Reward</span></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Role_User/market/misi" class="nav-link">
+                            <i class="nav-icon fa fa-rocket"><span> Misi</span></i>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a href="/Role_User/market" class="nav-link">
-                            <i class="nav-icon fa fa-cart-plus"><span> Market Place</span></i> <!-- Ganti ikon sesuai kebutuhan -->
+                            <i class="nav-icon fa fa-cart-plus"><span> MarketPlace</span></i> <!-- Ganti ikon sesuai kebutuhan -->
                         </a>
                     </li>
                 <?php endif ?>
@@ -181,14 +190,14 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <div class="dropdown-divider"></div>
-                        <?php if (!isset($username) || empty($username)): // Jika belum login 
+                        <?php if (!isset($nama) || empty($nama)): // Jika belum login 
                         ?>
                             <a href="/loginMhs" class="dropdown-item">
                                 <i class="fas fa-sign-in-alt"></i> Login
                             </a>
                         <?php else: // Jika sudah login 
                         ?>
-                            <span class="dropdown-item dropdown-header"><?= $username; ?></span>
+                            <span class="dropdown-item dropdown-header"><?= $nama; ?></span>
                             <div class="dropdown-divider"></div>
                             <a href="/Role_User/profile" class="dropdown-item">
                                 <i class="fas fa-user mr-2"></i> Profil

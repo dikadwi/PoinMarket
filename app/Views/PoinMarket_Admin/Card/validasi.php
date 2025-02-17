@@ -37,6 +37,8 @@
                                                         ?><br>
                             <strong>Feedback:</strong> <?= $t['tanggal_transaksi']; ?><br>
                             <strong>Harga:</strong> <?= $t['poin_digunakan']; ?> Point <br>
+                            <strong>Harga:</strong> <?= $t['poin_diberikan']; ?> Point <br>
+                            <!-- Atur untuk menampilkan poin digunakan dan diberikan berdasarkan kode jenis -->
                             <strong>Status Validasi :</strong> <?= $t['validation']; ?><br>
                         </p>
                         <!-- Card Footer untuk Tombol -->

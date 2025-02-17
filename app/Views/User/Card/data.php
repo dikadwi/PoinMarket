@@ -10,51 +10,51 @@
         <?php $tampil_data = false; ?>
         <?php $i = 1; ?>
         <?php foreach ($data_transaksi as $t) : ?>
-            <?php if ($t['validation'] == 'Sudah'): ?>
-                <?php $tampil_data = true; ?>
-                <div class="col-6 col-md-3 d-flex">
-                    <div class="card flex-fill d-flex flex-column">
-                        <div class="card-header text-center">
-                            <h5 class="card-title"><strong><?= $t['nama_transaksi']; ?></strong></h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">
-                                <strong>NPM:</strong> <?= $t['npm']; ?><br>
-                                <strong>Kategori:</strong> <?php
-                                                            switch ($t['kode_jenis']) {
-                                                                case '101':
-                                                                    echo 'Reward';
-                                                                    break;
-                                                                case '102':
-                                                                    echo 'Belanja';
-                                                                    break;
-                                                                case '103':
-                                                                    echo 'Punishment';
-                                                                    break;
-                                                                case '105':
-                                                                    echo 'Misi';
-                                                                    break;
-                                                                case '106':
-                                                                    echo 'Konsultasi';
-                                                                    break;
-                                                                default:
-                                                                    echo $data['kode_jenis'];
-                                                            }
-                                                            ?><br>
-                                <strong>Feedback:</strong> <?= $t['tanggal_transaksi']; ?><br>
-                                <strong>Harga:</strong> <?= $t['poin_digunakan']; ?> Point <br>
-                                <strong>Status Validasi :</strong> <?= $t['validation']; ?><br>
-                            </p>
-                            <!-- Card Footer untuk Tombol -->
-                        </div>
-                        <div class="card-footer d-flex justify-content-center">
-                            <button type="button" class="btn btn-info mr-2" data-toggle="modal" data-target="#modalDetail<?php echo $t['id_transaksi']; ?>">
-                                <i class="fas fa-eye"></i> <span class="d-none d-md-inline">Detail</span>
-                            </button>
-                        </div>
+            <!-- <php if ($t['validation'] == 'Sudah'): ?> -->
+            <?php $tampil_data = true; ?>
+            <div class="col-6 col-md-3 d-flex">
+                <div class="card flex-fill d-flex flex-column">
+                    <div class="card-header text-center">
+                        <h5 class="card-title"><strong><?= $t['nama_transaksi']; ?></strong></h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <strong>NPM:</strong> <?= $t['npm']; ?><br>
+                            <strong>Kategori:</strong> <?php
+                                                        switch ($t['kode_jenis']) {
+                                                            case '101':
+                                                                echo 'Reward';
+                                                                break;
+                                                            case '102':
+                                                                echo 'Belanja';
+                                                                break;
+                                                            case '103':
+                                                                echo 'Punishment';
+                                                                break;
+                                                            case '105':
+                                                                echo 'Misi';
+                                                                break;
+                                                            case '106':
+                                                                echo 'Konsultasi';
+                                                                break;
+                                                            default:
+                                                                echo $data['kode_jenis'];
+                                                        }
+                                                        ?><br>
+                            <strong>Feedback:</strong> <?= $t['tanggal_transaksi']; ?><br>
+                            <strong>Harga:</strong> <?= $t['poin_digunakan']; ?> Point <br>
+                            <strong>Status Validasi :</strong> <?= $t['validation']; ?><br>
+                        </p>
+                        <!-- Card Footer untuk Tombol -->
+                    </div>
+                    <div class="card-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-info mr-2" data-toggle="modal" data-target="#modalDetail<?php echo $t['id_transaksi']; ?>">
+                            <i class="fas fa-eye"></i> <span class="d-none d-md-inline">Detail</span>
+                        </button>
                     </div>
                 </div>
-            <?php endif; ?>
+            </div>
+            <!-- <php endif; ?> -->
         <?php endforeach; ?>
         <?php if (!$tampil_data) : ?>
             <div class="col-12 text-center">

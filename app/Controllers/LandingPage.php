@@ -21,6 +21,11 @@ class LandingPage extends BaseController
         return view('LandingPage/gaya_belajar');
     }
 
+    public function panduan()
+    {
+        return view('LandingPage/panduan');
+    }
+
     public function about()
     {
         return view('LandingPage/about');

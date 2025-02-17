@@ -8,7 +8,6 @@
         <div class="row mb-2">
             <div class="col-sm-12 col-md-6">
                 <center>
-                    <!-- <h1 class="m-0 text-dark">Data <?= $title; ?> </h1> -->
                     <h1 class="m-0 text-dark">Item <?= $title; ?> </h1>
                 </center>
             </div><!-- /.col -->
@@ -27,7 +26,7 @@
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-12 col-md-6 mb-3">
-                    <?php if (in_groups(['superadmin', 'dosen'])) : ?>
+                    <?php if ((in_groups('superadmin')) || (in_groups('dosen') && (in_array('101', $jenis) || in_array('102', $jenis) || in_array('105', $jenis) || in_array('106', $jenis)))) : ?>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahJenisTransaksi"><i class="fas fa-plus"></i><span class="d-none d-md-inline"> Input</span></button>
                     <?php endif ?>
                 </div>
@@ -94,21 +93,29 @@
                     <!-- Bagian Nama Transaksi -->
                     <div class="form-group">
                         <label for="nama_transaksi" class="col-form-label">Nama Transaksi</label>
-                        <input type="text" class="form-control" id="nama_transaksi" name="nama_transaksi">
+                        <input type="text" class="form-control" id="nama_transaksi" name="nama_transaksi" required>
                     </div>
                     <div class="form-group">
                         <label for="detail" class="col-form-label">Detail</label>
-                        <input type="text" class="form-control" id="detail" name="detail">
+                        <input type="text" class="form-control" id="detail" name="detail" required>
                     </div>
                     <div class="form-group">
                         <label for="keterangan" class="col-form-label">Keterangan</label>
-                        <input type="text" class="form-control" id="keterangan" name="keterangan">
+                        <input type="text" class="form-control" id="keterangan" name="keterangan" required>
                     </div>
-
-                    <!-- Input untuk menampilkan Point yang dipilih -->
+                    <!-- Bagian Gambar -->
+                    <div class="form-group">
+                        <label for="gambar" class="col-form-label">Gambar</label>
+                        <input type="file" class="form-control" id="gambar" name="gambar" required>
+                    </div>
                     <div class="form-group ">
                         <label for="poin_digunakan" class="col-form-label">Point Harga</label>
-                        <input type="number" class="form-control" id="poin_digunakan" name="poin_digunakan">
+                        <input type="number" class="form-control" id="poin_digunakan" name="poin_digunakan" required>
+                    </div>
+                    <!-- Bagian Creator -->
+                    <div class="form-group">
+                        <label for="creator" class="col-form-label"></label>
+                        <input type="hidden" class="form-control" id="creator" name="creator" value="<?= session()->get('username'); ?>">
                     </div>
             </div>
             <div class="modal-footer">

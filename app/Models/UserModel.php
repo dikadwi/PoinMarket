@@ -17,6 +17,7 @@ class UserModel extends Model
     protected $returnType     = User::class;
     protected $useSoftDeletes = true;
     protected $allowedFields  = [
+        'id',
         'email',
         'username',
         'password_hash',

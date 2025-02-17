@@ -24,20 +24,28 @@ class SupabaseController extends ResourceController
     // ganti dengan fill form yang dibuat 
     {
         $data = [
-            'name' => 'John Doe',
-            'email' => 'johndoe@example.com'
+            'name' => 'John Duu',
+            'email' => 'joahne@example.com'
         ];
 
         $response = $this->supabase->insertData('users', $data); //simpan data ke tabel
         return $this->respond($response);
     }
 
-    // public function update($id = null)
-    // {
-    //     $data = [];
-    //     $response = $this->supabase->insertData('users', $data); //simpan data ke tabel
-    //     return $this->respond($response);
-    // }
+    public function updateUser($id = null)
+    {
+        if ($id === null || !is_numeric($id)) {
+            return $this->failNotFound('ID pengguna tidak valid.');
+        }
+
+        $data = [
+            'name' => $this->request->getPost('name'),
+            'email' => $this->request->getPost('email')
+        ];
+
+        $response = $this->supabase->updateData('users', $id, $data);
+        return $this->respond($response);
+    }
 
     public function delete($id = null)
     {

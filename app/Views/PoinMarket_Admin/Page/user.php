@@ -82,6 +82,11 @@
             </div>
             <div class="modal-body">
                 <form action="/User/save_Users" method="post" enctype="multipart/form-data">
+                    <!-- <div class="form-group">
+                        <label for="id" class="col-form-label">ID</label>
+                        <input type="number" class="form-control" id="id" name="id" readonly>
+                    </div> -->
+                    <input type="hidden" name="id">
                     <div class="form-group ">
                         <label for="username" class="col-form-label">Username</label>
                         <input type="text" class="form-control" id="username" name="username" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">

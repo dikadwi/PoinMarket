@@ -37,10 +37,21 @@ class Jenis_Transaksi extends BaseController
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
         $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
 
+        // Menampilkan item yang dibuat berdasarkna session creator 
+        $transaksi = $this->TransaksiModel->getTransaksi();
+        if ($session->get('username') == 'superadmin') {
+            $transaksi_user = $transaksi;
+        } else {
+            $transaksi_user = array_filter($transaksi, function ($t) use ($session) {
+                return $t['creator'] == $session->get('username');
+            });
+        }
+
         $data = [
             'title' => 'Item',
             'username' => $session->get('username'),
-            'transaksi' => $this->TransaksiModel->getTransaksi(),
+            // 'transaksi' => $this->TransaksiModel->getTransaksi(),
+            'transaksi' => $transaksi_user,
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'topMenuPages' => $topMenuPages,
             'sideMenuPages' => $sideMenuPages,
@@ -60,13 +71,25 @@ class Jenis_Transaksi extends BaseController
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
         $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
 
+        // Menampilkan item yang dibuat berdasarkna session creator 
+        $transaksi = $this->TransaksiModel->getJenis($jenis);
+        if ($session->get('username') == 'superadmin') {
+            $transaksi_user = $transaksi;
+        } else {
+            $transaksi_user = array_filter($transaksi, function ($t) use ($session) {
+                return $t['creator'] == $session->get('username');
+            });
+        }
+
         $data = [
             'title' => 'Rewards',
             'username' => $session->get('username'),
-            'transaksi' => $this->TransaksiModel->getJenis($jenis),
+            // 'transaksi' => $this->TransaksiModel->getJenis($jenis),
+            'transaksi' => $transaksi_user,
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'topMenuPages' => $topMenuPages,
             'sideMenuPages' => $sideMenuPages,
+            'jenis' => $jenis,
         ];
         return view('PoinMarket_Admin/Page/jenis_transaksi', $data);
     }
@@ -83,13 +106,26 @@ class Jenis_Transaksi extends BaseController
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
         $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
 
+        // Menampilkan item yang dibuat berdasarkna session creator 
+        $transaksi = $this->TransaksiModel->getJenis($jenis);
+        if ($session->get('username') == 'superadmin') {
+            $transaksi_user = $transaksi;
+        } else {
+            $transaksi_user = array_filter($transaksi, function ($t) use ($session) {
+                return $t['creator'] == $session->get('username');
+            });
+        }
+
+
         $data = [
             'title' => 'Pembelian',
             'username' => $session->get('username'),
-            'transaksi' => $this->TransaksiModel->getJenis($jenis),
+            // 'transaksi' => $this->TransaksiModel->getJenis($jenis),
+            'transaksi' => $transaksi_user,
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'topMenuPages' => $topMenuPages,
             'sideMenuPages' => $sideMenuPages,
+            'jenis' => $jenis,
         ];
         return view('PoinMarket_Admin/Page/jenis_transaksi', $data);
     }
@@ -106,13 +142,26 @@ class Jenis_Transaksi extends BaseController
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
         $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
 
+        // // Menampilkan item yang dibuat berdasarkna session creator 
+        // $transaksi = $this->TransaksiModel->getJenis($jenis);
+        // if ($session->get('username') == 'superadmin') {
+        //     $transaksi_user = $transaksi;
+        // } else {
+        //     $transaksi_user = array_filter($transaksi, function ($t) use ($session) {
+        //         return $t['creator'] == $session->get('username');
+        //     });
+        // }
+
+
         $data = [
             'title' => 'Punishment',
             'username' => $session->get('username'),
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
+            // 'transaksi' => $transaksi_user,
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'topMenuPages' => $topMenuPages,
             'sideMenuPages' => $sideMenuPages,
+            'jenis' => $jenis,
         ];
         return view('PoinMarket_Admin/Page/jenis_transaksi', $data);
     }
@@ -129,13 +178,26 @@ class Jenis_Transaksi extends BaseController
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
         $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
 
+        // Menampilkan item yang dibuat berdasarkna session creator 
+        $transaksi = $this->TransaksiModel->getJenis($jenis);
+        if ($session->get('username') == 'superadmin') {
+            $transaksi_user = $transaksi;
+        } else {
+            $transaksi_user = array_filter($transaksi, function ($t) use ($session) {
+                return $t['creator'] == $session->get('username');
+            });
+        }
+
+
         $data = [
             'title' => 'Misi Tambahan',
             'username' => $session->get('username'),
-            'transaksi' => $this->TransaksiModel->getJenis($jenis),
+            // 'transaksi' => $this->TransaksiModel->getJenis($jenis),
+            'transaksi' => $transaksi_user,
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'topMenuPages' => $topMenuPages,
             'sideMenuPages' => $sideMenuPages,
+            'jenis' => $jenis,
         ];
         return view('PoinMarket_Admin/Page/jenis_transaksi', $data);
     }
@@ -152,13 +214,26 @@ class Jenis_Transaksi extends BaseController
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
         $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
 
+        // Menampilkan item yang dibuat berdasarkna session creator 
+        $transaksi = $this->TransaksiModel->getJenis($jenis);
+        if ($session->get('username') == 'superadmin') {
+            $transaksi_user = $transaksi;
+        } else {
+            $transaksi_user = array_filter($transaksi, function ($t) use ($session) {
+                return $t['creator'] == $session->get('username');
+            });
+        }
+
+
         $data = [
             'title' => 'Konsultasi',
             'username' => $session->get('username'),
-            'transaksi' => $this->TransaksiModel->getJenis($jenis),
+            // 'transaksi' => $this->TransaksiModel->getJenis($jenis),
+            'transaksi' => $transaksi_user,
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'topMenuPages' => $topMenuPages,
             'sideMenuPages' => $sideMenuPages,
+            'jenis' => $jenis,
         ];
         return view('PoinMarket_Admin/Page/jenis_transaksi', $data);
     }
@@ -168,7 +243,8 @@ class Jenis_Transaksi extends BaseController
         if (!$this->validate([
             'nama_transaksi' => 'required',
             'kode_jenis' => 'required',
-            'poin_digunakan' => 'required'
+            'poin_digunakan' => 'required',
+            'gambar' => 'uploaded[gambar]|max_size[gambar,2048]|is_image[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]',
         ])) {
             return redirect()->back()->withInput()->with("gagal", "Validasi gagal. Mohon cek inputan Anda!");
         }
@@ -186,6 +262,11 @@ class Jenis_Transaksi extends BaseController
         $newId = $lastId + 1;
         $id_transaksi = $kode_jenis . str_pad($newId, 2, '0', STR_PAD_LEFT);
 
+        // Mengambil gambar
+        $gambar = $this->request->getFile('gambar');
+        $namaGambar = $gambar->getRandomName();
+        $gambar->move('uploads/', $namaGambar);
+
         // Menyimpan data ke database
         $data = [
             'id_transaksi' => $id_transaksi,
@@ -194,6 +275,8 @@ class Jenis_Transaksi extends BaseController
             'detail' => $this->request->getVar('detail'),
             'keterangan' => $this->request->getVar('keterangan'),
             'poin_digunakan' => $this->request->getVar('poin_digunakan'),
+            'gambar' => $namaGambar,
+            'creator' => $this->request->getVar('creator'),
             'valid' => 'wait'
         ];
 
@@ -215,15 +298,30 @@ class Jenis_Transaksi extends BaseController
         $detail = $this->request->getPost('detail');
         $keterangan = $this->request->getPost('keterangan');
         $poin_digunakan = $this->request->getPost('poin_digunakan');
+        $gambar_lama = $this->request->getPost('gambar_lama');
+        $gambar = $this->request->getFile('gambar');
+        //Untuk validasi oleh admin
         $status = $this->request->getPost('status');
+        $creator = $this->request->getPost('creator');
 
         $data = [
             'nama_transaksi' => $nama,
             'detail' => $detail,
             'keterangan' => $keterangan,
             'poin_digunakan' => $poin_digunakan,
-            'status' => $status
+            // Untuk validasi oleh admin
+            'status' => $status,
+            'creator' => $creator
         ];
+
+        if ($gambar->isValid()) {
+            $namaGambar = $gambar->getRandomName();
+            $gambar->move('uploads/', $namaGambar);
+            $data['gambar'] = $namaGambar;
+        } else {
+            $data['gambar'] = $gambar_lama;
+        }
+
         $this->TransaksiModel->update($id_transaksi, $data);
 
         session()->setFlashdata("sukses", "Data $nama Berhasil di Update.");

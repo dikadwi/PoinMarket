@@ -7,6 +7,7 @@
         <a class="hover:text-gray-300" href="/page">HOME</a>
         <a class="hover:text-gray-300" href="/page/gamifikasi">GAMIFIKASI</a>
         <a class="hover:text-gray-300" href="/page/gaya_belajar">GAYA BELAJAR</a>
+        <a class="hover:text-gray-300" href="/page/panduan">PANDUAN</a>
         <a class="hover:text-gray-300" href="/page/about">ABOUT</a>
         <a class="hover:text-gray-300" href="/page/contact">CONTACT</a>
         <!-- <a href="/login" target="_blank"> -->
@@ -27,6 +28,7 @@
             <a class="block px-4 py-2 hover:bg-gray-200" href="/page">HOME</a>
             <a class="block px-4 py-2 hover:bg-gray-200" href="/page/gamifikasi">GAMIFIKASI</a>
             <a class="block px-4 py-2 hover:bg-gray-200" href="/page/gaya_belajar">GAYA BELAJAR</a>
+            <a class="block px-4 py-2 hover:bg-gray-200" href="/page/panduan">PANDUAN</a>
             <a class="block px-4 py-2 hover:bg-gray-200" href="/page/about">ABOUT</a>
             <a class="block px-4 py-2 hover:bg-gray-200" href="/page/contact">CONTACT</a>
             <a href="/login">

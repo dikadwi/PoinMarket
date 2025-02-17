@@ -87,7 +87,7 @@ class User extends BaseController
         $id = $this->request->getPost('id');
         $email = $this->request->getPost('email');
         $username = $this->request->getPost('username');
-        $password = '12345678';
+        $password = 'loginsaja';
 
         // Simpan data ke tabel
         $data = [

@@ -58,6 +58,31 @@ class SupabaseAPI
         return json_decode($response->getBody()->getContents(), true);
     }
 
+    /**
+     * Mengupdate data di tabel Supabase
+     * 
+     * @param string $table Nama tabel di Supabase
+     * @param int $id ID data yang akan diupdate
+     * @param array $data Data yang akan diupdate
+     * @return array
+     */
+    public function updateData($table, $id, $data)
+    {
+        $url = "{$table}?id=eq.{$id}";
+        $response = $this->client->request('PATCH', $url, [
+            'json' => $data
+        ]);
+        return json_decode($response->getBody()->getContents(), true);
+    }
+
+    /**
+     * Menghapus data dari tabel Supabase
+     * 
+     * @param string $table Nama tabel di Supabase
+     * @param int $id ID data yang akan dihapus
+     * @return bool
+     */
+
     public function deleteData($table, $id)
     {
         // Membuat URL endpoint untuk menghapus data berdasarkan ID

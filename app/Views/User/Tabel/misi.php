@@ -37,43 +37,45 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
     <tbody>
         <?php $i = 1; ?>
         <?php foreach ($data_transaksi as $data) : ?>
-            <tr>
-                <td><?= $i++; ?></td>
-                <!-- <td><?= $data['id_transaksi']; ?></td> -->
-                <td><?= $data['nama_transaksi']; ?></td>
-                <td><?= $data['poin_digunakan']; ?></td>
-                <td><?= date('d-m-Y', strtotime($data['tanggal_transaksi'])); ?></td>
-                <!-- Ambil File dari database, jika belum ada file tampilkan button untuk upload file -->
-                <td>
-                    <button type=" button" class="btn btn-warning" data-toggle="modal">File 1</button>
-                </td>
-                <td>
-                    <button type=" button" class="btn btn-warning" data-toggle="modal">File 2</button>
-                </td>
-                <td>
-                    <button type=" button" class="btn btn-warning" data-toggle="modal">File 3</button>
-                </td>
-                <!-- Tambahkan status, dari claim. Jika misi selesai status claim"sudah=Selesai", jika belum status "Belum" -->
-                <td> <?php
-                        switch ($data['claim']) {
-                            case 'Sudah':
-                                echo '<span class="badge badge-success">Selesai</span>';
-                                break;
-                            case 'Belum':
-                                echo '<span class="badge badge-danger">Belum</span>';
-                                break;
-                            default:
-                                echo '<span class="badge badge-secondary">Tidak Ada</span>';
-                                break;
-                        } ?>
-                </td>
-                <td>
-                    <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $data['id_transaksi']; ?>">Detail</button>
-                </td>
-                <td>
-                    <!-- Untuk membatalkan misi, data terhapus Poin tidak terpengaruh -->
-                    <button type=" button" class="btn btn-danger" data-toggle="modal">Batalkan</button>
-                </td>
+            <?php if ($data['validation'] == 'Sudah'): ?>
+                <tr>
+                    <td><?= $i++; ?></td>
+                    <!-- <td><?= $data['id_transaksi']; ?></td> -->
+                    <td><?= $data['nama_transaksi']; ?></td>
+                    <td><?= $data['poin_digunakan']; ?></td>
+                    <td><?= date('d-m-Y', strtotime($data['tanggal_transaksi'])); ?></td>
+                    <!-- Ambil File dari database, jika belum ada file tampilkan button untuk upload file -->
+                    <td>
+                        <button type=" button" class="btn btn-warning" data-toggle="modal">File 1</button>
+                    </td>
+                    <td>
+                        <button type=" button" class="btn btn-warning" data-toggle="modal">File 2</button>
+                    </td>
+                    <td>
+                        <button type=" button" class="btn btn-warning" data-toggle="modal">File 3</button>
+                    </td>
+                    <!-- Tambahkan status, dari claim. Jika misi selesai status claim"sudah=Selesai", jika belum status "Belum" -->
+                    <td> <?php
+                            switch ($data['claim']) {
+                                case 'Sudah':
+                                    echo '<span class="badge badge-success">Selesai</span>';
+                                    break;
+                                case 'Belum':
+                                    echo '<span class="badge badge-danger">Belum</span>';
+                                    break;
+                                default:
+                                    echo '<span class="badge badge-secondary">Tidak Ada</span>';
+                                    break;
+                            } ?>
+                    </td>
+                    <td>
+                        <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $data['id_transaksi']; ?>">Detail</button>
+                    </td>
+                    <td>
+                        <!-- Untuk membatalkan misi, data terhapus Poin tidak terpengaruh -->
+                        <button type=" button" class="btn btn-danger" data-toggle="modal">Batalkan</button>
+                    </td>
+                <?php endif; ?>
             <?php endforeach; ?>
     </tbody>
 </table>
