@@ -21,7 +21,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Meningkatkan Keterlibatan</span>
+                        <span class="mr-3">Meningkatkan Keterlibatan</span>
                         <i class="fas fa-users fa-2x fa-beat"></i> <!-- Ikon Tangan Bersalaman -->
                     </div>
                 </div>
@@ -35,7 +35,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Mendorong Motivasi</span>
+                        <span class="mr-3">Mendorong Motivasi</span>
                         <i class="fas fa-bullseye fa-2x fa-beat"></i> <!-- Ikon Tangan Bersalaman -->
                     </div>
                 </div>
@@ -49,7 +49,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Meningkatkan Loyalitas</span>
+                        <span class="mr-3">Meningkatkan Loyalitas</span>
                         <i class="fas fa-heart fa-2x fa-beat"></i> <!-- Ikon Hati -->
                     </div>
                 </div>
@@ -63,7 +63,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Mengoptimalkan Hasil</span>
+                        <span class="mr-3">Mengoptimalkan Hasil</span>
                         <i class="fas fa-chart-line fa-2x fa-beat"></i> <!-- Ikon Grafik -->
                     </div>
                 </div>
@@ -82,7 +82,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Strategi Gamifikasi</span>
+                        <span class="mr-3">Strategi Gamifikasi</span>
                         <i class="fas fa-dice fa-2x fa-bounce"></i> <!-- Ikon Papan Catur -->
                     </div>
                 </div>
@@ -96,7 +96,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Desain Interaktif</span>
+                        <span class="mr-3">Desain Interaktif</span>
                         <i class="fas fa-palette fa-2x fa-bounce"></i> <!-- Ikon Mouse -->
                     </div>
                 </div>
@@ -110,7 +110,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Implementasi & Analisis</span>
+                        <span class="mr-3">Implementasi & Analisis</span>
                         <i class="fas fa-clipboard-list fa-2x fa-bounce"></i> <!-- Ikon Papan Catur -->
                     </div>
                 </div>

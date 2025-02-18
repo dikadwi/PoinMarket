@@ -73,7 +73,7 @@ class Jenis_Transaksi extends BaseController
 
         // Menampilkan item yang dibuat berdasarkna session creator 
         $transaksi = $this->TransaksiModel->getJenis($jenis);
-        if ($session->get('username') == 'superadmin') {
+        if (in_array($session->get('username'), ['superadmin', 'admin'])) {
             $transaksi_user = $transaksi;
         } else {
             $transaksi_user = array_filter($transaksi, function ($t) use ($session) {
@@ -108,7 +108,7 @@ class Jenis_Transaksi extends BaseController
 
         // Menampilkan item yang dibuat berdasarkna session creator 
         $transaksi = $this->TransaksiModel->getJenis($jenis);
-        if ($session->get('username') == 'superadmin') {
+        if (in_array($session->get('username'), ['superadmin', 'admin'])) {
             $transaksi_user = $transaksi;
         } else {
             $transaksi_user = array_filter($transaksi, function ($t) use ($session) {
@@ -180,7 +180,7 @@ class Jenis_Transaksi extends BaseController
 
         // Menampilkan item yang dibuat berdasarkna session creator 
         $transaksi = $this->TransaksiModel->getJenis($jenis);
-        if ($session->get('username') == 'superadmin') {
+        if (in_array($session->get('username'), ['superadmin', 'admin'])) {
             $transaksi_user = $transaksi;
         } else {
             $transaksi_user = array_filter($transaksi, function ($t) use ($session) {
@@ -216,7 +216,7 @@ class Jenis_Transaksi extends BaseController
 
         // Menampilkan item yang dibuat berdasarkna session creator 
         $transaksi = $this->TransaksiModel->getJenis($jenis);
-        if ($session->get('username') == 'superadmin') {
+        if (in_array($session->get('username'), ['superadmin', 'admin'])) {
             $transaksi_user = $transaksi;
         } else {
             $transaksi_user = array_filter($transaksi, function ($t) use ($session) {

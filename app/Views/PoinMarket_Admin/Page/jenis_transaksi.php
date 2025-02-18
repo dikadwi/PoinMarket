@@ -26,7 +26,7 @@
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-12 col-md-6 mb-3">
-                    <?php if ((in_groups('superadmin')) || (in_groups('dosen') && (in_array('101', $jenis) || in_array('102', $jenis) || in_array('105', $jenis) || in_array('106', $jenis)))) : ?>
+                    <?php if ((in_groups('superadmin')) || (in_groups('dosen') && (in_array('101', $jenis) || in_array('102', $jenis) || in_array('105', $jenis) || in_array('106', $jenis))) || (in_groups('admin') && (in_array('103', $jenis)))) : ?>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTambahJenisTransaksi"><i class="fas fa-plus"></i><span class="d-none d-md-inline"> Input</span></button>
                     <?php endif ?>
                 </div>

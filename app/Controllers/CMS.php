@@ -69,7 +69,7 @@ class CMS extends BaseController
     {
         $this->PageModel->save([
             'title' => $this->request->getPost('title'),
-            'url' => $this->request->getPost('url'),
+            'url' => base_url($this->request->getPost('url')),
             'icon' => $this->request->getPost('icon'),
             'description' => $this->request->getPost('description'),
             'status' => 'inactive',

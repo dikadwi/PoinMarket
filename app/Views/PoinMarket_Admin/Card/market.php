@@ -141,15 +141,18 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                                 </button>
                             </div>
 
+                            <!-- Dosen Hanya bisa edit dan hapus berdasarkan itemnya dan tidak bisa edit punishment -->
                             <!-- Tombol Edit (Hanya untuk Admin & Dosen) -->
                             <?php if (in_groups(['superadmin', 'dosen'])) : ?>
-                                <div class="col-6 col-md-3 mb-2 mb-md-0">
-                                    <button type="button" class="btn btn-warning btn-block d-flex flex-column align-items-center" data-toggle="modal" data-target="#modalEdit<?= esc($t['id_transaksi']) ?>">
-                                        <i class="fas fa-edit"></i>
-                                        <span class="d-none d-md-inline"> Edit</span>
-                                    </button>
-                                </div>
-                            <?php endif ?>
+                                <?php if (($t['kode_jenis'] != '103' && in_groups(['dosen']) && $t['creator'] == user()->username) || in_groups(['superadmin'])) : ?>
+                                    <div class="col-6 col-md-3 mb-2 mb-md-0">
+                                        <button type="button" class="btn btn-warning btn-block d-flex flex-column align-items-center" data-toggle="modal" data-target="#modalEdit<?= esc($t['id_transaksi']) ?>">
+                                            <i class="fas fa-edit"></i>
+                                            <span class="d-none d-md-inline"> Edit</span>
+                                        </button>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endif; ?>
                             <!-- Tombol Hapus (Hanya untuk SuperAdmin & Admin) -->
                             <?php if (in_groups(['superadmin', 'admin'])) : ?>
                                 <!-- Tombol Validasi -->
@@ -162,12 +165,14 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                             <?php endif; ?>
                             <!-- Tombol Hapus (Hanya untuk SuperAdmin & Admin) -->
                             <?php if (in_groups(['superadmin', 'dosen'])) : ?>
-                                <div class="col-6 col-md-3 mb-2 mb-md-0">
-                                    <button href="/Jenis_Transaksi/delete/<?= $t['id_transaksi']; ?>" class="btn btn-danger btn-hapus btn-block d-flex flex-column align-items-center">
-                                        <i class="fas fa-trash"></i>
-                                        <span class="d-none d-md-inline"> Hapus</span>
-                                    </button>
-                                </div>
+                                <?php if (($t['creator'] == user()->username && in_groups(['dosen'])) || in_groups(['superadmin'])) : ?>
+                                    <div class="col-6 col-md-3 mb-2 mb-md-0">
+                                        <button href="/Jenis_Transaksi/delete/<?= $t['id_transaksi']; ?>" class="btn btn-danger btn-hapus btn-block d-flex flex-column align-items-center">
+                                            <i class="fas fa-trash"></i>
+                                            <span class="d-none d-md-inline"> Hapus</span>
+                                        </button>
+                                    </div>
+                                <?php endif; ?>
                             <?php endif; ?>
                         </div>
                     </div>

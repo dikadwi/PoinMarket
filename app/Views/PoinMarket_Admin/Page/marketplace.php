@@ -7,7 +7,7 @@
             <div class="row mb-2">
                 <div class="col-sm-12 col-md-6">
                     <center>
-                        <h1 class="m-0 text-dark"><?= $title; ?> Management System</h1>
+                        <h1 class="m-0 text-dark"><?= $title; ?> Management</h1>
                     </center>
                 </div><!-- /.col -->
                 <div class="col-sm-12 col-md-6">

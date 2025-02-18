@@ -24,7 +24,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Visual</span>
+                        <span class="mr-3">Visual</span>
                         <i class="fas fa-eye fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Auditori</span>
+                        <span class="mr-3">Auditori</span>
                         <i class="fas fa-headphones-alt fa-2x fa-beat-fade"></i>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Reading</span>
+                        <span class="mr-3">Reading</span>
                         <i class="fas fa-book fa-2x fa-beat-fade"></i>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Kinestetik</span>
+                        <span class="mr-3">Kinestetik</span>
                         <i class="fas fa-running fa-2x fa-flip"></i>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Meningkatkan Pemahaman</span>
+                        <span class="mr-3">Meningkatkan Pemahaman</span>
                         <i class="fas fa-chart-line fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Menghemat Waktu</span>
+                        <span class="mr-3">Menghemat Waktu</span>
                         <i class="fas fa-stopwatch fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Meningkatkan Motivasi</span>
+                        <span class="mr-3">Meningkatkan Motivasi</span>
                         <i class="fas fa-lightbulb fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Tes Gaya Belajar</span>
+                        <span class="mr-3">Tes Gaya Belajar</span>
                         <i class="fas fa-pen fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -129,7 +129,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Observasi Diri</span>
+                        <span class="mr-3">Observasi Diri</span>
                         <i class="fas fa-magnifying-glass fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -140,7 +140,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Eksperimen</span>
+                        <span class="mr-3">Eksperimen</span>
                         <i class="fas fa-flask fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -158,7 +158,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Visual</span>
+                        <span class="mr-3">Visual</span>
                         <i class="fas fa-eye fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -169,7 +169,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Auditori</span>
+                        <span class="mr-3">Auditori</span>
                         <i class="fas fa-headphones-alt fa-2x fa-beat-fade"></i>
                     </div>
                 </div>
@@ -180,7 +180,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Reading</span>
+                        <span class="mr-3">Reading</span>
                         <i class="fas fa-book fa-2x fa-fade"></i>
                     </div>
                 </div>
@@ -191,7 +191,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Kinestetik</span>
+                        <span class="mr-3">Kinestetik</span>
                         <i class="fas fa-running fa-2x fa-flip"></i>
                     </div>
                 </div>

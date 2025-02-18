@@ -10,13 +10,29 @@ class DataTransaksiModel extends Model
 
     protected $table = 'data_transaksi';
     protected $primaryKey = 'id_transaksi';
-    protected $allowedFields = ['kode_jenis', 'nama_transaksi', 'npm', 'poin_digunakan', 'poin_diberikan', 'validation', 'claim', 'tanggal_transaksi'];
+    protected $allowedFields = [
+        'kode_jenis',
+        'nama_transaksi',
+        'npm',
+        'poin_digunakan',
+        'poin_diberikan',
+        'validation',
+        'claim',
+        'gambar',
+        'creator',
+        'tanggal_transaksi'
+    ];
     protected $createdField  = 'tanggal_transaksi';
 
     // Mengambil Semua Data
+    // public function getDataTransaksi()
+    // {
+    //     return $this->findAll();
+    // }
+
     public function getDataTransaksi()
     {
-        return $this->findAll();
+        return $this->where('validation', 'sudah')->findAll();
     }
 
     public function getDataTransaksiUser($npm)
@@ -39,38 +55,125 @@ class DataTransaksiModel extends Model
     }
 
     // Menampilkan data berdasarkan kode_jenis
-    // Menampilkan total jenis 101
+    // Menampilkan total jenis 101 dengan status validasi sudah
+    // public function totalReward()
+    // {
+    //     $session = session();
+
+    //     if (in_groups(['superadmin', 'admin'])) {
+    //         return $this->where('kode_jenis', 101)->where('validation', 'sudah')->countAllResults();
+    //     } else {
+    //         return $this->where('kode_jenis', 101)->where('creator', $session->get('username'))->countAllResults();
+    //     }
+    // }
+
     public function totalReward()
     {
-        return $this->where('kode_jenis', 101)->countAllResults();
+        $session = session();
+
+        $where = [
+            'kode_jenis' => 101,
+            'validation' => 'sudah'
+        ];
+
+        if (!in_groups(['superadmin', 'admin'])) {
+            $where['creator'] = $session->get('username');
+        }
+
+        return $this->where($where)->countAllResults();
     }
-    // Menampilkan total jenis 102
+    // Menampilkan total jenis 102 dengan status validasi sudah
     public function totalPembelian()
     {
-        return $this->where('kode_jenis', 102)->countAllResults();
+        $session = session();
+
+        $where = [
+            'kode_jenis' => 102,
+            'validation' => 'sudah'
+        ];
+
+        if (!in_groups(['superadmin', 'admin'])) {
+            $where['creator'] = $session->get('username');
+        }
+
+        return $this->where($where)->countAllResults();
     }
-    // Menampilkan total jenis 103
+    // Menampilkan total jenis 103 dengan status validasi sudah
     public function totalPunishment()
     {
-        return $this->where('kode_jenis', 103)->countAllResults();
+        $session = session();
+
+        $where = [
+            'kode_jenis' => 103,
+            'validation' => 'sudah'
+        ];
+
+        if (!in_groups(['superadmin', 'admin'])) {
+            $where['creator'] = $session->get('username');
+        }
+
+        return $this->where($where)->countAllResults();
     }
-    // Menampilkan total jenis 105
+    // Menampilkan total jenis 105 dengan status validasi sudah
     public function totalMisi()
     {
-        return $this->where('kode_jenis', 105)->countAllResults();
+        $session = session();
+
+        $where = [
+            'kode_jenis' => 105,
+            'validation' => 'sudah'
+        ];
+
+        if (!in_groups(['superadmin', 'admin'])) {
+            $where['creator'] = $session->get('username');
+        }
+
+        return $this->where($where)->countAllResults();
     }
-    // Menampilkan total jenis 106
+    // Menampilkan total jenis 106 dengan status validasi sudah
     public function totalKonsultasi()
     {
-        return $this->where('kode_jenis', 106)->countAllResults();
+        $session = session();
+
+        $where = [
+            'kode_jenis' => 106,
+            'validation' => 'sudah'
+        ];
+
+        if (!in_groups(['superadmin', 'admin'])) {
+            $where['creator'] = $session->get('username');
+        }
+
+        return $this->where($where)->countAllResults();
+
+        // return $this->where('kode_jenis', 106)->countAllResults();
     }
+    // public function totalTransaksi()
+    // {
+    //     return $this->where('validation', 'Sudah')->countAllResults();
+    // }
     public function totalTransaksi()
     {
-        return $this->where('validation', 'Sudah')->countAllResults();
+        $session = session();
+
+        if (in_groups(['superadmin', 'admin'])) {
+            return $this->where('validation', 'Sudah')->countAllResults();
+        } else {
+            return $this->where('validation', 'Sudah')->where('creator', $session->get('username'))->countAllResults();
+        }
     }
     public function totalValidasi()
     {
-        return $this->where('validation', 'Belum')->countAllResults();
+        $session = session();
+        // $group = $session->get('group');
+
+        if (in_groups(['superadmin', 'admin'])) {
+            return $this->where('validation', 'Belum')->countAllResults();
+        } else {
+            return $this->where('validation', 'Belum')->where('creator', $session->get('username'))->countAllResults();
+        }
+
+        // return $this->where('validation', 'Belum')->countAllResults();
     }
 
     // Mengambil total jenis transaksi berdasarkan NPM ditampilkan di Tabel Mahasiswa
@@ -98,7 +201,7 @@ class DataTransaksiModel extends Model
     // Mengambil kode_jenis
     public function getJenis($jenis = false)
     {
-        return $this->where(['kode_jenis' => $jenis])->find();
+        return $this->where(['kode_jenis' => $jenis, 'validation' => 'sudah'])->find();
     }
 
     // Menampilkan Data di Diagram Donut

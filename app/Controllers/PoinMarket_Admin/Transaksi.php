@@ -29,6 +29,7 @@ class Transaksi extends BaseController
     }
 
     public function index()
+    // Benahi agar menampilkan data berdsarkan session/creator yg login
     {
         $session = session();
 
@@ -36,7 +37,17 @@ class Transaksi extends BaseController
         $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
 
         // Ambil data transaksi
+        // $data_transaksi = $this->DataTransaksiModel->getDataTransaksi();
+
+        // Menampilkan item yang dibuat berdasarkna session creator 
         $data_transaksi = $this->DataTransaksiModel->getDataTransaksi();
+        if (in_array($session->get('username'), ['superadmin', 'admin'])) {
+            $datatransaksi_user = $data_transaksi;
+        } else {
+            $datatransaksi_user = array_filter($data_transaksi, function ($t) use ($session) {
+                return $t['creator'] == $session->get('username');
+            });
+        }
 
         // Ambil data mahasiswa berdasarkan NPM untuk Detail
         $mahasiswa = [];
@@ -49,7 +60,8 @@ class Transaksi extends BaseController
             'title' => 'Pesanan',
             'username' => $session->get('username'),
             // 'data_transaksi' => $this->DataTransaksiModel->getDataTransaksi(),
-            'data_transaksi' => $data_transaksi,
+            // 'data_transaksi' => $data_transaksi,
+            'data_transaksi' => $datatransaksi_user,
             'transaksi' => $this->TransaksiModel->getTransaksi(),
             'npm' => $this->MahasiswaModel->getMhs(),
             'nama' => $mahasiswa,
@@ -73,10 +85,21 @@ class Transaksi extends BaseController
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
         $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
 
+        // Menampilkan item yang dibuat berdasarkna session creator 
+        $transaksi = $this->DataTransaksiModel->getJenis($jenis);
+        if (in_array($session->get('username'), ['superadmin', 'admin'])) {
+            $datatransaksi_user = $transaksi;
+        } else {
+            $datatransaksi_user = array_filter($transaksi, function ($t) use ($session) {
+                return $t['creator'] == $session->get('username');
+            });
+        }
+
         $data = [
             'username' => $session->get('username'),
             'title' => 'Rewards',
-            'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
+            // 'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
+            'data_transaksi' => $datatransaksi_user,
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'npm' => $this->MahasiswaModel->getMhs(),
@@ -98,10 +121,21 @@ class Transaksi extends BaseController
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
         $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
 
+        // Menampilkan item yang dibuat berdasarkna session creator 
+        $transaksi = $this->DataTransaksiModel->getJenis($jenis);
+        if (in_array($session->get('username'), ['superadmin', 'admin'])) {
+            $datatransaksi_user = $transaksi;
+        } else {
+            $datatransaksi_user = array_filter($transaksi, function ($t) use ($session) {
+                return $t['creator'] == $session->get('username');
+            });
+        }
+
         $data = [
             'username' => $session->get('username'),
             'title' => 'Pembelian',
-            'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
+            // 'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
+            'data_transaksi' => $datatransaksi_user,
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'npm' => $this->MahasiswaModel->getMhs(),
@@ -120,10 +154,21 @@ class Transaksi extends BaseController
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
         $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
 
+        // Menampilkan item yang dibuat berdasarkna session creator 
+        $transaksi = $this->DataTransaksiModel->getJenis($jenis);
+        if (in_array($session->get('username'), ['superadmin', 'admin'])) {
+            $datatransaksi_user = $transaksi;
+        } else {
+            $datatransaksi_user = array_filter($transaksi, function ($t) use ($session) {
+                return $t['creator'] == $session->get('username');
+            });
+        }
+
         $data = [
             'username' => $session->get('username'),
             'title' => 'Punishment',
-            'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
+            // 'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
+            'data_transaksi' => $datatransaksi_user,
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'npm' => $this->MahasiswaModel->getMhs(),
@@ -142,10 +187,21 @@ class Transaksi extends BaseController
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
         $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
 
+        // Menampilkan item yang dibuat berdasarkna session creator 
+        $transaksi = $this->DataTransaksiModel->getJenis($jenis);
+        if (in_array($session->get('username'), ['superadmin', 'admin'])) {
+            $datatransaksi_user = $transaksi;
+        } else {
+            $datatransaksi_user = array_filter($transaksi, function ($t) use ($session) {
+                return $t['creator'] == $session->get('username');
+            });
+        }
+
         $data = [
             'username' => $session->get('username'),
             'title' => 'Misi',
-            'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
+            // 'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
+            'data_transaksi' => $datatransaksi_user,
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'npm' => $this->MahasiswaModel->getMhs(),
@@ -164,10 +220,21 @@ class Transaksi extends BaseController
         $topMenuPages = $this->PageModel->where('menu_position', 'topmenu')->findAll();
         $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
 
+        // Menampilkan item yang dibuat berdasarkna session creator 
+        $transaksi = $this->DataTransaksiModel->getJenis($jenis);
+        if (in_array($session->get('username'), ['superadmin', 'admin'])) {
+            $datatransaksi_user = $transaksi;
+        } else {
+            $datatransaksi_user = array_filter($transaksi, function ($t) use ($session) {
+                return $t['creator'] == $session->get('username');
+            });
+        }
+
         $data = [
             'username' => $session->get('username'),
             'title' => 'Konsultasi',
-            'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
+            // 'data_transaksi' => $this->DataTransaksiModel->getJenis($jenis),
+            'data_transaksi' => $datatransaksi_user,
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'npm' => $this->MahasiswaModel->getMhs(),
@@ -235,7 +302,8 @@ class Transaksi extends BaseController
                         'poin_diberikan' => $poin_diberikan,
                         'tanggal_transaksi' => date('Y-m-d H:i:s'), // Sesuaikan dengan format tanggal
                         'validation' => $validationStatus, // Status validasi sesuai dengan jenis transaksi
-                        'claim' => $claim // Tambahkan claim ke data transaksi
+                        'claim' => $claim, // Tambahkan claim ke data transaksi
+                        'creator' => $this->request->getVar('creator'),
                     ];
                     // Simpan data transaksi ke dalam tabel transaksi
                     $this->DataTransaksiModel->insert($data_transaksi);
@@ -255,7 +323,8 @@ class Transaksi extends BaseController
                     'poin_diberikan' => $poin_diberikan,
                     'tanggal_transaksi' => date('Y-m-d H:i:s'), // Sesuaikan dengan format tanggal
                     'validation' => $validationStatus, // Status validasi sesuai dengan jenis transaksi
-                    'claim' => $claim // Tambahkan claim ke data transaksi
+                    'claim' => $claim, // Tambahkan claim ke data transaksi
+                    'creator' => $this->request->getVar('creator'),
                 ];
                 // Simpan data transaksi ke dalam tabel transaksi
                 $this->DataTransaksiModel->insert($data_transaksi);
@@ -272,7 +341,8 @@ class Transaksi extends BaseController
                     'poin_diberikan' => $poin_diberikan,
                     'tanggal_transaksi' => date('Y-m-d H:i:s'), // Sesuaikan dengan format tanggal
                     'validation' => $validationStatus, // Status validasi sesuai dengan jenis transaksi
-                    'claim' => $claim // Tambahkan claim ke data transaksi
+                    'claim' => $claim, // Tambahkan claim ke data transaksi
+                    'creator' => $this->request->getVar('creator'),
                 ];
                 // Simpan data transaksi ke dalam tabel transaksi
                 $this->DataTransaksiModel->insert($data_transaksi);

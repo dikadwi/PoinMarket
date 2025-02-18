@@ -33,7 +33,7 @@
                                     <ul class="list-group list-group-flush">
                                         <h5 class="card-title"><b>Nama :</b></h5>
                                         <li class="list-group-item">
-                                            <h4><?= $username; ?></h4>
+                                            <h4><?= $nama; ?></h4>
                                         </li>
                                         <h5 class="card-title"><b>NPM :</b></h5>
                                         <li class="list-group-item">
@@ -153,7 +153,7 @@
                     <div class="form-group ">
                         <label for="nama" class="col-form-label">Nama</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nama" name="nama" value="<?= $username; ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+                            <input type="text" class="form-control" id="nama" name="nama" value="<?= $nama; ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
                         </div>
                     </div>
                     <div class="form-group ">

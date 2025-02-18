@@ -19,7 +19,7 @@
                 <div class="card-body text-center">
                     <h3 class="text-2xl font-bold text-purple-600 mb-2">Email</h3>
                     <!-- <p class="text-gray-600 font-bold">CEO & Founder</p> -->
-                    <p class="text-gray-600">info@pointmarket.my.id</p>
+                    <p class="text-gray-600">info@pointmarket</p>
                 </div>
             </div>
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">

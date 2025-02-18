@@ -2,10 +2,10 @@
     <a href="https://www.instagram.com" target="_blank" class="hover:text-gray-300"><i class="fab fa-instagram"></i></a>
     <a href="https://www.youtube.com" target="_blank" class="hover:text-gray-300"><i class="fab fa-youtube"></i></a>
     <a href="mailto:info@pointmarket.com" class="hover:text-gray-300"><i class="fas fa-envelope"></i></a>
-    <a href="tel:+1234567890" class="hover:text-gray-300"><i class="fas fa-phone"></i></a>
+    <a href="https://wa.me/+1234567890" class="hover:text-gray-300"><i class="fas fa-phone"></i></a>
 </div>
 <div class="text-sm mb-2">
-    <p><i class="fas fa-envelope"></i> : info@pointmarket.my.id</p>
+    <p><i class="fas fa-envelope"></i> : info@pointmarket</p>
     <p><i class="fas fa-phone"></i> : +62 123 456 7890</p>
     <p><i class="fas fa-map-pin"></i> : Bandung, Indonesia</p>
 </div>

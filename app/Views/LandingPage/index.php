@@ -27,7 +27,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Reward</span>
+                        <span class="mr-3">Reward</span>
                         <i class="fas fa-gift fa-2x fa-bounce"></i>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Belanja</span>
+                        <span class="mr-3">Belanja</span>
                         <i class="fas fa-shopping-cart fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -49,8 +49,8 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Punishment</span>
-                        <i class="fas fa-flag fa-2x "></i>
+                        <span class="mr-3">Punishment</span>
+                        <i class="fas fa-flag fa-2x fa-beat"></i>
                     </div>
                 </div>
                 <div class="card-body">
@@ -60,7 +60,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Misi</span>
+                        <span class="mr-3">Misi</span>
                         <i class="fas fa-compass fa-2x fa-spin"></i>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Konsultasi</span>
+                        <span class="mr-3">Konsultasi</span>
                         <i class="fas fa-comments fa-2x fa-flip"></i>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Gabung di Platform</span>
+                        <span class="mr-3">Gabung di Platform</span>
                         <i class="fas fa-user-plus fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Kumpulkan Poin</span>
+                        <span class="mr-3">Kumpulkan Poin</span>
                         <i class="fas fa-coins fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Gunakan Poin Anda</span>
+                        <span class="mr-3">Gunakan Poin Anda</span>
                         <i class="fas fa-exchange fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -121,7 +121,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Raih Level & Badges</span>
+                        <span class="mr-3">Raih Level & Badges</span>
                         <i class="fas fa-award fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Leaderboard</span>
+                        <span class="mr-3">Leaderboard</span>
                         <i class="fas fa-clipboard-list fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Motivasi Tinggi</span>
+                        <span class="mr-3">Motivasi Tinggi</span>
                         <i class="fas fa-lightbulb fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -160,7 +160,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Transparansi Pencapaian</span>
+                        <span class="mr-3">Transparansi Pencapaian</span>
                         <i class="fas fa-chart-line fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Belajar Interaktif</span>
+                        <span class="mr-3">Belajar Interaktif</span>
                         <i class="fas fa-gamepad fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -182,7 +182,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Reward Nyata</span>
+                        <span class="mr-3">Reward Nyata</span>
                         <i class="fas fa-trophy fa-2x fa-beat"></i>
                     </div>
                 </div>

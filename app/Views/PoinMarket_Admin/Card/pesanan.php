@@ -1,10 +1,24 @@
 <div class="row">
-    <?php if (empty($data_transaksi)) : ?>
+    <?php
+    // Cari data transaksi berdasarkan kata kunci
+    if (isset($_GET['search'])) {
+        $search = strtolower($_GET['search']);  // Mengonversi kata kunci pencarian menjadi huruf kecil
+        $data_transaksi = array_filter($data_transaksi, function ($data) use ($search) {
+            // Mengonversi data transaksi dan search menjadi huruf kecil
+            return strpos(strtolower(strval($data['id_transaksi'])), $search) !== false ||
+                strpos(strtolower(strval($data['nama_transaksi'])), $search) !== false ||
+                strpos(strtolower(strval($data['poin_digunakan'])), $search) !== false;
+        });
+    }
+
+    // Tampilkan card untuk setiap transaksi
+    if (empty($data_transaksi) || (isset($creator) && empty(array_filter($transaksi, function ($t) use ($creator) {
+        return $t['creator'] == $creator;
+    })))) : ?>
         <div class="col-12 text-center">
             <h5 class="text-muted"><strong>Tidak ada data yang tersedia.</strong></h5>
         </div>
     <?php else : ?>
-        <?php $i = 1; ?>
         <?php foreach ($data_transaksi as $t) : ?>
             <div class="col-6 col-md-3 d-flex">
                 <div class="card flex-fill d-flex flex-column">
@@ -61,6 +75,7 @@
                                 <strong>Reward:</strong> <?= $t['poin_diberikan']; ?> Point<br>
                             <?php endif; ?>
                             <strong>Status Validasi :</strong> <?= $t['validation']; ?><br>
+                            <strong>Creator :</strong> <?= $t['creator']; ?><br>
                         </p>
                         <!-- Card Footer untuk Tombol -->
                     </div>
@@ -78,12 +93,15 @@
                                     </button>
                                 </div>
                             <?php endif; ?>
-                            <?php if (in_groups(['superadmin', 'dosen'])) : ?>
+                            <!-- Pemberian punishment melalui validasi oleh admin -->
+                            <?php if (in_groups(['superadmin', 'admin'])) : ?>
                                 <div class="col-6 col-md-3 mb-2 mb-md-0">
                                     <button type="button" class="btn btn-secondary btn-block d-flex flex-column align-items-center" data-toggle="modal" data-target="#modalValidasi<?= esc($t['id_transaksi']) ?>">
                                         <i class="fas fa-check-circle"></i><span class="d-none d-md-inline"> Validasi</span>
                                     </button>
                                 </div>
+                            <?php endif; ?>
+                            <?php if (in_groups(['superadmin', 'dosen'])) : ?>
                                 <div class="col-6 col-md-3 mb-2 mb-md-0">
                                     <button href="/Transaksi/delete/<?= $t['id_transaksi']; ?>" class="btn btn-danger btn-hapus btn-block d-flex flex-column align-items-center">
                                         <i class="fas fa-trash"></i> <span class="d-none d-md-inline"> Hapus </span>

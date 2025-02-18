@@ -1,8 +1,10 @@
 <header class="bg-gradient-to-r from-purple-500 to-pink-500 p-3 flex justify-between items-center fixed top-0 left-0 right-0 z-50">
-    <div class="text-white text-2xl font-bold flex items-center">
+    <!-- <div class="text-white text-2xl font-bold flex items-center"> -->
+    <a href="/page" class="text-white text-2xl font-bold flex items-center mr-4">
         <img src="/img/PointMarket.png" alt="" width="50px">
         <span>POINT MARKET</span>
-    </div>
+    </a>
+    <!-- </div> -->
     <nav class="hidden md:flex space-x-8 text-white items-center">
         <a class="hover:text-gray-300" href="/page">HOME</a>
         <a class="hover:text-gray-300" href="/page/gamifikasi">GAMIFIKASI</a>

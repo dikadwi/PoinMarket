@@ -26,8 +26,8 @@
                 <h2 class="font-bold">Kontak Kami</h2>
                 <p>Jika Anda memiliki pertanyaan atau memerlukan bantuan, silakan menghubungi kami:</p>
                 <ul>
-                    <li>Email: <a href="mailto:info@pointmarket.my.id">info@pointmarket.my.id</a></li>
-                    <li>Telepon: +62 123 456 7890</li>
+                    <li><i class="fas fa-envelope"></i> : <a href="mailto:info@pointmarket.my.id">info@pointmarket</a></li>
+                    <li><i class="fas fa-phone"></i> : +62 123 456 7890</li>
                 </ul>
             </div>
         </div>

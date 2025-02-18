@@ -117,6 +117,7 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
+                    <!-- Tambahkan kondisi jika punishment poin dikurangi, jika pembelian poin harga, jika reward poin diberikan -->
                     <!-- Input untuk menampilkan Point yang dipilih -->
                     <div class="form-group" id="poin-digunakan-group" style="display: none;">
                         <label for="poin_digunakan" class="col-form-label">Point Digunakan</label>
@@ -126,6 +127,16 @@
                     <div class="form-group" id="poin-diberikan-group" style="display: none;">
                         <label for="poin_diberikan" class="col-form-label">Point Diberikan</label>
                         <input type="text" class="form-control" id="poin_diberikan" name="poin_diberikan" readonly>
+                    </div>
+                    <!-- Gambar/ ambil dari item(gambar), dan pindah ke data_transaksi(gambar), tanpa upload -->
+                    <!-- <div class="form-group">
+                        <label for="gambar" class="col-form-label">Gambar</label>
+                        <input type="file" class="form-control" id="gambar" name="gambar" required>
+                    </div> -->
+                    <!-- Creator -->
+                    <div class="form-group">
+                        <label for="creator" class="col-form-label"></label>
+                        <input type="hidden" class="form-control" id="creator" name="creator" value="<?= session()->get('username'); ?>">
                     </div>
             </div>
             <div class="modal-footer">

@@ -1,55 +1,29 @@
 <!-- Card -->
-<?php
-// Cari data transaksi berdasarkan kata kunci
-if (isset($_GET['search'])) {
-    $search = strtolower($_GET['search']);  // Mengonversi kata kunci pencarian menjadi huruf kecil
-    $transaksi = array_filter($transaksi, function ($data) use ($search) {
-        // Mengonversi data transaksi dan search menjadi huruf kecil
-        return strpos(strtolower(strval($data['id_transaksi'])), $search) !== false ||
-            strpos(strtolower(strval($data['nama_transaksi'])), $search) !== false ||
-            strpos(strtolower(strval($data['poin_digunakan'])), $search) !== false;
-    });
-}
-// Kelompokkan transaksi berdasarkan kode_jenis
-$grouped_transaksi = [];
-foreach ($transaksi as $t) {
-    $kode_jenis = $t['kode_jenis'];
-    if (!isset($grouped_transaksi[$kode_jenis])) {
-        $grouped_transaksi[$kode_jenis] = [];
+<div class="row">
+    <?php
+    // Cari data transaksi berdasarkan kata kunci
+    if (isset($_GET['search'])) {
+        $search = strtolower($_GET['search']);  // Mengonversi kata kunci pencarian menjadi huruf kecil
+        $transaksi = array_filter($transaksi, function ($data) use ($search) {
+            // Mengonversi data transaksi dan search menjadi huruf kecil
+            return strpos(strtolower(strval($data['id_transaksi'])), $search) !== false ||
+                strpos(strtolower(strval($data['nama_transaksi'])), $search) !== false ||
+                strpos(strtolower(strval($data['poin_digunakan'])), $search) !== false;
+        });
     }
-    $grouped_transaksi[$kode_jenis][] = $t;
-}
 
-// Tampilkan card untuk setiap kelompok kode_jenis
-foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
-    // Tentukan judul berdasarkan kode_jenis
-    $judul_kategori = '';
-    switch ($kode_jenis) {
-        case '101':
-            $judul_kategori = 'Reward';
-            break;
-        case '102':
-            $judul_kategori = 'Belanja';
-            break;
-        case '103':
-            $judul_kategori = 'Punishment';
-            break;
-        case '105':
-            $judul_kategori = 'Misi';
-            break;
-        case '106':
-            $judul_kategori = 'Konsultasi';
-            break;
-        default:
-            $judul_kategori = 'Lainnya';
-    }
-?>
-    <!-- Judul Kategori -->
-    <h3 class="mt-4 mb-3"><?= $judul_kategori; ?></h3>
 
-    <!-- Baris Card untuk Kategori Ini -->
-    <div class="row">
-        <?php foreach ($transaksi_group as $t) : ?>
+    // Tampilkan card untuk setiap transaksi
+    if (empty($transaksi) || (isset($creator) && empty(array_filter($transaksi, function ($t) use ($creator) {
+        return $t['creator'] == $creator;
+    })))) : ?>
+        <div class="col-12 text-center">
+            <h5 class="text-muted"><strong>Tidak ada data yang tersedia.</strong></h5>
+        </div>
+    <?php else : ?>
+        <?php $i = 1; ?>
+        <?php foreach ($transaksi as $t) : ?>
+            <?php if (isset($creator) && $t['creator'] != $creator) continue; ?>
             <div class="col-6 col-md-3 d-flex">
                 <div class="card flex-fill d-flex flex-column">
                     <!-- Card Header -->
@@ -69,7 +43,7 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                     <div class="card-body">
                         <p class="card-text">
                             <!-- Kategori -->
-                            <strong>Kategori:</strong> <?= $judul_kategori; ?><br>
+                            <strong>Kategori:</strong> <?= $t['kode_jenis']; ?><br>
                             <!-- Rule Item -->
                             <strong>Rule Item:</strong> <?= $t['detail']; ?><br>
                             <!-- Feedback -->
@@ -79,7 +53,7 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                             <?php if (in_array($t['kode_jenis'], ['102', '103', '105', '106'])) : ?>
                                 <strong>
                                     <?php
-                                    if ($kode_jenis == '103') {
+                                    if ($t['kode_jenis'] == '103') {
                                         echo 'Penalti :';
                                     } else {
                                         echo 'Harga :';
@@ -109,9 +83,9 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                     <div class="d-flex justify-content-between mb-2 mx-3">
                         <!-- Creator -->
                         <!-- <button type="button" class="btn btn-info btn-block d-flex flex-column align-items-center">
-                            <i class="fas fa-user"></i>
-                            <span class="d-none d-md-inline"><?= $t['creator']; ?></span>
-                        </button> -->
+                    <i class="fas fa-user"></i>
+                    <span class="d-none d-md-inline"><?= $t['creator']; ?></span>
+                </button> -->
                         <button type="button" class="btn btn-pembuat btn-primary d-inline-block text-center opacity-50" data-toggle="modal" data-target="">
                             <i class="fas fa-user"></i> <!-- Ikon di atas teks -->
                             <span> <?= $t['creator']; ?></span> <!-- Teks di bawah ikon -->
@@ -127,9 +101,8 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                                     <span class="d-none d-md-inline"> Detail</span>
                                 </button>
                             </div>
-
                             <!-- Tombol Edit (Hanya untuk Admin & Dosen) -->
-                            <?php if (in_groups(['superadmin', 'dosen']) && ($t['kode_jenis'] != '103' || in_groups(['superadmin']))) : ?>
+                            <?php if (in_groups('superadmin') || ($t['kode_jenis'] == '103' && in_groups('admin')) || (in_groups('dosen') && $t['kode_jenis'] != '103')) : ?>
                                 <div class="col-6 col-md-3 mb-2 mb-md-0">
                                     <button type="button" class="btn btn-warning btn-block d-flex flex-column align-items-center" data-toggle="modal" data-target="#modalEdit<?= esc($t['id_transaksi']) ?>">
                                         <i class="fas fa-edit"></i>
@@ -137,9 +110,8 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                                     </button>
                                 </div>
                             <?php endif ?>
-                            <!-- Tombol Hapus (Hanya untuk SuperAdmin & Admin) -->
+                            <!-- Tombol Validasi -->
                             <?php if (in_groups(['superadmin', 'admin'])) : ?>
-                                <!-- Tombol Validasi -->
                                 <div class="col-6 col-md-3 mb-2 mb-md-0">
                                     <button type="button" class="btn btn-secondary btn-block d-flex flex-column align-items-center" data-toggle="modal" data-target="#modalValidasi<?= esc($t['id_transaksi']) ?>">
                                         <i class="fas fa-check-circle"></i> <!-- Ikon di atas teks -->
@@ -148,7 +120,7 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                                 </div>
                             <?php endif; ?>
                             <!-- Tombol Hapus (Hanya untuk SuperAdmin & Admin) -->
-                            <?php if (in_groups(['superadmin', 'dosen']) && ($t['kode_jenis'] != '103' || in_groups(['superadmin']))) : ?>
+                            <?php if (in_groups('superadmin') || ($t['kode_jenis'] == '103' && in_groups('admin')) || (in_groups('dosen') && $t['kode_jenis'] != '103')) : ?>
                                 <div class="col-6 col-md-3 mb-2 mb-md-0">
                                     <button href="/Jenis_Transaksi/delete/<?= $t['id_transaksi']; ?>" class="btn btn-danger btn-hapus btn-block d-flex flex-column align-items-center">
                                         <i class="fas fa-trash"></i>
@@ -161,8 +133,8 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                 </div>
             </div>
         <?php endforeach; ?>
-    </div>
-<?php endforeach; ?>
+    <?php endif; ?>
+</div>
 
 <!-- Modal box Detail -->
 <?php foreach ($transaksi as $t) : ?>
@@ -202,7 +174,7 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                                             <?php if (in_array($t['kode_jenis'], ['102', '103', '105', '106'])) : ?>
                                                 <h5 class="card-title"><b>
                                                         <?php
-                                                        if ($kode_jenis == '103') {
+                                                        if ($t['kode_jenis'] == '103') {
                                                             echo 'Penalti :';
                                                         } else {
                                                             echo 'Harga :';

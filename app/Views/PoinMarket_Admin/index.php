@@ -38,21 +38,21 @@
                         <div class="icon d-block">
                             <i class="ion ion-person-stalker"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="/Mahasiswa" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-6 col-md-2">
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h2>Pemesanan</h2>
+                            <h2>Pesanan</h2>
                             <!-- Total Semua Data Transaksi  -->
                             <h4><?= $totalPemesanan; ?> Pesanan</h4>
                         </div>
                         <div class="icon d-block">
                             <i class="ion ion-android-cart"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="/Transaksi" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-6 col-md-2">
@@ -80,7 +80,7 @@
                             <h5> <?= $totalValidasi ?> Pesanan </h5>
                         </div>
                         <div class="icon d-block">
-                            <i class="ion ion-chatboxes"></i>
+                            <i class="ion ion-clipboard"></i>
                         </div>
                         <a href="/Validasi" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
@@ -107,7 +107,8 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h2>Belanja</h2>
+                            <!-- <h2>Belanja</h2> -->
+                            <h2>Pembelian</h2>
                             <!-- Total Challanges  -->
                             <h5> <?= $totalPembelian ?> Items </h5>
                         </div>
@@ -167,10 +168,15 @@
             <div class="row">
                 <!-- Donut -->
                 <div class="col-12 col-md-6">
-                    <div class="small-box ">
+                    <div class="small-box">
+                        <center>
+                            <h2><i class="ion ion-pie-graph"></i></h2>
+                        </center>
                         <!-- Canvas untuk grafik donut -->
-                        <div>
-                            <canvas id="donutChart" width="400" height="400"></canvas>
+                        <div class="card mb-0">
+                            <div class="card-body">
+                                <canvas id="donutChart" width="400" height="400"></canvas>
+                            </div>
                         </div>
                         <!-- <div id="legend"></div> -->
                     </div>
@@ -188,10 +194,10 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered">
-                                        <thead class="bg-info">
+                                    <table class="table table-bordered table-striped">
+                                        <thead class="bg-gradient-primary">
                                             <tr>
-                                                <th>No</th>
+                                                <th>Rank</th>
                                                 <th>Nama</th>
                                                 <th>Poin</th>
                                                 <th>Level</th>
@@ -209,11 +215,10 @@
                                             $topMahasiswa = array_slice($mahasiswa, 0, 5);
                                             $i = 1;
                                             foreach ($topMahasiswa as $user) : ?>
-                                                <tr>
-                                                    <td class="<?= ($i == 1) ? 'gold' : (($i == 2) ? 'silver' : (($i == 3) ? 'bronze' : '')) ?>">
+                                                <tr class="<?= ($i == 1) ? 'bg-gradient-gold' : (($i == 2) ? 'bg-gradient-silver' : (($i == 3) ? 'bg-gradient-bronze' : '')) ?>">
+                                                    <td>
                                                         <!-- Menampilkan ikon sesuai peringkat -->
-                                                        <i class="fas <?= ($i == 1) ? 'fa-trophy' : (($i == 2) ? 'fa-trophy' : (($i == 3) ? 'fa-trophy' : (($i == 4) ? 'fa-medal' : (($i == 5) ? 'fa-medal' : '')))) ?>"
-                                                            style="color: <?= ($i == 1) ? 'gold' : (($i == 2) ? 'silver' : (($i == 3) ? 'bronze' : (($i == 4) ? 'gold' : 'silver'))) ?>"></i>
+                                                        <i class="fas <?= ($i == 1) ? 'fa-trophy' : (($i == 2) ? 'fa-trophy' : (($i == 3) ? 'fa-trophy' : (($i == 4) ? 'fa-medal' : (($i == 5) ? 'fa-medal' : '')))) ?>" style="color: <?= ($i == 1) ? 'gold' : (($i == 2) ? 'silver' : (($i == 3) ? 'bronze' : (($i == 4) ? 'gold' : 'silver'))) ?>"></i>
                                                         <?php echo $i++; ?>
                                                     </td>
                                                     <td><?= $user['nama']; ?></td>
@@ -237,7 +242,6 @@
                                                         ?>
                                                     </td>
                                                     <td>
-
                                                         <?php
                                                         $selectedBadge = null;
                                                         foreach ($badges as $badge) {
@@ -254,7 +258,6 @@
                                                             echo 'Tidak ada badge';
                                                         }
                                                         ?>
-
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>

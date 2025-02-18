@@ -24,7 +24,7 @@
             /* Bayangan */
             transition: transform 0.3s;
             /* Transisi untuk efek hover */
-            overflow: hidden;
+            overflow: visible;
             /* Menghindari konten keluar dari sudut */
         }
 
@@ -46,6 +46,8 @@
             color: white;
             font-size: 1.25rem;
             font-weight: bold;
+            /* menyesuaikan tinggi header */
+            height: 110px;
         }
 
         .card-body {

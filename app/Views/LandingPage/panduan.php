@@ -24,7 +24,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Gabung di Platform</span>
+                        <span class="mr-3">Gabung di Platform</span>
                         <i class="fas fa-user-plus fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Kumpulkan Poin</span>
+                        <span class="mr-3">Kumpulkan Poin</span>
                         <i class="fas fa-coins fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Gunakan Poin Anda</span>
+                        <span class="mr-3">Gunakan Poin Anda</span>
                         <i class="fas fa-exchange fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Raih Level & Badges</span>
+                        <span class="mr-3">Raih Level & Badges</span>
                         <i class="fas fa-award fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-66 custom-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Leaderboard</span>
+                        <span class="mr-3">Leaderboard</span>
                         <i class="fas fa-clipboard-list fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -216,7 +216,7 @@
                     <span>Kerjakan Quis</span>
                 </div>
                 <div class="card-body text-center">
-                    <img src="/img/panduan/progres_misi.png" alt="Foto Tim" class="rounded-lg mx-auto mb-4">
+                    <img src="/img/panduan/quis.png" alt="Foto Tim" class="rounded-lg mx-auto mb-4">
                     <h3 class="text-2xl font-bold text-purple-600 mb-2">. . . .</h3>
                     <!-- <p class="text-gray-600 font-bold">CEO & Founder</p> -->
                     <p class="text-gray-600">Kerjakan Quis. Selesaikan semua pertanyaan yang tersedia.</p>
@@ -366,13 +366,13 @@
         </div>
     </section> -->
 
-    <!-- Hubungi Kami -->
+    <!-- Daftar -->
     <div class="flex-container">
         <div class="flex-item w-full">
             <section class="text-center">
-                <h2 class="text-3xl font-bold text-purple-600 mb-4">Hubungi Kami</h2>
-                <p class="text-gray-600 mb-6">Jika Anda membutuhkan bantuan lebih lanjut atau ingin konsultasi, jangan ragu untuk menghubungi kami.</p>
-                <a href="/page/contact"><button class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700">Hubungi Kami</button></a>
+                <h2 class=" text-3xl font-bold text-purple-600 mb-4">Mulai Petualangan Belajar Anda Sekarang!</h2>
+                <p class="text-gray-600 mb-6">Daftar sekarang di <stong>PointMarket</stong> dan rasakan pengalaman belajar yang berbeda dari yang pernah Anda rasakan sebelumnya. Tingkatkan kemampuan, raih prestasi, dan dapatkan reward di setiap langkah perjalanan Anda!</p>
+                <a href="/register"><button class="bg-purple-600 text-white px-6 py-3 rounded-full hover:bg-purple-700">DAFTAR SEKARANG</button></a>
             </section>
         </div>
     </div>

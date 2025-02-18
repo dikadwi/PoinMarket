@@ -27,7 +27,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-full md:w-1/2 custom-card flex flex-col">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Visi</span>
+                        <span class="mr-3">Visi</span>
                         <i class="fas fa-compass fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
             <div class="bg-white shadow-lg rounded-lg p-0 w-full md:w-1/2 custom-card flex flex-col">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>Misi</span>
+                        <span class="mr-3">Misi</span>
                         <i class="fas fa-route fa-2x fa-beat"></i>
                     </div>
                 </div>
@@ -70,6 +70,7 @@
                     <img src="https://c8.alamy.com/comp/2D69TKH/business-team-at-the-video-conference-call-in-boardroom-vector-flat-cartoon-illustration-online-meeting-with-ceo-manager-or-director-consulting-an-2D69TKH.jpg" alt="Foto Tim" class="rounded-full mx-auto mb-4">
                     <h3 class="text-2xl font-bold text-purple-600 mb-2">. . . .</h3>
                     <p class="text-purple-600 font-bold">Nama</p>
+                    <!-- M Yusril Helmi -->
                     <p class="text-gray-600">Seorang visioner yang percaya bahwa gamifikasi dapat mengubah cara kita belajar.</p>
                 </div>
             </div>
@@ -92,6 +93,7 @@
                     <img src="https://static.vecteezy.com/system/resources/previews/007/814/266/non_2x/programmer-and-engineering-development-coding-web-development-website-design-developer-flat-vector.jpg" alt="Foto Tim" class="rounded-full mx-auto mb-4">
                     <h3 class="text-2xl font-bold text-purple-600 mb-2">. . . .</h3>
                     <p class="text-purple-600 font-bold">Nama</p>
+                    <!-- Andika Dwi A -->
                     <p class="text-gray-600">Ahli pengembang aplikasi yang bertanggung jawab atas platform PointMarket.</p>
                 </div>
             </div>

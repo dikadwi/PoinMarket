@@ -195,7 +195,15 @@
                          </a>
                      </li>
                  <?php endif ?>
-                 <?php if (in_groups(['superadmin'])) : ?>
+                 <?php if (in_groups(['superadmin', 'admin'])) : ?>
+                     <li class="nav-item">
+                         <a href="#/Validasi_item" class="nav-link">
+                             <i class="nav-icon fas fa-print"></i>
+                             <p>
+                                 Validasi Item
+                             </p>
+                         </a>
+                     </li>
                      <li class="nav-item">
                          <a href="/cms" class="nav-link">
                              <i class="nav-icon fas fa-chalkboard-teacher"></i>

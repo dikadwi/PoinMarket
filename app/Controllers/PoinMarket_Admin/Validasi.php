@@ -38,7 +38,17 @@ class Validasi extends BaseController
         // $data_transaksi = $this->DataTransaksiModel->getDataTransaksi();
 
         // Ambil data transaksi yang validasi-nya "Belum"
+        // $data_transaksi = $this->DataTransaksiModel->getDataValidasi();
+
+        // Menampilkan item yang dibuat berdasarkna session creator 
         $data_transaksi = $this->DataTransaksiModel->getDataValidasi();
+        if (in_array($session->get('username'), ['superadmin', 'admin'])) {
+            $datatransaksi_user = $data_transaksi;
+        } else {
+            $datatransaksi_user = array_filter($data_transaksi, function ($t) use ($session) {
+                return $t['creator'] == $session->get('username');
+            });
+        }
 
         // Ambil data mahasiswa berdasarkan NPM
         $mahasiswa = [];
@@ -51,7 +61,8 @@ class Validasi extends BaseController
             'username' => $session->get('username'),
             'title' => 'Validasi',
             // 'data_transaksi' => $this->DataTransaksiModel->getDataTransaksi(),
-            'data_transaksi' => $data_transaksi, // Hanya data transaksi yang validasi "Belum"
+            'data_transaksi' => $datatransaksi_user,
+            // 'data_transaksi' => $data_transaksi, // Hanya data transaksi yang validasi "Belum"
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'transaksi' => $this->TransaksiModel->getTransaksi(),
             'npm' => $this->MahasiswaModel->getMhs(),
