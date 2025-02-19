@@ -11,58 +11,44 @@ if (isset($_GET['search'])) {
     });
 }
 
-// // Filter data berdasarkan role dan status validasi
-// if (in_groups(['dosen'])) {
-//     $transaksi = array_filter($transaksi, function ($data) {
-//         return $data['valid'] == 'Yes'; // Hanya tampilkan data dengan status validasi "Yes" (Sudah)
-//     });
-// }
-
-// Filter data berdasarkan status validasi
+// Filter data berdasarkan status validasi dan kategori
 $transaksi = array_filter($transaksi, function ($data) {
-    return $data['valid'] == 'Yes'; // Hanya tampilkan data dengan status validasi "Yes" (Sudah)
+    // Hanya tampilkan data dengan status validasi "Yes" dan kategori 102 atau 106
+    return $data['valid'] == 'Yes' && ($data['kode_jenis'] == '102' || $data['kode_jenis'] == '106');
 });
 
 // Kelompokkan transaksi berdasarkan kode_jenis
-$grouped_transaksi = [];
+$grouped_transaksi = array();
 foreach ($transaksi as $t) {
-    $kode_jenis = $t['kode_jenis'];
-    if (!isset($grouped_transaksi[$kode_jenis])) {
-        $grouped_transaksi[$kode_jenis] = [];
-    }
-    $grouped_transaksi[$kode_jenis][] = $t;
+    $grouped_transaksi[$t['kode_jenis']][] = $t;
 }
 
-// Tampilkan card untuk setiap kelompok kode_jenis
-foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
+// Urutkan berdasarkan kode_jenis
+ksort($grouped_transaksi);
+
+// Loop through setiap kategori
+foreach ($grouped_transaksi as $kode_jenis => $transactions) :
     // Tentukan judul berdasarkan kode_jenis
     $judul_kategori = '';
     switch ($kode_jenis) {
-        case '101':
-            $judul_kategori = 'Reward';
-            break;
         case '102':
             $judul_kategori = 'Belanja';
-            break;
-        case '103':
-            $judul_kategori = 'Punishment';
-            break;
-        case '105':
-            $judul_kategori = 'Misi';
             break;
         case '106':
             $judul_kategori = 'Konsultasi';
             break;
-        default:
-            $judul_kategori = 'Lainnya';
     }
 ?>
     <!-- Judul Kategori -->
-    <h3 class="mt-4 mb-3"><?= $judul_kategori; ?></h3>
+    <div class="row mt-4">
+        <div class="col">
+            <h4><?= $judul_kategori ?></h4>
+        </div>
+    </div>
 
     <!-- Baris Card untuk Kategori Ini -->
     <div class="row">
-        <?php foreach ($transaksi_group as $t) : ?>
+        <?php foreach ($transactions as $t) : ?>
             <div class="col-6 col-md-3 d-flex">
                 <div class="card flex-fill d-flex flex-column">
                     <!-- Card Header -->
@@ -97,38 +83,89 @@ foreach ($grouped_transaksi as $kode_jenis => $transaksi_group) :
                         $validstatus = esc($t['valid']);
                         if ($validstatus == 'Yes') {
                             $validstatusText = 'Tervalidasi';
+                            $btnClass = 'btn-success';
                         } elseif ($validstatus == 'No') {
                             $validstatusText = 'Tidak Tervalidasi';
+                            $btnClass = 'btn-danger';
                         } elseif ($validstatus == 'Wait') {
                             $validstatusText = 'Menunggu Validasi';
+                            $btnClass = 'btn-warning';
                         } else {
-                            $validstatusText = $validstatus; // Jika status tidak sesuai dengan Yes atau No
+                            $validstatusText = $validstatus;
+                            $btnClass = 'btn-secondary';
                         }
                         ?>
-                        <strong>Status Validasi :</strong> <?= $validstatusText ?><br>
+                        <strong>Status Validasi :</strong> 
+                        <button type="button" class="btn btn-sm <?= $btnClass ?> d-inline-block">
+                            <?= $validstatusText ?>
+                        </button><br>
                         <?php
                         $itemstatus = esc($t['status']);
                         if ($itemstatus == 'Yes') {
                             $itemstatusText = 'Aktif';
-                        } elseif ($itemstatus == 'No') {
-                            $itemstatusText = 'Tidak Aktif';
+                            $btnItemClass = 'btn-success';
+                            $iconClass = 'fa-check';
                         } else {
-                            $itemstatusText = $itemstatus; // Jika status tidak sesuai dengan Yes atau No
+                            $itemstatusText = 'Tidak Aktif';
+                            $btnItemClass = 'btn-danger';
+                            $iconClass = 'fa-times';
                         }
                         ?>
-                        <strong>Status Item :</strong> <?= $itemstatusText ?><br>
+                        <strong>Status Item :</strong> 
+                        <button type="button" class="btn btn-sm <?= $btnItemClass ?> d-inline-block">
+                            <i class="fas <?= $iconClass ?>"></i>
+                        </button>
                         </p>
                     </div>
                     <div class="d-flex justify-content-between mb-2 mx-3">
                         <!-- Creator -->
-                        <!-- <button type="button" class="btn btn-info btn-block d-flex flex-column align-items-center">
+                        <button type="button" class="btn btn-pembuat btn-primary d-inline-block text-center opacity-50" data-toggle="modal" data-target="#modalCreator<?= esc($t['id_transaksi']) ?>">
                             <i class="fas fa-user"></i>
-                            <span class="d-none d-md-inline"><?= $t['creator']; ?></span>
-                        </button> -->
-                        <button type="button" class="btn btn-pembuat btn-primary d-inline-block text-center opacity-50" data-toggle="modal" data-target="">
-                            <i class="fas fa-user"></i> <!-- Ikon di atas teks -->
-                            <span> <?= $t['creator']; ?></span> <!-- Teks di bawah ikon -->
+                            <span> <?= $t['creator']; ?></span>
                         </button>
+                    </div>
+
+                    <!-- Modal Creator Profile -->
+                    <div class="modal fade" id="modalCreator<?= esc($t['id_transaksi']) ?>" tabindex="-1" role="dialog" aria-labelledby="modalCreatorLabel<?= esc($t['id_transaksi']) ?>" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalCreatorLabel<?= esc($t['id_transaksi']) ?>">Profil Creator</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="text-center mb-4">
+                                        <i class="fas fa-user-circle fa-5x text-primary"></i>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4"><strong>Username</strong></div>
+                                        <div class="col-8">: <?= $t['creator']; ?></div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-4"><strong>Role</strong></div>
+                                        <!-- Benahi lagi bagian Role -->
+                                        <div class="col-8">:
+                                            <!-- <php
+                                            if (in_groups(['superadmin'])) {
+                                                echo 'SuperAdmin';
+                                            } elseif (in_groups(['admin'])) {
+                                                echo 'Admin';
+                                            } elseif (in_groups(['dosen'])) {
+                                                echo 'Dosen';
+                                            } else {
+                                                echo 'User';
+                                            }
+                                            ?> -->
+                                        </div>
+                                    </div>                             
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- Card Footer (Tombol Aksi) -->
                     <div class="card-footer">

@@ -69,15 +69,22 @@
                             $status = esc($t['valid']);
                             if ($status == 'Yes') {
                                 $statusText = 'Tervalidasi';
+                                $btnClass = 'btn-success';
                             } elseif ($status == 'No') {
                                 $statusText = 'Tidak Tervalidasi';
+                                $btnClass = 'btn-danger';
                             } elseif ($status == 'Wait') {
                                 $statusText = 'Menunggu Validasi';
+                                $btnClass = 'btn-warning';
                             } else {
                                 $statusText = $status; // Jika status tidak sesuai dengan Yes atau No
+                          $btnClass = 'btn-secondary';
                             }
                             ?>
-                            <strong>Status Validasi :</strong> <?= $statusText ?><br>
+                            <strong>Status Validasi :</strong> 
+                            <button type="button" class="btn btn-sm <?= $btnClass ?> d-inline-block">
+                            <?= $statusText ?>
+                        </button><br>
                         </p>
                     </div>
                     <div class="d-flex justify-content-between mb-2 mx-3">
