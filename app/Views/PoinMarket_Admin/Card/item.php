@@ -43,7 +43,7 @@
                     <div class="card-body">
                         <p class="card-text">
                             <!-- Kategori -->
-                            <strong>Kategori:</strong> <?= $t['kode_jenis']; ?><br>
+                            <!-- <strong>Kategori:</strong> <= $t['kode_jenis']; ?><br> -->
                             <!-- Rule Item -->
                             <strong>Rule Item:</strong> <?= $t['detail']; ?><br>
                             <!-- Feedback -->
@@ -78,13 +78,29 @@
                                 $btnClass = 'btn-warning';
                             } else {
                                 $statusText = $status; // Jika status tidak sesuai dengan Yes atau No
-                          $btnClass = 'btn-secondary';
+                             $btnClass = 'btn-secondary';
                             }
                             ?>
-                            <strong>Status Validasi :</strong> 
+                            <strong>Status :</strong> 
+                            <button type="button" class="btn btn-sm <?= $btnClass ?> d-inline-block mb-2">
+                                <?= $statusText ?>
+                            </button><br>
+                            <?php
+                            $itemstatus = esc($t['status']);
+                            if ($itemstatus == 'Yes') {
+                                $itemstatusText = 'Aktif';
+                                $btnClass = 'btn-success';
+                            } else {
+                                $itemstatusText = 'Tidak Aktif';
+                                $btnItemClass = 'btn-danger';
+                                $btnClass = 'btn-danger';
+                            }
+                            ?>
+                            <i class="fas fa-shopping-cart"></i> 
+                            <strong>:</strong>
                             <button type="button" class="btn btn-sm <?= $btnClass ?> d-inline-block">
-                            <?= $statusText ?>
-                        </button><br>
+                            <?= $itemstatusText ?>
+                            </button>
                         </p>
                     </div>
                     <div class="d-flex justify-content-between mb-2 mx-3">

@@ -1,0 +1,107 @@
+digraph API_Documentation_Automation {
+    // Basic settings
+    rankdir=TB;
+    compound=true;
+    splines=ortho;
+    
+    // Node and edge defaults
+    node [
+        shape=box,
+        style=rounded,
+        fontname="Arial",
+        fontsize=10,
+        margin=0.2
+    ];
+    edge [
+        fontname="Arial",
+        fontsize=8,
+        len=1.5
+    ];
+
+    // Development cluster
+    subgraph cluster_dev {
+        label="Development";
+        style=filled;
+        color=lightgrey;
+        
+        dev_php [label="PHP/CodeIgniter"];
+        dev_python [label="Python AI Service"];
+        annotations [label="API Annotations"];
+        
+        {rank=same; dev_php; dev_python}
+        dev_php -> annotations;
+        dev_python -> annotations;
+    }
+
+    // Version Control cluster
+    subgraph cluster_vcs {
+        label="Version Control";
+        style=filled;
+        color=lightblue;
+        
+        commit [label="Git Commit"];
+        hook [label="Pre-commit Hook"];
+        push [label="Git Push"];
+        
+        commit -> hook -> push;
+    }
+
+    // CI/CD cluster
+    subgraph cluster_cicd {
+        label="CI/CD Pipeline";
+        style=filled;
+        color=lightgreen;
+        
+        action [label="GitHub Action"];
+        
+        subgraph cluster_docs {
+            label="Documentation";
+            style=filled;
+            color=lightyellow;
+            
+            scan [label="Code Scanning"];
+            generate [label="Doc Generation"];
+            merge [label="Merge Docs"];
+            
+            scan -> generate -> merge;
+        }
+        
+        validate [label="Validation"];
+        deploy [label="Deploy"];
+        
+        action -> scan;
+        merge -> validate -> deploy;
+    }
+
+    // Access cluster
+    subgraph cluster_access {
+        label="Documentation Access";
+        style=filled;
+        color=lightpink;
+        
+        ui [label="Swagger UI"];
+        web [label="API Website"];
+        ide [label="IDE Preview"];
+        
+        {rank=same; ui; web; ide}
+    }
+
+    // Main flow connections
+    annotations -> commit;
+    push -> action;
+    deploy -> ui;
+    deploy -> web;
+    deploy -> ide;
+
+    // Error handling
+    error [label="Error Handler", shape=diamond];
+    notify [label="Notification"];
+    
+    validate -> error;
+    error -> notify [label="Issues"];
+    error -> deploy [label="Pass"];
+
+    // Layout improvements
+    {rank=same; commit; hook; push}
+    {rank=same; ui; web; ide}
+}

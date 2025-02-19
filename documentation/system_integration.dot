@@ -1,0 +1,32 @@
+digraph SystemIntegration {
+    // Graph settings
+    rankdir=TD;
+    node [shape=box, style=rounded];
+    
+    // Nodes
+    Start [label="Start"];
+    CheckChanges [label="Check for Changes", shape=diamond];
+    UpdateLocal [label="Update Local DB"];
+    UpdateSupabase [label="Update Supabase"];
+    LogSync [label="Log Sync"];
+    WaitNext [label="Wait for Next Check"];
+    RealTimeUpdate [label="Real-time Update?", shape=diamond];
+    DetectChange [label="Detect Data Change"];
+    Broadcast [label="Broadcast to Users"];
+    UpdateUI [label="Update UI"];
+    End [label="End"];
+    
+    // Edges
+    Start -> CheckChanges;
+    CheckChanges -> UpdateLocal [label="Changes Found"];
+    CheckChanges -> WaitNext [label="No Changes"];
+    UpdateLocal -> UpdateSupabase;
+    UpdateSupabase -> LogSync;
+    LogSync -> WaitNext;
+    WaitNext -> RealTimeUpdate;
+    RealTimeUpdate -> DetectChange [label="Yes"];
+    RealTimeUpdate -> End [label="No"];
+    DetectChange -> Broadcast;
+    Broadcast -> UpdateUI;
+    UpdateUI -> End;
+}

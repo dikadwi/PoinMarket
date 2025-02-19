@@ -1,0 +1,106 @@
+digraph AI_Implementation {
+    // Graph settings
+    rankdir=TB;
+    compound=true;
+    node [shape=box, style=rounded, fontname="Arial"];
+    edge [fontname="Arial", fontsize=10];
+    
+    // Subgraph for CodeIgniter Application
+    subgraph cluster_codeigniter {
+        label="CodeIgniter Application";
+        style=filled;
+        color=lightgrey;
+        node [style=filled, color=white];
+        
+        user_interface [label="User Interface\n(Views)"];
+        controllers [label="Controllers\n(API Endpoints)"];
+        models [label="Models\n(Data Access)"];
+        
+        user_interface -> controllers [label="Request"];
+        controllers -> models [label="Data Query"];
+        models -> controllers [label="Data Response"];
+    }
+    
+    // Subgraph for Python AI Service
+    subgraph cluster_python {
+        label="Python AI Service";
+        style=filled;
+        color=lightblue;
+        node [style=filled, color=white];
+        
+        flask_api [label="Flask API\n(REST Endpoints)"];
+        
+        subgraph cluster_recommender {
+            label="Product Recommender";
+            style=filled;
+            color=lightyellow;
+            
+            rec_preprocess [label="Data\nPreprocessing"];
+            rec_train [label="Model Training\n(scikit-learn)"];
+            rec_predict [label="Generate\nRecommendations"];
+            
+            rec_preprocess -> rec_train;
+            rec_train -> rec_predict;
+        }
+        
+        subgraph cluster_sentiment {
+            label="Sentiment Analysis";
+            style=filled;
+            color=lightgreen;
+            
+            sent_preprocess [label="Text\nPreprocessing"];
+            sent_model [label="TensorFlow\nModel"];
+            sent_analyze [label="Sentiment\nScore"];
+            
+            sent_preprocess -> sent_model;
+            sent_model -> sent_analyze;
+        }
+        
+        subgraph cluster_points {
+            label="Point Prediction";
+            style=filled;
+            color=lightpink;
+            
+            point_collect [label="Activity Data\nCollection"];
+            point_process [label="Feature\nEngineering"];
+            point_predict [label="Random Forest\nPrediction"];
+            
+            point_collect -> point_process;
+            point_process -> point_predict;
+        }
+        
+        flask_api -> rec_preprocess;
+        flask_api -> sent_preprocess;
+        flask_api -> point_collect;
+        
+        rec_predict -> flask_api;
+        sent_analyze -> flask_api;
+        point_predict -> flask_api;
+    }
+    
+    // Database connections
+    database [label="Database\n(MySQL)", shape=cylinder];
+    models -> database [dir=both];
+    flask_api -> database [dir=both, label="Data Sync"];
+    
+    // External connections
+    controllers -> flask_api [label="API Calls", style=dashed];
+    flask_api -> controllers [label="AI Results", style=dashed];
+    
+    // Cache system
+    cache [label="Redis Cache", shape=cylinder, color=red];
+    flask_api -> cache [dir=both, label="Cache Results"];
+    
+    // Model storage
+    model_storage [label="Model Storage\n(Saved Models)", shape=folder];
+    rec_train -> model_storage [dir=both];
+    sent_model -> model_storage [dir=both];
+    point_predict -> model_storage [dir=both];
+    
+    // Labels and notes
+    label = "PoinMarket AI Implementation Workflow";
+    
+    // Add invisible edges to improve layout
+    {rank=same; user_interface; flask_api}
+    {rank=same; database; cache}
+}

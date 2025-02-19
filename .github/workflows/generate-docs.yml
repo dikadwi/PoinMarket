@@ -1,0 +1,43 @@
+name: Generate API Documentation
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'app/Controllers/**'
+      - 'ai_service/**'
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        extensions: mbstring, xml
+        
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+
+    - name: Install PHP dependencies
+      run: composer install
+
+    - name: Install Python dependencies
+      run: |
+        cd ai_service
+        pip install -r requirements.txt
+
+    - name: Generate Documentation
+      run: php scripts/generate_docs.php
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public/docs

@@ -14,7 +14,7 @@ if (isset($_GET['search'])) {
 // Filter data berdasarkan status validasi dan kategori
 $transaksi = array_filter($transaksi, function ($data) {
     // Hanya tampilkan data dengan status validasi "Yes" dan kategori 102 atau 106
-    return $data['valid'] == 'Yes' && ($data['kode_jenis'] == '102' || $data['kode_jenis'] == '106');
+    return $data['valid'] == 'Yes' && $data['status_item'] == 'Aktif' && ($data['kode_jenis'] == '102' || $data['kode_jenis'] == '106');
 });
 
 // Kelompokkan transaksi berdasarkan kode_jenis

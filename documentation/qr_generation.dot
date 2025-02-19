@@ -1,0 +1,31 @@
+digraph QRGeneration {
+    // Graph settings
+    rankdir=TD;
+    node [shape=box, style=rounded];
+    
+    // Nodes
+    Start [label="Start"];
+    ReceiveData [label="Receive Input Data"];
+    SetParams [label="Set QR Parameters"];
+    ValidateData [label="Validate Data", shape=diamond];
+    GenerateQR [label="Generate QR Code"];
+    SetProperties [label="Set QR Properties"];
+    AddLogo [label="Add Logo if Required"];
+    SaveQR [label="Save QR Code"];
+    ReturnURL [label="Return QR URL/Path"];
+    ReturnError [label="Return Error"];
+    End [label="End"];
+    
+    // Edges
+    Start -> ReceiveData;
+    ReceiveData -> SetParams;
+    SetParams -> ValidateData;
+    ValidateData -> GenerateQR [label="Valid"];
+    ValidateData -> ReturnError [label="Invalid"];
+    GenerateQR -> SetProperties;
+    SetProperties -> AddLogo;
+    AddLogo -> SaveQR;
+    SaveQR -> ReturnURL;
+    ReturnURL -> End;
+    ReturnError -> End;
+}

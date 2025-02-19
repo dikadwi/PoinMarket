@@ -1,0 +1,29 @@
+digraph SweetAlert {
+    // Graph settings
+    rankdir=TD;
+    node [shape=box, style=rounded];
+    
+    // Nodes
+    Start [label="Start"];
+    EventTrigger [label="Event Trigger", shape=diamond];
+    DetermineType [label="Determine Alert Type"];
+    SetParams [label="Set Alert Parameters"];
+    ShowAlert [label="Show Sweet Alert"];
+    RequiresResponse [label="Requires Response?", shape=diamond];
+    CaptureAction [label="Capture User Action"];
+    ExecuteFunction [label="Execute Function"];
+    AutoClose [label="Auto Close"];
+    End [label="End"];
+    
+    // Edges
+    Start -> EventTrigger;
+    EventTrigger -> DetermineType;
+    DetermineType -> SetParams;
+    SetParams -> ShowAlert;
+    ShowAlert -> RequiresResponse;
+    RequiresResponse -> CaptureAction [label="Yes"];
+    RequiresResponse -> AutoClose [label="No"];
+    CaptureAction -> ExecuteFunction;
+    ExecuteFunction -> End;
+    AutoClose -> End;
+}

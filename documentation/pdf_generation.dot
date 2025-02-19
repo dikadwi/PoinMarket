@@ -1,0 +1,37 @@
+digraph PDFGeneration {
+    // Graph settings
+    rankdir=TD;
+    node [shape=box, style=rounded];
+    
+    // Nodes
+    Start [label="Start"];
+    ReceiveData [label="Receive Document Data"];
+    SelectTemplate [label="Select Template"];
+    DocType [label="Document Type", shape=diamond];
+    FormatTrans [label="Format Transaction Data"];
+    FormatUser [label="Format User Data"];
+    AddPayment [label="Add Payment Details"];
+    AddQR [label="Add QR Code"];
+    AddCertNum [label="Add Certificate Number"];
+    AddDate [label="Add Date & Validity"];
+    GeneratePDF [label="Generate PDF"];
+    SavePDF [label="Save PDF"];
+    ReturnURL [label="Return Download URL"];
+    End [label="End"];
+    
+    // Edges
+    Start -> ReceiveData;
+    ReceiveData -> SelectTemplate;
+    SelectTemplate -> DocType;
+    DocType -> FormatTrans [label="Invoice"];
+    DocType -> FormatUser [label="Certificate"];
+    FormatTrans -> AddPayment;
+    AddPayment -> AddQR;
+    FormatUser -> AddCertNum;
+    AddCertNum -> AddDate;
+    AddQR -> GeneratePDF;
+    AddDate -> GeneratePDF;
+    GeneratePDF -> SavePDF;
+    SavePDF -> ReturnURL;
+    ReturnURL -> End;
+}

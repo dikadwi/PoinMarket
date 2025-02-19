@@ -1,0 +1,299 @@
+openapi: 3.0.0
+info:
+  title: PoinMarket AI Service API
+  description: API documentation for PoinMarket's AI features including product recommendations, sentiment analysis, and point prediction
+  version: 1.0.0
+  contact:
+    email: support@poinmarket.com
+
+servers:
+  - url: http://ai-service.poinmarket.com/api/v1
+    description: AI Service Production Server
+  - url: http://ai-service.poinmarket.local/api/v1
+    description: AI Service Development Server
+
+tags:
+  - name: recommendations
+    description: Product recommendation endpoints
+  - name: sentiment
+    description: Review sentiment analysis endpoints
+  - name: points
+    description: Point prediction endpoints
+  - name: models
+    description: Model management endpoints
+
+paths:
+  /recommendations/products/{userId}:
+    get:
+      tags:
+        - recommendations
+      summary: Get product recommendations for a user
+      description: Returns personalized product recommendations based on user behavior and preferences
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID of the user
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+          description: Maximum number of recommendations to return
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  recommendations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProductRecommendation'
+        '404':
+          description: User not found
+        '500':
+          description: Internal server error
+
+  /sentiment/analyze:
+    post:
+      tags:
+        - sentiment
+      summary: Analyze sentiment of product review
+      description: Returns sentiment score for given review text
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                  description: Review text to analyze
+                productId:
+                  type: integer
+                  description: ID of the product being reviewed
+      responses:
+        '200':
+          description: Successful analysis
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SentimentResult'
+        '400':
+          description: Invalid input
+        '500':
+          description: Internal server error
+
+  /points/predict/{userId}:
+    get:
+      tags:
+        - points
+      summary: Predict future point accumulation
+      description: Predicts how many points a user will accumulate in the next period
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID of the user
+        - name: periodDays
+          in: query
+          schema:
+            type: integer
+            default: 30
+          description: Number of days to predict for
+      responses:
+        '200':
+          description: Successful prediction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointPrediction'
+        '404':
+          description: User not found
+        '500':
+          description: Internal server error
+
+  /models/train:
+    post:
+      tags:
+        - models
+      summary: Train or retrain AI models
+      description: Initiates training of specified AI models with latest data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                modelType:
+                  type: string
+                  enum: [recommender, sentiment, points]
+                  description: Type of model to train
+                parameters:
+                  type: object
+                  description: Training parameters
+      responses:
+        '202':
+          description: Training initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrainingStatus'
+        '400':
+          description: Invalid input
+        '500':
+          description: Internal server error
+
+  /models/status/{trainingId}:
+    get:
+      tags:
+        - models
+      summary: Get model training status
+      description: Returns the current status of a model training job
+      parameters:
+        - name: trainingId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of the training job
+      responses:
+        '200':
+          description: Training status retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrainingStatus'
+        '404':
+          description: Training job not found
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    ProductRecommendation:
+      type: object
+      properties:
+        productId:
+          type: integer
+          description: ID of the recommended product
+        score:
+          type: number
+          format: float
+          description: Recommendation score (0-1)
+        reason:
+          type: string
+          description: Explanation for the recommendation
+        category:
+          type: string
+          description: Product category
+        price:
+          type: number
+          format: float
+          description: Product price
+
+    SentimentResult:
+      type: object
+      properties:
+        score:
+          type: number
+          format: float
+          description: Sentiment score (-1 to 1)
+        confidence:
+          type: number
+          format: float
+          description: Confidence level of the analysis
+        sentiment:
+          type: string
+          enum: [positive, negative, neutral]
+          description: Overall sentiment category
+        aspects:
+          type: array
+          items:
+            type: object
+            properties:
+              aspect:
+                type: string
+                description: Specific aspect of the review
+              sentiment:
+                type: string
+                enum: [positive, negative, neutral]
+
+    PointPrediction:
+      type: object
+      properties:
+        userId:
+          type: integer
+          description: User ID
+        predictedPoints:
+          type: integer
+          description: Predicted point accumulation
+        confidence:
+          type: number
+          format: float
+          description: Confidence level of prediction
+        factors:
+          type: array
+          items:
+            type: object
+            properties:
+              factor:
+                type: string
+                description: Contributing factor
+              impact:
+                type: number
+                format: float
+                description: Impact weight of the factor
+
+    TrainingStatus:
+      type: object
+      properties:
+        trainingId:
+          type: string
+          description: ID of the training job
+        modelType:
+          type: string
+          enum: [recommender, sentiment, points]
+          description: Type of model being trained
+        status:
+          type: string
+          enum: [queued, training, completed, failed]
+          description: Current status of training
+        progress:
+          type: number
+          format: float
+          description: Training progress (0-100)
+        startTime:
+          type: string
+          format: date-time
+          description: When training started
+        endTime:
+          type: string
+          format: date-time
+          description: When training completed
+        error:
+          type: string
+          description: Error message if training failed
+
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - ApiKeyAuth: []
+  - BearerAuth: []

@@ -1,0 +1,36 @@
+digraph PointSystem {
+    // Graph settings
+    rankdir=TD;
+    node [shape=box, style=rounded];
+    
+    // Nodes
+    Start [label="Start"];
+    UserActivity [label="User Activity", shape=diamond];
+    Calculate [label="Calculate Points"];
+    UpdatePoints [label="Update User Points"];
+    RecordHistory [label="Record History"];
+    SendNotif [label="Send Notification"];
+    UsePoints [label="Want to Use Points?", shape=diamond];
+    CheckBalance [label="Check Point Balance", shape=diamond];
+    DeductPoints [label="Deduct Points"];
+    ApplyBenefit [label="Apply Benefit"];
+    ErrorMsg [label="Show Error Message"];
+    End [label="End"];
+    
+    // Edges
+    Start -> UserActivity;
+    UserActivity -> Calculate [label="Marketplace\nTransaction"];
+    UserActivity -> Calculate [label="Learning\nCompletion"];
+    UserActivity -> Calculate [label="Other\nActivities"];
+    Calculate -> UpdatePoints;
+    UpdatePoints -> RecordHistory;
+    RecordHistory -> SendNotif;
+    SendNotif -> UsePoints;
+    UsePoints -> CheckBalance [label="Yes"];
+    UsePoints -> End [label="No"];
+    CheckBalance -> DeductPoints [label="Sufficient"];
+    CheckBalance -> ErrorMsg [label="Insufficient"];
+    DeductPoints -> ApplyBenefit;
+    ApplyBenefit -> End;
+    ErrorMsg -> End;
+}
