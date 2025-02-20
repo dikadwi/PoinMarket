@@ -14,7 +14,7 @@ if (isset($_GET['search'])) {
 // Filter data berdasarkan status validasi dan kategori
 $transaksi = array_filter($transaksi, function ($data) {
     // Hanya tampilkan data dengan status validasi "Yes" dan kategori 102 atau 106
-    return $data['valid'] == 'Yes' && $data['status_item'] == 'Aktif' && ($data['kode_jenis'] == '102' || $data['kode_jenis'] == '106');
+    return $data['valid'] == 'Yes' && $data['status'] == 'Yes' && ($data['kode_jenis'] == '102' || $data['kode_jenis'] == '106');
 });
 
 // Kelompokkan transaksi berdasarkan kode_jenis
@@ -41,9 +41,9 @@ foreach ($grouped_transaksi as $kode_jenis => $transactions) :
 ?>
     <!-- Judul Kategori -->
     <div class="row mt-4">
-        <div class="col">
+        <!-- <div class="col">
             <h4><?= $judul_kategori ?></h4>
-        </div>
+        </div> -->
     </div>
 
     <!-- Baris Card untuk Kategori Ini -->
@@ -52,9 +52,9 @@ foreach ($grouped_transaksi as $kode_jenis => $transactions) :
             <div class="col-6 col-md-3 d-flex">
                 <div class="card flex-fill d-flex flex-column">
                     <!-- Card Header -->
-                    <div class="card-header text-center">
+                    <!-- <div class="card-header text-center">
                         <h5 class="card-title"><strong><?= $t['nama_transaksi']; ?></strong></h5>
-                    </div>
+                    </div> -->
 
                     <!-- Card Image -->
                     <div class="card-img-container">
@@ -66,10 +66,11 @@ foreach ($grouped_transaksi as $kode_jenis => $transactions) :
 
                     <!-- Card Body -->
                     <div class="card-body">
+                        <h5 class="card-title"><strong><?= $t['nama_transaksi']; ?></strong></h5><br>
+                        <p class="card-text"><?= $t['keterangan']; ?></p>
                         <p class="card-text">
-                        <h5><strong><?= $t['keterangan']; ?> </strong></h5>
                         <strong>
-                            <?php
+                            <!-- <php
                             if ($kode_jenis == '101' || $kode_jenis == '105') {
                                 echo 'Reward :';
                             } else if ($kode_jenis == '103') {
@@ -77,9 +78,11 @@ foreach ($grouped_transaksi as $kode_jenis => $transactions) :
                             } else {
                                 echo 'Harga :';
                             }
-                            ?>
-                        </strong> <?= $t['poin_digunakan']; ?> Point <br>
-                        <?php
+                            ?> -->
+                            Harga :
+                        </strong> <?= $t['poin_digunakan']; ?> Point 
+                        </p>
+                        <!-- <php
                         $validstatus = esc($t['valid']);
                         if ($validstatus == 'Yes') {
                             $validstatusText = 'Tervalidasi';
@@ -96,10 +99,10 @@ foreach ($grouped_transaksi as $kode_jenis => $transactions) :
                         }
                         ?>
                         <strong>Status Validasi :</strong> 
-                        <button type="button" class="btn btn-sm <?= $btnClass ?> d-inline-block">
-                            <?= $validstatusText ?>
+                        <button type="button" class="btn btn-sm <= $btnClass ?> d-inline-block">
+                            <= $validstatusText ?>
                         </button><br>
-                        <?php
+                        <php
                         $itemstatus = esc($t['status']);
                         if ($itemstatus == 'Yes') {
                             $itemstatusText = 'Aktif';
@@ -112,10 +115,9 @@ foreach ($grouped_transaksi as $kode_jenis => $transactions) :
                         }
                         ?>
                         <strong>Status Item :</strong> 
-                        <button type="button" class="btn btn-sm <?= $btnItemClass ?> d-inline-block">
-                            <i class="fas <?= $iconClass ?>"></i>
-                        </button>
-                        </p>
+                        <button type="button" class="btn btn-sm <= $btnItemClass ?> d-inline-block">
+                            <i class="fas <= $iconClass ?>"></i>
+                        </button> -->
                     </div>
                     <div class="d-flex justify-content-between mb-2 mx-3">
                         <!-- Creator -->

@@ -431,3 +431,587 @@ in APPPATH\Views\PoinMarket_Admin\Card\market.php on line 17.
 14 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
 15 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
 16 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+INFO - 2025-02-19 06:40:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-19 06:40:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-19 06:41:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-02-19 06:41:00 --> Undefined array key "status_item"
+in APPPATH\Views\PoinMarket_Admin\Card\market.php on line 17.
+ 1 APPPATH\Views\PoinMarket_Admin\Card\market.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "status_item"', 'C:\\xampp\\htdocs\\PoinMarket\\app\\Views\\PoinMarket_Admin\\Card\\market.php', 17)
+ 2 [internal function]: CodeIgniter\View\View->{closure}([...])
+ 3 APPPATH\Views\PoinMarket_Admin\Card\market.php(15): array_filter([...], Object(Closure))
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\PoinMarket\\app\\Views\\PoinMarket_Admin\\Card\\market.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\View\View.php(452): CodeIgniter\View\View->render('PoinMarket_Admin/Card/market', null, true)
+ 7 APPPATH\Views\PoinMarket_Admin\Page\marketplace.php(26): CodeIgniter\View\View->include('PoinMarket_Admin/Card/market')
+ 8 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\PoinMarket\\app\\Views\\PoinMarket_Admin\\Page\\marketplace.php')
+ 9 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+10 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('PoinMarket_Admin/Page/marketplace', [], true)
+11 APPPATH\Controllers\PoinMarket_Admin\Marketplace.php(44): view('PoinMarket_Admin/Page/marketplace', [...])
+12 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\PoinMarket_Admin\Marketplace->index()
+13 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PoinMarket_Admin\Marketplace))
+14 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+15 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+16 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+INFO - 2025-02-19 06:41:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-19 06:41:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-19 06:41:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-19 06:41:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-19 06:41:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-19 06:41:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-19 06:42:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-19 06:42:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-19 06:42:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-19 06:42:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-19 06:43:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-19 06:43:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-19 06:48:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-19 06:48:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-02-19 07:14:16 --> mysqli_sql_exception: Unknown column 'mahasiswa_id' in 'where clause' in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\PoinMarket\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\PoinMarket\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\PoinMarket\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\PoinMarket\app\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+#8 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+#9 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2025-02-19 07:14:16 --> Unknown column 'mahasiswa_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = \'2\'
+ORDER BY `created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = \'2\'
+ORDER BY `created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = \'2\'
+ORDER BY `created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = :mahasiswa_id:
+ORDER BY `created_at` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+ERROR - 2025-02-19 07:14:41 --> mysqli_sql_exception: Unknown column 'npm' in 'where clause' in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\PoinMarket\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\PoinMarket\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\PoinMarket\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\PoinMarket\app\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+#8 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+#9 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2025-02-19 07:14:41 --> Unknown column 'npm' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `transaksi`
+WHERE `npm` = \'2\'
+ORDER BY `created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `transaksi`
+WHERE `npm` = \'2\'
+ORDER BY `created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `transaksi`
+WHERE `npm` = \'2\'
+ORDER BY `created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `transaksi`
+WHERE `npm` = :npm:
+ORDER BY `created_at` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+ERROR - 2025-02-19 07:14:54 --> mysqli_sql_exception: Unknown column 'mahasiswa_id' in 'where clause' in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\PoinMarket\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\PoinMarket\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\PoinMarket\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\PoinMarket\app\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+#8 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+#9 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2025-02-19 07:14:54 --> Unknown column 'mahasiswa_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = \'123456\'
+ORDER BY `created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = \'123456\'
+ORDER BY `created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = \'123456\'
+ORDER BY `created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = :mahasiswa_id:
+ORDER BY `created_at` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+ERROR - 2025-02-19 07:14:55 --> mysqli_sql_exception: Unknown column 'mahasiswa_id' in 'where clause' in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\PoinMarket\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\PoinMarket\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\PoinMarket\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\PoinMarket\app\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+#8 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+#9 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2025-02-19 07:14:55 --> Unknown column 'mahasiswa_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = \'123456\'
+ORDER BY `created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = \'123456\'
+ORDER BY `created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = \'123456\'
+ORDER BY `created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = :mahasiswa_id:
+ORDER BY `created_at` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-19 07:15:04 --> Undefined property: App\Controllers\API\WalletAPI::$TransaksiModel
+in APPPATH\Controllers\API\WalletAPI.php on line 33.
+ 1 APPPATH\Controllers\API\WalletAPI.php(33): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\API\\WalletAPI::$TransaksiModel', 'C:\\xampp\\htdocs\\PoinMarket\\app\\Controllers\\API\\WalletAPI.php', 33)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+ERROR - 2025-02-19 07:15:16 --> mysqli_sql_exception: Unknown column 'mahasiswa_id' in 'where clause' in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\PoinMarket\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\PoinMarket\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\PoinMarket\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\PoinMarket\app\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+#8 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+#9 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2025-02-19 07:15:16 --> Unknown column 'mahasiswa_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = \'123456\'
+ORDER BY `created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = \'123456\'
+ORDER BY `created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = \'123456\'
+ORDER BY `created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = :mahasiswa_id:
+ORDER BY `created_at` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+ERROR - 2025-02-19 07:15:26 --> mysqli_sql_exception: Unknown column 'npm' in 'where clause' in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\PoinMarket\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\PoinMarket\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\PoinMarket\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\PoinMarket\app\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+#8 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+#9 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2025-02-19 07:15:26 --> Unknown column 'npm' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `transaksi`
+WHERE `npm` = \'123456\'
+ORDER BY `created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `transaksi`
+WHERE `npm` = \'123456\'
+ORDER BY `created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `transaksi`
+WHERE `npm` = \'123456\'
+ORDER BY `created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `transaksi`
+WHERE `npm` = :npm:
+ORDER BY `created_at` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+ERROR - 2025-02-19 07:16:48 --> mysqli_sql_exception: Unknown column 'mahasiswa_id' in 'where clause' in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\PoinMarket\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\PoinMarket\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\PoinMarket\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\PoinMarket\app\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+#8 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+#9 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2025-02-19 07:16:48 --> Unknown column 'mahasiswa_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = \'123456\'
+ORDER BY `created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = \'123456\'
+ORDER BY `created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = \'123456\'
+ORDER BY `created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `transaksi`
+WHERE `mahasiswa_id` = :mahasiswa_id:
+ORDER BY `created_at` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+ERROR - 2025-02-19 07:17:38 --> mysqli_sql_exception: Unknown column 'id' in 'where clause' in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\PoinMarket\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\PoinMarket\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\PoinMarket\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\PoinMarket\app\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+#8 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+#9 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2025-02-19 07:17:38 --> Unknown column 'id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `transaksi`
+WHERE `id` = \'123456\'
+ORDER BY `created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `transaksi`
+WHERE `id` = \'123456\'
+ORDER BY `created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `transaksi`
+WHERE `id` = \'123456\'
+ORDER BY `created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `transaksi`
+WHERE `id` = :id:
+ORDER BY `created_at` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-19 07:19:59 --> Undefined array key "npm"
+in APPPATH\Controllers\API\WalletAPI.php on line 69.
+ 1 APPPATH\Controllers\API\WalletAPI.php(69): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "npm"', 'C:\\xampp\\htdocs\\PoinMarket\\app\\Controllers\\API\\WalletAPI.php', 69)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getPointBalance('123456')
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-19 07:20:23 --> Undefined array key "nama"
+in APPPATH\Controllers\API\WalletAPI.php on line 70.
+ 1 APPPATH\Controllers\API\WalletAPI.php(70): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama"', 'C:\\xampp\\htdocs\\PoinMarket\\app\\Controllers\\API\\WalletAPI.php', 70)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getPointBalance('123456')
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-19 07:20:29 --> Undefined array key "nama"
+in APPPATH\Controllers\API\WalletAPI.php on line 70.
+ 1 APPPATH\Controllers\API\WalletAPI.php(70): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama"', 'C:\\xampp\\htdocs\\PoinMarket\\app\\Controllers\\API\\WalletAPI.php', 70)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getPointBalance('123456')
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-19 07:20:31 --> Undefined array key "nama"
+in APPPATH\Controllers\API\WalletAPI.php on line 70.
+ 1 APPPATH\Controllers\API\WalletAPI.php(70): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama"', 'C:\\xampp\\htdocs\\PoinMarket\\app\\Controllers\\API\\WalletAPI.php', 70)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getPointBalance('123456')
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-19 07:20:35 --> Undefined array key "nama"
+in APPPATH\Controllers\API\WalletAPI.php on line 70.
+ 1 APPPATH\Controllers\API\WalletAPI.php(70): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama"', 'C:\\xampp\\htdocs\\PoinMarket\\app\\Controllers\\API\\WalletAPI.php', 70)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getPointBalance('123456')
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-19 07:20:36 --> Undefined array key "nama"
+in APPPATH\Controllers\API\WalletAPI.php on line 70.
+ 1 APPPATH\Controllers\API\WalletAPI.php(70): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama"', 'C:\\xampp\\htdocs\\PoinMarket\\app\\Controllers\\API\\WalletAPI.php', 70)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getPointBalance('123456')
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-19 07:20:42 --> Undefined array key "nama"
+in APPPATH\Controllers\API\WalletAPI.php on line 70.
+ 1 APPPATH\Controllers\API\WalletAPI.php(70): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama"', 'C:\\xampp\\htdocs\\PoinMarket\\app\\Controllers\\API\\WalletAPI.php', 70)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getPointBalance('123456')
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-19 07:20:46 --> Undefined array key "nama"
+in APPPATH\Controllers\API\WalletAPI.php on line 70.
+ 1 APPPATH\Controllers\API\WalletAPI.php(70): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama"', 'C:\\xampp\\htdocs\\PoinMarket\\app\\Controllers\\API\\WalletAPI.php', 70)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getPointBalance('123456')
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-19 07:21:09 --> syntax error, unexpected single-quoted string "point", expecting "]"
+in APPPATH\Controllers\API\WalletAPI.php on line 70.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\PoinMarket\\app\\Controllers\\API\\WalletAPI.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\API\\WalletAPI')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\API\\WalletAPI')
+ 4 SYSTEMPATH\CodeIgniter.php(890): class_exists('\\App\\Controllers\\API\\WalletAPI', true)
+ 5 SYSTEMPATH\CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-19 07:21:27 --> Undefined array key "nama"
+in APPPATH\Controllers\API\WalletAPI.php on line 70.
+ 1 APPPATH\Controllers\API\WalletAPI.php(70): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama"', 'C:\\xampp\\htdocs\\PoinMarket\\app\\Controllers\\API\\WalletAPI.php', 70)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getPointBalance('123456')
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+ERROR - 2025-02-19 07:22:05 --> mysqli_sql_exception: Unknown column 'id' in 'where clause' in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\PoinMarket\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\PoinMarket\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\PoinMarket\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\PoinMarket\app\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+#8 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+#9 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2025-02-19 07:22:05 --> Unknown column 'id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `transaksi`
+WHERE `id` = \'123456\'
+ORDER BY `created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `transaksi`
+WHERE `id` = \'123456\'
+ORDER BY `created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `transaksi`
+WHERE `id` = \'123456\'
+ORDER BY `created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `transaksi`
+WHERE `id` = :id:
+ORDER BY `created_at` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+ERROR - 2025-02-19 07:22:56 --> mysqli_sql_exception: Unknown column 'created_at' in 'order clause' in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\PoinMarket\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\PoinMarket\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\PoinMarket\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\PoinMarket\app\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+#8 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+#9 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2025-02-19 07:22:56 --> Unknown column 'created_at' in 'order clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `data_transaksi`
+WHERE `npm` = \'123456\'
+ORDER BY `created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `data_transaksi`
+WHERE `npm` = \'123456\'
+ORDER BY `created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `data_transaksi`
+WHERE `npm` = \'123456\'
+ORDER BY `created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `data_transaksi`
+WHERE `npm` = :npm:
+ORDER BY `created_at` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\API\WalletAPI.php(35): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('123456')
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+ERROR - 2025-02-19 07:24:14 --> mysqli_sql_exception: Unknown column 'mahasiswa_id' in 'where clause' in C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\PoinMarket\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\PoinMarket\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\PoinMarket\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\PoinMarket\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\PoinMarket\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\PoinMarket\app\Controllers\API\WalletAPI.php(87): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getTransactionHistory('1184097')
+#8 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+#9 C:\xampp\htdocs\PoinMarket\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\PoinMarket\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\PoinMarket\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2025-02-19 07:24:14 --> Unknown column 'mahasiswa_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `data_transaksi`
+WHERE `mahasiswa_id` = \'1\'
+ORDER BY `created_at` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `data_transaksi`
+WHERE `mahasiswa_id` = \'1\'
+ORDER BY `created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `data_transaksi`
+WHERE `mahasiswa_id` = \'1\'
+ORDER BY `created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `data_transaksi`
+WHERE `mahasiswa_id` = :mahasiswa_id:
+ORDER BY `created_at` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\API\WalletAPI.php(87): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getTransactionHistory('1184097')
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+CRITICAL - 2025-02-19 07:27:43 --> Undefined array key "level"
+in APPPATH\Controllers\API\WalletAPI.php on line 46.
+ 1 APPPATH\Controllers\API\WalletAPI.php(46): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "level"', 'C:\\xampp\\htdocs\\PoinMarket\\app\\Controllers\\API\\WalletAPI.php', 46)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\API\WalletAPI->getWalletByNpm('1184097')
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\WalletAPI))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')

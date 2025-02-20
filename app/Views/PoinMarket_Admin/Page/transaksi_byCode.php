@@ -128,6 +128,11 @@
                         <label for="poin_diberikan" class="col-form-label">Point Diberikan</label>
                         <input type="text" class="form-control" id="poin_diberikan" name="poin_diberikan" readonly>
                     </div>
+                    <!-- Inputkan Keterangan -->
+                    <!-- <div class="form-group">
+                        <label for="keterangan" class="col-form-label">Keterangan</label>
+                        <input type="text" class="form-control" id="keterangan" name="keterangan" required>
+                    </div>                 -->
                     <!-- Gambar/ ambil dari item(gambar), dan pindah ke data_transaksi(gambar), tanpa upload -->
                     <!-- <div class="form-group">
                         <label for="gambar" class="col-form-label">Gambar</label>

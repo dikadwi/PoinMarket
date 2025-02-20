@@ -11,7 +11,7 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <center>
-                        <h1 class="text-center">MarketPlace</h1>
+                        <h1 class="text-center">Marketplace</h1>
                     </center>
                     <!-- <?php if ($isLoggedIn): ?>
                         <p class="text-center">
@@ -54,12 +54,17 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                             <!-- <img src="https://gapsystudio.com/storage/1746/gamification-in-ux-11zon.webp" class="card-img-top" alt="<?= $item['nama_transaksi'] ?>"> -->
                             <div class="card-body">
                                 <h5 class="card-title"><strong><?= $item['nama_transaksi'] ?></strong></h5>
-                                <p class="card-text">Harga : <strong><?= $item['poin_digunakan'] ?></strong> Point</p>
+                                <p class="card-text"><?= $item['keterangan']; ?></p>
+                                <p class="card-text">                             
+                                    <strong>Harga : </strong><?= $item['poin_digunakan'] ?>
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2 mx-3">
                                 <!-- Tombol Pembuat / sesuaikan opasitas dan ambil nama dari database, tambahkan kolom pembuat item-->
-                                <button type="button" class="btn btn-pembuat btn-danger d-inline-block text-center opacity-50" data-toggle="modal" data-target="#modalPembuat<?= esc($item['id_transaksi']) ?>">
-                                    <i class="fas fa-user"></i> <!-- Ikon di atas teks -->
-                                    <span><?= $item['creator'] ?></span> <!-- Teks di bawah ikon -->
-                                </button>
+                                <button type="button" class="btn btn-pembuat btn-primary d-inline-block text-center opacity-50" data-toggle="modal" data-target="#modalCreator<?= esc($item['id_transaksi']) ?>">
+                                <i class="fas fa-user"></i>
+                                <span> <?= $item['creator']; ?></span>
+                                </button>     
                             </div>
                             <div class="card-footer">
                                 <div class="row d-flex justify-content-center">
@@ -118,27 +123,48 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                             </div>
                         </div>
                     </div>
-
-                    <!-- Modal Pembuat -->
-                    <div class="modal fade" id="modalPembuat<?= esc($item['id_transaksi']) ?>" tabindex="-1" role="dialog" aria-labelledby="modalPembuatLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
+                      <!-- Modal Creator Profile -->
+                      <div class="modal fade" id="modalCreator<?= esc($item['id_transaksi']) ?>" tabindex="-1" role="dialog" aria-labelledby="modalCreatorLabel<?= esc($item['id_transaksi']) ?>" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="modalPembuatLabel">Pembuat</h5>
+                                    <h5 class="modal-title" id="modalCreatorLabel<?= esc($item['id_transaksi']) ?>">Profil Creator</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <strong>Nama Pembuat:</strong> <br>
-                                    <!-- Add more details as needed -->
+                                    <div class="text-center mb-4">
+                                        <i class="fas fa-user-circle fa-5x text-primary"></i>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4"><strong>Username</strong></div>
+                                        <div class="col-8">: <?= $item['creator']; ?></div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-4"><strong>Role</strong></div>
+                                        <!-- Benahi lagi bagian Role -->
+                                        <div class="col-8">:
+                                            <!-- <php
+                                            if (in_groups(['superadmin'])) {
+                                                echo 'SuperAdmin';
+                                            } elseif (in_groups(['admin'])) {
+                                                echo 'Admin';
+                                            } elseif (in_groups(['dosen'])) {
+                                                echo 'Dosen';
+                                            } else {
+                                                echo 'User';
+                                            }
+                                            ?> -->
+                                        </div>
+                                    </div>                             
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>                    
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>
@@ -160,11 +186,17 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                             <!-- <img src="https://trierconsulting.com/wp-content/uploads/2021/07/client-1024x657.png" class="card-img-top" alt="<?= $item['nama_transaksi'] ?>"> -->
                             <div class="card-body">
                                 <h5 class="card-title"><strong><?= $item['nama_transaksi'] ?></strong></h5>
-                                <p class="card-text">Point Digunakan : <strong><?= $item['poin_digunakan'] ?></strong></p>
-                                <button type="button" class="btn btn-pembuat btn-danger d-inline-block text-center opacity-50" data-toggle="modal" data-target="#modalPembuat<?= esc($item['id_transaksi']) ?>">
-                                    <i class="fas fa-user"></i> <!-- Ikon di atas teks -->
-                                    <span><?= $item['creator'] ?></span> <!-- Teks di bawah ikon -->
-                                </button>
+                                <p class="card-text"><?= $item['keterangan']; ?></p>
+                                <p class="card-text">                             
+                                    <strong>Harga : </strong><?= $item['poin_digunakan'] ?>
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2 mx-3">
+                                <!-- Creator -->
+                                <button type="button" class="btn btn-pembuat btn-primary d-inline-block text-center opacity-50" data-toggle="modal" data-target="#modalCreator<?= esc($item['id_transaksi']) ?>">
+                                    <i class="fas fa-user"></i>
+                                    <span> <?= $item['creator']; ?></span>
+                                </button>     
                             </div>
                             <div class="card-footer">
                                 <div class="row d-flex justify-content-center">
@@ -208,6 +240,48 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Modal Creator Profile -->
+                     <div class="modal fade" id="modalCreator<?= esc($item['id_transaksi']) ?>" tabindex="-1" role="dialog" aria-labelledby="modalCreatorLabel<?= esc($item['id_transaksi']) ?>" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalCreatorLabel<?= esc($item['id_transaksi']) ?>">Profil Creator</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="text-center mb-4">
+                                        <i class="fas fa-user-circle fa-5x text-primary"></i>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4"><strong>Username</strong></div>
+                                        <div class="col-8">: <?= $item['creator']; ?></div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-4"><strong>Role</strong></div>
+                                        <!-- Benahi lagi bagian Role -->
+                                        <div class="col-8">:
+                                            <!-- <php
+                                            if (in_groups(['superadmin'])) {
+                                                echo 'SuperAdmin';
+                                            } elseif (in_groups(['admin'])) {
+                                                echo 'Admin';
+                                            } elseif (in_groups(['dosen'])) {
+                                                echo 'Dosen';
+                                            } else {
+                                                echo 'User';
+                                            }
+                                            ?> -->
+                                        </div>
+                                    </div>                             
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                 </div>
                             </div>
                         </div>

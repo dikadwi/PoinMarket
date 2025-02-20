@@ -72,6 +72,11 @@
                             <i class="nav-icon fa fa-ribbon"><span> Badges</span></i>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/Role_User/wallet" class="nav-link">
+                            <i class="nav-icon fas fa-wallet"><span> Wallet</span></i>
+                        </a>
+                    </li>
                     <!-- <li class="nav-item">
                         <a href="#Challange" class="nav-link">
                             <i class="nav-icon fa fa-trophy"><span> Challange</span></i>

@@ -27,6 +27,24 @@ class Role_User extends BaseController
         $this->DataTransaksiModel = new DataTransaksiModel();
         $this->TransaksiModel = new TransaksiModel();
     }
+
+    public function wallet()
+    {
+        $session = session();
+        $npm = $session->get('npm');
+        $nama = $session->get('nama');
+        $data = [
+            'title' => 'Wallet',
+            'npm' => $npm,
+            'nama' => $nama,
+            'totalMhs' => $this->MahasiswaModel->total(),
+            'users' => $this->MahasiswaModel->getMhs(),
+            'point' => $session->get('point'),
+            'badges' => $this->BadgesModel->getBadges(),
+            'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
+        ];
+        return view('User/wallet', $data);
+    }
     public function index()
     {
         $session = session();
@@ -50,6 +68,8 @@ class Role_User extends BaseController
             'email' => $session->get('email'),
             'point' => $totalPoints, // Menggunakan poin yang diambil
             'password' => $session->get('password'),
+            'totalMhs' => $this->MahasiswaModel->total(),
+            'riwayat' => $this->DataTransaksiModel->riwayat($npm),
             'totalReward' => $this->DataTransaksiModel->Reward($npm),
             'totalPembelian' => $this->DataTransaksiModel->Pembelian($npm),
             'totalPunishment' => $this->DataTransaksiModel->Punishment($npm),

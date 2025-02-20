@@ -176,7 +176,11 @@ class DataTransaksiModel extends Model
         // return $this->where('validation', 'Belum')->countAllResults();
     }
 
-    // Mengambil total jenis transaksi berdasarkan NPM ditampilkan di Tabel Mahasiswa
+    // Mengambil total jumlah transaksi berdasarkan NPM ditampilkan di Tabel Mahasiswa
+    public function riwayat($npm)
+    {
+        return $this->where('npm', $npm)->countAllResults();
+    }
     public function Reward($npm)
     {
         return $this->where('kode_jenis', 101)->where('npm', $npm)->countAllResults();

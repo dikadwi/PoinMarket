@@ -165,11 +165,13 @@
                      <a href="/Validasi" class="nav-link">
                          <i class="nav-icon fas fa-print"></i>
                          <p>
+                            <!-- Admin : validasi Reward & Punishment (dari dosen) -->
+                            <!-- Dosen : validasi Pembelian, Misi, Konsultasi (dari mahasiswa)-->
                              Validasi Pesanan
                          </p>
                      </a>
                  </li>
-                 <?php if (in_groups(['superadmin', 'validator'])) : ?>
+                 <?php if (in_groups(['superadmin', 'admin'])) : ?>
                      <!-- <li class="nav-item">
                          <a href="/Misi_tambah" class="nav-link">
                              <i class="nav-icon fas fa-file"></i>
@@ -185,22 +187,21 @@
                                  Item Konsultasi
                              </p>
                          </a>
-                     </li> -->
+                     </li> -->                    
+                     <li class="nav-item">
+                         <a href="#/Validasi_item" class="nav-link">
+                             <i class="nav-icon fas fa-print"></i>
+                             <p>
+                                <!-- Admin : Validasi item yang dicreate dosen -->
+                                 Validasi Item
+                             </p>
+                         </a>
+                     </li>
                      <li class="nav-item">
                          <a href="/Quis" class="nav-link">
                              <i class="nav-icon fas fa-edit"></i>
                              <p>
                                  Data Quis
-                             </p>
-                         </a>
-                     </li>
-                 <?php endif ?>
-                 <?php if (in_groups(['superadmin', 'admin'])) : ?>
-                     <li class="nav-item">
-                         <a href="#/Validasi_item" class="nav-link">
-                             <i class="nav-icon fas fa-print"></i>
-                             <p>
-                                 Validasi Item
                              </p>
                          </a>
                      </li>

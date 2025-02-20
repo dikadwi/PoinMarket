@@ -208,6 +208,7 @@ $routes->group('Marketplace', ['filter' => 'login'], function ($routes) {
 
 // Group untuk Controller Mahasiswa
 $routes->group('Role_User', ['filter' => 'login_m'], function ($routes) {
+    $routes->get('wallet', 'Role_User::wallet');
     $routes->get('', 'Role_User::index');
     $routes->get('my_pembelian', 'Role_User::my_pembelian');
     $routes->get('my_reward', 'Role_User::my_reward');
@@ -293,8 +294,13 @@ $routes->group('api', function ($routes) {
     $routes->post('mahasiswa', 'API\MahasiswaAPI::create'); //Menambahkan data
     $routes->put('mahasiswa/(:num)', 'API\MahasiswaAPI::update/$1'); //Mengedit data
     $routes->delete('mahasiswa/(:num)', 'API\MahasiswaAPI::delete/$1'); //Menghapus data
+    // API Wallet
+    $routes->get('wallet/(:segment)', 'API\WalletAPI::getWalletByNpm/$1');
+    $routes->get('wallet/point/(:segment)', 'API\WalletAPI::getPointBalance/$1');
+    $routes->get('wallet/history/(:segment)', 'API\WalletAPI::getTransactionHistory/$1');
+    $routes->get('wallet/leaderboard', 'API\WalletAPI::getLeaderboard');
+    $routes->get('wallet/leaderboard/(:num)', 'API\WalletAPI::getLeaderboard/$1');
 });
-
 
 // $routes->get('notification', 'Message::showSweet');
 
