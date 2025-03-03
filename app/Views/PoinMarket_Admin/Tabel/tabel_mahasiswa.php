@@ -239,14 +239,14 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                 <td>
                     <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $m['id']; ?>"><i class="fas fa-eye"></i><span class="d-none d-md-inline"> Detail</span></button>
                 </td>
-                <?php if (in_groups(['superadmin', 'dosen'])) : ?>
+                <!-- <php if (in_groups(['superadmin', 'dosen'])) : ?> -->
                     <td>
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $m['id']; ?>"><i class="fas fa-edit"></i><span class="d-none d-md-inline"> Edit</span></button>
                     </td>
                     <td>
                         <button href="/Mahasiswa/delete/<?= $m['id']; ?>" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i><span class="d-none d-md-inline"> Hapus</span></button>
                     </td>
-                <?php endif; ?>
+                <!-- <php endif; ?> -->
                 </td>
             </tr>
         <?php endforeach; ?>
@@ -435,7 +435,9 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                                 </div>
                             </div>
                         </div>
-
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -481,10 +483,12 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                             <label for="gaya_belajar" class="col-form-label">Gaya Belajar</label>                           
                                 <input type="text" class="form-control" id="gaya_belajar" name="gaya_belajar" value="<?php echo $m['gaya_belajar'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
                                                    </div> -->
+                        <?php if (in_groups(['superadmin', 'admin'])) : ?>
                         <div class="form-group ">
                             <label for="point" class="col-form-label">Point</label>
-                            <input type="text" class="form-control" id="point" name="point" value="<?php echo $m['point'] ?>" readonly>
+                            <input type="text" class="form-control" id="point" name="point" value="<?php echo $m['point'] ?>" >
                         </div>
+                        <?php endif; ?>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Update</button>

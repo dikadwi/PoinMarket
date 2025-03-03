@@ -59,11 +59,18 @@ class Login extends BaseController
         return view('auth/detail', $data);
     }
 
-    public function process()
+     public function process()
     {
+       if ($this->request->getMethod() === 'options') {
+        return $this->response->setStatusCode(200);
+        }
+        
         // Ambil data dari form login
         $npmOrUsername = $this->request->getPost('npm_or_username');
         $password = $this->request->getPost('password');
+
+        // Log data yang diterima
+        log_message('debug', 'Data login diterima: npm_or_username=' . $npmOrUsername);
 
         // Inisialisasi model Mahasiswa
         $mahasiswaModel = new MahasiswaModel();
@@ -73,6 +80,9 @@ class Login extends BaseController
             ->orWhere('nama', $npmOrUsername)
             ->first();
 
+        // Log hasil pencarian mahasiswa
+        log_message('debug', 'Hasil pencarian mahasiswa: ' . json_encode($mahasiswa));
+
         // Jika mahasiswa dengan npm ditemukan 
         if ($mahasiswa) {
             // Verifikasi password
@@ -81,34 +91,116 @@ class Login extends BaseController
 
                 // Generate token
                 $token = bin2hex(random_bytes(32)); // Token acak 32 karakter
-                // Simpan token ke database
-                $mahasiswaModel->update($mahasiswa['npm'], ['token' => $token]);
 
-                // Ambil token dari database
-                // $token = $mahasiswa['token'];
+                // Debug log sebelum update
+                log_message('debug', 'NPM: ' . $mahasiswa['npm'] . ', Generated token: ' . $token);
 
-                // Simpan data ke session
-                $session = session();
-                // Atur session untuk mahasiswa (ganti kondisi agar tidak bertabrakan dengan session admin) 
-                $session->set('isLoggedIn', true);
-                // Set sesuai dengan data mahasiswa dari tabel
-                $session->set('user_id', $mahasiswa['npm']);
-                $session->set('nama', $mahasiswa['nama']);
-                $session->set('npm', $mahasiswa['npm']);
-                $session->set('email', $mahasiswa['email']);
-                $session->set('point', $mahasiswa['point']);
-                $session->set('password', $mahasiswa['password']);
-                $session->set('gaya_belajar', $mahasiswa['gaya_belajar']);
-                $session->set('quis_selesai', false);
-                $session->set('token', $token); // Simpan token di session
+                // Update token menggunakan method baru
+                if ($mahasiswaModel->updateToken($mahasiswa['npm'], $token)) {
+                    log_message('debug', 'Token berhasil disimpan ke database');
 
-                return redirect()->to('/Role_User')->with('message', 'Selamat Datang di Market Point !');;
+                    // Set session
+                    $session = session();
+                    $session->set([
+                        'isLoggedIn' => true,
+                        'user_id' => $mahasiswa['npm'],
+                        'nama' => $mahasiswa['nama'],
+                        'npm' => $mahasiswa['npm'],
+                        'email' => $mahasiswa['email'],
+                        'point' => $mahasiswa['point'],
+                        'gaya_belajar' => $mahasiswa['gaya_belajar'],
+                        'token' => $token // Simpan token di session
+                    ]);
+                 
+                    log_message('debug', 'User logged in successfully: ' . $mahasiswa['npm']);
+                    // return $this->response->setJSON(['token' => $token]);
+                    return redirect()->to('/Role_User')->with('message', 'Selamat Datang di Market Point!');
+                   
+                } else {
+                    log_message('error', 'Gagal update token untuk NPM: ' . $mahasiswa['npm']);
+                    return redirect()->back()->with('pesan', 'Terjadi kesalahan saat login. Silakan coba lagi!');
+                }
             } else {
                 // Jika password salah, tampilkan pesan error
+                log_message('warning', 'Password salah untuk NPM: ' . $npmOrUsername);
                 return redirect()->back()->with('pesan', 'Password salah. Silakan coba lagi !');
             }
         } else {
-            //Jika Username salah
+            // Jika Username salah
+            log_message('warning', 'Username/NPM tidak ditemukan: ' . $npmOrUsername);
+            return redirect()->back()->with('pesan', 'Username / Npm Tidak Ditemukan. Silahkan Coba Lagi !');
+        }
+    }
+
+     public function process_mobile()
+    {
+       if ($this->request->getMethod() === 'options') {
+        return $this->response->setStatusCode(200);
+        }
+        
+        // Ambil data dari form login
+        $npmOrUsername = $this->request->getPost('npm_or_username');
+        $password = $this->request->getPost('password');
+
+        // Log data yang diterima
+        log_message('debug', 'Data login diterima: npm_or_username=' . $npmOrUsername);
+
+        // Inisialisasi model Mahasiswa
+        $mahasiswaModel = new MahasiswaModel();
+
+        // Cari mahasiswa berdasarkan email
+        $mahasiswa = $mahasiswaModel->where('npm', $npmOrUsername)
+            ->orWhere('nama', $npmOrUsername)
+            ->first();
+
+        // Log hasil pencarian mahasiswa
+        log_message('debug', 'Hasil pencarian mahasiswa: ' . json_encode($mahasiswa));
+
+        // Jika mahasiswa dengan npm ditemukan 
+        if ($mahasiswa) {
+            // Verifikasi password
+            if (password_verify($password, $mahasiswa['password'])) {
+                // Login berhasil, simpan data ke session atau lakukan sesuatu yang diperlukan
+
+                // Generate token
+                $token = bin2hex(random_bytes(32)); // Token acak 32 karakter
+
+                // Debug log sebelum update
+                log_message('debug', 'NPM: ' . $mahasiswa['npm'] . ', Generated token: ' . $token);
+
+                // Update token menggunakan method baru
+                if ($mahasiswaModel->updateToken($mahasiswa['npm'], $token)) {
+                    log_message('debug', 'Token berhasil disimpan ke database');
+
+                    // Set session
+                    $session = session();
+                    $session->set([
+                        'isLoggedIn' => true,
+                        'user_id' => $mahasiswa['npm'],
+                        'nama' => $mahasiswa['nama'],
+                        'npm' => $mahasiswa['npm'],
+                        'email' => $mahasiswa['email'],
+                        'point' => $mahasiswa['point'],
+                        'gaya_belajar' => $mahasiswa['gaya_belajar'],
+                        'token' => $token // Simpan token di session
+                    ]);
+                 
+                    log_message('debug', 'User logged in successfully: ' . $mahasiswa['npm']);
+                    return $this->response->setJSON(['token' => $token]);
+                    // return redirect()->to('/Role_User')->with('message', 'Selamat Datang di Market Point!');
+                   
+                } else {
+                    log_message('error', 'Gagal update token untuk NPM: ' . $mahasiswa['npm']);
+                    return redirect()->back()->with('pesan', 'Terjadi kesalahan saat login. Silakan coba lagi!');
+                }
+            } else {
+                // Jika password salah, tampilkan pesan error
+                log_message('warning', 'Password salah untuk NPM: ' . $npmOrUsername);
+                return redirect()->back()->with('pesan', 'Password salah. Silakan coba lagi !');
+            }
+        } else {
+            // Jika Username salah
+            log_message('warning', 'Username/NPM tidak ditemukan: ' . $npmOrUsername);
             return redirect()->back()->with('pesan', 'Username / Npm Tidak Ditemukan. Silahkan Coba Lagi !');
         }
     }

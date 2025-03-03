@@ -78,10 +78,10 @@
                                 $btnClass = 'btn-warning';
                             } else {
                                 $statusText = $status; // Jika status tidak sesuai dengan Yes atau No
-                             $btnClass = 'btn-secondary';
+                                $btnClass = 'btn-secondary';
                             }
                             ?>
-                            <strong>Status :</strong> 
+                            <strong>Status :</strong>
                             <button type="button" class="btn btn-sm <?= $btnClass ?> d-inline-block mb-2">
                                 <?= $statusText ?>
                             </button><br>
@@ -96,10 +96,10 @@
                                 $btnClass = 'btn-danger';
                             }
                             ?>
-                            <i class="fas fa-shopping-cart"></i> 
+                            <i class="fas fa-shopping-cart"></i>
                             <strong>:</strong>
                             <button type="button" class="btn btn-sm <?= $btnClass ?> d-inline-block">
-                            <?= $itemstatusText ?>
+                                <?= $itemstatusText ?>
                             </button>
                         </p>
                     </div>
@@ -170,59 +170,59 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+                <div class="modal-body" style="max-height: 450px; overflow-y: auto;">
                     <div class="col-lg-13">
-                        <div class="card mb-3">
-                            <div class="row g-0">
-                                <div class="col-md-12">
-                                    <div class="card-body">
-                                        <ul class="list-group list-group-flush">
-                                            <h5 class="card-title"><b>Id Transaksi :</b></h5>
+                        <div class="row g-0">
+                            <div class="col-md-12">
+                                <div class="card-body">
+                                    <ul class="list-group list-group-flush">
+                                        <h5 class="card-title"><b>Id Transaksi :</b></h5>
+                                        <li class="list-group-item">
+                                            <h4><?= $t['id_transaksi']; ?></h4>
+                                        </li>
+                                        <h5 class="card-title"><b>Nama Item :</b></h5>
+                                        <li class="list-group-item">
+                                            <h4><?= $t['nama_transaksi']; ?></h4>
+                                        </li>
+                                        <h5 class="card-title"><b>Rule Item :</b></h5>
+                                        <li class="list-group-item">
+                                            <h4><?= $t['detail']; ?></h4>
+                                        </li>
+                                        <h5 class="card-title"><b>Feedback :</b></h5>
+                                        <li class="list-group-item">
+                                            <h4><?= $t['keterangan']; ?></h4>
+                                        </li>
+                                        <!-- Untuk Poin Harga -->
+                                        <?php if (in_array($t['kode_jenis'], ['102', '103', '105', '106'])) : ?>
+                                            <h5 class="card-title"><b>
+                                                    <?php
+                                                    if ($t['kode_jenis'] == '103') {
+                                                        echo 'Penalti :';
+                                                    } else {
+                                                        echo 'Harga :';
+                                                    }
+                                                    ?>
+                                                </b></h5>
                                             <li class="list-group-item">
-                                                <h4><?= $t['id_transaksi']; ?></h4>
+                                                <h4> <?= $t['poin_digunakan']; ?> Point </h4>
                                             </li>
-                                            <h5 class="card-title"><b>Nama Item :</b></h5>
+                                        <?php endif; ?>
+                                        <!-- Reward Untuk Kode Jenis 101 dan 105 -->
+                                        <?php if (in_array($t['kode_jenis'], ['101', '105'])) : ?>
+                                            <h5 class="card-title"><b>Reward :</b></h5>
                                             <li class="list-group-item">
-                                                <h4><?= $t['nama_transaksi']; ?></h4>
+                                                <h4> <?= $t['poin_diberikan']; ?> Point</h4>
                                             </li>
-                                            <h5 class="card-title"><b>Rule Item :</b></h5>
-                                            <li class="list-group-item">
-                                                <h4><?= $t['detail']; ?></h4>
-                                            </li>
-                                            <h5 class="card-title"><b>Feedback :</b></h5>
-                                            <li class="list-group-item">
-                                                <h4><?= $t['keterangan']; ?></h4>
-                                            </li>
-                                            <!-- Untuk Poin Harga -->
-                                            <?php if (in_array($t['kode_jenis'], ['102', '103', '105', '106'])) : ?>
-                                                <h5 class="card-title"><b>
-                                                        <?php
-                                                        if ($t['kode_jenis'] == '103') {
-                                                            echo 'Penalti :';
-                                                        } else {
-                                                            echo 'Harga :';
-                                                        }
-                                                        ?>
-                                                    </b></h5>
-                                                <li class="list-group-item">
-                                                    <h4> <?= $t['poin_digunakan']; ?> Point </h4>
-                                                </li>
-                                            <?php endif; ?>
-                                            <!-- Reward Untuk Kode Jenis 101 dan 105 -->
-                                            <?php if (in_array($t['kode_jenis'], ['101', '105'])) : ?>
-                                                <h5 class="card-title"><b>Reward :</b></h5>
-                                                <li class="list-group-item">
-                                                    <h4> <?= $t['poin_diberikan']; ?> Point</h4>
-                                                </li>
-                                            <?php endif; ?>
-                                        </ul>
-                                    </div>
+                                        <?php endif; ?>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                </div>
             </div>
         </div>
     </div>
@@ -340,8 +340,8 @@
                             </select>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-danger">Validasi</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                         </div>
                     </form>
                 </div>

@@ -6,12 +6,10 @@
     <div class="container">
         <div class="content-header">
             <div class="row mb-2">
-                <div class="col-sm-12 col-md-6">
-                    <center>
-                        <h1 class="m-0 text-dark"> <?= $title; ?> </h1>
-                    </center>
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark"> <?= $title; ?> </h1>
                 </div><!-- /.col -->
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/Role_User">User</a></li>
                         <li class="breadcrumb-item active"><?= $title; ?></li>
@@ -54,6 +52,17 @@
                                         <li class="list-group-item">
                                             <h4><?= $_SERVER['REMOTE_ADDR']; ?></h4>
                                         </li>
+                                        <h5 class="card-title"><b>Token API :</b></h5>
+                                        <li class="list-group-item">
+                                            <input type="hidden" id="tokenInput" value="<?= $token; ?>">
+                                            <button class="btn btn-primary btn-block" type="button" onclick="copyToken()">
+                                                <i class="fas fa-key"></i> Copy Token API
+                                            </button>
+                                        </li>
+                                        <!-- <h5 class="card-title"><b>Point :</b></h5>
+                                        <li class="list-group-item">
+                                            <h4 id="current-point"><?= $point; ?></h4>
+                                        </li> -->
                                         <!-- <h5 class="card-title"><b>Point :</b></h5>
                                     <li class="list-group-item">
                                         <h4><?= $point; ?></h4>
@@ -104,6 +113,26 @@
                             </div>
                         </div>
                     </div>
+                    <!-- <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Riwayat Transaksi</h3>
+                        </div>
+                        <div class="card-body">
+                            <table id="tabel-transaksi" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Tanggal</th>
+                                        <th>Jenis</th>
+                                        <th>Point</th>
+                                        <th>Keterangan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> -->
                 </div>
             </div>
         </section>
@@ -179,3 +208,28 @@
 </div>
 
 <?= $this->endsection(); ?>
+
+<?= $this->section('scripts'); ?>
+<script>
+function copyToken() {
+    var tokenInput = document.getElementById('tokenInput');
+    
+    // Buat temporary textarea untuk menyalin teks
+    var tempTextArea = document.createElement('textarea');
+    tempTextArea.value = tokenInput.value;
+    document.body.appendChild(tempTextArea);
+    tempTextArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempTextArea);
+    
+    // Tampilkan notifikasi menggunakan SweetAlert2
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil!',
+        text: 'Token API berhasil disalin ke clipboard',
+        showConfirmButton: false,
+        timer: 1500
+    });
+}
+</script>
+<?= $this->endSection(); ?>

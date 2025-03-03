@@ -48,7 +48,7 @@
 <!-- Modal box Detail -->
 <?php foreach ($badges as $b) : ?>
     <div class="modal fade" id="modalDetail<?php echo $b['id_badges']; ?>">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Detail Badges</h5>
@@ -56,44 +56,44 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+                <div class="modal-body" style="max-height: 450; overflow-y: auto;">
                     <div class="col-lg-13">
-                        <div class="card mb-3">
-                            <div class="row g-0">
-                                <div class="col-md-12">
-                                    <div class="card-body">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">
-                                                <center>
-                                                    <?php if ($b['badges']) : ?>
-                                                        <img src="data:image/png;base64,<?= base64_encode($b['badges']); ?>" alt="Badge Image" width="100">
-                                                    <?php endif; ?>
-                                                </center>
-                                            </li>
-                                            <h5 class="card-title"><b>Nama :</b></h5>
-                                            <li class="list-group-item">
-                                                <h4><?= $b['nama']; ?></h4>
-                                            </li>
-                                            <h5 class="card-title"><b>Point :</b></h5>
-                                            <li class="list-group-item">
-                                                <h4><?= $b['point']; ?></h4>
-                                            </li>
-                                            <h5 class="card-title"><b>Detail :</b></h5>
-                                            <li class="list-group-item">
-                                                <h4><?= $b['detail']; ?></h4>
-                                            </li>
-                                            <h5 class="card-title"><b>Keterangan :</b></h5>
-                                            <li class="list-group-item">
-                                                <h4><?= $b['keterangan']; ?></h4>
-                                            </li>
-                                        </ul>
-                                    </div>
+                        <div class="row g-0">
+                            <div class="col-md-12">
+                                <div class="card-body">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <center>
+                                                <?php if ($b['badges']) : ?>
+                                                    <img src="data:image/png;base64,<?= base64_encode($b['badges']); ?>" alt="Badge Image" width="100">
+                                                <?php endif; ?>
+                                            </center>
+                                        </li>
+                                        <h5 class="card-title"><b>Nama :</b></h5>
+                                        <li class="list-group-item">
+                                            <h4><?= $b['nama']; ?></h4>
+                                        </li>
+                                        <h5 class="card-title"><b>Point :</b></h5>
+                                        <li class="list-group-item">
+                                            <h4><?= $b['point']; ?></h4>
+                                        </li>
+                                        <h5 class="card-title"><b>Detail :</b></h5>
+                                        <li class="list-group-item">
+                                            <h4><?= $b['detail']; ?></h4>
+                                        </li>
+                                        <h5 class="card-title"><b>Keterangan :</b></h5>
+                                        <li class="list-group-item">
+                                            <h4><?= $b['keterangan']; ?></h4>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                </div>
             </div>
         </div>
     </div>
@@ -103,7 +103,7 @@
 <?php foreach ($badges as $b) : ?>
     <div class="modal fade" id="modalEdit<?php echo $b['id_badges']; ?>">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content ">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Edit Badges </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">

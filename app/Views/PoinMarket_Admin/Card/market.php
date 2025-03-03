@@ -69,8 +69,8 @@ foreach ($grouped_transaksi as $kode_jenis => $transactions) :
                         <h5 class="card-title"><strong><?= $t['nama_transaksi']; ?></strong></h5><br>
                         <p class="card-text"><?= $t['keterangan']; ?></p>
                         <p class="card-text">
-                        <strong>
-                            <!-- <php
+                            <strong>
+                                <!-- <php
                             if ($kode_jenis == '101' || $kode_jenis == '105') {
                                 echo 'Reward :';
                             } else if ($kode_jenis == '103') {
@@ -79,8 +79,8 @@ foreach ($grouped_transaksi as $kode_jenis => $transactions) :
                                 echo 'Harga :';
                             }
                             ?> -->
-                            Harga :
-                        </strong> <?= $t['poin_digunakan']; ?> Point 
+                                Harga :
+                            </strong> <?= $t['poin_digunakan']; ?> Point
                         </p>
                         <!-- <php
                         $validstatus = esc($t['valid']);
@@ -161,7 +161,7 @@ foreach ($grouped_transaksi as $kode_jenis => $transactions) :
                                             }
                                             ?> -->
                                         </div>
-                                    </div>                             
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -266,7 +266,9 @@ foreach ($grouped_transaksi as $kode_jenis => $transactions) :
                         </div>
                     </div>
                 </div>
-
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                </div>
             </div>
         </div>
     </div>

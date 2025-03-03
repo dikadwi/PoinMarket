@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filters;
 
 use CodeIgniter\Filters\FilterInterface;
@@ -13,24 +12,50 @@ class TokenAuth implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
-        // Ambil token dari header Authorization
-        $token = session()->get('token');
+        $token = null;
+        
+        // Debug session
+        $session = session();
+        log_message('debug', 'Session token: ' . ($session->get('token') ?? 'tidak ada'));
 
-        // Jika token tidak ditemukan, kembalikan respons 401 Unauthorized
+        // Ambil token dari header Authorization
+        $header = $request->getHeaderLine('Authorization');
+        log_message('debug', 'Raw Authorization header: ' . $header);
+
+        // Coba ambil token dari berbagai sumber
+        if (preg_match('/Bearer\s(\S+)/', $header, $matches)) {
+            $token = $matches[1];
+            log_message('debug', 'Token dari header: ' . $token);
+        } else {
+            // Coba ambil dari session
+            $token = $session->get('token');
+            log_message('debug', 'Token dari session: ' . $token);
+            
+            // Jika masih tidak ada, coba dari parameter URL
+            if (empty($token)) {
+                $token = $request->getGet('token');
+                log_message('debug', 'Token dari URL: ' . $token);
+            }
+        }
+
+        // Jika token masih tidak ada
         if (empty($token)) {
             return Services::response()
                 ->setStatusCode(401)
-                ->setJSON(['error' => 'Token tidak ditemukan']);
+                ->setJSON([
+                    'status' => false,
+                    'message' => 'Token tidak ditemukan. Silahkan Login Terlebih dahulu untuk mendapatkan Token.'
+                ]);
         }
 
-        // Validasi token dengan database mahasiswa
-        $mahasiswaModel = new MahasiswaModel();
-        $mahasiswa = $mahasiswaModel->where('token', $token)->first();
+        // // Validasi token dengan database mahasiswa
+        // $mahasiswaModel = new MahasiswaModel();
+        // $mahasiswa = $mahasiswaModel->where('token', $token)->first();
 
-        // Jika token ditemukan di tabel mahasiswa, lanjutkan ke controller
-        if ($mahasiswa) {
-            return;
-        }
+        // // Jika token ditemukan di tabel mahasiswa, lanjutkan ke controller
+        // if ($mahasiswa) {
+        //     return;
+        // }
 
         // Jika token tidak ditemukan di tabel mahasiswa, cek di tabel users
         $usersModel = new UserModel();
@@ -44,12 +69,14 @@ class TokenAuth implements FilterInterface
         // Jika token tidak valid di kedua tabel, kembalikan respons 403 Forbidden
         return Services::response()
             ->setStatusCode(403)
-            ->setJSON(['error' => 'Token tidak valid']);
+            ->setJSON([
+                'status' => false,
+                'message' => 'Token tidak valid'
+            ]);
     }
-
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
-        // Tidak perlu melakukan apa-apa setelah request
+        // Tidak ada yang perlu dilakukan setelah request
     }
 }

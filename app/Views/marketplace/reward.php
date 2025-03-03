@@ -10,9 +10,7 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <center>
-                        <h1 class="text-center">Reward</h1>
-                    </center>
+                    <h1 class="m-0 text-dark">Reward</h1>
                     <!-- <?php if ($isLoggedIn): ?>
                         <p class="text-center">
                             Welcome, <?= $nama ?> . <?= $npm ?> <br>
@@ -39,9 +37,14 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                 <?php foreach ($datatransaksi as $item): ?>
                     <?php if ($item['claim'] === 'Belum'): // Menampilkan Data Reward jika reward belum diambil dengan status claim "Belum" 
                     ?>
-                        <div class="col-6 col-md-3">
-                            <div class="card">
-
+                        <div class="col-6 col-md-3 d-flex">
+                            <div class="card flex-fill d-flex flex-column">
+                                <div class="card-img-container">
+                                    <img src="<?= base_url('uploads/' . $item['gambar']); ?>"
+                                        class="card-img-top"
+                                        alt="Gambar_Item"
+                                        style="width: 100%; height: auto;">
+                                </div>
                                 <!-- <img src="https://cdn.prod.website-files.com/64889df33626cba8b4463219/6580a6236b0c485a43d21338_620ebadbfc0b50324e0a295b_Gamification_Blog-Feat-Image_1080x680.webp" class="card-img-top" alt="<?= $item['nama_transaksi'] ?>"> -->
                                 <div class="card-body">
                                     <h5 class="card-title"><strong><?= esc($item['nama_transaksi']) ?></strong></h5>

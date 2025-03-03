@@ -64,12 +64,12 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Tambah <?= $title; ?></h5>
+                <h5 class=" modal-title" id="staticBackdropLabel">Tambah <?= $title; ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: 450px; overflow-y: auto;">
                 <form action="/Jenis_Transaksi/save_Jenis" method="post" enctype="multipart/form-data">
                     <!-- Input Hidden untuk id_transaksi & Valid -->
                     <div class="form-group ">

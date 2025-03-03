@@ -259,9 +259,31 @@ $routes->group('cms', ['filter' => 'login'],  function ($routes) {
     $routes->get('delete/(:num)', 'CMS::delete/$1');
 });
 
+// Wallet API Routes
+$routes->group('api/v1/wallet', ['namespace' => 'App\Controllers\API'], function ($routes) {
+    $routes->get('me', 'WalletAPI::getMyWallet');
+    $routes->get('transaksi', 'WalletAPI::getTransaksi');
+});
+
+// Wallet API Routes
+$routes->group('api/wallet', ['namespace' => 'App\Controllers\API'], function ($routes) {
+    $routes->get('me', 'WalletAPI::getMyWallet');
+    $routes->get('transaksi', 'WalletAPI::getTransaksi');
+});
+
+// Aplikasi Mobile
+$routes->group('api', ['filter' => 'cors'], function($routes) {
+    $routes->get('loginMhs', 'Login::loginMs');
+    $routes->post('Login/process', 'Login::process_mobile'); //Proses Login Mahasiswa
+    $routes->options('Login/process', 'Login::process_mobile'); // Menangani permintaan OPTIONS
+    $routes->get('wallet/my', 'API\WalletAPI::getMyWallet'); // Rute untuk mengambil data wallet
+    $routes->options('wallet/my', 'API\WalletAPI::getMyWallet'); 
+    // Tambahkan rute lainnya di sini
+});
+
 // Routes untuk API (Protected by Token Authentication)
-// $routes->group('api', ['filter' => 'tokenAuth'], function ($routes) {
-$routes->group('api', function ($routes) {
+$routes->group('api', ['filter' => 'tokenAuth'], function ($routes) {
+// $routes->group('api', function ($routes) {
     // $routes->get('transaksi', 'PoinMarket_Admin\Validasi::getAllTransaksi');
     // $routes->post('transaksi/validasi/(:num)', 'PoinMarket_Admin\Validasi::validateTransaksi/$1');
     // API User
@@ -295,6 +317,7 @@ $routes->group('api', function ($routes) {
     $routes->put('mahasiswa/(:num)', 'API\MahasiswaAPI::update/$1'); //Mengedit data
     $routes->delete('mahasiswa/(:num)', 'API\MahasiswaAPI::delete/$1'); //Menghapus data
     // API Wallet
+    $routes->get('wallet', 'API\WalletAPI::getWallet');
     $routes->get('wallet/(:segment)', 'API\WalletAPI::getWalletByNpm/$1');
     $routes->get('wallet/point/(:segment)', 'API\WalletAPI::getPointBalance/$1');
     $routes->get('wallet/history/(:segment)', 'API\WalletAPI::getTransactionHistory/$1');
@@ -313,6 +336,9 @@ $routes->get('supabase/users', 'SupabaseController::getUsers');
 $routes->post('supabase/adduser', 'SupabaseController::addUser');
 $routes->patch('supabase/edit/(:num)', 'SupabaseController::updateUser/$1');
 $routes->delete('supabase/users/(:num)', 'SupabaseController::delete/$1');
+
+// Swagger
+$routes->get('/api/docs', 'SwaggerController::index');
 
 
 

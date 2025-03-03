@@ -11,6 +11,12 @@
                     <div class="card-header text-center">
                         <h5 class="card-title"><strong><?= $t['nama_transaksi']; ?></strong></h5>
                     </div>
+                    <div class="card-img-container">
+                        <img src="<?= base_url('uploads/' . $t['gambar']); ?>"
+                            class="card-img-top"
+                            alt="Gambar_Item"
+                            style="width: 100%; height: auto;">
+                    </div>
                     <div class="card-body">
                         <p class="card-text">
                             <strong>NPM:</strong> <?= $t['npm']; ?><br>
@@ -151,13 +157,15 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                </div>
             </div>
         </div>
     </div>
 <?php endforeach; ?>
 
-<!--Data Modal Validasi-->
+<!-- Modal box Validasi-->
 <?php foreach ($data_transaksi as $data) : ?>
     <div class="modal fade" id="modalValidasi<?php echo $data['id_transaksi']; ?>">
         <div class="modal-dialog modal-dialog-centered">
@@ -177,7 +185,6 @@
                             </div> -->
                         <div class="form-group ">
                             <label for="jenis_transaksi" class="col-form-label">Jenis Transaksi</label>
-
                             <input type="text" class="form-control" id="jenis_transaksi" name="jenis_transaksi" value=" <?php
                                                                                                                         switch ($data['kode_jenis']) {
                                                                                                                             case '101':

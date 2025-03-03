@@ -33,20 +33,29 @@ class BadgesAPI extends ResourceController
 
     public function index()
     {
-        $data = $this->model->findAll();
+        try {
+            $data = $this->model->findAll();
 
-        // Memeriksa apakah data valid UTF-8
-        foreach ($data as &$item) {
-            // Mengonversi ke UTF-8 jika perlu
-            $item['badges'] = mb_convert_encoding($item['badges'], 'UTF-8', 'UTF-8');
+            // Memeriksa apakah data valid UTF-8
+            foreach ($data as &$item) {
+                // Mengonversi ke UTF-8 jika perlu
+                $item['badges'] = mb_convert_encoding($item['badges'], 'UTF-8', 'UTF-8');
+            }
+
+            if (empty($data)) {
+                return $this->failNotFound('Tidak ada data badge ditemukan');
+            }
+
+            // Mengembalikan data dalam format JSON
+            return $this->respond($data, 200, 'application/json');
+        } catch (\Exception $e) {
+            log_message('error', '[BadgesAPI.index] ' . $e->getMessage());
+            return $this->response->setJSON([
+                'status' => 500,
+                'error' => true,
+                'message' => 'Terjadi kesalahan internal server'
+            ])->setStatusCode(500);
         }
-
-        if (empty($data)) {
-            return $this->failNotFound('Tidak ada data badge ditemukan');
-        }
-
-        // Mengembalikan data dalam format JSON
-        return $this->respond($data, 200, 'application/json');
     }
 
     // Menampilkan data badge berdasarkan ID

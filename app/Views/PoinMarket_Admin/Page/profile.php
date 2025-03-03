@@ -43,6 +43,13 @@
                                         <li class="list-group-item">
                                             <!-- <h4><?= session('user_ip'); ?></h4> <!- Menampilkan alamat IP dari sesi -->
                                             <h4><?= $_SERVER['REMOTE_ADDR']; ?></h4>
+                                        </li>                                        
+                                        <h5 class="card-title"><b>Token API :</b></h5>
+                                        <li class="list-group-item">
+                                            <input type="hidden" id="tokenInput" value="<?= $user->token; ?>">
+                                            <button class="btn btn-primary btn-block" type="button" onclick="copyToken()">
+                                                <i class="fas fa-key"></i> Copy Token API
+                                            </button>
                                         </li>
                                         <li class="list-group-item">
                                             <!-- <span class="badge badge-<?= ($user->name == 'admin') ? 'success' : 'warning'; ?>"><?= $user->name; ?></span> -->
@@ -71,8 +78,29 @@
     </div>
 </div>
 
-
-
-
-
 <?= $this->endsection(); ?>
+
+<?= $this->section('scripts'); ?>
+<script>
+function copyToken() {
+    var tokenInput = document.getElementById('tokenInput');
+    
+    // Buat temporary textarea untuk menyalin teks
+    var tempTextArea = document.createElement('textarea');
+    tempTextArea.value = tokenInput.value;
+    document.body.appendChild(tempTextArea);
+    tempTextArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempTextArea);
+    
+    // Tampilkan notifikasi menggunakan SweetAlert2
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil!',
+        text: 'Token API berhasil disalin ke clipboard',
+        showConfirmButton: false,
+        timer: 1500
+    });
+}
+</script>
+<?= $this->endSection(); ?>

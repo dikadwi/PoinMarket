@@ -2,15 +2,49 @@
 
 <?= $this->section('content_user'); ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+<style>
+    @media (max-width: 767.98px) {
+        .info-box {
+            text-align: center;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .info-box-icon {
+            float: none !important;
+            margin: 0 auto 10px !important;
+            width: 50px !important;
+            height: 50px !important;
+            font-size: 1.5rem !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-box-content {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            margin-left: 0 !important;
+            width: 100% !important;
+        }
+
+        .info-box-number {
+            margin-top: 5px;
+            font-size: 1rem;
+        }
+    }
+</style>
+
 <!-- <div class="content-wrapper" style="background-image: url(https://media.istockphoto.com/id/1149543417/id/vektor/konsep-gamifikasi-mengintegrasikan-permainan.jpg?s=612x612&w=0&k=20&c=124BYzvn0F760W-djUx8B-icV0yB9K5LCl21fdberzk=);"> -->
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <center>
-                        <h1 class="m-0 text-dark">Point Market</h1>
-                    </center>
+                    <h1 class="m-0 text-dark">Point Market</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -27,12 +61,12 @@
     <section class="content">
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
-            <div class="row">
-                <div class="col-12 col-sm-6 col-md-4">
+            <div class="row justify-content-center">
+                <div class="col-3 col-sm-6 col-md-4">
                     <div class="info-box">
                         <span class="info-box-icon bg-info elevation-1"><i class="fas fa-coins"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Point Balance</span>
+                            <span class="info-box-text d-none d-md-inline">Point Balance</span>
                             <span class="info-box-number">
                                 <?= $point ?>
                             </span>
@@ -40,23 +74,11 @@
                     </div>
                 </div>
 
-                <!-- <div class="col-12 col-sm-6 col-md-4">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-trophy"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Peringkat</span>
-                            <span class="info-box-number" id="userRank">
-                                Loading...
-                            </span>
-                        </div>
-                    </div>
-                </div> -->
-
-                <div class="col-12 col-sm-6 col-md-4">
+                <div class="col-3 col-sm-6 col-md-4">
                     <div class="info-box">
                         <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Total User</span>
+                            <span class="info-box-text d-none d-md-inline">Total User</span>
                             <span class="info-box-number" id="totalUsers">
                                 <?= $totalMhs ?>
                             </span>
@@ -64,11 +86,12 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-6 col-md-4">
+                <div class="col-3 col-sm-6 col-md-4">
+                    <!-- <div class="col-12 col-sm-6 col-md-4"> -->
                     <div class="info-box">
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Riwayat</span>
+                            <span class="info-box-text d-none d-md-inline">Riwayat</span>
                             <span class="info-box-number" id="totalRiwayat">
                                 <?= $riwayat ?>
                             </span>
@@ -76,8 +99,8 @@
                     </div>
                 </div>
             </div>
+            <!-- Menampilkan Profil -->
             <div class="row">
-                <!-- Menampilkan Profil -->
                 <div class="col-lg-6 col-md-12 mb-3">
                     <div class="card shadow-sm">
                         <div class="card-header bg-gradient-info">
@@ -447,7 +470,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Transaksi</th>
-                                <th>Poin Digunakan</th>
+                                <th>Reward Poin</th>
                                 <th>Tanggal Transaksi</th>
                                 <!-- <th>Validasi</th> -->
                             </tr>
@@ -458,7 +481,7 @@
                                 <tr>
                                     <td><?= $i++; ?></td>
                                     <td><?= $data['nama_transaksi']; ?></td>
-                                    <td><?= $data['poin_digunakan']; ?></td>
+                                    <td><?= $data['poin_diberikan']; ?></td>
                                     <td><?= date('d-m-Y', strtotime($data['tanggal_transaksi'])); ?></td>
                                     <!-- <td>
                     <?php
@@ -612,12 +635,12 @@
     </div>
 </div>
 
-<!-- Modal Box Detail Misi Tambahan -->
+<!-- Modal Box Detail Misi  -->
 <div class="modal fade" id="modalDetailMisi">
     <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Misi Tambahan</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Misi</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -639,7 +662,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Transaksi</th>
-                                <th>Poin Digunakan</th>
+                                <th>Reward Poin</th>
                                 <th>Tanggal Transaksi</th>
                                 <!-- <th>Validasi</th> -->
                             </tr>
@@ -650,7 +673,7 @@
                                 <tr>
                                     <td><?= $i++; ?></td>
                                     <td><?= $data['nama_transaksi']; ?></td>
-                                    <td><?= $data['poin_digunakan']; ?></td>
+                                    <td><?= $data['poin_diberikan']; ?></td>
                                     <td><?= date('d-m-Y', strtotime($data['tanggal_transaksi'])); ?></td>
                                     <!-- <td>
                     <?php

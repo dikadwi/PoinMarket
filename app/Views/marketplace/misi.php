@@ -10,9 +10,7 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <center>
-                        <h1 class="text-center">Misi</h1>
-                    </center>
+                    <h1 class="m-0 text-dark">Misi</h1>
                     <!-- <?php if ($isLoggedIn): ?>
                         <p class="text-center">
                             Welcome, <?= $nama ?> . <?= $npm ?> <br>

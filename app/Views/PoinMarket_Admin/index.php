@@ -2,6 +2,39 @@
 
 <?= $this->section('content'); ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+<style>
+    @media (max-width: 767.98px) {
+        .info-box {
+            text-align: center;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .info-box-icon {
+            float: none !important;
+            margin: 0 auto 10px !important;
+            width: 50px !important;
+            height: 50px !important;
+            font-size: 1.5rem !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+        .info-box-content {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            margin-left: 0 !important;
+            width: 100% !important;
+        }
+        .info-box-number {
+            margin-top: 5px;
+            font-size: 1rem;
+        }
+    }
+</style>
+
 <!-- <div class="content-wrapper" style="background-image: url(https://media.istockphoto.com/id/1149543417/id/vektor/konsep-gamifikasi-mengintegrasikan-permainan.jpg?s=612x612&w=0&k=20&c=124BYzvn0F760W-djUx8B-icV0yB9K5LCl21fdberzk=);"> -->
 <div class="content-wrapper">
     <div class="content-header">
@@ -26,66 +59,53 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-6 col-md-2">
-                    <!-- small box -->
-                    <div class="small-box bg-danger">
-                        <div class="inner">
-                            <h2>Users</h2>
-                            <!-- Total Mahasiswa  -->
-                            <h4><?= $totalMhs; ?> User</h4>
+            <div class="row">
+                <div class="col-3 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text d-none d-md-inline">Users</span>
+                            <span class="info-box-number">
+                                <?= $totalMhs; ?>
+                            </span>
                         </div>
-                        <div class="icon d-block">
-                            <i class="ion ion-person-stalker"></i>
-                        </div>
-                        <a href="/Mahasiswa" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-6 col-md-2">
-                    <!-- small box -->
-                    <div class="small-box bg-danger">
-                        <div class="inner">
-                            <h2>Pesanan</h2>
-                            <!-- Total Semua Data Transaksi  -->
-                            <h4><?= $totalPemesanan; ?> Pesanan</h4>
+                <div class="col-3 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-shopping-cart"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text d-none d-md-inline">Pesanan</span>
+                            <span class="info-box-number" id="userRank">
+                                <?= $totalPemesanan; ?>
+                            </span>
                         </div>
-                        <div class="icon d-block">
-                            <i class="ion ion-android-cart"></i>
-                        </div>
-                        <a href="/Transaksi" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-6 col-md-2">
-                    <!-- small box -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h2>Online</h2>
-                            <!-- Total Mahasiswa sedang online / login  -->
-                            <!-- Simpan Session mahasiswa untuk mengetahui status Online -->
-                            <h4>User Online</h4>
+                <div class="col-3 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-user"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text d-none d-md-inline">User Online</span>
+                            <span class="info-box-number" id="totalUsers">
+                                ...
+                            </span>
                         </div>
-                        <div class="icon d-block">
-                            <i class="ion ion-person"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-6 col-md-2">
-                    <!-- small box -->
-                    <div class="small-box bg-gradient-purple">
-                        <div class="inner">
-                            <h2>Validasi</h2>
-                            <!-- Total data yang belum tervalidasi -->
-                            <!-- tambahkan grafik validasi -->
-                            <h5> <?= $totalValidasi ?> Pesanan </h5>
+                <div class="col-3 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-clipboard-check"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text d-none d-md-inline">Validasi</span>
+                            <span class="info-box-number" id="totalRiwayat">
+                                <?= $totalValidasi ?>
+                            </span>
                         </div>
-                        <div class="icon d-block">
-                            <i class="ion ion-clipboard"></i>
-                        </div>
-                        <a href="/Validasi" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
+            
             <!-- Row untuk Card Jumlah Tiap Jenis Transaksi -->
             <div class="row justify-content-center">
                 <div class="col-6 col-md-2">
@@ -167,14 +187,16 @@
             <!-- Row untuk Donut,Leaderboard-->
             <div class="row">
                 <!-- Donut -->
-                <div class="col-12 col-md-6">
-                    <div class="small-box">
-                        <center>
-                            <h2><i class="ion ion-pie-graph"></i></h2>
-                        </center>
+                <div class="col-lg-6 col-md-12 mb-3">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-gradient-info">
+                            <h3 class="card-title text-white mb-0">
+                                <i class="ion ion-pie-graph mr-2"></i>
+                            </h3>
+                        </div>
                         <!-- Canvas untuk grafik donut -->
-                        <div class="card mb-0">
-                            <div class="card-body">
+                        <div class="card-body">
+                            <div class="row g-0">
                                 <canvas id="donutChart" width="400" height="400"></canvas>
                             </div>
                         </div>
@@ -186,13 +208,16 @@
                     </div> -->
                 </div>
                 <!-- Menampilkan Leaderboard -->
-                <div class="col-12 col-md-6">
-                    <div class="small-box">
-                        <center>
-                            <h2><i class="ion ion-trophy"><b> Leaderboard</b></i></h2>
-                        </center>
-                        <div class="card mb-0">
-                            <div class="card-body">
+                <div class="col-lg-6 col-md-12 mb-3">
+                    <!-- <div class="col-12 col-md-6"> -->
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-gradient-info">
+                            <h3 class="card-title text-white mb-0">
+                                <i class="ion ion-podium mr-2"></i> Leaderboard
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-0">
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped">
                                         <thead class="bg-gradient-primary">
@@ -273,11 +298,13 @@
             <!-- Row untuk Data Badges, Data Jenis Transaksi -->
             <div class="row">
                 <!-- Data Badges -->
-                <div class="col-lg-6 col-12">
+                <div class="col-lg-6 col-md-12 mb-3">
+                    <div class="card-header bg-gradient-info">
+                        <h3 class="card-title text-white mb-0">
+                            <i class="ion ion-ribbon-b mr-2"></i>Badges
+                        </h3>
+                    </div>
                     <div class="small-box b flex-fill">
-                        <center>
-                            <h2> <i class="ion ion-ribbon-a"><b> Badges</b></i></h2>
-                        </center>
                         <div class="card mb-0 flex-fill">
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -314,11 +341,14 @@
                     </div>
                 </div>
                 <!-- Data Jenis Transaksi -->
-                <div class="col-lg-6 col-12">
+                <div class="col-lg-6 col-md-12 mb-3">
+                    <!-- <div class="col-12 col-md-6"> -->
+                    <div class="card-header bg-gradient-info">
+                        <h3 class="card-title text-white mb-0">
+                            <i class="ion ion-pricetags mr-2"></i> Item
+                        </h3>
+                    </div>
                     <div class="small-box b flex-fill">
-                        <center>
-                            <h2> <i class="ion ion-pricetags"><b> Item</b></i></h2>
-                        </center>
                         <div class="card mb-0 flex-fill">
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -355,12 +385,14 @@
             <!-- Row data Mahasiswa-->
             <div class="row">
                 <!-- Data Mahasiswa -->
-                <div class="col-lg-6 col-12">
-                    <div class="small-box">
-                        <center>
-                            <h2><i class="ion ion-trophy"><b> Mahasiswa</b></i></h2>
-                        </center>
-                        <div class="card mb-0 flex-fill h-100">
+                <div class="col-lg-6 col-md-12 mb-3">
+                    <div class="card-header bg-gradient-info">
+                        <h3 class="card-title text-white mb-0">
+                            <i class="ion ion-person-stalker mr-2"></i> Mahasiswa
+                        </h3>
+                    </div>
+                    <div class="small-box b flex-fill">
+                        <div class="card mb-0 flex-fill">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered border-light h-100">
@@ -430,6 +462,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </section>
     <!-- /.content -->
 </div>

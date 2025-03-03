@@ -43,7 +43,7 @@ class Role_User extends BaseController
             'badges' => $this->BadgesModel->getBadges(),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
         ];
-        return view('User/wallet', $data);
+        return view('User/Page/wallet', $data);
     }
     public function index()
     {
@@ -353,6 +353,7 @@ class Role_User extends BaseController
             'id' => $session->get('user_id'),
             'npm' => $session->get('npm'),
             'email' => $session->get('email'),
+            'token' => $session->get('token'),
             'point' => $session->get('point'),
             'badges' => $this->BadgesModel->getBadges(),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),

@@ -69,7 +69,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: 450px; overflow-y: auto;">
                 <form action="/Badges" method="post" enctype="multipart/form-data">
                     <div class="form-group ">
                         <label for="nama" class="col-form-label">Nama</label>
@@ -85,7 +85,7 @@
                     </div>
                     <div class="form-group ">
                         <label for="keterangan" class="col-form-label">Keterangan</label>
-                        <input type="text" class="form-control" id="keterangan" name="keterangan" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
+                        <textarea class="form-control" id="keterangan" name="keterangan" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')"></textarea>
                     </div>
                     <div class="form-group ">
                         <label for="badges" class="col-form-label">Badges(Upload Gambar)</label>

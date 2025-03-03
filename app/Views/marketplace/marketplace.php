@@ -10,9 +10,7 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <center>
-                        <h1 class="text-center">Marketplace</h1>
-                    </center>
+                    <h1 class="m-0 text-dark">Marketplace</h1>
                     <!-- <?php if ($isLoggedIn): ?>
                         <p class="text-center">
                             Welcome, <?= $nama ?> . <?= $npm ?> <br>
@@ -55,16 +53,16 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                             <div class="card-body">
                                 <h5 class="card-title"><strong><?= $item['nama_transaksi'] ?></strong></h5>
                                 <p class="card-text"><?= $item['keterangan']; ?></p>
-                                <p class="card-text">                             
+                                <p class="card-text">
                                     <strong>Harga : </strong><?= $item['poin_digunakan'] ?>
                                 </p>
                             </div>
                             <div class="d-flex justify-content-between mb-2 mx-3">
                                 <!-- Tombol Pembuat / sesuaikan opasitas dan ambil nama dari database, tambahkan kolom pembuat item-->
                                 <button type="button" class="btn btn-pembuat btn-primary d-inline-block text-center opacity-50" data-toggle="modal" data-target="#modalCreator<?= esc($item['id_transaksi']) ?>">
-                                <i class="fas fa-user"></i>
-                                <span> <?= $item['creator']; ?></span>
-                                </button>     
+                                    <i class="fas fa-user"></i>
+                                    <span> <?= $item['creator']; ?></span>
+                                </button>
                             </div>
                             <div class="card-footer">
                                 <div class="row d-flex justify-content-center">
@@ -123,8 +121,8 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                             </div>
                         </div>
                     </div>
-                      <!-- Modal Creator Profile -->
-                      <div class="modal fade" id="modalCreator<?= esc($item['id_transaksi']) ?>" tabindex="-1" role="dialog" aria-labelledby="modalCreatorLabel<?= esc($item['id_transaksi']) ?>" aria-hidden="true">
+                    <!-- Modal Creator Profile -->
+                    <div class="modal fade" id="modalCreator<?= esc($item['id_transaksi']) ?>" tabindex="-1" role="dialog" aria-labelledby="modalCreatorLabel<?= esc($item['id_transaksi']) ?>" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -157,14 +155,14 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                                             }
                                             ?> -->
                                         </div>
-                                    </div>                             
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                 </div>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>
@@ -187,7 +185,7 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                             <div class="card-body">
                                 <h5 class="card-title"><strong><?= $item['nama_transaksi'] ?></strong></h5>
                                 <p class="card-text"><?= $item['keterangan']; ?></p>
-                                <p class="card-text">                             
+                                <p class="card-text">
                                     <strong>Harga : </strong><?= $item['poin_digunakan'] ?>
                                 </p>
                             </div>
@@ -196,7 +194,7 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                                 <button type="button" class="btn btn-pembuat btn-primary d-inline-block text-center opacity-50" data-toggle="modal" data-target="#modalCreator<?= esc($item['id_transaksi']) ?>">
                                     <i class="fas fa-user"></i>
                                     <span> <?= $item['creator']; ?></span>
-                                </button>     
+                                </button>
                             </div>
                             <div class="card-footer">
                                 <div class="row d-flex justify-content-center">
@@ -244,8 +242,8 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                             </div>
                         </div>
                     </div>
-                     <!-- Modal Creator Profile -->
-                     <div class="modal fade" id="modalCreator<?= esc($item['id_transaksi']) ?>" tabindex="-1" role="dialog" aria-labelledby="modalCreatorLabel<?= esc($item['id_transaksi']) ?>" aria-hidden="true">
+                    <!-- Modal Creator Profile -->
+                    <div class="modal fade" id="modalCreator<?= esc($item['id_transaksi']) ?>" tabindex="-1" role="dialog" aria-labelledby="modalCreatorLabel<?= esc($item['id_transaksi']) ?>" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -278,7 +276,7 @@ $isLoggedIn = $session->get('isLoggedIn'); // Pastikan ini sesuai dengan data se
                                             }
                                             ?> -->
                                         </div>
-                                    </div>                             
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>

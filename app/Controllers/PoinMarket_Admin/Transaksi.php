@@ -17,6 +17,7 @@ class Transaksi extends BaseController
     protected $DataTransaksiModel;
     protected $MahasiswaModel;
     protected $PageModel;
+    protected $db;
 
     public function __construct()
     {
@@ -26,6 +27,7 @@ class Transaksi extends BaseController
         $this->DataTransaksiModel = new DataTransaksiModel();
         $this->MahasiswaModel = new MahasiswaModel();
         $this->PageModel = new PageModel();
+        $this->db = \Config\Database::connect();
     }
 
     public function index()
@@ -245,110 +247,252 @@ class Transaksi extends BaseController
     }
 
     // Save Transaksi (Logika untuk market place)
+    // public function save_Transaksi()
+    // {
+    //     $npm = $this->request->getVar('npm');
+    //     $poin_digunakan = $this->request->getVar('poin_digunakan');
+    //     $poin_diberikan = $this->request->getVar('poin_diberikan');
+    //     $gambar = $this->request->getVar('gambar');
+    //     $jenis_transaksi = $this->request->getVar('kode_jenis');
+
+    //     // Periksa apakah nilai `$npm` kosong
+    //     if (empty($npm)) {
+    //         session()->setFlashdata("gagal", "NPM tidak boleh kosong.");
+    //         return redirect()->back();
+    //     }
+
+    //     // Periksa apakah nilai `$poin_digunakan` atau `$poin_diberikan` kosong
+    //     if (empty($poin_digunakan) && empty($poin_diberikan)) {
+    //         session()->setFlashdata("gagal", "Poin yang digunakan atau diberikan tidak boleh kosong.");
+    //         return redirect()->back();
+    //     }
+
+    //     // Ambil informasi poin mahasiswa berdasarkan NPM dari tabel mahasiswa
+    //     $mahasiswaData = $this->MahasiswaModel->where('npm', $npm)->first();
+
+    //     if ($mahasiswaData) {
+    //         $totalPoinMahasiswa = $mahasiswaData['point']; // Sesuaikan dengan nama kolom yang menyimpan total poin mahasiswa
+
+    //         // Tentukan status claim berdasarkan jenis transaksi, atur validasi belum
+    //         $validationStatus = '';
+    //         $claim = '';
+
+    //         if ($jenis_transaksi == '102' || $jenis_transaksi == '103') {
+    //             // Jika jenis transaksi adalah 102 (Pembelian) atau 103 (Punishment), status claim langsung "Sudah".
+    //             $validationStatus = 'Belum';
+    //             $claim = 'Sudah';
+    //         } else {
+    //             // Untuk jenis transaksi lainnya, status claim adalah "Belum"
+    //             $validationStatus = 'Belum';
+    //             $claim = 'Belum';
+    //         }
+
+    //         // Proses pengurangan/penambahan poin berdasarkan jenis transaksi
+    //         if ($jenis_transaksi == '102') {
+    //             // Untuk transaksi 102 (Pembelian), periksa apakah poin cukup
+    //             if ($totalPoinMahasiswa < $poin_digunakan) {
+    //                 session()->setFlashdata("gagal1", "Poin tidak cukup untuk pembelian.");
+    //                 return redirect()->back();
+    //             } else {
+    //                 $sisaPoin = $totalPoinMahasiswa - $poin_digunakan;
+    //                 // Simpan data transaksi ke dalam tabel transaksi
+    //                 $data_transaksi = [
+    //                     'id_transaksi' => $this->request->getVar('id_transaksi'),
+    //                     'kode_jenis' => $jenis_transaksi,
+    //                     'nama_transaksi' => $this->request->getVar('nama_transaksi'),
+    //                     'npm' => $mahasiswaData['npm'],
+    //                     'poin_digunakan' => $poin_digunakan,
+    //                     'poin_diberikan' => $poin_diberikan,
+    //                     'gambar' => $gambar,
+    //                     'tanggal_transaksi' => date('Y-m-d H:i:s'), // Sesuaikan dengan format tanggal
+    //                     'validation' => $validationStatus, // Status validasi sesuai dengan jenis transaksi
+    //                     'claim' => $claim, // Tambahkan claim ke data transaksi
+    //                     'creator' => $this->request->getVar('creator'),
+    //                 ];
+    //                 // Simpan data transaksi ke dalam tabel transaksi
+    //                 $this->DataTransaksiModel->insert($data_transaksi);
+    //                 $this->MahasiswaModel->update($mahasiswaData['npm'], ['point' => $sisaPoin]);
+    //                 session()->setFlashdata("sukses", "Transaksi Berhasil. Total poin sekarang: " . $sisaPoin);
+    //             }
+    //         } elseif ($jenis_transaksi == '103') {
+    //             // Untuk transaksi 103 (Punishment), bisa mengurangi poin lebih dari total poin yang dimiliki (negatif)
+    //             $sisaPoin = $totalPoinMahasiswa - $poin_digunakan;
+    //             // Simpan data transaksi ke dalam tabel transaksi
+    //             $data_transaksi = [
+    //                 'id_transaksi' => $this->request->getVar('id_transaksi'),
+    //                 'kode_jenis' => $jenis_transaksi,
+    //                 'nama_transaksi' => $this->request->getVar('nama_transaksi'),
+    //                 'npm' => $mahasiswaData['npm'],
+    //                 'poin_digunakan' => $poin_digunakan,
+    //                 'poin_diberikan' => $poin_diberikan,
+    //                 'gambar' => $gambar,
+    //                 'tanggal_transaksi' => date('Y-m-d H:i:s'), // Sesuaikan dengan format tanggal
+    //                 'validation' => $validationStatus, // Status validasi sesuai dengan jenis transaksi
+    //                 'claim' => $claim, // Tambahkan claim ke data transaksi
+    //                 'creator' => $this->request->getVar('creator'),
+    //             ];
+    //             // Simpan data transaksi ke dalam tabel transaksi
+    //             $this->DataTransaksiModel->insert($data_transaksi);
+    //             $this->MahasiswaModel->update($mahasiswaData['npm'], ['point' => $sisaPoin]);
+    //             session()->setFlashdata("sukses", "Transaksi Berhasil. Total poin sekarang: " . $sisaPoin);
+    //         } else {
+    //             // Untuk jenis transaksi lainnya ( 101, 105 / Reward, Misi), simpan data transaksi tanpa memeriksa poin
+    //             $data_transaksi = [
+    //                 'id_transaksi' => $this->request->getVar('id_transaksi'),
+    //                 'kode_jenis' => $jenis_transaksi,
+    //                 'nama_transaksi' => $this->request->getVar('nama_transaksi'),
+    //                 'npm' => $mahasiswaData['npm'],
+    //                 'poin_digunakan' => $poin_digunakan,
+    //                 'poin_diberikan' => $poin_diberikan,
+    //                 'gambar' => $gambar,
+    //                 'tanggal_transaksi' => date('Y-m-d H:i:s'), // Sesuaikan dengan format tanggal
+    //                 'validation' => $validationStatus, // Status validasi sesuai dengan jenis transaksi
+    //                 'claim' => $claim, // Tambahkan claim ke data transaksi
+    //                 'creator' => $this->request->getVar('creator'),
+    //             ];
+    //             // Simpan data transaksi ke dalam tabel transaksi
+    //             $this->DataTransaksiModel->insert($data_transaksi);
+    //             session()->setFlashdata("validasi", "Transaksi Ditambahkan.");
+    //         }
+
+    //         return redirect()->back();
+    //     }
+    // }
+
+    // Point Berhasil dikurangi/ditambah & diupdate 
+    // Reward : tambahkan validasi (oleh admin), poin bertambah ketika diclaim mahasiswa
+    // Misi : tambahkan validasi (oleh admin & dosen), poin bertambah ketika diclaim mahasiswa /misi selesai 
+    // Pembelian : tambahkan validasi (dosen&admin), poin berkurang, ketika validasi gagal poin yg digunakan kembali ke mahasiswa
+    // Konsultasi tambahkan validasi (dosen&admin), point berkurang, ketika validasi gagal poin yg digunakan kembali ke mahasiswa
+    // Punishment : tambahkan validasi (admin), jika berhasil poin mahasiswa berkurang, jika gagal tidak ada perubahan poin
+     
     public function save_Transaksi()
     {
+        // 1. Ambil data dari request
         $npm = $this->request->getVar('npm');
         $poin_digunakan = $this->request->getVar('poin_digunakan');
         $poin_diberikan = $this->request->getVar('poin_diberikan');
+        $gambar = $this->request->getVar('gambar');
+        $jenis_transaksi = $this->request->getVar('kode_jenis');
+        $nama_transaksi = $this->request->getVar('nama_transaksi');
+        $creator = $this->request->getVar('creator');
+        $id_transaksi = $this->request->getVar('id_transaksi');
 
-        // Periksa apakah nilai `$npm` kosong
+        // 2. Validasi input dasar
         if (empty($npm)) {
             session()->setFlashdata("gagal", "NPM tidak boleh kosong.");
             return redirect()->back();
         }
 
-        // Periksa apakah nilai `$poin_digunakan` atau `$poin_diberikan` kosong
         if (empty($poin_digunakan) && empty($poin_diberikan)) {
             session()->setFlashdata("gagal", "Poin yang digunakan atau diberikan tidak boleh kosong.");
             return redirect()->back();
         }
 
-        // Ambil informasi poin mahasiswa berdasarkan NPM dari tabel mahasiswa
+        // 3. Ambil data mahasiswa
         $mahasiswaData = $this->MahasiswaModel->where('npm', $npm)->first();
+        if (!$mahasiswaData) {
+            session()->setFlashdata("gagal", "Data mahasiswa tidak ditemukan.");
+            return redirect()->back();
+        }
 
-        if ($mahasiswaData) {
-            $totalPoinMahasiswa = $mahasiswaData['point']; // Sesuaikan dengan nama kolom yang menyimpan total poin mahasiswa
+        // 4. Set status berdasarkan jenis transaksi
+        $validationStatus = 'Wait';
+        // $claim = ($jenis_transaksi == '102' || $jenis_transaksi == '103') ? 'Sudah' : 'Belum';
+        // Mengindikasikan Poin sudah digunakan
+        $claim = 'Wait';
 
-            // Tentukan status validasi berdasarkan jenis transaksi
-            $jenis_transaksi = $this->request->getVar('kode_jenis');
-            $validationStatus = '';
-            $claim = '';
+        // 5. Hitung poin
+        $totalPoinMahasiswa = (int)$mahasiswaData['point'];
+        $sisaPoin = $totalPoinMahasiswa;
 
-            if ($jenis_transaksi == '102' || $jenis_transaksi == '103') {
-                // Jika jenis transaksi adalah 102 (Pembelian) atau 103 (Punishment), status validasi langsung "Sudah"
-                $validationStatus = 'Belum';
-                $claim = 'Sudah';
+        // Validasi poin untuk pembelian
+        if ($jenis_transaksi == '102' && $totalPoinMahasiswa < $poin_digunakan) {
+            session()->setFlashdata("gagal", "Poin tidak cukup untuk pembelian.");
+            return redirect()->back();
+        }
+
+         // Hitung sisa poin berdasarkan jenis transaksi
+        if (in_array($jenis_transaksi, ['102', '106'])) {
+            // Pengurangan poin untuk pembelian
+            $sisaPoin = $totalPoinMahasiswa - (int)$poin_digunakan;
+            $claim = 'Sudah'; // Set claim menjadi 'Sudah' untuk pembelian
+        } elseif ($validationStatus !== 'Wait') {
+            if (in_array($jenis_transaksi, ['103'])) {
+                // Pengurangan poin untuk punishment dan konsultasi
+                $sisaPoin = $totalPoinMahasiswa - (int)$poin_digunakan;
             } else {
-                // Untuk jenis transaksi lainnya, status validasi adalah "Belum"
-                $validationStatus = 'Belum';
-                $claim = 'Belum';
-            }
-
-            // Proses pengurangan/penambahan poin berdasarkan jenis transaksi
-            if ($jenis_transaksi == '102') {
-                // Untuk transaksi 102 (Pembelian), periksa apakah poin cukup
-                if ($totalPoinMahasiswa < $poin_digunakan) {
-                    session()->setFlashdata("gagal1", "Poin tidak cukup untuk pembelian.");
-                    return redirect()->back();
-                } else {
-                    $sisaPoin = $totalPoinMahasiswa - $poin_digunakan;
-                    // Simpan data transaksi ke dalam tabel transaksi
-                    $data_transaksi = [
-                        'id_transaksi' => $this->request->getVar('id_transaksi'),
-                        'kode_jenis' => $jenis_transaksi,
-                        'nama_transaksi' => $this->request->getVar('nama_transaksi'),
-                        'npm' => $mahasiswaData['npm'],
-                        'poin_digunakan' => $poin_digunakan,
-                        'poin_diberikan' => $poin_diberikan,
-                        'tanggal_transaksi' => date('Y-m-d H:i:s'), // Sesuaikan dengan format tanggal
-                        'validation' => $validationStatus, // Status validasi sesuai dengan jenis transaksi
-                        'claim' => $claim, // Tambahkan claim ke data transaksi
-                        'creator' => $this->request->getVar('creator'),
-                    ];
-                    // Simpan data transaksi ke dalam tabel transaksi
-                    $this->DataTransaksiModel->insert($data_transaksi);
-                    $this->MahasiswaModel->update($mahasiswaData['npm'], ['point' => $sisaPoin]);
-                    session()->setFlashdata("sukses", "Transaksi Berhasil. Total poin sekarang: " . $sisaPoin);
+                if (in_array($jenis_transaksi, ['101', '105'])) {
+                     // Penambahan poin untuk reward dan misi
+                    $sisaPoin = $totalPoinMahasiswa + (int)$poin_diberikan;
                 }
-            } elseif ($jenis_transaksi == '103') {
-                // Untuk transaksi 103 (Punishment), bisa mengurangi poin lebih dari total poin yang dimiliki (negatif)
-                $sisaPoin = $totalPoinMahasiswa - $poin_digunakan;
-                // Simpan data transaksi ke dalam tabel transaksi
-                $data_transaksi = [
-                    'id_transaksi' => $this->request->getVar('id_transaksi'),
-                    'kode_jenis' => $jenis_transaksi,
-                    'nama_transaksi' => $this->request->getVar('nama_transaksi'),
-                    'npm' => $mahasiswaData['npm'],
-                    'poin_digunakan' => $poin_digunakan,
-                    'poin_diberikan' => $poin_diberikan,
-                    'tanggal_transaksi' => date('Y-m-d H:i:s'), // Sesuaikan dengan format tanggal
-                    'validation' => $validationStatus, // Status validasi sesuai dengan jenis transaksi
-                    'claim' => $claim, // Tambahkan claim ke data transaksi
-                    'creator' => $this->request->getVar('creator'),
-                ];
-                // Simpan data transaksi ke dalam tabel transaksi
-                $this->DataTransaksiModel->insert($data_transaksi);
-                $this->MahasiswaModel->update($mahasiswaData['npm'], ['point' => $sisaPoin]);
-                session()->setFlashdata("sukses", "Transaksi Berhasil. Total poin sekarang: " . $sisaPoin);
-            } else {
-                // Untuk jenis transaksi lainnya ( 101, 105), simpan data transaksi tanpa memeriksa poin
-                $data_transaksi = [
-                    'id_transaksi' => $this->request->getVar('id_transaksi'),
-                    'kode_jenis' => $jenis_transaksi,
-                    'nama_transaksi' => $this->request->getVar('nama_transaksi'),
-                    'npm' => $mahasiswaData['npm'],
-                    'poin_digunakan' => $poin_digunakan,
-                    'poin_diberikan' => $poin_diberikan,
-                    'tanggal_transaksi' => date('Y-m-d H:i:s'), // Sesuaikan dengan format tanggal
-                    'validation' => $validationStatus, // Status validasi sesuai dengan jenis transaksi
-                    'claim' => $claim, // Tambahkan claim ke data transaksi
-                    'creator' => $this->request->getVar('creator'),
-                ];
-                // Simpan data transaksi ke dalam tabel transaksi
-                $this->DataTransaksiModel->insert($data_transaksi);
-                session()->setFlashdata("validasi", "Transaksi Ditambahkan.");
+               
             }
 
+        }
+
+        // 6. Siapkan data transaksi
+        $data_transaksi = [
+            'id_transaksi' => $id_transaksi,
+            'kode_jenis' => $jenis_transaksi,
+            'nama_transaksi' => $nama_transaksi,
+            'npm' => $npm,
+            'poin_digunakan' => $poin_digunakan,
+            'poin_diberikan' => $poin_diberikan,
+            'gambar' => $gambar,
+            'tanggal_transaksi' => date('Y-m-d H:i:s'),
+            'validation' => $validationStatus,
+            'claim' => $claim,
+            'creator' => $creator
+        ];
+
+        // 7. Mulai transaksi database
+        $this->db->transStart();
+
+        try {
+            // Update poin mahasiswa
+            $updateResult = $this->MahasiswaModel->where('npm', $npm)
+                ->set('point', $sisaPoin)
+                ->update();
+
+            if ($updateResult === false) {
+                throw new \Exception('Gagal mengupdate poin mahasiswa');
+            }
+
+            // Simpan data transaksi
+            $insertResult = $this->DataTransaksiModel->insert($data_transaksi);
+            if ($insertResult === false) {
+                throw new \Exception('Gagal menyimpan data transaksi');
+            }
+
+            // Commit transaksi
+            $this->db->transComplete();
+
+            if ($this->db->transStatus() === false) {
+                throw new \Exception('Transaksi database gagal');
+            }
+
+            // 8. Set pesan sukses
+            $pesanSukses = "Transaksi berhasil ditambahkan. <br>";
+            if (in_array($jenis_transaksi, ['101', '103'])) {
+                $pesanSukses .= "Menunggu Validasi Admin";
+            }
+            // elseif (in_array($jenis_transaksi, ['102'])) {
+            //     $pesanSukses .= "Pembelian berhasil "; 
+            //     // $pesanSukses .= ". Total poin sekarang: " . $sisaPoin;
+            // } 
+            // else {
+            //     $pesanSukses .= "Transaksi berhasil ditambahkan " . $poin_diberikan;
+            //     // $pesanSukses .= ". Total poin sekarang: " . $sisaPoin;
+            // }          
+            
+            session()->setFlashdata("sukses", $pesanSukses);
+            return redirect()->back();
+
+        } catch (\Exception $e) {
+            // Rollback transaksi jika terjadi error
+            $this->db->transRollback();
+            session()->setFlashdata("gagal", "Error: " . $e->getMessage());
             return redirect()->back();
         }
     }
@@ -444,7 +588,7 @@ class Transaksi extends BaseController
                 $this->DataTransaksiModel->delete($kode_transaksi);
 
                 // Set flashdata sukses dengan tambahan npm dan nama mahasiswa
-                session()->setFlashdata("sukses", "" . $jenisPesan . " " . $mahasiswaData['npm'] . " Berhasil Dihapus. <br> Poin Diperbarui.");
+                session()->setFlashdata("sukses", "" . $jenisPesan . " Berhasil Dihapus. <br> Poin " . $mahasiswaData['npm'] . " Diperbarui.");
             } else {
                 session()->setFlashdata("gagal", "Mahasiswa terkait dengan transaksi ini tidak ditemukan.");
             }
@@ -455,6 +599,12 @@ class Transaksi extends BaseController
         return redirect()->back();
     }
 
+    // Reward
+    // Misi
+    // Pembelian : Point Mhs berhasil diupdate
+    // Punishment
+    // Konsultasi
+    // Tambahkan Kondisi jika validasi ditolak, point dikembalikan ke Mhs
     public function validasi($id_transaksi)
     {
         // Ambil data transaksi berdasarkan ID

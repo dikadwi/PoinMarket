@@ -80,31 +80,72 @@ class Validasi extends BaseController
         return $this->response->setJSON($data_transaksi);
     }
 
-    // Memvalidasi transaksi
     public function validasiTransaksi($id_transaksi)
     {
         // Ambil data transaksi berdasarkan id_transaksi yang diberikan
         $transaksiData = $this->DataTransaksiModel->find($id_transaksi);
-
-        // Pastikan transaksi ditemukan dan status validasi masih 'Belum'
-        if ($transaksiData && $transaksiData['validation'] == 'Belum') {
-            // Update status validasi menjadi 'Sudah'
-            $this->DataTransaksiModel->update($id_transaksi, ['validation' => 'Sudah']);
-
+    
+        // Pastikan transaksi ditemukan
+        if (!$transaksiData) {
+            session()->setFlashdata('gagal', 'Transaksi tidak ditemukan.');
+            return redirect()->back();
+        }
+    
+        // Ambil status validasi dari form
+        $validationStatus = $this->request->getPost('validation');
+    
+        // Cek status validasi
+        if ($validationStatus == 'Sudah') {          
+            switch ($transaksiData['kode_jenis']) {
+                case '101': // Reward
+                case '105': // Misi
+                    // Update status validasi menjadi 'Sudah' dan claim menjadi 'Belum'
+                    $this->DataTransaksiModel->update($id_transaksi, [
+                        'validation' => 'Sudah',
+                        'claim' => 'Belum'
+                    ]);
+                    break;
+                // Hanya update status validasi, tidak mengurangi poin
+                case '102': // Pembelian
+                case '106': // Konsultasi
+                    break;
+                case '103': // Punishment
+                    // Update status validasi menjadi 'Sudah' dan lakukan pengurangan poin
+                    $this->DataTransaksiModel->update($id_transaksi, [
+                        'validation' => 'Sudah',
+                        'claim' => 'Sudah'
+                    ]);
+                     // Ambil data mahasiswa berdasarkan npm
+                    $npm = $transaksiData['npm'];
+                    $mahasiswaData = $this->MahasiswaModel->where('npm', $npm)->first();
+                    $poin = (int)$transaksiData['poin_digunakan'];
+                    $this->MahasiswaModel->where('npm', $npm)->set('point', 'point - ' . $poin, false)->update();
+                    break;
+            }
+    
             // Set flash data untuk pesan sukses
             session()->setFlashdata('sukses', 'Transaksi berhasil divalidasi.');
+    
+        } elseif ($validationStatus == 'Belum') {
+            // Update status validasi menjadi 'Belum'
+            $this->DataTransaksiModel->update($id_transaksi, [
+                'validation' => 'Belum',
+                'claim' => 'Belum'
+            ]);
 
-            // Redirect kembali ke halaman  
-            return redirect()->back();
-            // return $this->response->setJSON(['status' => 'success', 'message' => 'Transaksi berhasil divalidasi.']);
+            // Kembalikan poin yang digunakan
+            $npm = $transaksiData['npm'];
+            $poinDigunakan = (int)$transaksiData['poin_digunakan'];
+            $this->MahasiswaModel->where('npm', $npm)->set('point', 'point + ' . $poinDigunakan, false)->update();
+            session()->setFlashdata('gagal1', 'Transaksi tidak divalidasi.');
+    
         } else {
-            // Set flash data untuk pesan error
-            session()->setFlashdata('gagal', 'Transaksi tidak valid atau sudah tervalidasi.');
-
-            // Redirect kembali ke halaman 
-            return redirect()->back();
-            // return $this->response->setJSON(['status' => 'error', 'message' => 'Transaksi tidak valid atau sudah tervalidasi.']);
+            // Set flash data untuk pesan error jika status validasi lainnya
+            session()->setFlashdata('gagal', 'Status validasi tidak valid.');
         }
+    
+        // Redirect kembali ke halaman  
+        return redirect()->back();
     }
 
     // Melihat detail transaksi berdasarkan id

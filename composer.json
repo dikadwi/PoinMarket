@@ -11,10 +11,12 @@
         "ext-mbstring": "*",
         "dompdf/dompdf": "^2.0",
         "endroid/qr-code": "^4.8",
+        "firebase/php-jwt": "^6.11",
         "guzzlehttp/guzzle": "^7.9",
         "laminas/laminas-escaper": "^2.9",
         "myth/auth": "^1.2",
-        "psr/log": "^1.1"
+        "psr/log": "^1.1",
+        "swagger-api/swagger-ui": "^5.20"
     },
     "require-dev": {
         "kint-php/kint": "^5.0.4",

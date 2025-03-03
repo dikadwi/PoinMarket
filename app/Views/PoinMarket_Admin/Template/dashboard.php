@@ -34,6 +34,17 @@
     <link href="<?= base_url() ?>/sweetalert2/package/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
+        .modal-content {
+            border-radius: 20px !important;
+            overflow: hidden;
+            /* Pastikan header tidak keluar dari border-radius */
+        }
+
+        /* 
+        .modal-header.bg-success {
+            background-color: rgba(59, 169, 85, 0.9) !important;
+        } */
+
         /* Mengatur SwallAlert */
         .swal2-popup {
             /* font-size: 1.6rem !important; */
@@ -298,13 +309,14 @@
     <script src="<?= base_url() ?>/template/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="<?= base_url() ?>/template/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="<?= base_url() ?>/template/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <script src="<?= base_url() ?>/sweetalert2/package/dist/sweetalert2.all.js"></script>
-    <script src="<?= base_url() ?>/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="<?= base_url() ?>/js/script.js"></script>
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
 
+    <!-- Render section scripts jika ada -->
+    <?= $this->renderSection('scripts') ?>
 
     <script>
         <?php if (session()->getFlashdata('message')): ?>

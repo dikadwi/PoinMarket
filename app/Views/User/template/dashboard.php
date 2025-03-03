@@ -274,7 +274,128 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
 
+        <!-- Render section scripts jika ada -->
+        <?= $this->renderSection('scripts') ?>
 
+        <!-- Script untuk API Request -->
+    <script>
+        // Fungsi untuk mengambil data wallet
+        function getMyWallet() {
+            const token = '<?= session()->get('token') ?>';
+            
+            $.ajax({
+                url: '/api/wallet/me',
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                success: function(response) {
+                    if (response.error === false) {
+                        // Update point dan data mahasiswa
+                        $('#current-point').text(response.data.mahasiswa.point);
+                        
+                        // Update riwayat transaksi
+                        let html = '';
+                        response.data.riwayat_transaksi.forEach(function(transaksi) {
+                            html += `
+                                <tr>
+                                    <td>${transaksi.tanggal}</td>
+                                    <td>${transaksi.jenis_transaksi}</td>
+                                    <td>${transaksi.jumlah_point}</td>
+                                    <td>${transaksi.keterangan}</td>
+                                </tr>
+                            `;
+                        });
+                        $('#tabel-transaksi tbody').html(html);
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.message || 'Gagal mengambil data wallet'
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Gagal mengambil data wallet: ' + error
+                    });
+                }
+            });
+        }
+
+        // Fungsi untuk memperbarui saldo point
+        async function updateWalletInfo() {
+            try {
+                const walletData = await getMyWallet();
+                if (walletData && walletData.mahasiswa) {
+                    // Update informasi point di halaman
+                    const pointElement = document.getElementById('current-point');
+                    if (pointElement) {
+                        pointElement.textContent = walletData.mahasiswa.point;
+                    }
+                }
+            } catch (error) {
+                console.error('Error updating wallet info:', error);
+            }
+        }
+
+        // Panggil updateWalletInfo setiap kali halaman dimuat
+        document.addEventListener('DOMContentLoaded', updateWalletInfo);
+
+        // Fungsi untuk mengambil data transaksi
+        function getTransaksi() {
+            const token = '<?= session()->get('token') ?>';
+            
+            $.ajax({
+                url: '/api/wallet/transaksi',
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                success: function(response) {
+                    if (response.error === false) {
+                        // Tampilkan data transaksi
+                        let html = '';
+                        response.data.forEach(function(transaksi) {
+                            html += `
+                                <tr>
+                                    <td>${transaksi.tanggal}</td>
+                                    <td>${transaksi.jenis}</td>
+                                    <td>${transaksi.jumlah_point}</td>
+                                    <td>${transaksi.keterangan}</td>
+                                </tr>
+                            `;
+                        });
+                        $('#tabel-transaksi tbody').html(html);
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.message || 'Terjadi kesalahan saat mengambil data transaksi'
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Terjadi kesalahan saat mengambil data transaksi'
+                    });
+                }
+            });
+        }
+
+        // Panggil fungsi saat halaman dimuat
+        $(document).ready(function() {
+            getMyWallet();
+            getTransaksi();
+        });
+    </script>
+    
     <script>
         <?php if (session()->getFlashdata('message')): ?>
             Swal.fire({
@@ -403,17 +524,6 @@
         //         }
         //     });
         // })
-
-        //         public function cek_redeem_code() {
-        //     $redeem_code = $this->input->post('redeem_code');
-        //     // Lakukan pengecekan apakah kode redeem benar
-        //     // ...
-        //     if ($benar) {
-        //         echo 'benar';
-        //     } else {
-        //         echo 'salah';
-        //     }
-        // }
 
         // Button Konfirmasi Pembelian
         $(document).on('click', '.btn-beli', function(e) {

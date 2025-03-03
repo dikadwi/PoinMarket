@@ -30,6 +30,7 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
             <th scope="col">Poin Diperoleh</th><!-- total point mahasiswa (hasil dari transaksi) -->
             <th scope="col">Tanggal Transaksi</th>
             <th scope="col" colspan="3">Progress</th>
+            <th scope="col" colspan="3">Upload File</th>
             <th scope="col">Status Misi </th> <!-- Diambil dari status validasi,hanya tampilkan dengan status belum, jika validasi sudah maka point dapat diclaim pada menu market di reward -->
             <th scope="col" colspan="2">Aksi</th>
         </tr>
@@ -45,17 +46,47 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                     <td><?= $data['poin_digunakan']; ?></td>
                     <td><?= date('d-m-Y', strtotime($data['tanggal_transaksi'])); ?></td>
                     <!-- Ambil File dari database, jika belum ada file tampilkan button untuk upload file -->
-                    <td>
-                        <button type=" button" class="btn btn-warning" data-toggle="modal">File 1</button>
-                    </td>
-                    <td>
-                        <button type=" button" class="btn btn-warning" data-toggle="modal">File 2</button>
-                    </td>
-                    <td>
-                        <button type=" button" class="btn btn-warning" data-toggle="modal">File 3</button>
-                    </td>
-                    <!-- Tambahkan status, dari claim. Jika misi selesai status claim"sudah=Selesai", jika belum status "Belum" -->
-                    <td> <?php
+                    <!-- Progress files -->
+                <?php
+                    $totalFiles = 3; // Total file yang harus diupload
+                    $uploadedFiles = 0; // Hitung file yang sudah diupload
+                    if (!empty($data['file1'])) $uploadedFiles++;
+                    if (!empty($data['file2'])) $uploadedFiles++;
+                    if (!empty($data['file3'])) $uploadedFiles++;
+                    $progressPercentage = ($uploadedFiles / $totalFiles) * 100;
+                ?>
+                <td colspan="3">
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" 
+                             style="width: <?= $progressPercentage ?>%;" 
+                             aria-valuenow="<?= $progressPercentage ?>" 
+                             aria-valuemin="0" 
+                             aria-valuemax="100">
+                            <?= number_format($progressPercentage) ?>%
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <small class="text-muted"><?= $uploadedFiles ?> dari <?= $totalFiles ?> file telah diupload</small>
+                    </div>
+                </td>
+                <!-- File upload buttons -->
+                <td>
+                    <button type="button" class="btn btn-sm <?= !empty($data['file1']) ? 'btn-success' : 'btn-warning' ?>" data-toggle="modal">
+                        File 1 <?= !empty($data['file1']) ? '<i class="fas fa-check"></i>' : '' ?>
+                    </button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-sm <?= !empty($data['file2']) ? 'btn-success' : 'btn-warning' ?>" data-toggle="modal">
+                        File 2 <?= !empty($data['file2']) ? '<i class="fas fa-check"></i>' : '' ?>
+                    </button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-sm <?= !empty($data['file3']) ? 'btn-success' : 'btn-warning' ?>" data-toggle="modal">
+                        File 3 <?= !empty($data['file3']) ? '<i class="fas fa-check"></i>' : '' ?>
+                    </button>
+                </td>
+                <!-- Tambahkan status, dari claim. Jika misi selesai status claim"sudah=Selesai", jika belum status "Belum" -->
+                <td> <?php
                             switch ($data['claim']) {
                                 case 'Sudah':
                                     echo '<span class="badge badge-success">Selesai</span>';

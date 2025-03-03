@@ -97,7 +97,7 @@
                             <option value="101" <?php if ($title == 'Reward') echo 'selected'; ?>>Reward</option>
                             <option value="102" <?php if ($title == 'Pembelian') echo 'selected'; ?>>Pembelian</option>
                             <option value="103" <?php if ($title == 'Punishment') echo 'selected'; ?>>Punishment</option>
-                            <option value="105" <?php if ($title == 'Misi Tambahan') echo 'selected'; ?>>Misi Tambahan</option>
+                            <option value="105" <?php if ($title == 'Misi') echo 'selected'; ?>>Misi</option>
                             <option value="106" <?php if ($title == 'Konsultasi') echo 'selected'; ?>>Konsultasi</option>
                         </select>
                     </div>
@@ -108,15 +108,22 @@
                             <option value="">Pilih Item</option>
                             <?php foreach ($transaksi as $nama) : ?>
                                 <?php if ($nama['poin_digunakan'] !== null && $nama['poin_diberikan'] !== null) : ?>
-                                    <option value="<?= $nama['nama_transaksi'] ?>" data-poin="<?= $nama['poin_digunakan'] ?>" data-poin-diberikan="<?= $nama['poin_diberikan'] ?>"><?= $nama['nama_transaksi'] ?></option>
+                                    <option value="<?= $nama['nama_transaksi'] ?>" 
+                                    data-poin="<?= $nama['poin_digunakan'] ?>" 
+                                    data-poin-diberikan="<?= $nama['poin_diberikan'] ?>"
+                                    data-gambar="<?= $nama['gambar'] ?>">
+                                    <?= $nama['nama_transaksi'] ?></option>
                                 <?php elseif ($nama['poin_digunakan'] !== null) : ?>
-                                    <option value="<?= $nama['nama_transaksi'] ?>" data-poin="<?= $nama['poin_digunakan'] ?>"><?= $nama['nama_transaksi'] ?></option>
+                                    <option value="<?= $nama['nama_transaksi'] ?>" data-poin="<?= $nama['poin_digunakan'] ?>" data-gambar="<?= $nama['gambar'] ?>"><?= $nama['nama_transaksi'] ?></option>
                                 <?php elseif ($nama['poin_diberikan'] !== null) : ?>
-                                    <option value="<?= $nama['nama_transaksi'] ?>" data-poin-diberikan="<?= $nama['poin_diberikan'] ?>"><?= $nama['nama_transaksi'] ?></option>
+                                    <option value="<?= $nama['nama_transaksi'] ?>" data-poin-diberikan="<?= $nama['poin_diberikan'] ?>" data-gambar="<?= $nama['gambar'] ?>"><?= $nama['nama_transaksi'] ?></option>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
                     </div>
+                     <!-- Input tersembunyi untuk gambar -->
+                     <input type="hidden" name="gambar" id="selected_gambar">
+
                     <!-- Tambahkan kondisi jika punishment poin dikurangi, jika pembelian poin harga, jika reward poin diberikan -->
                     <!-- Input untuk menampilkan Point yang dipilih -->
                     <div class="form-group" id="poin-digunakan-group" style="display: none;">
@@ -128,12 +135,12 @@
                         <label for="poin_diberikan" class="col-form-label">Point Diberikan</label>
                         <input type="text" class="form-control" id="poin_diberikan" name="poin_diberikan" readonly>
                     </div>
-                    <!-- Inputkan Keterangan -->
+                    <!-- Inputkan Keterangan hanya kategori Punsihment -->
                     <!-- <div class="form-group">
                         <label for="keterangan" class="col-form-label">Keterangan</label>
                         <input type="text" class="form-control" id="keterangan" name="keterangan" required>
                     </div>                 -->
-                    <!-- Gambar/ ambil dari item(gambar), dan pindah ke data_transaksi(gambar), tanpa upload -->
+                    <!-- Gambar/ ambil dari item yang dipilih, dan simpan ke data_transaksi(gambar), tanpa upload -->
                     <!-- <div class="form-group">
                         <label for="gambar" class="col-form-label">Gambar</label>
                         <input type="file" class="form-control" id="gambar" name="gambar" required>
@@ -160,6 +167,10 @@
         $('#DD_nama_transaksi').change(function() {
             var selectedPoin = $(this).find(':selected').data('poin');
             var selectedPoinDiberikan = $(this).find(':selected').data('poin-diberikan');
+            var selectedGambar = $(this).find(':selected').data('gambar');
+
+            // Set nilai gambar ke input tersembunyi
+            $('#selected_gambar').val(selectedGambar);
 
             if (selectedPoin !== undefined) {
                 $('#poin_digunakan').val(selectedPoin);

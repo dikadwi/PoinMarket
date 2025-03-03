@@ -1,0 +1,321 @@
+INFO - 2025-02-26 03:08:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 03:11:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 03:11:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 03:25:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 03:25:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 04:52:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 04:52:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 04:52:42 --> NPM: 123456, Generated token: a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750
+DEBUG - 2025-02-26 04:52:42 --> Token berhasil disimpan ke database
+INFO - 2025-02-26 04:52:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 04:52:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 04:52:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 04:52:45 --> Session token: a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750
+DEBUG - 2025-02-26 04:52:45 --> Raw Authorization header: Bearer a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750
+DEBUG - 2025-02-26 04:52:45 --> Token dari header: a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750
+DEBUG - 2025-02-26 04:52:45 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = 'a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750'
+ LIMIT 1
+DEBUG - 2025-02-26 04:52:45 --> Token yang dicari: a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750
+DEBUG - 2025-02-26 04:52:45 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 04:52:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 04:52:45 --> Session token: a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750
+DEBUG - 2025-02-26 04:52:45 --> Raw Authorization header: Bearer a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750
+DEBUG - 2025-02-26 04:52:45 --> Token dari header: a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750
+DEBUG - 2025-02-26 04:52:45 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = 'a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750'
+ LIMIT 1
+DEBUG - 2025-02-26 04:52:45 --> Token yang dicari: a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750
+DEBUG - 2025-02-26 04:52:45 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 04:52:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 04:52:45 --> Session token: a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750
+DEBUG - 2025-02-26 04:52:45 --> Raw Authorization header: Bearer a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750
+DEBUG - 2025-02-26 04:52:45 --> Token dari header: a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750
+DEBUG - 2025-02-26 04:52:45 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = 'a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750'
+ LIMIT 1
+DEBUG - 2025-02-26 04:52:45 --> Token yang dicari: a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750
+DEBUG - 2025-02-26 04:52:45 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:19:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:19:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:19:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:19:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:19:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:19:38 --> Data login diterima: npm_or_username=123456
+DEBUG - 2025-02-26 07:19:38 --> Hasil pencarian mahasiswa: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750","last_login":"2025-02-24 10:49:22"}
+WARNING - 2025-02-26 07:19:38 --> Password salah untuk NPM: 123456
+INFO - 2025-02-26 07:19:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:19:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:19:45 --> Data login diterima: npm_or_username=123456
+DEBUG - 2025-02-26 07:19:45 --> Hasil pencarian mahasiswa: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"a1f032a9e496fb47129104f71e39198a5aa111561a74f097dbf67e142fcf8750","last_login":"2025-02-24 10:49:22"}
+DEBUG - 2025-02-26 07:19:45 --> NPM: 123456, Generated token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:19:45 --> Token berhasil disimpan ke database
+DEBUG - 2025-02-26 07:19:45 --> User logged in successfully: 123456
+INFO - 2025-02-26 07:19:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:19:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:19:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:19:47 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:19:47 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:19:47 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:19:47 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:19:47 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:19:47 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:19:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:19:47 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:19:47 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:19:47 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:19:47 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:19:47 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:19:47 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:19:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:19:47 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:19:47 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:19:47 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:19:47 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:19:47 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:19:47 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:19:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:19:53 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:19:53 --> Raw Authorization header: 
+DEBUG - 2025-02-26 07:19:53 --> Token dari session: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:19:53 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:19:53 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:19:53 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:20:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:20:18 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:18 --> Raw Authorization header: 
+DEBUG - 2025-02-26 07:20:18 --> Token dari session: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:18 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:20:18 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:18 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:20:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:20:32 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:32 --> Raw Authorization header: 
+DEBUG - 2025-02-26 07:20:32 --> Token dari session: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:32 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:20:32 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:32 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:20:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:20:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:20:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:20:35 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:35 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:35 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:35 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:20:35 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:35 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:20:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:20:36 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:36 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:36 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:36 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:20:36 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:36 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:20:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:20:36 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:36 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:36 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:36 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:20:36 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:36 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:20:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:20:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:20:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:20:41 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:41 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:41 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:41 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:20:41 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:41 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:20:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:20:41 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:41 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:41 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:41 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:20:41 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:41 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:20:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:20:41 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:41 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:41 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:41 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:20:41 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:41 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:20:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:20:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:20:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:20:47 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:47 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:47 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:47 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:20:47 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:47 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:20:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:20:47 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:47 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:47 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:47 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:20:47 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:47 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:20:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:20:47 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:47 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:47 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:47 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:20:47 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:20:47 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:22:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-02-26 07:22:20 --> syntax error, unexpected end of file
+in APPPATH\Views\User\Page\wallet.php on line 262.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1180): CodeIgniter\View\View->render('User/Page/wallet', [], true)
+ 3 APPPATH\Controllers\Role_User.php(46): view('User/Page/wallet', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Role_User->wallet()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Role_User))
+ 6 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\PoinMarket\\public\\index.php')
+INFO - 2025-02-26 07:22:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:22:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:22:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:22:32 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:22:32 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:22:32 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:22:32 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:22:32 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:22:32 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:22:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:22:32 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:22:32 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:22:32 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:22:32 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:22:32 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:22:32 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:22:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:22:32 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:22:32 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:22:32 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:22:32 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:22:32 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:22:32 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:23:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:23:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:23:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:23:13 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:23:13 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:23:13 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:23:13 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:23:13 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:23:13 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:23:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:23:13 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:23:13 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:23:13 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:23:13 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:23:13 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:23:13 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:23:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:23:13 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:23:13 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:23:13 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:23:13 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:23:13 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:23:13 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:25:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:25:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:25:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:25:13 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:25:13 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:25:13 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:25:14 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:25:14 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:25:14 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:25:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:25:14 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:25:14 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:25:14 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:25:14 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:25:14 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:25:14 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}
+INFO - 2025-02-26 07:25:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-02-26 07:25:14 --> Session token: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:25:14 --> Raw Authorization header: Bearer 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:25:14 --> Token dari header: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:25:14 --> SQL: SELECT *
+FROM `mahasiswa`
+WHERE `token` = '921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74'
+ LIMIT 1
+DEBUG - 2025-02-26 07:25:14 --> Token yang dicari: 921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74
+DEBUG - 2025-02-26 07:25:14 --> Hasil pencarian: {"id":"2","user_id":null,"npm":"123456","nama":"Dwi A","email":"","password":"$2y$10$XcEnyKV.StLAS9wl9QfUcuULBWbD54jyfoQXYOff6pFgAzR8ZRMKO","point":"270","gaya_belajar":"Auditori","created_at":"2024-12-13 02:30:02","updated_at":"2025-02-24 03:51:58","deleted_at":null,"token":"921c76fc61449de1feab7f9f40919997b1c752ac401823267b456116bee85d74","last_login":"2025-02-24 10:49:22"}

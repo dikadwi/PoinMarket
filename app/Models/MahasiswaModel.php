@@ -10,7 +10,7 @@ class MahasiswaModel extends Model
 
     protected $table = 'mahasiswa';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['user_id', 'npm', 'nama', 'email', 'password', 'point', 'gaya_belajar', 'created_at', 'updated_at', 'deleted_at', 'token'];
+    protected $allowedFields = ['user_id', 'npm', 'nama', 'email', 'password', 'point', 'gaya_belajar', 'created_at', 'updated_at', 'deleted_at', 'token', 'last_login'];
 
     // //Dates
     protected $useTimestamps = true;
@@ -53,5 +53,24 @@ class MahasiswaModel extends Model
     public function getNamaByNpm($npm)
     {
         return $this->where('npm', $npm)->first(); // Mengambil data mahasiswa berdasarkan NPM
+    }
+
+    public function updateToken($npm, $token)
+    {
+        try {
+            $result = $this->db->table($this->table)
+                ->where('npm', $npm)
+                ->update(['token' => $token]);
+            
+            if ($result) {
+                // Verifikasi update berhasil
+                $updated = $this->where('npm', $npm)->first();
+                return $updated && $updated['token'] === $token;
+            }
+            return false;
+        } catch (\Exception $e) {
+            log_message('error', 'Error updating token: ' . $e->getMessage());
+            return false;
+        }
     }
 }

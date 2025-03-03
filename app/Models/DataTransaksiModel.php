@@ -11,16 +11,17 @@ class DataTransaksiModel extends Model
     protected $table = 'data_transaksi';
     protected $primaryKey = 'id_transaksi';
     protected $allowedFields = [
+        'id_transaksi',
         'kode_jenis',
         'nama_transaksi',
         'npm',
         'poin_digunakan',
         'poin_diberikan',
+        'gambar',
+        'tanggal_transaksi',
         'validation',
         'claim',
-        'gambar',
-        'creator',
-        'tanggal_transaksi'
+        'creator'
     ];
     protected $createdField  = 'tanggal_transaksi';
 
@@ -43,7 +44,7 @@ class DataTransaksiModel extends Model
 
     public function getDataValidasi()
     {
-        return $this->where('validation', 'Belum')->findAll();
+        return $this->where('validation', 'Wait')->findAll();
     }
 
     // Mengambil NPM untuk ditampilkan
