@@ -357,27 +357,41 @@ class Role_User extends BaseController
             'point' => $session->get('point'),
             'badges' => $this->BadgesModel->getBadges(),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
-        );
 
+        );
         return view('User/Page/profile', $data);
     }
 
     public function save_email()
     {
-        $id = $this->request->getPost('id');
-        $email = $this->request->getPost('email');
-
-        $data = [
-            'email' => $email
-        ];
-
-        $this->MahasiswaModel->update($id, $data);
-
         $session = session();
-        $session->set('email', $email);
-
-        session()->setFlashdata("sukses", "Email Berhasil ditambahkan.");
-        return redirect()->back();
+        $npm = $session->get('npm'); // Menggunakan npm sebagai identifier
+        
+        $email = $this->request->getPost('email');
+        
+        // Validasi email
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            session()->setFlashdata('error', 'Format email tidak valid');
+            return redirect()->back();
+        }
+        
+        try {
+            // Update email di database
+            $result = $this->MahasiswaModel->where('npm', $npm)->set(['email' => $email])->update();
+            
+            if ($result) {
+                // Update session
+                $session->set('email', $email);
+                session()->setFlashdata('success', 'Email berhasil disimpan');
+                return redirect()->back();
+            } else {
+                session()->setFlashdata('error', 'Gagal menyimpan email');
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            session()->setFlashdata('error', 'Terjadi kesalahan sistem');
+            return redirect()->back();
+        }
     }
 
     public function change_password()
@@ -412,30 +426,58 @@ class Role_User extends BaseController
             return redirect()->back();
         }
     }
+
     public function Update_Profile()
     {
-        $id = $this->request->getPost('id');
+        $session = session();
+        $current_npm = $session->get('npm');
+
+        // Ambil data dari form
         $nama = $this->request->getPost('nama');
         $npm = $this->request->getPost('npm');
         $email = $this->request->getPost('email');
 
-        $data = [
-            'nama' => $nama,
-            'npm' => $npm,
-            'email' => $email
-        ];
+        // Validasi input
+        if (empty($nama) || empty($npm)) {
+            session()->setFlashdata('error', 'Nama dan NPM tidak boleh kosong');
+            return redirect()->back();
+        }
 
-        $this->MahasiswaModel->update($id, $data);
+        // Validasi format email jika ada
+        if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            session()->setFlashdata('error', 'Format email tidak valid');
+            return redirect()->back();
+        }
 
-        // Update session data dengan data yg diupdate
-        $session = session();
-        $session->set('username', $nama);
-        $session->set('npm', $npm);
-        $session->set('email', $email);
+        try {
+            // Update data di database
+            $result = $this->MahasiswaModel->where('npm', $current_npm)
+                                         ->set([
+                                             'nama' => $nama,
+                                             'npm' => $npm,
+                                             'email' => $email
+                                         ])
+                                         ->update();
 
-        session()->setFlashdata("sukses", "Data Berhasil di Update.");
+            if ($result) {
+                // Update session dengan data baru
+                $session->set([
+                    'nama' => $nama,
+                    'npm' => $npm,
+                    'email' => $email
+                ]);
+
+                session()->setFlashdata('success', 'Profil berhasil diperbarui');
+            } else {
+                session()->setFlashdata('error', 'Gagal memperbarui profil');
+            }
+        } catch (\Exception $e) {
+            session()->setFlashdata('error', 'Terjadi kesalahan sistem');
+        }
+
         return redirect()->back();
     }
+
     public function reward()
     {
         $db      = \Config\Database::connect();

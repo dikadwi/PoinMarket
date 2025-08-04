@@ -1,0 +1,131 @@
+digraph PoinMarket_ModuleStructure {
+    rankdir=TB;
+    node [shape=record, fontname="Arial"];
+    edge [fontname="Arial"];
+    
+    // Main Application
+    PoinMarket [label="{PoinMarket|CodeIgniter 4}"];
+    
+    // Core Modules
+    subgraph cluster_core {
+        label="Core Modules";
+        style=filled;
+        color=lightgrey;
+        
+        // Authentication Module
+        auth [label="{Authentication|{Login Controller|Register Controller|Password Reset|Session Handler}}"];
+        
+        // User Management
+        user [label="{User Management|{Profile Controller|Role Manager|Access Control|User Service}}"];
+        
+        // Point System
+        point [label="{Point System|{Balance Controller|Transaction Controller|History Service|Rule Engine}}"];
+        
+        // Marketplace
+        market [label="{Marketplace|{Product Controller|Cart Controller|Order Service|Inventory Manager}}"];
+    }
+    
+    // Support Modules
+    subgraph cluster_support {
+        label="Support Modules";
+        style=filled;
+        color=lightblue;
+        
+        // Notification System
+        notification [label="{Notification|{Email Service|Push Notification|Alert Manager|Message Queue}}"];
+        
+        // Report System
+        report [label="{Reporting|{Transaction Report|Point Report|User Report|Export Service}}"];
+        
+        // Dashboard
+        dashboard [label="{Dashboard|{Stats Controller|Chart Service|Widget Manager|Data Analyzer}}"];
+    }
+    
+    // Utility Modules
+    subgraph cluster_utility {
+        label="Utility Modules";
+        style=filled;
+        color=lightgreen;
+        
+        // Helper
+        helper [label="{Helpers|{String Helper|Date Helper|Array Helper|File Helper}}"];
+        
+        // Library
+        library [label="{Libraries|{PDF Generator|Excel Handler|Image Processor|Cache Manager}}"];
+        
+        // Config
+        config [label="{Configuration|{App Config|Database Config|Email Config|Security Config}}"];
+    }
+    
+    // Database Models
+    subgraph cluster_models {
+        label="Database Models";
+        style=filled;
+        color=pink;
+        
+        // Models
+        models [label="{Models|{User Model|Point Model|Product Model|Transaction Model}}"];
+        
+        // Migration
+        migration [label="{Migrations|{Schema Builder|Data Seeder|Version Control}}"];
+        
+        // Query Builder
+        query [label="{Query Builder|{Select Builder|Join Handler|Where Builder|Group Builder}}"];
+    }
+    
+    // Module Dependencies
+    PoinMarket -> auth;
+    PoinMarket -> user;
+    PoinMarket -> point;
+    PoinMarket -> market;
+    
+    auth -> notification;
+    user -> notification;
+    point -> notification;
+    market -> notification;
+    
+    auth -> report;
+    user -> report;
+    point -> report;
+    market -> report;
+    
+    auth -> dashboard;
+    user -> dashboard;
+    point -> dashboard;
+    market -> dashboard;
+    
+    auth -> helper;
+    user -> helper;
+    point -> helper;
+    market -> helper;
+    
+    auth -> library;
+    user -> library;
+    point -> library;
+    market -> library;
+    
+    auth -> config;
+    user -> config;
+    point -> config;
+    market -> config;
+    
+    auth -> models;
+    user -> models;
+    point -> models;
+    market -> models;
+    
+    models -> migration;
+    models -> query;
+    
+    // Module Interactions
+    edge [style=dashed];
+    auth -> user [dir=both];
+    user -> point [dir=both];
+    point -> market [dir=both];
+    
+    // Rankings
+    {rank=same; auth user point market}
+    {rank=same; notification report dashboard}
+    {rank=same; helper library config}
+    {rank=same; models migration query}
+}

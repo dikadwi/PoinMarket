@@ -37,8 +37,8 @@ class UserModel extends Model
 
     // Aturan validasi untuk create dan update
     protected $validationRules = [
-        'email'         => 'required|valid_email|is_unique[users.email,id,{id}]',
-        'username'      => 'required|alpha_numeric_punct|min_length[3]|max_length[30]|is_unique[users.username,id,{id}]',
+        'email'         => 'required|valid_email|is_unique[users.email]',
+        'username'      => 'required|alpha_numeric_punct|min_length[3]|max_length[30]|is_unique[users.username]',
         'password_hash' => 'required',
     ];
 

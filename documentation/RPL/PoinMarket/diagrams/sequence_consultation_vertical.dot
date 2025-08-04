@@ -1,0 +1,112 @@
+digraph sequence_consultation {
+    rankdir=TB;
+    splines=polyline;
+    nodesep=0.6;
+    ranksep=0.4;
+    
+    node [shape=box, style=filled, fillcolor=white, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9, dir=forward];
+
+    // Participants on top level
+    subgraph cluster_top {
+        rank=same;
+        style=invis;
+        
+        student [label="Student"];
+        consult_ui [label="Consultation UI"];
+        consult_controller [label="Consultation\nController"];
+        schedule_service [label="Schedule\nService"];
+        wallet_service [label="Wallet\nService"];
+        database [label="Database"];
+        notification [label="Notification\nService"];
+        dosen [label="Dosen"];
+    }
+
+    // Consultation Flow
+    subgraph cluster_flow1 {
+        rank=same;
+        style=invis;
+        student -> consult_ui [label="1. View Schedule"];
+    }
+
+    subgraph cluster_flow2 {
+        rank=same;
+        style=invis;
+        consult_ui -> schedule_service [label="2. getAvailableSlots()"];
+    }
+
+    subgraph cluster_flow3 {
+        rank=same;
+        style=invis;
+        schedule_service -> database [label="3. querySchedule()"];
+    }
+
+    subgraph cluster_flow4 {
+        rank=same;
+        style=invis;
+        database -> schedule_service [label="4. available slots"];
+    }
+
+    subgraph cluster_flow5 {
+        rank=same;
+        style=invis;
+        student -> consult_ui [label="5. Book Slot\n(dosen, date, time)"];
+    }
+
+    subgraph cluster_flow6 {
+        rank=same;
+        style=invis;
+        consult_ui -> consult_controller [label="6. validateBooking()"];
+    }
+
+    subgraph cluster_flow7 {
+        rank=same;
+        style=invis;
+        consult_controller -> wallet_service [label="7. checkPoints()"];
+    }
+
+    subgraph cluster_flow8 {
+        rank=same;
+        style=invis;
+        wallet_service -> database [label="8. getBalance()"];
+    }
+
+    subgraph cluster_flow9 {
+        rank=same;
+        style=invis;
+        database -> wallet_service [label="9. sufficient points"];
+    }
+
+    subgraph cluster_flow10 {
+        rank=same;
+        style=invis;
+        consult_controller -> wallet_service [label="10. deductPoints()"];
+    }
+
+    subgraph cluster_flow11 {
+        rank=same;
+        style=invis;
+        consult_controller -> database [label="11. createBooking()"];
+    }
+
+    subgraph cluster_flow12 {
+        rank=same;
+        style=invis;
+        consult_controller -> notification [label="12. bookingNotification()"];
+    }
+
+    subgraph cluster_flow13 {
+        rank=same;
+        style=invis;
+        notification -> student [label="13. booking confirmed"];
+    }
+
+    subgraph cluster_flow14 {
+        rank=same;
+        style=invis;
+        notification -> dosen [label="14. new consultation"];
+    }
+
+    // Edge colors
+    edge [color="#8E44AD"];
+}

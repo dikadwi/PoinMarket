@@ -1,0 +1,61 @@
+digraph DataSecurityLayer {
+    rankdir=TB;
+    node [shape=record, fontname="Arial"];
+    
+    subgraph cluster_data {
+        label="Data Layer";
+        style=filled;
+        color=lightyellow;
+        
+        database [label="{Database|{MySQL/MariaDB|Tables|Views}}"];
+        
+        subgraph cluster_storage {
+            label="Storage Systems";
+            style=filled;
+            color=white;
+            
+            cache [label="{Cache|{Redis|Session|Query}}"];
+            storage [label="{File Storage|{Images|Documents|Backups}}"];
+        }
+        
+        subgraph cluster_external {
+            label="External Services";
+            style=filled;
+            color=white;
+            
+            email [label="{Email Service|{SMTP|Templates}}"];
+            payment [label="{Payment Gateway|{Integration|Logs}}"];
+            analytics [label="{Analytics|{Reports|Metrics}}"];
+        }
+    }
+    
+    subgraph cluster_security {
+        label="Security Layer";
+        style=filled;
+        color=lightgrey;
+        
+        encryption [label="{Encryption|{Data|Session|Token}}"];
+        validation [label="{Validation|{Input|Output|CSRF}}"];
+        protection [label="{Protection|{XSS|SQL Injection|Rate Limit}}"];
+        
+        subgraph cluster_audit {
+            label="Audit System";
+            style=filled;
+            color=white;
+            
+            logging [label="{Logging|{Activity|Error|Access}}"];
+            monitoring [label="{Monitoring|{Performance|Security}}"];
+        }
+    }
+
+    // Layer relationships
+    database -> cache;
+    database -> storage;
+    {database, cache, storage} -> {encryption, validation, protection};
+    {encryption, validation, protection} -> logging;
+    logging -> monitoring;
+    
+    // External service security
+    {email, payment, analytics} -> encryption;
+    {email, payment, analytics} -> protection;
+}

@@ -1,0 +1,109 @@
+digraph sequence_marketplace {
+    rankdir=TB;
+    splines=ortho;
+    nodesep=1.2;
+    ranksep=0.8;
+    
+    node [shape=rect, style=filled, fillcolor=white, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9, dir=forward];
+
+    // Participants/Lifelines
+    subgraph cluster_participants {
+        label="";
+        style=invis;
+
+        student [label="Student"];
+        market_ui [label="Market UI"];
+        market_controller [label="Market\nController"];
+        cart_service [label="Cart\nService"];
+        product_model [label="Product\nModel"];
+        order_service [label="Order\nService"];
+        wallet_service [label="Wallet\nService"];
+        database [label="Database"];
+        notification [label="Notification\nService"];
+    }
+
+    // Browse and Add to Cart Messages
+    edge [color="#2E86C1"];
+    m1 [shape=point]; student -> market_ui [label="1. viewProducts()"];
+    m2 [shape=point]; market_ui -> market_controller [label="2. getProducts()"];
+    m3 [shape=point]; market_controller -> product_model [label="3. fetchProducts()"];
+    m4 [shape=point]; product_model -> database [label="4. select()"];
+    m5 [shape=point]; database -> product_model [label="5. productList"];
+    m6 [shape=point]; product_model -> market_controller [label="6. returnProducts"];
+    m7 [shape=point]; market_controller -> market_ui [label="7. displayProducts()"];
+    
+    // Add to Cart Process
+    edge [color="#27AE60"];
+    m8 [shape=point]; student -> market_ui [label="8. addToCart(productId)"];
+    m9 [shape=point]; market_ui -> cart_service [label="9. addItem()"];
+    m10 [shape=point]; cart_service -> database [label="10. saveCartItem()"];
+    m11 [shape=point]; database -> cart_service [label="11. itemSaved"];
+    m12 [shape=point]; cart_service -> market_ui [label="12. updateCart()"];
+    
+    // Checkout Process
+    edge [color="#8E44AD"];
+    m13 [shape=point]; student -> market_ui [label="13. checkout()"];
+    m14 [shape=point]; market_ui -> order_service [label="14. createOrder()"];
+    m15 [shape=point]; order_service -> wallet_service [label="15. checkBalance()"];
+    m16 [shape=point]; wallet_service -> database [label="16. getBalance()"];
+    m17 [shape=point]; database -> wallet_service [label="17. currentBalance"];
+    
+    // Payment Process
+    edge [color="#E74C3C"];
+    m18 [shape=point]; order_service -> wallet_service [label="18. processPayment()"];
+    m19 [shape=point]; wallet_service -> database [label="19. updateBalance()"];
+    m20 [shape=point]; database -> wallet_service [label="20. balanceUpdated"];
+    m21 [shape=point]; order_service -> database [label="21. saveOrder()"];
+    m22 [shape=point]; database -> order_service [label="22. orderSaved"];
+    
+    // Notification Process
+    edge [color="#2ECC71"];
+    m23 [shape=point]; order_service -> notification [label="23. sendNotifications()"];
+    m24 [shape=point]; notification -> database [label="24. saveNotification()"];
+    m25 [shape=point]; notification -> student [label="25. orderConfirmation"];
+    m26 [shape=point]; order_service -> market_ui [label="26. orderComplete()"];
+    m27 [shape=point]; market_ui -> student [label="27. showSuccess()"];
+
+    // Activation boxes
+    node [shape=rect, style=filled, fillcolor=lightgrey, width=0.1, height=0.3];
+    
+    // Browse activations
+    a1 [pos="2,2"]; a2 [pos="2,3"];
+    a3 [pos="3,3"]; a4 [pos="3,4"];
+    
+    // Cart activations
+    a5 [pos="4,4"]; a6 [pos="4,5"];
+    a7 [pos="5,5"]; a8 [pos="5,6"];
+    
+    // Checkout activations
+    a9 [pos="6,6"]; a10 [pos="6,7"];
+    a11 [pos="7,7"]; a12 [pos="7,8"];
+    
+    // Payment activations
+    a13 [pos="6,8"]; a14 [pos="6,9"];
+    a15 [pos="8,9"]; a16 [pos="8,10"];
+
+    // Lifelines (vertical lines)
+    edge [style=dashed, color=grey];
+    {rank=same; student market_ui market_controller cart_service product_model order_service wallet_service database notification}
+    student -> student [weight=100];
+    market_ui -> market_ui [weight=100];
+    market_controller -> market_controller [weight=100];
+    cart_service -> cart_service [weight=100];
+    product_model -> product_model [weight=100];
+    order_service -> order_service [weight=100];
+    wallet_service -> wallet_service [weight=100];
+    database -> database [weight=100];
+    notification -> notification [weight=100];
+
+    // Notes
+    note_cart [shape=note, label="Cart includes:\n- Product details\n- Quantity\n- Points required", fillcolor=lightyellow];
+    note_cart -> m9;
+    
+    note_payment [shape=note, label="Payment process:\n- Verify balance\n- Deduct points\n- Update inventory", fillcolor=lightyellow];
+    note_payment -> m18;
+    
+    note_notification [shape=note, label="Notifications:\n- Order confirmation\n- Payment receipt\n- Delivery status", fillcolor=lightyellow];
+    note_notification -> m23;
+}

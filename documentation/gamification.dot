@@ -1,0 +1,57 @@
+digraph ComponentDiagram {
+    compound=true;
+    rankdir=LR;
+    node [shape=component, style=filled, fillcolor=white, fontname="Arial"];
+    
+    subgraph cluster_technology {
+        label="Gamification Technology";
+        style=filled;
+        fillcolor=lightblue;
+        margin=20;
+        
+        tech_system [label="Sistem Penilaian\nOtomatis"];
+        tech_feedback [label="Umpan Balik\nLangsung"];
+        tech_leaderboard [label="Papan Peringkat"];
+        tech_reward [label="Sistem\nPenghargaan"];
+        tech_adaptive [label="Gamifikasi\nAdaptif"];
+        
+        {rank=same; tech_system tech_feedback tech_leaderboard tech_reward tech_adaptive}
+    }
+    
+    subgraph cluster_engagement {
+        label="Gamification Engagement";
+        style=filled;
+        fillcolor=lightgreen;
+        margin=20;
+        
+        eng_motivation [label="Meningkatkan\nMotivasi"];
+        eng_involvement [label="Keterlibatan\nSiswa"];
+        
+        {rank=same; eng_motivation eng_involvement}
+    }
+    
+    subgraph cluster_elements {
+        label="Elemen Gamifikasi";
+        style=filled;
+        fillcolor=lightpink;
+        margin=20;
+        
+        elem_points [label="Sistem\nPoin"];
+        elem_level [label="Sistem\nLevel"];
+        elem_badge [label="Sistem\nBadge"];
+        elem_board [label="Sistem\nLeaderboard"];
+        
+        {rank=same; elem_points elem_level elem_badge elem_board}
+    }
+    
+    // Connections between components
+    tech_system -> elem_points [lhead=cluster_elements];
+    tech_feedback -> eng_motivation [lhead=cluster_engagement];
+    elem_points -> tech_leaderboard;
+    eng_motivation -> elem_badge;
+    
+    // Interface ports
+    tech_system -> eng_motivation [style=dashed];
+    elem_board -> eng_involvement [style=dashed];
+    tech_adaptive -> elem_level [style=dashed];
+}

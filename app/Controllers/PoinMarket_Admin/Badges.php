@@ -51,7 +51,11 @@ class Badges extends BaseController
         $point = $this->request->getPost('point');
         $detail = $this->request->getPost('detail');
         $keterangan = $this->request->getPost('keterangan');
-        $badges = file_get_contents($_FILES['badges']['tmp_name']);
+
+        // Mengambil gambar badges
+        $gambar = $this->request->getFile('badges');
+        $namaGambar = $gambar->getRandomName();
+        $gambar->move('uploads/badges/', $namaGambar);
 
         $data = [
             'id_badges' => $id_badges,
@@ -59,7 +63,7 @@ class Badges extends BaseController
             'point' => $point,
             'detail' => $detail,
             'keterangan' => $keterangan,
-            'badges' => $badges
+            'badges' => $namaGambar
         ];
         $this->BadgesModel->save($data);
 
@@ -73,27 +77,27 @@ class Badges extends BaseController
         $point = $this->request->getPost('point');
         $detail = $this->request->getPost('detail');
         $keterangan = $this->request->getPost('keterangan');
-
-        // Periksa apakah ada file gambar diunggah
-        if ($this->request->getFile('badges')->isValid()) {
-            $badges = file_get_contents($this->request->getFile('badges')->getTempName());
-        } else {
-            // Jika tidak ada file yang diunggah, tetap gunakan data lama
-            $badgeData = $this->BadgesModel->find($id_badges);
-            $badges = $badgeData['badges'];
-        }
+        $badges_lama = $this->request->getPost('badges_lama');
+        $badges = $this->request->getFile('badges');
 
         $data = [
             'nama' => $nama,
             'point' => $point,
             'detail' => $detail,
-            'keterangan' => $keterangan,
-            'badges' => $badges
+            'keterangan' => $keterangan
         ];
+
+        if ($badges->isValid()) {
+            $namaBadges = $badges->getRandomName();
+            $badges->move('uploads/badges/', $namaBadges);
+            $data['badges'] = $namaBadges;
+        } else {
+            $data['badges'] = $badges_lama;
+        }
 
         $this->BadgesModel->update($id_badges, $data);
 
-        session()->setFlashdata("sukses", "Badges " . $nama . " Berhasil Di Update.");
+        session()->setFlashdata("sukses", "Badges $nama berhasil diperbarui.");
         return redirect()->back();
     }
 

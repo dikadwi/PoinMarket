@@ -1,0 +1,37 @@
+digraph CoreModules {
+    rankdir=TB;
+    node [shape=record, fontname="Arial"];
+    
+    subgraph cluster_modules {
+        label="Core Modules";
+        style=filled;
+        color=lightpink;
+        
+        user_module [label="{User Module|{Profile Management|Role Management|Access Control}}"];
+        
+        point_module [label="{Point Module|{Wallet Management|Transaction History|Point Rules}}"];
+        
+        market_module [label="{Market Module|{Product Catalog|Order Management|Cart System}}"];
+        
+        consult_module [label="{Consultation Module|{Booking System|Chat System|Schedule Management}}"];
+
+        subgraph cluster_shared {
+            label="Shared Components";
+            style=filled;
+            color=white;
+            
+            models [label="{Models|{User|Point|Market|Consult}}"];
+            events [label="{Events|{Notifications|Logging}}"];
+            utils [label="{Utilities|{Formatters|Validators}}"];
+        }
+    }
+
+    // Module relationships
+    user_module -> models;
+    point_module -> models;
+    market_module -> models;
+    consult_module -> models;
+    
+    {user_module, point_module, market_module, consult_module} -> events;
+    {user_module, point_module, market_module, consult_module} -> utils;
+}

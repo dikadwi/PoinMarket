@@ -1,0 +1,36 @@
+digraph dfd_context {
+    rankdir=TB;
+    splines=spline;
+    nodesep=0.8;
+    ranksep=1.0;
+    
+    node [shape=circle, style=filled, fillcolor=lightblue, fontname="Arial", fontsize=11];
+    edge [fontname="Arial", fontsize=9, dir=forward];
+
+    // Proses Utama
+    poinmarket [label="Sistem\nPoinMarket", width=2, height=2];
+
+    // Entitas Eksternal
+    node [shape=box, fillcolor=lightgrey];
+    mahasiswa [label="Mahasiswa"];
+    dosen [label="Dosen"];
+    admin [label="Admin"];
+    superadmin [label="Superadmin"];
+
+    // Aliran Data
+    edge [color="#2E86C1"];
+    mahasiswa -> poinmarket [label="- Data login\n- Update profil\n- Pemesanan produk\n- Booking konsultasi\n- Penukaran poin"];
+    poinmarket -> mahasiswa [label="- Status akun\n- Saldo poin\n- Konfirmasi pesanan\n- Jadwal konsultasi\n- Riwayat transaksi"];
+
+    edge [color="#27AE60"];
+    dosen -> poinmarket [label="- Data login\n- Pemberian poin\n- Jadwal konsultasi\n- Evaluasi mahasiswa"];
+    poinmarket -> dosen [label="- Data mahasiswa\n- Permintaan konsultasi\n- Log pemberian poin\n- Konfirmasi jadwal"];
+
+    edge [color="#8E44AD"];
+    admin -> poinmarket [label="- Kelola produk\n- Proses pesanan\n- Monitor transaksi\n- Dukungan pengguna"];
+    poinmarket -> admin [label="- Laporan penjualan\n- Notifikasi pesanan\n- Status inventori\n- Aktivitas pengguna"];
+
+    edge [color="#E74C3C"];
+    superadmin -> poinmarket [label="- Konfigurasi sistem\n- Manajemen pengguna\n- Pengaturan role\n- Monitoring sistem"];
+    poinmarket -> superadmin [label="- Statistik sistem\n- Analisis pengguna\n- Log audit\n- Metrik kinerja"];
+}

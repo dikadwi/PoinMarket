@@ -74,9 +74,10 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                 <td><?= $b['detail']; ?></td>
                 <td><?= $b['keterangan']; ?></td>
                 <td>
-                    <?php if ($b['badges']) : ?>
-                        <img src="data:image/png;base64,<?= base64_encode($b['badges']); ?>" alt="Badge Image" width="100">
-                    <?php endif; ?>
+                <img src="<?= base_url('uploads/badges/' . $b['badges']); ?>"
+                            class="card-img-top"
+                            alt="Gambar_Item"
+                            style="width: 50%; height: auto;">
                 </td>
                 <td>
                     <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $b['id_badges']; ?>"><i class="fas fa-eye"></i><span class="d-none d-md-inline"> Detail</span></button>

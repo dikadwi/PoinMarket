@@ -34,6 +34,7 @@ class Register extends BaseController
             'npm' => $npm,
             'password' => password_hash($password, PASSWORD_DEFAULT),
             'point' => 30,
+            // 'gaya_belajar' =>
         ];
         $this->MahasiswaModel->save($data);
 

@@ -1,0 +1,40 @@
+digraph ApplicationLayer {
+    rankdir=TB;
+    node [shape=record, fontname="Arial"];
+    
+    subgraph cluster_application {
+        label="Application Layer";
+        style=filled;
+        color=lightgreen;
+        
+        auth [label="{Authentication|{Myth/Auth|Session Mgmt}}"];
+        
+        subgraph cluster_business {
+            label="Business Logic";
+            style=filled;
+            color=white;
+            
+            controllers [label="{Controllers|{User|Point|Market|Consult}}"];
+            services [label="{Services|{Transaction|Notification|Report}}"];
+            helpers [label="{Helpers|{Format|Validation|Security}}"];
+        }
+        
+        subgraph cluster_api {
+            label="API Services";
+            style=filled;
+            color=white;
+            
+            rest_api [label="{REST API|{Endpoints|Routes}}"];
+            websocket [label="{WebSocket|{Real-time|Events}}"];
+            middleware [label="{Middleware|{Auth|CORS|Cache}}"];
+        }
+    }
+
+    // Internal relationships
+    auth -> controllers;
+    controllers -> services;
+    services -> helpers;
+    
+    controllers -> {rest_api, websocket};
+    {rest_api, websocket} -> middleware;
+}

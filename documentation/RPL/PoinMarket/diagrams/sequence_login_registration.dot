@@ -1,0 +1,69 @@
+digraph sequence_login_registration {
+    rankdir=TB;
+    splines=ortho;
+    nodesep=1.2;
+    ranksep=0.8;
+    
+    node [shape=rect, style=filled, fillcolor=white, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9, dir=forward];
+
+    // Participants/Lifelines
+    subgraph cluster_participants {
+        label="";
+        style=invis;
+
+        user [label="User"];
+        auth_ui [label="Auth UI"];
+        auth_controller [label="Auth\nController"];
+        user_model [label="User\nModel"];
+        database [label="Database"];
+        mailer [label="Email\nService"];
+    }
+
+    // Messages for Registration
+    edge [color="#2E86C1"];
+    m1 [shape=point]; user -> m1 [label="1. Register(email, password)"];
+    m2 [shape=point]; m1 -> auth_ui [label="2. validateInput()"];
+    m3 [shape=point]; auth_ui -> auth_controller [label="3. createUser()"];
+    m4 [shape=point]; auth_controller -> user_model [label="4. save()"];
+    m5 [shape=point]; user_model -> database [label="5. insert()"];
+    m6 [shape=point]; database -> user_model [label="6. success"];
+    m7 [shape=point]; user_model -> auth_controller [label="7. user created"];
+    m8 [shape=point]; auth_controller -> mailer [label="8. sendVerification()"];
+    m9 [shape=point]; mailer -> user [label="9. verification email"];
+    m10 [shape=point]; auth_controller -> auth_ui [label="10. redirect login"];
+
+    // Messages for Login
+    edge [color="#27AE60"];
+    m11 [shape=point]; user -> auth_ui [label="11. login(email, password)"];
+    m12 [shape=point]; auth_ui -> auth_controller [label="12. authenticate()"];
+    m13 [shape=point]; auth_controller -> user_model [label="13. findUser()"];
+    m14 [shape=point]; user_model -> database [label="14. select()"];
+    m15 [shape=point]; database -> user_model [label="15. user data"];
+    m16 [shape=point]; user_model -> auth_controller [label="16. validate()"];
+    m17 [shape=point]; auth_controller -> auth_ui [label="17. createSession()"];
+    m18 [shape=point]; auth_ui -> user [label="18. redirect dashboard"];
+
+    // Activation boxes
+    node [shape=rect, style=filled, fillcolor=lightgrey, width=0.1, height=0.3];
+    
+    // Registration activations
+    a1 [pos="2,2"]; a2 [pos="2,3"];
+    a3 [pos="3,3"]; a4 [pos="3,4"];
+    a5 [pos="4,4"]; a6 [pos="4,5"];
+    
+    // Login activations
+    a7 [pos="2,6"]; a8 [pos="2,7"];
+    a9 [pos="3,7"]; a10 [pos="3,8"];
+    a11 [pos="4,8"]; a12 [pos="4,9"];
+
+    // Lifelines (vertical lines)
+    edge [style=dashed, color=grey];
+    {rank=same; user auth_ui auth_controller user_model database mailer}
+    user -> user [weight=100];
+    auth_ui -> auth_ui [weight=100];
+    auth_controller -> auth_controller [weight=100];
+    user_model -> user_model [weight=100];
+    database -> database [weight=100];
+    mailer -> mailer [weight=100];
+}

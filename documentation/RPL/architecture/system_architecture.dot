@@ -1,0 +1,104 @@
+digraph PoinMarket_Architecture {
+    rankdir=TB;
+    node [shape=record, fontname="Arial"];
+    edge [fontname="Arial"];
+    
+    // Presentation Layer
+    subgraph cluster_presentation {
+        label="Presentation Layer";
+        style=filled;
+        color=lightgrey;
+        
+        // Web Interface
+        web [label="{Web Interface|{AdminLTE Template|Bootstrap 4|jQuery|AJAX}}"];
+        
+        // Views
+        views [label="{Views|{Admin Views|Dosen Views|Mahasiswa Views}}"];
+    }
+    
+    // Application Layer
+    subgraph cluster_application {
+        label="Application Layer";
+        style=filled;
+        color=lightblue;
+        
+        // Controllers
+        controllers [label="{Controllers|{AuthController|UserController|PointController|MarketController}}"];
+        
+        // Services
+        services [label="{Services|{AuthService|PointService|NotificationService|TransactionService}}"];
+        
+        // Middleware
+        middleware [label="{Middleware|{Authentication|Authorization|CSRF|Rate Limiter}}"];
+    }
+    
+    // Business Layer
+    subgraph cluster_business {
+        label="Business Layer";
+        style=filled;
+        color=lightgreen;
+        
+        // Models
+        models [label="{Models|{UserModel|PointModel|ProductModel|TransactionModel}}"];
+        
+        // Business Logic
+        business [label="{Business Logic|{Point Management|Transaction Processing|User Management}}"];
+        
+        // Validation
+        validation [label="{Validation|{Input Validation|Business Rules|Data Integrity}}"];
+    }
+    
+    // Data Layer
+    subgraph cluster_data {
+        label="Data Layer";
+        style=filled;
+        color=pink;
+        
+        // Database
+        database [label="{Database|{MySQL/MariaDB|Stored Procedures|Triggers}}"];
+        
+        // Cache
+        cache [label="{Cache|{Redis|Session Storage}}"];
+        
+        // File Storage
+        storage [label="{File Storage|{Uploads|Documents|Images}}"];
+    }
+    
+    // External Services
+    subgraph cluster_external {
+        label="External Services";
+        style=filled;
+        color=lightyellow;
+        
+        // Email Service
+        email [label="{Email Service|SMTP}"];
+        
+        // Payment Gateway
+        payment [label="{Payment Gateway|API}"];
+    }
+    
+    // Connections
+    web -> views;
+    views -> controllers;
+    controllers -> middleware;
+    middleware -> services;
+    services -> business;
+    business -> models;
+    models -> database;
+    models -> cache;
+    business -> storage;
+    services -> email;
+    services -> payment;
+    
+    // Bidirectional connections
+    edge [dir=both];
+    controllers -> services;
+    services -> models;
+    
+    // Rankings
+    {rank=same; web views}
+    {rank=same; controllers middleware services}
+    {rank=same; models business validation}
+    {rank=same; database cache storage}
+    {rank=same; email payment}
+}

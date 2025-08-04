@@ -1,0 +1,42 @@
+digraph PresentationLayer {
+    rankdir=TB;
+    node [shape=record, fontname="Arial"];
+    
+    subgraph cluster_presentation {
+        label="Presentation Layer";
+        style=filled;
+        color=lightblue;
+        
+        web_ui [label="{Web Interface|{HTML5|CSS3|Bootstrap 4}}"];
+        mobile_ui [label="{Mobile UI|{Responsive|PWA}}"];
+        admin_ui [label="{Admin Interface|{AdminLTE|Dashboard}}"];
+
+        subgraph cluster_components {
+            label="UI Components";
+            style=filled;
+            color=white;
+            
+            forms [label="{Forms|{Input|Validation|Submit}}"];
+            tables [label="{Tables|{DataTables|Sorting|Filter}}"];
+            charts [label="{Charts|{Chart.js|Statistics}}"];
+            notifications [label="{Notifications|{SweetAlert2|Toast}}"];
+        }
+
+        subgraph cluster_templates {
+            label="Templates";
+            style=filled;
+            color=white;
+            
+            layouts [label="{Layouts|{Header|Footer|Sidebar}}"];
+            themes [label="{Themes|{Light|Dark}}"];
+            responsive [label="{Responsive|{Desktop|Tablet|Mobile}}"];
+        }
+    }
+
+    // Relationships
+    web_ui -> {forms, tables, charts, notifications};
+    mobile_ui -> {forms, notifications};
+    admin_ui -> {forms, tables, charts, notifications};
+    
+    {web_ui, mobile_ui, admin_ui} -> {layouts, themes, responsive};
+}

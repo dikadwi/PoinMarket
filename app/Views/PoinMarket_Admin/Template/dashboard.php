@@ -33,6 +33,13 @@
     <link rel="stylesheet" href="<?= base_url() ?>/template/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <link href="<?= base_url() ?>/sweetalert2/package/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- <link rel="stylesheet" href="<= base_url('css/notification.css') ?>"> -->
+    <!-- jQuery -->
+    <script src="<?= base_url() ?>/template/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="<?= base_url() ?>/template/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <!-- <script src="<?= base_url() ?>/template/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
     <style>
         .modal-content {
             border-radius: 20px !important;
@@ -226,6 +233,27 @@
                 padding: 5px 10px;
             }
         }
+
+        /* Tambahan style untuk kalender */
+        .bootstrap-datetimepicker-widget {
+            width: 100% !important;
+            max-width: none !important;
+        }
+
+        .bootstrap-datetimepicker-widget table td.day {
+            height: 30px;
+            line-height: 30px;
+            width: 30px;
+        }
+
+        .dropdown-menu .bootstrap-datetimepicker-widget {
+            border: none;
+            background: transparent;
+        }
+
+        .dropdown-menu .bootstrap-datetimepicker-widget table {
+            background: white;
+        }
     </style>
     </script>
 </head>
@@ -261,6 +289,8 @@
 
     </div>
     <!-- ./wrapper -->
+    <!-- Import jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
     <!-- jQuery -->
     <script src="<?= base_url() ?>/template/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -314,6 +344,9 @@
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script src="<?= base_url('js/notification.js') ?>"></script>
+     <!-- Import jQuery -->
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 
     <!-- Render section scripts jika ada -->
     <?= $this->renderSection('scripts') ?>
@@ -370,6 +403,27 @@
         <?php endif; ?>
 
 
+        // $(document).on('click', '.btn-hapus', function(e) {
+        //     e.preventDefault();
+        //     const href = $(this).attr('href');
+
+        //     Swal.fire({
+        //         title: 'Hapus Data ?',
+        //         text: "Apakah Anda Yakin Ingin Menghapus Data !",
+        //         icon: 'warning',
+        //         showCancelButton: true,
+        //         confirmButtonColor: '#3085d6',
+        //         cancelButtonColor: '#d33',
+        //         confirmButtonText: 'Hapus',
+        //         cancelButtonText: 'Batal',
+
+        //     }).then((result) => {
+        //         if (result.value) {
+        //             document.location.href = href;
+        //         }
+        //     })
+        // })
+
         $(document).on('click', '.btn-hapus', function(e) {
             e.preventDefault();
             const href = $(this).attr('href');
@@ -379,17 +433,21 @@
                 text: "Apakah Anda Yakin Ingin Menghapus Data !",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Hapus',
-                cancelButtonText: 'Batal',
-
+                // confirmButtonColor: '#d33',
+                // cancelButtonColor: '#3085d6',
+                confirmButtonText: '<i class="fas fa-trash mr-2"></i>Hapus',
+                cancelButtonText: '<i class="fas fa-times mr-2"></i>Batal',
+                customClass: {
+                    confirmButton: 'btn btn-danger',
+                    cancelButton: 'btn btn-secondary'
+                }
             }).then((result) => {
                 if (result.value) {
                     document.location.href = href;
                 }
             })
         })
+
     </script>
 
 </body>

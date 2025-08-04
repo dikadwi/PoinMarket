@@ -1,0 +1,116 @@
+digraph PoinMarket_Admin {
+    rankdir=TB;
+    node [shape=record, fontname="Arial"];
+    
+    subgraph cluster_admin {
+        label="Admin Role Architecture";
+        style=filled;
+        color=lightgrey;
+        
+        // Dashboard Components
+        dashboard [label="{Dashboard Admin|{Transaction Stats|Product Analytics|Notification Center}}"];
+        
+        // Product Management
+        product_management [label="{Product Management|{Add Products|Update Stock|Set Prices|Manage Categories}}"];
+        
+        // Transaction Management
+        transaction_management [label="{Transaction Management|{Process Orders|Verify Transactions|Refund Management|Transaction History}}"];
+        
+        // Notification System
+        notification_system [label="{Notification System|{Send Notifications|Broadcast Messages|Email Notifications|Push Notifications}}"];
+        
+        // Reports
+        reports [label="{Reports Management|{Sales Reports|Stock Reports|Transaction Reports|User Activity}}"];
+    }
+    
+    // Business Logic
+    subgraph cluster_business {
+        label="Business Logic";
+        style=filled;
+        color=lightblue;
+        
+        // Product Logic
+        product_logic [label="{Product Logic|{Stock Control|Price Calculation|Category Management}}"];
+        
+        // Transaction Logic
+        transaction_logic [label="{Transaction Logic|{Order Processing|Point Calculation|Refund Processing}}"];
+        
+        // Notification Logic
+        notification_logic [label="{Notification Logic|{Message Queue|Template Engine|Delivery System}}"];
+    }
+    
+    // Data Access
+    subgraph cluster_data {
+        label="Data Access";
+        style=filled;
+        color=lightgreen;
+        
+        // Product Data
+        product_db [label="Products DB"];
+        
+        // Transaction Data
+        transaction_db [label="Transactions DB"];
+        
+        // Notification Data
+        notification_db [label="Notifications DB"];
+        
+        // Cache System
+        cache [label="Redis Cache"];
+    }
+    
+    // External Services
+    subgraph cluster_external {
+        label="External Services";
+        style=filled;
+        color=pink;
+        
+        // Email Service
+        email_service [label="Email Service"];
+        
+        // Storage Service
+        storage_service [label="File Storage"];
+    }
+    
+    // Relationships
+    dashboard -> product_management;
+    dashboard -> transaction_management;
+    dashboard -> notification_system;
+    
+    product_management -> product_logic;
+    transaction_management -> transaction_logic;
+    notification_system -> notification_logic;
+    
+    product_logic -> product_db;
+    transaction_logic -> transaction_db;
+    notification_logic -> notification_db;
+    
+    product_logic -> cache;
+    transaction_logic -> cache;
+    
+    notification_logic -> email_service;
+    product_management -> storage_service;
+    
+    // Access Control
+    subgraph cluster_access {
+        label="Access Control";
+        style=filled;
+        color=lightyellow;
+        
+        product_access [label="Product Management Access"];
+        transaction_access [label="Transaction Management Access"];
+        notification_access [label="Notification Management Access"];
+    }
+    
+    // Access Relationships
+    product_management -> product_access;
+    transaction_management -> transaction_access;
+    notification_system -> notification_access;
+    
+    // Rankings
+    {rank=same; dashboard}
+    {rank=same; product_management transaction_management notification_system}
+    {rank=same; product_logic transaction_logic notification_logic}
+    {rank=same; product_db transaction_db notification_db cache}
+    {rank=same; email_service storage_service}
+    {rank=same; product_access transaction_access notification_access}
+}

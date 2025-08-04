@@ -1,0 +1,22 @@
+digraph PoinMarket_SequenceTransaction {
+    rankdir=LR;
+    node [shape=box];
+    
+    // Participants
+    subgraph cluster_0 {
+        label="Transaction Flow";
+        
+        Mahasiswa -> Marketplace [label="1. Browse Products"];
+        Marketplace -> Product [label="2. Select Product"];
+        Product -> WalletSystem [label="3. Check Points"];
+        
+        WalletSystem -> Transaction [label="4. Create Transaction"];
+        Transaction -> Point [label="5. Deduct Points"];
+        Point -> Product [label="6. Update Stock"];
+        
+        Transaction -> Notification [label="7. Generate Notification"];
+        Notification -> Mahasiswa [label="8. Send Notification"];
+        
+        {rank=same; Mahasiswa Marketplace Product WalletSystem Transaction Point Notification}
+    }
+}

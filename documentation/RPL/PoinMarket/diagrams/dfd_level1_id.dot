@@ -1,0 +1,91 @@
+digraph dfd_level1 {
+    rankdir=TB;
+    splines=spline;
+    nodesep=1.0;
+    ranksep=1.2;
+    
+    node [fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9, dir=forward];
+
+    // Entitas Eksternal
+    node [shape=box, style=filled, fillcolor=lightgrey];
+    mahasiswa [label="Mahasiswa"];
+    dosen [label="Dosen"];
+    admin [label="Admin"];
+    superadmin [label="Superadmin"];
+
+    // Proses Utama
+    node [shape=circle, style=filled, fillcolor=lightblue];
+    auth [label="1.0\nAutentikasi\nPengguna", width=1.5];
+    point_mgmt [label="2.0\nPengelolaan\nPoin", width=1.5];
+    marketplace [label="3.0\nSistem\nMarketplace", width=1.5];
+    consultation [label="4.0\nSistem\nKonsultasi", width=1.5];
+    user_mgmt [label="5.0\nManajemen\nPengguna", width=1.5];
+    reporting [label="6.0\nLaporan &\nAnalisis", width=1.5];
+
+    // Penyimpanan Data
+    node [shape=box, style="filled,rounded", fillcolor=lightgreen];
+    users_db [label="D1 Data Pengguna"];
+    points_db [label="D2 Data Poin"];
+    products_db [label="D3 Data Produk"];
+    orders_db [label="D4 Data Pesanan"];
+    consult_db [label="D5 Data Konsultasi"];
+    logs_db [label="D6 Log Sistem"];
+
+    // Alur Autentikasi
+    edge [color="#2E86C1"];
+    mahasiswa -> auth [label="Login"];
+    dosen -> auth [label="Login"];
+    admin -> auth [label="Login"];
+    superadmin -> auth [label="Login"];
+    auth -> users_db [label="Verifikasi\nkredensial"];
+
+    // Alur Pengelolaan Poin
+    edge [color="#27AE60"];
+    dosen -> point_mgmt [label="Beri poin"];
+    point_mgmt -> points_db [label="Update\nsaldo"];
+    points_db -> mahasiswa [label="Status\npoin"];
+
+    // Alur Marketplace
+    edge [color="#8E44AD"];
+    mahasiswa -> marketplace [label="Buat pesanan"];
+    marketplace -> products_db [label="Cek\nstok"];
+    marketplace -> points_db [label="Verifikasi\nsaldo"];
+    marketplace -> orders_db [label="Buat\npesanan"];
+    admin -> marketplace [label="Kelola\nproduk"];
+
+    // Alur Konsultasi
+    edge [color="#E74C3C"];
+    mahasiswa -> consultation [label="Booking\nkonsultasi"];
+    dosen -> consultation [label="Atur\njadwal"];
+    consultation -> consult_db [label="Simpan\nbooking"];
+    consultation -> points_db [label="Cek\npoin"];
+
+    // Alur Manajemen Pengguna
+    edge [color="#F39C12"];
+    superadmin -> user_mgmt [label="Kelola\npengguna"];
+    user_mgmt -> users_db [label="Update\ndata pengguna"];
+
+    // Alur Pelaporan
+    edge [color="#16A085"];
+    reporting -> points_db [label="Statistik\npoin"];
+    reporting -> orders_db [label="Data\npenjualan"];
+    reporting -> logs_db [label="Log\naktivitas"];
+    reporting -> superadmin [label="Laporan\nsistem"];
+    reporting -> admin [label="Laporan\npenjualan"];
+
+    // Pencatatan Sistem
+    edge [color="#95A5A6"];
+    auth -> logs_db [label="Log\nlogin"];
+    marketplace -> logs_db [label="Log\ntransaksi"];
+    consultation -> logs_db [label="Log\nbooking"];
+    point_mgmt -> logs_db [label="Log\npoin"];
+
+    // Layout
+    {rank=same; mahasiswa dosen admin superadmin}
+    {rank=same; auth user_mgmt}
+    {rank=same; point_mgmt marketplace consultation}
+    {rank=same; users_db points_db products_db}
+    {rank=same; orders_db consult_db logs_db}
+    {rank=same; reporting}
+}

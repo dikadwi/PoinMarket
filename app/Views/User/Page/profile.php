@@ -52,13 +52,13 @@
                                         <li class="list-group-item">
                                             <h4><?= $_SERVER['REMOTE_ADDR']; ?></h4>
                                         </li>
-                                        <h5 class="card-title"><b>Token API :</b></h5>
+                                        <!-- <h5 class="card-title"><b>Token API :</b></h5>
                                         <li class="list-group-item">
                                             <input type="hidden" id="tokenInput" value="<?= $token; ?>">
                                             <button class="btn btn-primary btn-block" type="button" onclick="copyToken()">
                                                 <i class="fas fa-key"></i> Copy Token API
                                             </button>
-                                        </li>
+                                        </li> -->
                                         <!-- <h5 class="card-title"><b>Point :</b></h5>
                                         <li class="list-group-item">
                                             <h4 id="current-point"><?= $point; ?></h4>
@@ -170,40 +170,62 @@
 <div class="modal fade" id="modalEdit<?= $npm; ?>">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content ">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Edit <?= $title; ?> </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="/Role_User/Update_Profile" method="post" enctype="multipart/form-data">
+            <div class="modal-header bg-warning text-white">
+                    <h5 class="modal-title" id="staticBackdropLabel">Edit <?= $title; ?></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>  
+            <form action="/Role_User/Update_Profile" method="post">
+                <div class="modal-body">               
                     <input type="hidden" name="id" value="<?= $id; ?>">
-                    <div class="form-group ">
-                        <label for="nama" class="col-form-label">Nama</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nama" name="nama" value="<?= $nama; ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" id="nama" 
+                                name="nama" value="<?= $nama; ?>" required
+                                placeholder="Masukkan nama lengkap">
                         </div>
                     </div>
-                    <div class="form-group ">
-                        <label for="npm" class="col-form-label">NPM</label>
-                        <div class="col-sm-10">
-                            <input type="number" class="form-control" id="npm" name="npm" value="<?= $npm; ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+
+                    <div class="form-group">
+                        <label for="npm">NPM</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                            </div>
+                            <input type="text" class="form-control" id="npm" 
+                                name="npm" value="<?= $npm; ?>" required
+                                placeholder="Masukkan NPM">
                         </div>
                     </div>
-                    <div class="form-group ">
-                        <label for="email" class="col-form-label">Email</label>
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control" id="email" name="email" value="<?= $email; ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            </div>
+                            <input type="email" class="form-control" id="email" 
+                                name="email" value="<?= $email; ?>" required
+                                placeholder="Masukkan email">
                         </div>
                     </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Update</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <i class="fas fa-times"></i> Batal
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Simpan Perubahan
+                    </button>
+                </div>
+            </form>
         </div>
-        </form>
     </div>
 </div>
 

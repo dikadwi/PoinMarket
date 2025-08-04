@@ -55,7 +55,6 @@
                                                                 echo $data['kode_jenis'];
                                                         }
                                                         ?><br>
-                            <strong>Feedback:</strong> <?= $t['tanggal_transaksi']; ?><br>
                             <?php if (in_array($t['kode_jenis'], ['102', '103', '105'])) : ?>
                                 <strong> <?php
                                             switch ($t['kode_jenis']) {
@@ -74,7 +73,8 @@
                             <?php if (in_array($t['kode_jenis'], ['101', '105'])) : ?>
                                 <strong>Reward:</strong> <?= $t['poin_diberikan']; ?> Point<br>
                             <?php endif; ?>
-                            <strong>Status Validasi :</strong> <?= $t['validation']; ?><br>
+                            <!-- <strong>Status Validasi :</strong> <?= $t['validation']; ?><br> -->
+                            <strong>Tanggal Transaksi:</strong> <?= $t['tanggal_transaksi']; ?><br>
                             <strong>Creator :</strong> <?= $t['creator']; ?><br>
                         </p>
                         <!-- Card Footer untuk Tombol -->
@@ -90,14 +90,6 @@
                                 <div class="col-6 col-md-3 mb-2 mb-md-0">
                                     <button type="button" class="btn btn-warning btn-block d-flex flex-column align-items-center" data-toggle="modal" data-target="#modalEdit<?= esc($t['id_transaksi']) ?>">
                                         <i class="fas fa-edit"></i><span class="d-none d-md-inline"> Edit</span>
-                                    </button>
-                                </div>
-                            <?php endif; ?>
-                            <!-- Pemberian punishment melalui validasi oleh admin -->
-                            <?php if (in_groups(['superadmin', 'admin'])) : ?>
-                                <div class="col-6 col-md-3 mb-2 mb-md-0">
-                                    <button type="button" class="btn btn-secondary btn-block d-flex flex-column align-items-center" data-toggle="modal" data-target="#modalValidasi<?= esc($t['id_transaksi']) ?>">
-                                        <i class="fas fa-check-circle"></i><span class="d-none d-md-inline"> Validasi</span>
                                     </button>
                                 </div>
                             <?php endif; ?>
@@ -121,46 +113,58 @@
     <div class="modal fade" id="modalDetail<?php echo $data['id_transaksi']; ?>">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Detail Transaksi <?= $data['npm']; ?> </h5>
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-list mr-2"></i>Detail Pesanan #<?= $data['id_transaksi']; ?>
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
-                    <div class="col-lg-13">
-                        <div class="card mb-3">
-                            <div class="row g-0">
-                                <div class="col-md-12">
-                                    <div class="card-body">
-                                        <ul class="list-group list-group-flush">
-                                            <!-- <h5 class="card-title"><b>Kode Transaksi :</b></h5>
-                                            <li class="list-group-item">
-                                                <h4><?= $data['id_transaksi']; ?></h4>
-                                            </li> -->
-                                            <h5 class="card-title"><b>NPM :</b></h5>
-                                            <li class="list-group-item">
-                                                <h4><?= $data['npm']; ?></h4>
-                                            </li>
-                                            <!-- <h5 class="card-title"><b>Nama Mahasiswa :</b></h5>
-                                            <li class="list-group-item">
-                                                <h4><?= isset($nama[$data['npm']]) ? $nama[$data['npm']] : '-'; ?></h4>
-                                            </li> -->
-                                            <h5 class="card-title"><b>Kategori :</b></h5>
-                                            <li class="list-group-item">
-                                                <h4><?php
+                <div class="modal-body" style="max-height: 450px; overflow-y: auto;">
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-hashtag mr-2"></i>NPM
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $data['npm']; ?>" readonly>
+                        </div>
+                    </div>      
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-user mr-2"></i>Nama Mahasiswa
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= isset($nama[$data['npm']]) ? $nama[$data['npm']] : '-'; ?>" readonly>
+                        </div>
+                    </div>      
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-hashtag mr-2"></i>Kategori
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                            </div>                            
+                            <input type="text" class="form-control" value="<?php
                                                     switch ($data['kode_jenis']) {
                                                         case '101':
                                                             echo 'Reward';
                                                             break;
                                                         case '102':
-                                                            echo 'Belanja';
+                                                            echo 'Pembelian';
                                                             break;
                                                         case '103':
                                                             echo 'Punishment';
                                                             break;
                                                         case '105':
-                                                            echo 'Misi';
+                                                            echo 'Misi Tambahan';
                                                             break;
                                                         case '106':
                                                             echo 'Konsultasi';
@@ -168,185 +172,186 @@
                                                         default:
                                                             echo $data['kode_jenis'];
                                                     }
-                                                    ?>
-                                                </h4>
-                                            </li>
-                                            <h5 class="card-title"><b>Nama Item:</b></h5>
-                                            <li class="list-group-item">
-                                                <h4><?= $data['nama_transaksi']; ?></h4>
-                                            </li>
-                                            <?php if (in_array($data['kode_jenis'], ['102', '103', '105'])) : ?>
-                                                <h5><b>
-                                                        <?php
-                                                        switch ($data['kode_jenis']) {
-                                                            case '102':
-                                                            case '105':
-                                                                echo 'Harga:';
-                                                                break;
-                                                            case '103':
-                                                                echo 'Penalty:';
-                                                                break;
-                                                        }
-                                                        ?>
-                                                    </b></h5>
-                                                <li class="list-group-item">
-                                                    <h4> <?= $data['poin_digunakan']; ?> Point </h4>
-                                                </li>
-                                            <?php endif; ?>
-                                            <!-- Menampilkan Reward Point untuk Misi -->
-                                            <?php if (in_array($data['kode_jenis'], ['101', '105'])) : ?>
-                                                <h5><b>
-                                                        Reward:
-                                                    </b></h5>
-                                                <li class="list-group-item">
-                                                    <h4> <?= $t['poin_diberikan']; ?> point</h4>
-                                                </li>
-                                            <?php endif; ?>
-                                            <h5 class="card-title"><b>Tanggal Transaksi :</b></h5>
-                                            <li class="list-group-item">
-                                                <h4><?= $data['tanggal_transaksi']; ?></h4>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                                    ?>" readonly>
+                        </div>                        
+                    </div> 
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-hashtag mr-2"></i>Nama Transaksi
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $data['nama_transaksi']; ?>" readonly>
+                        </div>
+                    </div>        
+                    <?php if (in_array($t['kode_jenis'], ['102', '103', '105', '106'])) : ?>
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-wallet mr-2"></i>Point Harga
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-coins"></i></span>
                                 </div>
+                                <input type="text" class="form-control" value="<?= $t['poin_digunakan']; ?> Point" readonly>
                             </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
+
+                    <!-- Reward Untuk Kode Jenis 101 dan 105 -->
+                    <?php if (in_array($t['kode_jenis'], ['101', '105'])) : ?>
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-gift mr-2"></i>Reward
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-coins"></i></span>
+                                </div>
+                                <input type="text" class="form-control" value="<?= $t['poin_diberikan']; ?> Point" readonly>
+                            </div>
+                        </div>
+                    <?php endif; ?> 
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-calendar mr-2"></i>Tanggal Transaksi
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $data['tanggal_transaksi']; ?>" readonly>
+                        </div>
+                    </div>                  
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <i class="fas fa-times mr-2"></i> Tutup
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 <?php endforeach; ?>
 
-<!--Data Modal Box Edit Data-->
+
+<!-- Modal box Edit -->
 <?php foreach ($data_transaksi as $data) : ?>
     <div class="modal fade" id="modalEdit<?php echo $data['id_transaksi']; ?>">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Edit <?= $title; ?> </h5>
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-edit mr-2"></i>Edit Pesanan #<?= $data['id_transaksi']; ?>
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
-                    <form action="/Transaksi/update_Transaksi/<?= $data['id_transaksi']; ?>" method="post" enctype="multipart/form-data">
-                        <!-- <div class="form-group ">
-                            <label for="id_transaksi" class="col-form-label">Id Transaksi</label>                           
-                                <input type="number" class="form-control" id="id_transaksi" name="id_transaksi" value="<?php echo $data['id_transaksi'] ?>" required readonly>
-                            </div> -->
-                        <!-- Ketika edit Jenis dan nama aktif, dropdown input jadi Error -->
-                        <!-- Buat Jenis dan nama transaksi berkaitan dengan Dropdown -->
-                        <div class="form-group ">
-                            <label for="jenis_transaksi" class="col-form-label">Kategori</label>
-                            <input type="text" class="form-control" id="jenis_transaksi" name="jenis_transaksi" value="<?php
-                                                                                                                        switch ($data['kode_jenis']) {
-                                                                                                                            case '101':
-                                                                                                                                echo 'Reward';
-                                                                                                                                break;
-                                                                                                                            case '102':
-                                                                                                                                echo 'Belanja';
-                                                                                                                                break;
-                                                                                                                            case '103':
-                                                                                                                                echo 'Punishment';
-                                                                                                                                break;
-                                                                                                                            case '105':
-                                                                                                                                echo 'Misi Tambahan';
-                                                                                                                                break;
-                                                                                                                            default:
-                                                                                                                                echo $data['kode_jenis'];
-                                                                                                                        }
-                                                                                                                        ?>" required oninvalid=" this.setCustomValidity('Data Tidak Boleh Kosong')" disabled>
+                <div class="modal-body" style="max-height: 450px; overflow-y: auto;">
+                <form action="/Transaksi/update_Transaksi/<?= $data['id_transaksi']; ?>" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-hashtag mr-2"></i>NPM
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $data['npm']; ?>" readonly>
                         </div>
-                        <div class="form-group ">
-                            <label for="nama_transaksi" class="col-form-label">Nama Item</label>
-                            <input type="text" class="form-control" id="nama_transaksi" name="nama_transaksi" value="<?php echo $data['nama_transaksi'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" disabled>
+                    </div>      
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-user mr-2"></i>Nama Mahasiswa
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= isset($nama[$data['npm']]) ? $nama[$data['npm']] : '-'; ?>" readonly>
                         </div>
-                        <div class="form-group ">
-                            <label for="npm" class="col-form-label">NPM</label>
-                            <input type="number" class="form-control" id="npm" name="npm" value="<?php echo $data['npm'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" disabled>
-                        </div>
-                        <!-- <div class="form-group ">
-                            <label for="poin_digunakan" class="col-form-label">Poin Digunakan</label>                           
-                                <input type="number" class="form-control" id="poin_digunakan" name="poin_digunakan" value="<?php echo $data['poin_digunakan'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                            </div> -->
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Update</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                </div>
-            </div>
-            </form>
-        </div>
-    </div>
-
-<?php endforeach ?>
-
-<!--Data Modal Validasi-->
-<?php foreach ($data_transaksi as $data) : ?>
-    <div class="modal fade" id="modalValidasi<?php echo $data['id_transaksi']; ?>">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Validasi </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="/Transaksi/validate/<?= $data['id_transaksi']; ?>" method="post" enctype="multipart/form-data">
-                        <!-- <div class="form-group ">
-                            <label for="id_transaksi" class="col-form-label">Kode Transaksi</label>
-                           
-                                <input type="number" class="form-control" id="id_transaksi" name="id_transaksi" value="<?php echo $data['id_transaksi'] ?>" required readonly>
-                            </div> -->
-                        <div class="form-group ">
-                            <label for="jenis_transaksi" class="col-form-label">Kategori</label>
-
-                            <input type="text" class="form-control" id="jenis_transaksi" name="jenis_transaksi" value=" <?php
-                                                                                                                        switch ($data['kode_jenis']) {
-                                                                                                                            case '101':
-                                                                                                                                echo 'Reward';
-                                                                                                                                break;
-                                                                                                                            case '102':
-                                                                                                                                echo 'Belanja';
-                                                                                                                                break;
-                                                                                                                            case '103':
-                                                                                                                                echo 'Punishment';
-                                                                                                                                break;
-                                                                                                                            case '105':
-                                                                                                                                echo 'Misi Tambahan';
-                                                                                                                                break;
-                                                                                                                            default:
-                                                                                                                                echo $data['kode_jenis'];
-                                                                                                                        }
-                                                                                                                        ?>" readonly>
-                        </div>
-                        <div class="form-group ">
-                            <label for="nama_transaksi" class="col-form-label">Nama Transaksi</label>
-                            <input type="text" class="form-control" id="nama_transaksi" name="nama_transaksi" value="<?php echo $data['nama_transaksi'] ?>" readonly>
-                        </div>
-                        <div class="form-group ">
-                            <label for="npm" class="col-form-label">NPM</label>
-                            <input type="number" class="form-control" id="npm" name="npm" value="<?php echo $data['npm'] ?>" readonly>
-                        </div>
-                        <div class="form-group ">
-                            <label for="validation" class="col-form-label">Validasi</label>
-                            <select name="validation" id="validation" class="form-control" required oninvalid="this.setCustomValidity('Pilih Salah Satu')" oninput="setCustomValidity('')">
-                                <option value="Sudah">Ya</option>
-                                <option value="Belum">Tidak</option>
+                    </div>      
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-hashtag mr-2"></i>Kategori
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                            </div>                            
+                            <select class="form-control" id="kode_jenis" name="kode_jenis" readonly>
+                                <option value="101" <?= ($data['kode_jenis'] == '101') ? 'selected' : ''; ?>>Reward</option>
+                                <option value="102" <?= ($data['kode_jenis'] == '102') ? 'selected' : ''; ?>>Pembelian</option>
+                                <option value="103" <?= ($data['kode_jenis'] == '103') ? 'selected' : ''; ?>>Punishment</option>
+                                <option value="105" <?= ($data['kode_jenis'] == '105') ? 'selected' : ''; ?>>Misi Tambahan</option>
+                                <option value="106" <?= ($data['kode_jenis'] == '106') ? 'selected' : ''; ?>>Konsultasi</option>
                             </select>
+                        </div>                        
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-hashtag mr-2"></i>Nama Transaksi
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $data['nama_transaksi']; ?>" readonly>
                         </div>
+                    </div>        
+                    <?php if (in_array($t['kode_jenis'], ['102', '103', '105', '106'])) : ?>
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-wallet mr-2"></i>Point Harga
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-coins"></i></span>
+                                </div>
+                                <input type="text" class="form-control" value="<?= $t['poin_digunakan']; ?> Point" readonly>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <!-- Reward Untuk Kode Jenis 101 dan 105 -->
+                    <?php if (in_array($t['kode_jenis'], ['101', '105'])) : ?>
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-gift mr-2"></i>Reward
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-coins"></i></span>
+                                </div>
+                                <input type="text" class="form-control" value="<?= $t['poin_diberikan']; ?> Point" readonly>
+                            </div>
+                        </div>
+                    <?php endif; ?> 
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-calendar mr-2"></i>Tanggal Transaksi
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                            </div>
+                            <input type="datetime-local" class="form-control" id="tanggal_transaksi" name="tanggal_transaksi" value="<?= date('Y-m-d\TH:i', strtotime($data['tanggal_transaksi'])); ?>">
+                        </div>
+                    </div>         
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Validasi</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save mr-2"></i> Simpan 
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <i class="fas fa-times mr-2"></i> Batal
+                    </button>
+                </div>  
             </div>
             </form>
         </div>
     </div>
-<?php endforeach ?>
+<?php endforeach; ?>

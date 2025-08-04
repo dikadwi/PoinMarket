@@ -1,0 +1,81 @@
+digraph TransactionFlow {
+    // Graph settings
+    rankdir=TB;
+    node [shape=box, style=rounded, fontname="Arial"];
+    edge [fontname="Arial", fontsize=10];
+
+    // Start node
+    start [shape=oval, label="Mulai"];
+
+    // Student Selection
+    select_student [label="Pilih Mahasiswa\n(Cari NPM/Nama)"];
+
+    // Transaction Type Selection
+    select_type [label="Pilih Jenis Transaksi"];
+    
+    // Transaction Types
+    reward [label="Reward\n(Kode: 101)"];
+    mission [label="Misi\n(Kode: 105)"];
+    purchase [label="Pembelian\n(Kode: 102)"];
+    punishment [label="Hukuman\n(Kode: 103)"];
+    consultation [label="Konsultasi\n(Kode: 106)"];
+
+    // Transaction Details
+    reward_details [label="Detail Reward\n- Jenis Prestasi\n- Jumlah Poin\n- Keterangan"];
+    mission_details [label="Detail Misi\n- Jenis Misi\n- Jumlah Poin\n- Batas Waktu\n- Persyaratan"];
+    purchase_details [label="Detail Pembelian\n- Pilih Barang\n- Harga Poin\n- Jumlah"];
+    punishment_details [label="Detail Hukuman\n- Jenis Pelanggaran\n- Pengurangan Poin\n- Keterangan"];
+    consult_details [label="Detail Konsultasi\n- Topik\n- Jadwal\n- Durasi\n- Biaya Poin"];
+
+    // Validation
+    admin_validation [label="Validasi Admin", style="rounded,filled", fillcolor=lightblue];
+    
+    // Validation Results
+    validation_check [shape=diamond, label="Hasil\nValidasi?"];
+    
+    // Notification
+    notify_student [label="Kirim Notifikasi\nke Admin dan Mahasiswa"];
+    notify_rejected [label="Kirim Notifikasi\nPenolakan"];
+    
+    // Point Processing
+    process_points [label="Proses Poin\nUpdate Saldo"];
+    
+    // End states
+    complete [shape=oval, label="Selesai"];
+    rejected [shape=oval, label="Ditolak"];
+
+    // Flow connections
+    start -> select_student;
+    select_student -> select_type;
+    
+    // Transaction type selection
+    select_type -> reward;
+    select_type -> mission;
+    select_type -> purchase;
+    select_type -> punishment;
+    select_type -> consultation;
+    
+    // Details flow
+    reward -> reward_details;
+    mission -> mission_details;
+    purchase -> purchase_details;
+    punishment -> punishment_details;
+    consultation -> consult_details;
+    
+    // All paths to validation
+    reward_details -> admin_validation;
+    mission_details -> admin_validation;
+    purchase_details -> admin_validation;
+    punishment_details -> admin_validation;
+    consult_details -> admin_validation;
+    
+    // Validation flow
+    admin_validation -> validation_check;
+    validation_check -> process_points [label="Disetujui"];
+    validation_check -> notify_rejected [label="Ditolak"];
+    
+    // Completion paths
+    process_points -> notify_student;
+    notify_student -> complete;
+    notify_rejected -> rejected;
+}

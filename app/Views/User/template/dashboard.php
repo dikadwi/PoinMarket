@@ -280,51 +280,51 @@
         <!-- Script untuk API Request -->
     <script>
         // Fungsi untuk mengambil data wallet
-        function getMyWallet() {
-            const token = '<?= session()->get('token') ?>';
+        // function getMyWallet() {
+        //     const token = '<?= session()->get('token') ?>';
             
-            $.ajax({
-                url: '/api/wallet/me',
-                method: 'GET',
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                },
-                success: function(response) {
-                    if (response.error === false) {
-                        // Update point dan data mahasiswa
-                        $('#current-point').text(response.data.mahasiswa.point);
+        //     $.ajax({
+        //         url: '/api/wallet/me',
+        //         method: 'GET',
+        //         headers: {
+        //             'Authorization': 'Bearer ' + token
+        //         },
+        //         success: function(response) {
+        //             if (response.error === false) {
+        //                 // Update point dan data mahasiswa
+        //                 $('#current-point').text(response.data.mahasiswa.point);
                         
-                        // Update riwayat transaksi
-                        let html = '';
-                        response.data.riwayat_transaksi.forEach(function(transaksi) {
-                            html += `
-                                <tr>
-                                    <td>${transaksi.tanggal}</td>
-                                    <td>${transaksi.jenis_transaksi}</td>
-                                    <td>${transaksi.jumlah_point}</td>
-                                    <td>${transaksi.keterangan}</td>
-                                </tr>
-                            `;
-                        });
-                        $('#tabel-transaksi tbody').html(html);
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: response.message || 'Gagal mengambil data wallet'
-                        });
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error:', error);
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Gagal mengambil data wallet: ' + error
-                    });
-                }
-            });
-        }
+        //                 // Update riwayat transaksi
+        //                 let html = '';
+        //                 response.data.riwayat_transaksi.forEach(function(transaksi) {
+        //                     html += `
+        //                         <tr>
+        //                             <td>${transaksi.tanggal}</td>
+        //                             <td>${transaksi.jenis_transaksi}</td>
+        //                             <td>${transaksi.jumlah_point}</td>
+        //                             <td>${transaksi.keterangan}</td>
+        //                         </tr>
+        //                     `;
+        //                 });
+        //                 $('#tabel-transaksi tbody').html(html);
+        //             } else {
+        //                 Swal.fire({
+        //                     icon: 'error',
+        //                     title: 'Oops...',
+        //                     text: response.message || 'Gagal mengambil data wallet'
+        //                 });
+        //             }
+        //         },
+        //         error: function(xhr, status, error) {
+        //             console.error('Error:', error);
+        //             Swal.fire({
+        //                 icon: 'error',
+        //                 title: 'Oops...',
+        //                 text: 'Gagal mengambil data wallet: ' + error
+        //             });
+        //         }
+        //     });
+        // }
 
         // Fungsi untuk memperbarui saldo point
         async function updateWalletInfo() {

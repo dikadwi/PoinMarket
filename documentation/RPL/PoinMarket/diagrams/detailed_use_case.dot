@@ -1,0 +1,143 @@
+digraph PoinMarket_Use_Case {
+    rankdir=LR;
+    compound=true;
+    splines=ortho;
+    
+    // Styling
+    node [fontname="Arial", shape="box", style="rounded"];
+    edge [fontname="Arial"];
+    
+    // Actors
+    subgraph cluster_actors {
+        label="Actors";
+        style=filled;
+        color=lightgrey;
+        
+        superadmin [shape=box, style=filled, color=lightblue, label="Superadmin"];
+        admin [shape=box, style=filled, color=lightgreen, label="Admin"];
+        dosen [shape=box, style=filled, color=lightpink, label="Dosen"];
+        mahasiswa [shape=box, style=filled, color=lightyellow, label="Mahasiswa"];
+    }
+    
+    // Use Cases
+    subgraph cluster_authentication {
+        label="Authentication";
+        style=filled;
+        color=lightgrey;
+        
+        login [shape=ellipse, label="Login"];
+        logout [shape=ellipse, label="Logout"];
+        manage_profile [shape=ellipse, label="Manage Profile"];
+    }
+    
+    subgraph cluster_superadmin {
+        label="Superadmin Functions";
+        style=filled;
+        color=lightblue;
+        
+        manage_users [shape=ellipse, label="Manage Users"];
+        system_config [shape=ellipse, label="System Configuration"];
+        manage_roles [shape=ellipse, label="Manage Roles"];
+        view_logs [shape=ellipse, label="View System Logs"];
+    }
+    
+    subgraph cluster_admin {
+        label="Admin Functions";
+        style=filled;
+        color=lightgreen;
+        
+        manage_products [shape=ellipse, label="Manage Products"];
+        process_orders [shape=ellipse, label="Process Orders"];
+        manage_inventory [shape=ellipse, label="Manage Inventory"];
+        view_reports [shape=ellipse, label="View Reports"];
+    }
+    
+    subgraph cluster_dosen {
+        label="Dosen Functions";
+        style=filled;
+        color=lightpink;
+        
+        manage_points [shape=ellipse, label="Manage Points"];
+        award_badges [shape=ellipse, label="Award Badges"];
+        evaluate_students [shape=ellipse, label="Evaluate Students"];
+        handle_consultation [shape=ellipse, label="Handle Consultation"];
+    }
+    
+    subgraph cluster_mahasiswa {
+        label="Mahasiswa Functions";
+        style=filled;
+        color=lightyellow;
+        
+        view_points [shape=ellipse, label="View Points"];
+        shop_marketplace [shape=ellipse, label="Shop Marketplace"];
+        book_consultation [shape=ellipse, label="Book Consultation"];
+        view_achievements [shape=ellipse, label="View Achievements"];
+        transfer_points [shape=ellipse, label="Transfer Points"];
+    }
+    
+    // Common Functions
+    subgraph cluster_common {
+        label="Common Functions";
+        style=filled;
+        color=white;
+        
+        notifications [shape=ellipse, label="Manage Notifications"];
+        search [shape=ellipse, label="Search"];
+    }
+    
+    // Relationships
+    edge [dir=forward];
+    
+    // Authentication relationships
+    {superadmin admin dosen mahasiswa} -> login;
+    {superadmin admin dosen mahasiswa} -> logout;
+    {superadmin admin dosen mahasiswa} -> manage_profile;
+    
+    // Superadmin relationships
+    superadmin -> manage_users;
+    superadmin -> system_config;
+    superadmin -> manage_roles;
+    superadmin -> view_logs;
+    
+    // Admin relationships
+    admin -> manage_products;
+    admin -> process_orders;
+    admin -> manage_inventory;
+    admin -> view_reports;
+    
+    // Dosen relationships
+    dosen -> manage_points;
+    dosen -> award_badges;
+    dosen -> evaluate_students;
+    dosen -> handle_consultation;
+    
+    // Mahasiswa relationships
+    mahasiswa -> view_points;
+    mahasiswa -> shop_marketplace;
+    mahasiswa -> book_consultation;
+    mahasiswa -> view_achievements;
+    mahasiswa -> transfer_points;
+    
+    // Common relationships
+    {superadmin admin dosen mahasiswa} -> notifications;
+    {superadmin admin dosen mahasiswa} -> search;
+    
+    // Include relationships
+    edge [style=dashed, dir=forward];
+    
+    shop_marketplace -> view_points [label="<<include>>"];
+    transfer_points -> view_points [label="<<include>>"];
+    process_orders -> manage_inventory [label="<<include>>"];
+    award_badges -> evaluate_students [label="<<include>>"];
+    
+    // Extend relationships
+    edge [style=dashed, dir=forward, color=red];
+    
+    view_reports -> manage_inventory [label="<<extend>>"];
+    handle_consultation -> evaluate_students [label="<<extend>>"];
+    
+    // Rankings
+    {rank=same; superadmin admin dosen mahasiswa}
+    {rank=same; login logout manage_profile}
+    {rank=same; notifications search}
+}

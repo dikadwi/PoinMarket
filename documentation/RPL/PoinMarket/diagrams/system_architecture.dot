@@ -1,0 +1,87 @@
+digraph PoinMarket_Architecture {
+    rankdir=TB;
+    node [shape=record, fontname="Arial"];
+    
+    subgraph cluster_presentation {
+        label="Presentation Layer";
+        style=filled;
+        color=lightblue;
+        
+        web_ui [label="{Web Interface|{HTML5|CSS3|Bootstrap 4}}"];
+        mobile_ui [label="{Mobile UI|{Responsive|PWA}}"];
+        admin_ui [label="{Admin Interface|{AdminLTE|Dashboard}}"];
+    }
+    
+    subgraph cluster_application {
+        label="Application Layer";
+        style=filled;
+        color=lightgreen;
+        
+        auth [label="{Authentication|{Myth/Auth|Session Mgmt}}"];
+        business_logic [label="{Business Logic|{Controllers|Services|Helpers}}"];
+        api [label="{API Services|{REST|WebSocket}}"];
+    }
+    
+    subgraph cluster_modules {
+        label="Core Modules";
+        style=filled;
+        color=lightpink;
+        
+        user_module [label="{User Module|{Profile|Roles|Access}}"];
+        point_module [label="{Point Module|{Wallet|Transaction}}"];
+        market_module [label="{Market Module|{Products|Orders}}"];
+        consult_module [label="{Consultation|{Booking|Chat}}"];
+    }
+    
+    subgraph cluster_data {
+        label="Data Layer";
+        style=filled;
+        color=lightyellow;
+        
+        database [label="{Database|{MySQL|MariaDB}}"];
+        cache [label="{Cache|{Redis}}"];
+        storage [label="{Storage|{Files|Media}}"];
+    }
+    
+    subgraph cluster_security {
+        label="Security Layer";
+        style=filled;
+        color=lightgrey;
+        
+        encryption [label="Encryption"];
+        validation [label="Validation"];
+        protection [label="Protection"];
+    }
+    
+    // Relationships between layers
+    web_ui -> auth;
+    mobile_ui -> auth;
+    admin_ui -> auth;
+    
+    auth -> business_logic;
+    business_logic -> api;
+    
+    business_logic -> user_module;
+    business_logic -> point_module;
+    business_logic -> market_module;
+    business_logic -> consult_module;
+    
+    user_module -> database;
+    point_module -> database;
+    market_module -> database;
+    consult_module -> database;
+    
+    {user_module, point_module, market_module, consult_module} -> cache;
+    
+    // Security relationships
+    {auth, business_logic, api} -> encryption;
+    {auth, business_logic, api} -> validation;
+    {auth, business_logic, api} -> protection;
+    
+    // External Services
+    email [label="Email Service"];
+    payment [label="Payment Gateway"];
+    analytics [label="Analytics"];
+    
+    api -> {email, payment, analytics};
+}

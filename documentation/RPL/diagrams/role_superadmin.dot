@@ -1,0 +1,70 @@
+digraph PoinMarket_Superadmin {
+    rankdir=TB;
+    node [shape=record, fontname="Arial"];
+    
+    subgraph cluster_superadmin {
+        label="Superadmin Role Architecture";
+        style=filled;
+        color=lightgrey;
+        
+        // Dashboard Components
+        dashboard [label="{Dashboard Superadmin|{System Stats|User Analytics|Activity Logs}}"];
+        
+        // User Management
+        user_management [label="{User Management|{Create Users|Manage Roles|Reset Password|Block/Unblock}}"];
+        
+        // System Configuration
+        system_config [label="{System Configuration|{App Settings|Email Config|Security Settings|Backup Management}}"];
+        
+        // Monitoring
+        monitoring [label="{System Monitoring|{Performance|Security Logs|Error Logs|Audit Trail}}"];
+        
+        // Master Data
+        master_data [label="{Master Data|{Role Settings|Point Rules|Product Categories|System Parameters}}"];
+        
+        // Reports
+        reports [label="{System Reports|{User Reports|Transaction Reports|Point Reports|Activity Reports}}"];
+    }
+    
+    // Access Rights
+    subgraph cluster_access {
+        label="Access Rights";
+        style=filled;
+        color=lightblue;
+        
+        user_crud [label="Full User CRUD"];
+        system_settings [label="System Settings"];
+        monitoring_access [label="Monitoring Tools"];
+        backup_restore [label="Backup/Restore"];
+    }
+    
+    // Database Access
+    subgraph cluster_database {
+        label="Database Access";
+        style=filled;
+        color=lightgreen;
+        
+        users_db [label="Users DB"];
+        config_db [label="Config DB"];
+        logs_db [label="Logs DB"];
+        master_db [label="Master DB"];
+    }
+    
+    // Relationships
+    dashboard -> monitoring;
+    user_management -> user_crud;
+    system_config -> system_settings;
+    monitoring -> monitoring_access;
+    master_data -> system_settings;
+    
+    user_crud -> users_db;
+    system_settings -> config_db;
+    monitoring_access -> logs_db;
+    master_data -> master_db;
+    
+    // Rankings
+    {rank=same; dashboard user_management system_config}
+    {rank=same; monitoring master_data reports}
+    {rank=same; user_crud system_settings monitoring_access backup_restore}
+    {rank=same; users_db config_db logs_db master_db}
+}

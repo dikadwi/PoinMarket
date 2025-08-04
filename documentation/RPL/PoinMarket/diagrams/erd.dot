@@ -1,0 +1,76 @@
+digraph erd {
+    rankdir=LR;
+    splines=ortho;
+    nodesep=0.8;
+    ranksep=1.0;
+    
+    node [shape=record, style=filled, fillcolor=lightblue, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9, dir=both];
+
+    // Entitas Pengguna
+    users [label="{Pengguna|+ id_pengguna (PK)\l+ username\l+ email\l+ password\l+ role\l+ status\l+ created_at\l+ updated_at\l}"];
+    
+    // Entitas Profil
+    profiles [label="{Profil|+ id_profil (PK)\l+ id_pengguna (FK)\l+ nama_lengkap\l+ nim_nip\l+ foto\l+ no_telp\l+ alamat\l}"];
+
+    // Entitas Dompet
+    wallets [label="{Dompet|+ id_dompet (PK)\l+ id_pengguna (FK)\l+ saldo_poin\l+ status\l+ updated_at\l}"];
+
+    // Entitas Transaksi Poin
+    point_transactions [label="{Transaksi_Poin|+ id_transaksi (PK)\l+ id_pengirim (FK)\l+ id_penerima (FK)\l+ jumlah_poin\l+ jenis_transaksi\l+ keterangan\l+ status\l+ created_at\l}"];
+
+    // Entitas Produk
+    products [label="{Produk|+ id_produk (PK)\l+ nama_produk\l+ deskripsi\l+ harga_poin\l+ stok\l+ gambar\l+ kategori\l+ status\l}"];
+
+    // Entitas Pesanan
+    orders [label="{Pesanan|+ id_pesanan (PK)\l+ id_pembeli (FK)\l+ total_poin\l+ status\l+ created_at\l+ updated_at\l}"];
+
+    // Entitas Detail Pesanan
+    order_details [label="{Detail_Pesanan|+ id_detail (PK)\l+ id_pesanan (FK)\l+ id_produk (FK)\l+ jumlah\l+ harga_poin\l}"];
+
+    // Entitas Konsultasi
+    consultations [label="{Konsultasi|+ id_konsultasi (PK)\l+ id_mahasiswa (FK)\l+ id_dosen (FK)\l+ tanggal\l+ waktu\l+ topik\l+ status\l+ biaya_poin\l}"];
+
+    // Entitas Notifikasi
+    notifications [label="{Notifikasi|+ id_notifikasi (PK)\l+ id_pengguna (FK)\l+ judul\l+ pesan\l+ jenis\l+ status_baca\l+ created_at\l}"];
+
+    // Relasi
+    users -> profiles [label="1:1"];
+    users -> wallets [label="1:1"];
+    users -> point_transactions [label="1:N", dir=both];
+    users -> orders [label="1:N"];
+    orders -> order_details [label="1:N"];
+    products -> order_details [label="1:N"];
+    users -> consultations [label="1:N"];
+    users -> notifications [label="1:N"];
+
+    // Layout
+    {rank=same; users profiles wallets}
+    {rank=same; point_transactions orders consultations}
+    {rank=same; products order_details notifications}
+
+    // Subgraph untuk pengelompokan logis
+    subgraph cluster_user_management {
+        label="Manajemen Pengguna";
+        style=dotted;
+        users;
+        profiles;
+        wallets;
+    }
+
+    subgraph cluster_transaction {
+        label="Transaksi";
+        style=dotted;
+        point_transactions;
+        orders;
+        order_details;
+    }
+
+    subgraph cluster_features {
+        label="Fitur";
+        style=dotted;
+        products;
+        consultations;
+        notifications;
+    }
+}

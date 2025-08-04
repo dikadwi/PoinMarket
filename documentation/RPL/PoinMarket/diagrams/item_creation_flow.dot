@@ -1,0 +1,72 @@
+digraph G {
+    // Pengaturan diagram
+    rankdir=TB;
+    node [shape=box, style=filled];
+    
+    // Nodes untuk Login dan Akses
+    start [label="Start", shape=circle];
+    login [label="Login sebagai\nDosen/Admin"];
+    menu [label="Akses Menu\nJenis Transaksi"];
+    
+    // Nodes untuk Pemilihan Jenis Item
+    pilih_jenis [label="Pilih Jenis Item", shape=diamond];
+    
+    // Nodes untuk Jenis Item
+    reward [label="Reward\n(Kode: 101)"];
+    misi [label="Misi\n(Kode: 105)"];
+    pembelian [label="Pembelian\n(Kode: 102)"];
+    konsultasi [label="Konsultasi\n(Kode: 106)"];
+    
+    // Nodes untuk Input Data
+    input_reward [label="Input Data Reward:\n- Nama Item\n- Rule Item\n- Feedback\n- Gambar\n- Poin"];
+    
+    input_misi [label="Input Data Misi:\n- Nama Misi\n- Deskripsi\n- Target\n- Deadline\n- Poin"];
+    
+    input_pembelian [label="Input Data Pembelian:\n- Nama Produk\n- Deskripsi\n- Stok\n- Harga Poin\n- Gambar"];
+    
+    input_konsultasi [label="Input Data Konsultasi:\n- Jenis Konsultasi\n- Jadwal\n- Durasi\n- Biaya Poin"];
+    
+    // Nodes untuk Validasi dan Penyimpanan
+    validasi [label="Validasi Input", shape=diamond];
+    simpan [label="Simpan Data"];
+    notif [label="Kirim Notifikasi\nke Admin"];
+    end [label="End", shape=circle];
+    
+    // Alur utama
+    start -> login;
+    login -> menu;
+    menu -> pilih_jenis;
+    
+    // Alur pemilihan jenis
+    pilih_jenis -> reward [label="Reward"];
+    pilih_jenis -> misi [label="Misi"];
+    pilih_jenis -> pembelian [label="Pembelian"];
+    pilih_jenis -> konsultasi [label="Konsultasi"];
+    
+    // Alur input data
+    reward -> input_reward;
+    misi -> input_misi;
+    pembelian -> input_pembelian;
+    konsultasi -> input_konsultasi;
+    
+    // Alur validasi dan penyimpanan
+    input_reward -> validasi;
+    input_misi -> validasi;
+    input_pembelian -> validasi;
+    input_konsultasi -> validasi;
+    
+    validasi -> simpan [label="Valid"];
+    validasi -> pilih_jenis [label="Invalid"];
+    simpan -> notif;
+    notif -> end;
+    
+    // Subgraph untuk pengelompokan
+    subgraph cluster_input {
+        label="Input Data Item";
+        style=dotted;
+        input_reward;
+        input_misi;
+        input_pembelian;
+        input_konsultasi;
+    }
+}

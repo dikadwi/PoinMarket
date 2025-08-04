@@ -29,6 +29,12 @@ class TransaksiModel extends Model
         return $this->findAll();
     }
 
+    // Menampilkan item yang sudah divalidasi
+    public function getTransaksiValid()
+    {
+        return $this->whereIn('valid', ['Yes', 'No'])->findAll();
+    }
+    
     // Mengambil kode_jenis 105
     public function totalReward()
     {
@@ -57,6 +63,12 @@ class TransaksiModel extends Model
     public function getJenis($jenis = false)
     {
         return $this->where(['kode_jenis' => $jenis])->find();
+    }
+
+    // Validasi Item
+    public function getValidasiItem()
+    {
+        return $this->where('valid', 'Wait')->findAll();
     }
 
     // Join Table jenis transaksi

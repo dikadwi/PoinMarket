@@ -162,7 +162,7 @@
                      </a>
                  </li> -->
                  <li class="nav-item">
-                     <a href="/Validasi" class="nav-link">
+                     <a href="/Validasi_Pesanan" class="nav-link">
                          <i class="nav-icon fas fa-print"></i>
                          <p>
                             <!-- Admin : validasi Reward & Punishment (dari dosen) -->
@@ -189,7 +189,7 @@
                          </a>
                      </li> -->                    
                      <li class="nav-item">
-                         <a href="#/Validasi_item" class="nav-link">
+                         <a href="/Validasi_Item" class="nav-link">
                              <i class="nav-icon fas fa-print"></i>
                              <p>
                                 <!-- Admin : Validasi item yang dicreate dosen -->
@@ -197,14 +197,16 @@
                              </p>
                          </a>
                      </li>
-                     <li class="nav-item">
+                     <!-- <li class="nav-item">
                          <a href="/Quis" class="nav-link">
                              <i class="nav-icon fas fa-edit"></i>
                              <p>
                                  Data Quis
                              </p>
                          </a>
-                     </li>
+                     </li> -->
+                <?php endif ?>
+                <?php if (in_groups(['superadmin'])) : ?>
                      <li class="nav-item">
                          <a href="/cms" class="nav-link">
                              <i class="nav-icon fas fa-chalkboard-teacher"></i>
@@ -213,13 +215,14 @@
                              </p>
                          </a>
                      </li>
-                 <?php endif ?>
-                 <li class="nav-item">
+                     <!-- <li class="nav-item">
                      <a href="/messages" class="nav-link">
                          <i class="nav-icon fas fa-envelope"></i>
                          <p>Pesan</p>
                      </a>
-                 </li>
+                    </li> -->
+                 <?php endif ?>
+                
              </ul>
          </nav>
          <!-- /.sidebar-menu -->

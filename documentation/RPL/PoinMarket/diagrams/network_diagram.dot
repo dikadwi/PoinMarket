@@ -1,0 +1,110 @@
+digraph network_diagram {
+    rankdir=TB;
+    splines=ortho;
+    nodesep=1.2;
+    ranksep=1.2;
+    
+    node [fontname="Arial", fontsize=10, shape=box, style=filled];
+    edge [fontname="Arial", fontsize=9];
+
+    // Zona Publik
+    subgraph cluster_public {
+        label="Zona Publik";
+        style=filled;
+        color=lightgrey;
+        
+        client [label="Perangkat Pengguna\n(Browser/Mobile)", fillcolor=lightblue];
+        dns [label="DNS Server\n(Domain PoinMarket)", fillcolor=lightblue];
+        cdn [label="CDN\n(Aset Statis)", fillcolor=lightblue];
+    }
+
+    // Zona DMZ
+    subgraph cluster_dmz {
+        label="DMZ (Demilitarized Zone)";
+        style=filled;
+        color=lightgreen;
+        
+        lb [label="Load Balancer\n(Nginx)", fillcolor=white];
+        waf [label="Web Application Firewall", fillcolor=white];
+        proxy [label="Reverse Proxy", fillcolor=white];
+    }
+
+    // Zona Aplikasi
+    subgraph cluster_app {
+        label="Zona Aplikasi";
+        style=filled;
+        color=lightyellow;
+        
+        web [label="Web Server\n(Apache/XAMPP)", fillcolor=white];
+        app [label="Aplikasi PoinMarket\n(CodeIgniter 4)", fillcolor=white];
+        cache [label="Cache Server\n(Redis)", fillcolor=white];
+        session [label="Session Storage\n(Redis)", fillcolor=white];
+    }
+
+    // Zona Database
+    subgraph cluster_db {
+        label="Zona Database";
+        style=filled;
+        color=lightpink;
+        
+        db_master [label="Database Master\n(MySQL/MariaDB)", fillcolor=white];
+        db_slave [label="Database Slave\n(Replikasi)", fillcolor=white];
+        backup [label="Backup Storage", fillcolor=white];
+    }
+
+    // Zona Keamanan
+    subgraph cluster_security {
+        label="Zona Keamanan";
+        style=filled;
+        color=lightcyan;
+        
+        fw [label="Firewall", fillcolor=white];
+        ids [label="Intrusion Detection\nSystem", fillcolor=white];
+        log [label="Log Server", fillcolor=white];
+        monitor [label="Monitoring System", fillcolor=white];
+    }
+
+    // Koneksi Internet
+    internet [label="Internet", shape=cloud, fillcolor=white];
+
+    // Hubungan antar komponen
+    internet -> dns [dir=both];
+    internet -> cdn [dir=both];
+    client -> internet [dir=both];
+    
+    dns -> lb [dir=both];
+    cdn -> lb [dir=both];
+    
+    lb -> waf;
+    waf -> proxy;
+    proxy -> web;
+    
+    web -> app [dir=both];
+    app -> cache [dir=both];
+    app -> session [dir=both];
+    
+    app -> db_master [dir=both];
+    db_master -> db_slave;
+    db_master -> backup;
+    
+    // Koneksi keamanan
+    fw -> {lb waf proxy web app db_master} [style=dotted];
+    ids -> {lb waf proxy web app db_master} [style=dotted];
+    {lb waf proxy web app db_master} -> log [style=dotted];
+    {lb waf proxy web app db_master} -> monitor [style=dotted];
+
+    // Label untuk koneksi
+    edge [color=blue, label="HTTPS"];
+    client -> internet;
+    internet -> lb;
+    
+    edge [color=green, label="HTTP"];
+    proxy -> web;
+    
+    edge [color=red, label="MySQL"];
+    app -> db_master;
+    
+    edge [color=orange, label="Redis"];
+    app -> cache;
+    app -> session;
+}

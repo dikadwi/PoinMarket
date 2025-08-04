@@ -1,0 +1,113 @@
+digraph PoinMarket_Dosen {
+    rankdir=TB;
+    node [shape=record, fontname="Arial"];
+    
+    subgraph cluster_dosen {
+        label="Dosen Role Architecture";
+        style=filled;
+        color=lightgrey;
+        
+        // Dashboard Components
+        dashboard [label="{Dashboard Dosen|{Student Stats|Point Overview|Badge Summary}}"];
+        
+        // Point Management
+        point_management [label="{Point Management|{Award Points|Deduct Points|Point History|Point Rules}}"];
+        
+        // Student Evaluation
+        student_evaluation [label="{Student Evaluation|{Performance Review|Achievement Tracking|Progress Monitor|Feedback System}}"];
+        
+        // Badge System
+        badge_system [label="{Badge System|{Create Badges|Assign Badges|Badge Categories|Achievement Levels}}"];
+        
+        // Reports
+        reports [label="{Evaluation Reports|{Student Reports|Point Reports|Badge Reports|Performance Analysis}}"];
+    }
+    
+    // Business Logic
+    subgraph cluster_business {
+        label="Business Logic";
+        style=filled;
+        color=lightblue;
+        
+        // Point Logic
+        point_logic [label="{Point Logic|{Calculation Engine|History Tracking|Rule Processing}}"];
+        
+        // Evaluation Logic
+        evaluation_logic [label="{Evaluation Logic|{Performance Metrics|Progress Tracking|Feedback Processing}}"];
+        
+        // Badge Logic
+        badge_logic [label="{Badge Logic|{Achievement Rules|Badge Assignment|Level Management}}"];
+    }
+    
+    // Data Access
+    subgraph cluster_data {
+        label="Data Access";
+        style=filled;
+        color=lightgreen;
+        
+        // Student Data
+        student_db [label="Students DB"];
+        
+        // Point Data
+        point_db [label="Points DB"];
+        
+        // Badge Data
+        badge_db [label="Badges DB"];
+        
+        // Evaluation Data
+        evaluation_db [label="Evaluations DB"];
+    }
+    
+    // Notification System
+    subgraph cluster_notification {
+        label="Notification System";
+        style=filled;
+        color=pink;
+        
+        notification_service [label="{Notification Service|{Point Updates|Badge Awards|Feedback Alerts}}"];
+        email_service [label="Email Service"];
+    }
+    
+    // Relationships
+    dashboard -> point_management;
+    dashboard -> student_evaluation;
+    dashboard -> badge_system;
+    
+    point_management -> point_logic;
+    student_evaluation -> evaluation_logic;
+    badge_system -> badge_logic;
+    
+    point_logic -> point_db;
+    evaluation_logic -> evaluation_db;
+    badge_logic -> badge_db;
+    evaluation_logic -> student_db;
+    
+    point_logic -> notification_service;
+    badge_logic -> notification_service;
+    evaluation_logic -> notification_service;
+    notification_service -> email_service;
+    
+    // Access Control
+    subgraph cluster_access {
+        label="Access Control";
+        style=filled;
+        color=lightyellow;
+        
+        point_access [label="Point Management Access"];
+        evaluation_access [label="Evaluation Access"];
+        badge_access [label="Badge Management Access"];
+    }
+    
+    // Access Relationships
+    point_management -> point_access;
+    student_evaluation -> evaluation_access;
+    badge_system -> badge_access;
+    
+    // Rankings
+    {rank=same; dashboard}
+    {rank=same; point_management student_evaluation badge_system}
+    {rank=same; point_logic evaluation_logic badge_logic}
+    {rank=same; student_db point_db badge_db evaluation_db}
+    {rank=same; notification_service email_service}
+    {rank=same; point_access evaluation_access badge_access}
+}

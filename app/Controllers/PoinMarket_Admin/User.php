@@ -75,71 +75,159 @@ class User extends BaseController
 
     public function save_Users()
     {
-        if (!$this->validate([
-            'username' => 'required|is_unique[users.username]',
-            'email' => 'required|valid_email',
-        ])) {
-            session()->setFlashdata("gagal", "Data Sudah Ada !");
+        try {
+            $db = \Config\Database::connect();
+            $db->transStart();
+
+            // Ambil data dari Form
+            $email = $this->request->getPost('email');
+            $username = $this->request->getPost('username');
+            $password = 'loginsaja'; //Password Default
+
+            // Generate token untuk user baru
+            $token = bin2hex(random_bytes(32));
+
+            // Gunakan Password class dari Myth\Auth untuk hash password
+            $hashedPassword = \Myth\Auth\Password::hash($password);
+
+            // Simpan data ke tabel users terlebih dahulu
+            $userData = [
+                'email' => $email,
+                'username' => $username,
+                'password_hash' => $hashedPassword,
+                'created_at' => date('Y-m-d H:i:s'),
+                'active' => 1,
+                'token' => $token
+            ];
+
+            // Insert ke tabel users
+            $userBuilder = $db->table('users');
+            $userBuilder->insert($userData);
+            
+            // Ambil ID user yang baru dibuat
+            $userId = $db->insertID();
+
+            // Simpan relasi dengan role
+            $roleId = $this->request->getPost('role_id');
+            $roleData = [
+                'user_id' => $userId,
+                'group_id' => $roleId,
+            ];
+
+            // Insert ke tabel auth_groups_users
+            $roleBuilder = $db->table('auth_groups_users');
+            $roleBuilder->insert($roleData);
+
+            $db->transComplete();
+
+            if ($db->transStatus() === false) {
+                session()->setFlashdata("gagal", "Gagal menyimpan data user.");
+                return redirect()->back()->withInput();
+            }
+
+            session()->setFlashdata("sukses", "Data User Berhasil Ditambah dengan password default: loginsaja");
+            return redirect()->back();
+
+        } catch (\Exception $e) {
+            session()->setFlashdata("gagal", "Error: " . $e->getMessage());
             return redirect()->back()->withInput();
         }
+    }
 
-        // Ambil data dari Form
-        $id = $this->request->getPost('id');
-        $email = $this->request->getPost('email');
-        $username = $this->request->getPost('username');
-        $password = 'loginsaja';
+    public function update_User()
+    {
+        try {
+            $db = \Config\Database::connect();
+            $db->transStart();
 
-        // Simpan data ke tabel
-        $data = [
-            'id' => $id,
-            'email' => $email,
-            'username' => $username,
-            'password_hash' => password_hash($password, PASSWORD_DEFAULT),
-            'created_at' => date('Y-m-d H:i:s'),
-        ];
-        $this->UserModel->save($data);
-        $userId = $this->UserModel->insertID(); // Ambil ID pengguna yang baru ditambahkan
+            // Ambil data dari form
+            $userId = $this->request->getPost('user_id');
+            $email = $this->request->getPost('email');
+            $username = $this->request->getPost('username');
+            $roleId = $this->request->getPost('role_id');
+            $password = $this->request->getPost('password');
 
-        // Simpan relasi dengan role
-        $roleId = $this->request->getPost('role_id');
-        $db = \Config\Database::connect();
-        $roleBuilder = $db->table('auth_groups_users');
-        $roleData = [
-            'user_id' => $userId,
-            'group_id' => $roleId,
-        ];
-        $roleBuilder->insert($roleData);
+            // Siapkan data update
+            $userData = [
+                'email' => $email,
+                'username' => $username,
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
 
-        session()->setFlashdata("sukses", "Data Berhasil Ditambah.");
-        return redirect()->back();
+            // Jika password diisi, update password
+            if (!empty($password)) {
+                $userData['password_hash'] = \Myth\Auth\Password::hash($password);
+            }
+
+            // Update data user
+            $userBuilder = $db->table('users');
+            $userBuilder->where('id', $userId);
+            $userBuilder->update($userData);
+
+            // Update role user
+            $roleBuilder = $db->table('auth_groups_users');
+            $roleBuilder->where('user_id', $userId);
+            $roleBuilder->update(['group_id' => $roleId]);
+
+            $db->transComplete();
+
+            if ($db->transStatus() === false) {
+                session()->setFlashdata("gagal", "Gagal mengupdate data user.");
+                return redirect()->back();
+            }
+
+            session()->setFlashdata("sukses", "Data User Berhasil Diperbarui.");
+            return redirect()->back();
+
+        } catch (\Exception $e) {
+            session()->setFlashdata("gagal", "Error: " . $e->getMessage());
+            return redirect()->back();
+        }
     }
 
     // Hanya relasi yang terhapus, data di tabel Users belum terhapus
     public function delete_User($id)
     {
-        // Cek apakah user dengan ID tersebut ada
-        $user = $this->UserModel->find($id);
-        if (!$user) {
-            session()->setFlashdata("gagal", "User dengan ID $id tidak ditemukan!");
+        try {
+            // Mulai transaksi database
+            $db = \Config\Database::connect();
+            $db->transStart();
+
+            // Cek apakah user dengan ID tersebut ada
+            $builder = $db->table('users');
+            $user = $builder->where('id', $id)->get()->getRow();
+            
+            if (!$user) {
+                session()->setFlashdata("gagal", "User dengan ID $id tidak ditemukan!");
+                return redirect()->back();
+            }
+
+            // Hapus relasi role dari auth_groups_users berdasarkan user_id
+            $roleBuilder = $db->table('auth_groups_users');
+            $roleBuilder->where('user_id', $user->id);
+            $roleBuilder->delete();
+
+            // Hapus user dari tabel users berdasarkan id
+            $userBuilder = $db->table('users');
+            $userBuilder->where('id', $user->id);
+            $userBuilder->delete();
+
+            // Commit transaksi jika semua operasi berhasil
+            $db->transComplete();
+
+            if ($db->transStatus() === false) {
+                // Jika ada error dalam transaksi
+                session()->setFlashdata("gagal", "Terjadi kesalahan saat menghapus user.");
+                return redirect()->back();
+            }
+
+            session()->setFlashdata("sukses", "User dengan username {$user->username} berhasil dihapus.");
+            return redirect()->back();
+
+        } catch (\Exception $e) {
+            // Tangkap error jika terjadi
+            session()->setFlashdata("gagal", "Gagal menghapus user: " . $e->getMessage());
             return redirect()->back();
         }
-
-        // Hapus relasi role dari auth_groups_users
-        $db = \Config\Database::connect();
-        $roleBuilder = $db->table('auth_groups_users');
-        $roleBuilder->where('user_id', $id);
-        $roleBuilder->delete();
-
-        // Hapus user dari tabel users
-        $deleteResult = $this->UserModel->delete($id);
-
-        // Cek apakah penghapusan berhasil
-        if ($deleteResult) {
-            // Berikan flash message dengan nama username
-            session()->setFlashdata("sukses", "User  dengan username {$user->username} berhasil dihapus.");
-        } else {
-            session()->setFlashdata("gagal", "Gagal menghapus user dengan ID $id.");
-        }
-        return redirect()->back();
     }
 }

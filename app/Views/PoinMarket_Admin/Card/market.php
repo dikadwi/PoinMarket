@@ -180,8 +180,9 @@ foreach ($grouped_transaksi as $kode_jenis => $transactions) :
                                 </button>
                             </div>
 
+                            <!-- Jadi Hapus In groups karena semua memiliki akses, hanya bedakan menggunakan filter / if -->
                             <!-- Dosen Hanya bisa edit dan hapus berdasarkan itemnya dan tidak bisa edit punishment -->
-                            <!-- Tombol Edit (Hanya untuk Admin & Dosen) -->
+                            <!-- Tombol Edit (Superadmin | Admin & Dosen hanya mengedit item yang di create) -->
                             <?php if (in_groups(['superadmin', 'dosen'])) : ?>
                                 <?php if (($t['kode_jenis'] != '103' && in_groups(['dosen']) && $t['creator'] == user()->username) || in_groups(['superadmin'])) : ?>
                                     <div class="col-6 col-md-3 mb-2 mb-md-0">
@@ -192,18 +193,9 @@ foreach ($grouped_transaksi as $kode_jenis => $transactions) :
                                     </div>
                                 <?php endif; ?>
                             <?php endif; ?>
-                            <!-- Tombol Hapus (Hanya untuk SuperAdmin & Admin) -->
-                            <?php if (in_groups(['superadmin', 'admin'])) : ?>
-                                <!-- Tombol Validasi -->
-                                <div class="col-6 col-md-3 mb-2 mb-md-0">
-                                    <button type="button" class="btn btn-secondary btn-block d-flex flex-column align-items-center" data-toggle="modal" data-target="#modalValidasi<?= esc($t['id_transaksi']) ?>">
-                                        <i class="fas fa-check-circle"></i> <!-- Ikon di atas teks -->
-                                        <span class="d-none d-md-inline"> Validasi</span> <!-- Teks di bawah ikon -->
-                                    </button>
-                                </div>
-                            <?php endif; ?>
-                            <!-- Tombol Hapus (Hanya untuk SuperAdmin & Admin) -->
-                            <?php if (in_groups(['superadmin', 'dosen'])) : ?>
+                            <!-- Tombol Hapus (Hanya untuk SuperAdmin| Admin & Dosen hanya menghapus item yang di create) -->
+                            <!-- Tombol Hapus pada Market Management berfungsi untuk menonaktifkan Item -->
+                            <?php if (in_groups(['superadmin','dosen'])) : ?>
                                 <?php if (($t['creator'] == user()->username && in_groups(['dosen'])) || in_groups(['superadmin'])) : ?>
                                     <div class="col-6 col-md-3 mb-2 mb-md-0">
                                         <button href="/Jenis_Transaksi/delete/<?= $t['id_transaksi']; ?>" class="btn btn-danger btn-hapus btn-block d-flex flex-column align-items-center">
@@ -226,53 +218,107 @@ foreach ($grouped_transaksi as $kode_jenis => $transactions) :
     <div class="modal fade" id="modalDetail<?php echo $t['id_transaksi']; ?>">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel"><?= $t['nama_transaksi']; ?> </h5>
+            <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-list mr-2"></i>Detail <b><?= $t['nama_transaksi']; ?></b>
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
-                    <div class="col-lg-13">
-                        <div class="card mb-3">
-                            <div class="row g-0">
-                                <div class="col-md-12">
-                                    <div class="card-body">
-                                        <ul class="list-group list-group-flush">
-                                            <h5 class="card-title"><b>Id Transaksi :</b></h5>
-                                            <li class="list-group-item">
-                                                <h4><?= $t['id_transaksi']; ?></h4>
-                                            </li>
-                                            <h5 class="card-title"><b>Nama :</b></h5>
-                                            <li class="list-group-item">
-                                                <h4><?= $t['nama_transaksi']; ?></h4>
-                                            </li>
-                                            <h5 class="card-title"><b>Detail :</b></h5>
-                                            <li class="list-group-item">
-                                                <h4><?= $t['detail']; ?></h4>
-                                            </li>
-                                            <h5 class="card-title"><b>Keterangan :</b></h5>
-                                            <li class="list-group-item">
-                                                <h4><?= $t['keterangan']; ?></h4>
-                                            </li>
-                                            <h5 class="card-title"><b>Poin :</b></h5>
-                                            <li class="list-group-item">
-                                                <h4><?= $t['poin_digunakan']; ?></h4>
-                                            </li>
-                                        </ul>
-                                    </div>
+                <div class="modal-body" style="max-height: 450px; overflow-y: auto;">
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-hashtag mr-2"></i>Id Transaksi
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $t['id_transaksi']; ?>" readonly>
+                        </div>
+                    </div>  
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-hashtag mr-2"></i>Nama Item
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $t['nama_transaksi']; ?>" readonly>
+                        </div>
+                    </div>    
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-layer-group mr-2"></i>Rule Item
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $t['detail']; ?>" readonly>
+                        </div>
+                    </div>    
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-layer-group mr-2"></i>Feedback
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $t['keterangan']; ?>" readonly>
+                        </div>
+                    </div>  
+                    <?php if (in_array($t['kode_jenis'], ['102', '103', '105', '106'])) : ?>
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-wallet mr-2"></i>Point Harga
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-coins"></i></span>
                                 </div>
+                                <input type="text" class="form-control" value="<?= $t['poin_digunakan']; ?> Point" readonly>
                             </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
+
+                    <!-- Reward Untuk Kode Jenis 101 dan 105 -->
+                    <?php if (in_array($t['kode_jenis'], ['101', '105'])) : ?>
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-gift mr-2"></i>Reward
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-coins"></i></span>
+                                </div>
+                                <input type="text" class="form-control" value="<?= $t['poin_diberikan']; ?> Point" readonly>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-user mr-2"></i>Creator
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $t['creator']; ?>" readonly>
+                        </div>
+                    </div>  
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <i class="fas fa-times mr-2"></i> Tutup
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-
 <?php endforeach; ?>
 
 <!--Data Modal Box Aktivasi Item-->

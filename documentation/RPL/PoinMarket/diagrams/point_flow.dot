@@ -1,0 +1,74 @@
+digraph PointFlow {
+    // Graph settings
+    rankdir=TB;
+    node [shape=box, style=rounded, fontname="Arial"];
+    edge [fontname="Arial", fontsize=10];
+
+    // Start node
+    start [shape=oval, label="Saldo Poin\nMahasiswa"];
+
+    // Point Addition Events
+    add_points [label="Penambahan Poin", style=filled, fillcolor=lightgreen];
+    sub_points [label="Pengurangan Poin", style=filled, fillcolor=lightpink];
+
+    // Addition Sources
+    reward_add [label="Reward\n- Prestasi Akademik\n- Prestasi Non-Akademik\n- Keaktifan Organisasi"];
+    
+    mission_add [label="Misi\n- Tugas Khusus\n- Project\n- Kegiatan Kampus"];
+
+    // Subtraction Sources
+    purchase_sub [label="Pembelian\n- Barang/Merchandise\n- Voucher\n- Layanan"];
+    
+    consult_sub [label="Konsultasi\n- Konsultasi Akademik\n- Bimbingan Karir\n- Mentoring"];
+    
+    punishment_sub [label="Hukuman\n- Pelanggaran Akademik\n- Pelanggaran Tata Tertib\n- Ketidakhadiran"];
+
+    // Validation Process
+    validate_add [label="Validasi Admin\nPenambahan Poin", style="rounded,filled", fillcolor=lightblue];
+    validate_sub [label="Validasi Admin\nPengurangan Poin", style="rounded,filled", fillcolor=lightblue];
+
+    // Point Update
+    update_balance [label="Update Saldo Poin"];
+
+    // Notification
+    notify [label="Kirim Notifikasi\nke Admin dan Mahasiswa"];
+
+    // History
+    transaction_history [label="Riwayat Transaksi\n- Tanggal\n- Jenis\n- Jumlah Poin\n- Keterangan"];
+
+    // End node
+    end [shape=oval, label="Saldo Poin\nTerbaru"];
+
+    // Connections for Point Addition
+    start -> add_points;
+    start -> sub_points;
+    
+    add_points -> reward_add;
+    add_points -> mission_add;
+    
+    reward_add -> validate_add;
+    mission_add -> validate_add;
+
+    // Connections for Point Subtraction
+    sub_points -> purchase_sub;
+    sub_points -> consult_sub;
+    sub_points -> punishment_sub;
+    
+    purchase_sub -> validate_sub;
+    consult_sub -> validate_sub;
+    punishment_sub -> validate_sub;
+
+    // Common Flow
+    validate_add -> update_balance;
+    validate_sub -> update_balance;
+    update_balance -> notify;
+    notify -> transaction_history;
+    transaction_history -> end;
+
+    // Validation Results
+    validate_add -> start [label="Ditolak", style=dashed];
+    validate_sub -> start [label="Ditolak", style=dashed];
+    
+    // Point Check
+    {rank=same; validate_sub, validate_add}
+}

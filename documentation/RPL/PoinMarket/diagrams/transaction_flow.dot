@@ -1,0 +1,32 @@
+digraph G {
+    // Pengaturan diagram
+    rankdir=LR;
+    node [shape=box, style=filled];
+    
+    // Node-node utama
+    start [label="Mulai", shape=circle];
+    browse [label="Browse Produk"];
+    cart [label="Keranjang"];
+    check [label="Cek Saldo"];
+    confirm [label="Konfirmasi"];
+    process [label="Proses"];
+    update [label="Update"];
+    end [label="Selesai", shape=circle];
+    
+    // Decision nodes
+    valid [label="Valid?", shape=diamond];
+    stock [label="Stok?", shape=diamond];
+    
+    // Alur utama
+    start -> browse;
+    browse -> cart;
+    cart -> check;
+    check -> valid;
+    valid -> confirm [label="Ya"];
+    valid -> cart [label="Tidak"];
+    confirm -> stock;
+    stock -> process [label="Ya"];
+    stock -> browse [label="Tidak"];
+    process -> update;
+    update -> end;
+}

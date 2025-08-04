@@ -1,0 +1,111 @@
+digraph PoinMarket_Simple_Component {
+    rankdir=TB;
+    compound=true;
+    splines=ortho;
+    nodesep=0.6;
+    ranksep=0.8;
+    
+    node [
+        shape=component,
+        style="filled,rounded",
+        fillcolor=white,
+        fontname="Arial",
+        fontsize=11,
+        margin="0.2,0.1"
+    ];
+    
+    edge [
+        fontname="Arial",
+        fontsize=9,
+        dir=forward
+    ];
+
+    // Presentation Layer
+    subgraph cluster_presentation {
+        label="Presentation Layer";
+        style=filled;
+        color=lightblue;
+        
+        web_ui [label="Web UI\n(HTML/CSS/JS)"];
+        admin_ui [label="Admin UI\n(AdminLTE)"];
+    }
+
+    // Application Layer
+    subgraph cluster_application {
+        label="Application Layer";
+        style=filled;
+        color=lightgreen;
+        
+        // Auth Module
+        auth [label="Authentication\n(Myth/Auth)"];
+        
+        // Core Modules
+        user_mgmt [label="User\nManagement"];
+        point_system [label="Point\nSystem"];
+        marketplace [label="Marketplace"];
+        consultation [label="Consultation"];
+    }
+
+    // Service Layer
+    subgraph cluster_services {
+        label="Service Layer";
+        style=filled;
+        color=lightpink;
+        
+        notification [label="Notification\nService"];
+        security [label="Security\nService"];
+        logging [label="Logging\nService"];
+    }
+
+    // Data Layer
+    subgraph cluster_data {
+        label="Data Layer";
+        style=filled;
+        color=lightyellow;
+        
+        mysql [label="MySQL\nDatabase"];
+        redis [label="Redis\nCache"];
+        storage [label="File\nStorage"];
+    }
+
+    // External Services
+    subgraph cluster_external {
+        label="External Services";
+        style=filled;
+        color=lightgrey;
+        
+        email [label="Email\nService"];
+        payment [label="Payment\nGateway"];
+    }
+
+    // Main Flow
+    edge [color="#2E86C1"];
+    {web_ui admin_ui} -> auth;
+    auth -> user_mgmt;
+    user_mgmt -> {point_system marketplace consultation};
+    
+    // Service Integration
+    edge [color="#27AE60"];
+    {point_system marketplace consultation} -> notification;
+    {auth user_mgmt} -> security;
+    {point_system marketplace} -> logging;
+    
+    // Data Access
+    edge [color="#8E44AD"];
+    {point_system marketplace consultation} -> mysql;
+    {auth point_system} -> redis;
+    {marketplace consultation} -> storage;
+    
+    // External Integration
+    edge [color="#E74C3C", style=dashed];
+    notification -> email;
+    marketplace -> payment;
+
+    // Layout
+    {rank=same; web_ui admin_ui}
+    {rank=same; auth user_mgmt}
+    {rank=same; point_system marketplace consultation}
+    {rank=same; notification security logging}
+    {rank=same; mysql redis storage}
+    {rank=same; email payment}
+}

@@ -1,0 +1,122 @@
+digraph PoinMarket_Deployment {
+    rankdir=TB;
+    compound=true;
+    splines=ortho;
+    nodesep=0.6;
+    ranksep=0.8;
+    
+    node [
+        shape=box,
+        style="filled,rounded",
+        fontname="Arial",
+        fontsize=11,
+        margin="0.2,0.1"
+    ];
+    
+    edge [
+        fontname="Arial",
+        fontsize=9,
+        dir=forward
+    ];
+
+    // Client Devices
+    subgraph cluster_client {
+        label="Client Devices";
+        style=filled;
+        color=lightblue;
+        
+        browser [label="Web Browser\n(Chrome, Firefox, Safari)\nHTML5, CSS3, JavaScript"];
+        mobile [label="Mobile Browser\n(Responsive Design)"];
+    }
+
+    // Web Server
+    subgraph cluster_webserver {
+        label="Web Server";
+        style=filled;
+        color=lightgreen;
+        
+        apache [label="Apache Web Server"];
+        php [label="PHP 7.4+"];
+        codeigniter [label="CodeIgniter 4\nFramework"];
+        
+        subgraph cluster_apps {
+            label="Applications";
+            style=filled;
+            color=white;
+            
+            auth [label="Myth/Auth"];
+            core [label="Core Application"];
+            api [label="REST API"];
+        }
+    }
+
+    // Database Server
+    subgraph cluster_dbserver {
+        label="Database Server";
+        style=filled;
+        color=lightpink;
+        
+        mysql [label="MySQL/MariaDB\nDatabase"];
+        redis [label="Redis Cache\nServer"];
+    }
+
+    // File Storage
+    subgraph cluster_storage {
+        label="Storage Server";
+        style=filled;
+        color=lightyellow;
+        
+        files [label="File Storage\n(Documents, Images)"];
+        backup [label="Backup Storage"];
+    }
+
+    // External Services
+    subgraph cluster_external {
+        label="External Services";
+        style=filled;
+        color=lightgrey;
+        
+        email [label="Email Server\n(SMTP)"];
+        payment [label="Payment Gateway"];
+    }
+
+    // Network Connections
+    subgraph cluster_network {
+        label="Network";
+        style=filled;
+        color=white;
+        
+        load_balancer [label="Load Balancer\n(Optional)"];
+        firewall [label="Firewall"];
+    }
+
+    // Connections
+    edge [color="#2E86C1"];
+    {browser mobile} -> load_balancer [label="HTTPS"];
+    load_balancer -> firewall;
+    firewall -> apache;
+    
+    edge [color="#27AE60"];
+    apache -> php;
+    php -> codeigniter;
+    codeigniter -> {auth core api};
+    
+    edge [color="#8E44AD"];
+    {auth core api} -> mysql;
+    {auth core} -> redis;
+    core -> files;
+    
+    edge [color="#E74C3C", style=dashed];
+    core -> email [label="SMTP"];
+    core -> payment [label="API"];
+    mysql -> backup [label="Backup"];
+
+    // Layout
+    {rank=same; browser mobile}
+    {rank=same; load_balancer firewall}
+    {rank=same; apache php codeigniter}
+    {rank=same; auth core api}
+    {rank=same; mysql redis}
+    {rank=same; files backup}
+    {rank=same; email payment}
+}

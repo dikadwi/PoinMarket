@@ -199,6 +199,10 @@ class AuthController extends Controller
         $allowedPostFields = array_merge(['password'], $this->config->validFields, $this->config->personalFields);
         $user              = new User($this->request->getPost($allowedPostFields));
 
+        // Generate token for new user
+        $token = bin2hex(random_bytes(32));
+        $user->token = $token;
+
         $this->config->requireActivation === null ? $user->activate() : $user->generateActivateHash();
 
         // Ensure default group gets assigned if set

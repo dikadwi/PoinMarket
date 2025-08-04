@@ -10,9 +10,10 @@
                     <div class="row">
                         <div class="col-md-6 text-center">
                             <!-- Kolom Gambar -->
-                            <?php if ($t['badges']) : ?>
-                                <img src="data:image/png;base64,<?= base64_encode($t['badges']); ?>" alt="Badge Image" width="100">
-                            <?php endif; ?>
+                            <img src="<?= base_url('uploads/badges/' . $t['badges']); ?>"
+                            class="card-img-top"
+                            alt="Gambar_Item"
+                            style="width: 100%; height: auto;">
                         </div>
                         <div class="col-md-6">
                             <!-- Kolom Teks -->
@@ -50,49 +51,74 @@
     <div class="modal fade" id="modalDetail<?php echo $b['id_badges']; ?>">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Detail Badges</h5>
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-list mr-2"></i>Detail Badges
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" style="max-height: 450; overflow-y: auto;">
-                    <div class="col-lg-13">
-                        <div class="row g-0">
-                            <div class="col-md-12">
-                                <div class="card-body">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">
-                                            <center>
-                                                <?php if ($b['badges']) : ?>
-                                                    <img src="data:image/png;base64,<?= base64_encode($b['badges']); ?>" alt="Badge Image" width="100">
-                                                <?php endif; ?>
-                                            </center>
-                                        </li>
-                                        <h5 class="card-title"><b>Nama :</b></h5>
-                                        <li class="list-group-item">
-                                            <h4><?= $b['nama']; ?></h4>
-                                        </li>
-                                        <h5 class="card-title"><b>Point :</b></h5>
-                                        <li class="list-group-item">
-                                            <h4><?= $b['point']; ?></h4>
-                                        </li>
-                                        <h5 class="card-title"><b>Detail :</b></h5>
-                                        <li class="list-group-item">
-                                            <h4><?= $b['detail']; ?></h4>
-                                        </li>
-                                        <h5 class="card-title"><b>Keterangan :</b></h5>
-                                        <li class="list-group-item">
-                                            <h4><?= $b['keterangan']; ?></h4>
-                                        </li>
-                                    </ul>
-                                </div>
+                <div class="modal-body" style="max-height: 450px; overflow-y: auto;">
+                    <div class="form-group text-center">
+                        <img src="<?= base_url('uploads/badges/' . $b['badges']); ?>"
+                            class="img-fluid"
+                            alt="Gambar_Item"
+                            style="width: 40%; height: auto;">
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-medal mr-2"></i>Nama
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-tag"></i></span>
                             </div>
+                            <input type="text" class="form-control" value="<?= $b['detail']; ?>" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-layer-group mr-2"></i>Level
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $b['nama']; ?>" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-coins mr-2"></i>Point
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-wallet"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $b['point']; ?>" readonly>
+                        </div>
+                    </div>                  
+
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-list mr-2"></i>Detail
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $b['keterangan']; ?>" readonly>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <i class="fas fa-times mr-2"></i> Tutup
+                    </button>
                 </div>
             </div>
         </div>
@@ -104,52 +130,105 @@
     <div class="modal fade" id="modalEdit<?php echo $b['id_badges']; ?>">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Edit Badges </h5>
+                <div class="modal-header bg-warning text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-edit mr-2"></i>Edit Badges
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body" style="max-height: 450px; overflow-y: auto;">
                     <form action="/Badges/update/<?= $b['id_badges']; ?>" method="post" enctype="multipart/form-data">
-                        <div class="form-group ">
-                            <label for="id" class="col-form-label"></label>
-                            <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $b['id_badges'] ?>" required>
+                    <div class="form-group ">
+                        <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $b['id_badges'] ?>" required>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <img src="<?= base_url('uploads/badges/' . $b['badges']); ?>"
+                            class="img-fluid"
+                            alt="Gambar_Item"
+                            style="width: 40%; height: auto;">
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-medal mr-2"></i>Nama
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $b['detail']; ?>" name="detail" required>
                         </div>
-                        <div class="form-group ">
-                            <center>
-                                <?php if ($b['badges']) : ?>
-                                    <img src="data:image/png;base64,<?= base64_encode($b['badges']); ?>" alt="Badge Image" width="100">
-                                <?php endif; ?>
-                            </center>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-layer-group mr-2"></i>Level
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $b['nama']; ?>" name="nama" required>
                         </div>
-                        <div class="form-group ">
-                            <label for="nama" class="col-form-label">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $b['nama'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-coins mr-2"></i>Point
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-wallet"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $b['point']; ?>" name="point" required >
                         </div>
-                        <div class="form-group ">
-                            <label for="point" class="col-form-label">Point</label>
-                            <input type="number" class="form-control" id="point" name="point" value="<?php echo $b['point'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+                    </div>                  
+
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-list mr-2"></i>Detail
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $b['keterangan']; ?>" name="keterangan" required>
                         </div>
-                        <div class="form-group ">
-                            <label for="detail" class="col-form-label">Detail</label>
-                            <input type="text" class="form-control" id="detail" name="detail" value="<?php echo $b['detail'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                        </div>
-                        <div class="form-group ">
-                            <label for="keterangan" class="col-form-label">Keterangan</label>
-                            <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?php echo $b['keterangan'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                        </div>
-                        <div class="form-group ">
-                            <label for="badges" class="col-form-label">Badges</label>
+                    </div>
+                
+                    <div class="form-group ">
+                        <label>
+                            <i class="fas fa-image mr-2"></i>Gambar 
+                        </label>
+                        <img src="<?= base_url('uploads/badges/' . $b['badges']); ?>" alt="Gambar" width="100" height="100">
+                        <div class="input-group">                          
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-file-image"></i></span>
+                            </div>
+                            <input type="hidden" name="badges_lama" value="<?= $b['badges']; ?>">
                             <input type="file" class="form-control" id="badges" name="badges">
                         </div>
+                        <small class="form-text text-muted">
+                            <i class="fas fa-info-circle"></i> 
+                            Kosongkan jika tidak ingin mengubah gambar.
+                        </small>
+                    </div>
+              
                 </div>
+
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Update</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save mr-2"></i> Simpan 
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <i class="fas fa-times mr-2"></i> Batal
+                            </button>
+                </div>       
+            </form> 
             </div>
-            </form>
         </div>
     </div>
 <?php endforeach ?>

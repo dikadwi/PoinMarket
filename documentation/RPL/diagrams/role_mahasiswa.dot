@@ -1,0 +1,142 @@
+digraph PoinMarket_Mahasiswa {
+    rankdir=TB;
+    node [shape=record, fontname="Arial"];
+    
+    subgraph cluster_mahasiswa {
+        label="Mahasiswa Role Architecture";
+        style=filled;
+        color=lightgrey;
+        
+        // Dashboard Components
+        dashboard [label="{Dashboard Mahasiswa|{Point Balance|Badge Collection|Mission Status}}"];
+        
+        // Wallet System
+        wallet_system [label="{Wallet System|{Point Balance|Transaction History|Point Usage|Transfer Points}}"];
+        
+        // Marketplace
+        marketplace [label="{Marketplace|{Product Catalog|Shopping Cart|Order History|Wishlist}}"];
+        
+        // Mission & Rewards
+        mission_system [label="{Mission & Rewards|{Active Missions|Complete Missions|Claim Rewards|Achievement Track}}"];
+        
+        // Consultation
+        consultation [label="{Consultation System|{Book Consultation|Chat System|Feedback|History}}"];
+    }
+    
+    // Business Logic
+    subgraph cluster_business {
+        label="Business Logic";
+        style=filled;
+        color=lightblue;
+        
+        // Wallet Logic
+        wallet_logic [label="{Wallet Logic|{Balance Management|Transaction Processing|Point Calculation}}"];
+        
+        // Market Logic
+        market_logic [label="{Market Logic|{Product Display|Cart Management|Order Processing}}"];
+        
+        // Mission Logic
+        mission_logic [label="{Mission Logic|{Progress Tracking|Reward Processing|Achievement Check}}"];
+        
+        // Chat Logic
+        chat_logic [label="{Chat Logic|{Message Handling|User Status|History Management}}"];
+    }
+    
+    // Data Access
+    subgraph cluster_data {
+        label="Data Access";
+        style=filled;
+        color=lightgreen;
+        
+        // Wallet Data
+        wallet_db [label="Wallet DB"];
+        
+        // Market Data
+        market_db [label="Market DB"];
+        
+        // Mission Data
+        mission_db [label="Mission DB"];
+        
+        // Chat Data
+        chat_db [label="Chat DB"];
+        
+        // Cache
+        cache [label="Redis Cache"];
+    }
+    
+    // Notification System
+    subgraph cluster_notification {
+        label="Notification System";
+        style=filled;
+        color=pink;
+        
+        notification_service [label="{Notification Service|{Transaction Alerts|Mission Updates|Chat Notifications}}"];
+        realtime_service [label="Real-time Updates"];
+    }
+    
+    // External Services
+    subgraph cluster_external {
+        label="External Services";
+        style=filled;
+        color=lightyellow;
+        
+        payment_service [label="Payment Service"];
+        chat_service [label="Chat Service"];
+    }
+    
+    // Relationships
+    dashboard -> wallet_system;
+    dashboard -> marketplace;
+    dashboard -> mission_system;
+    dashboard -> consultation;
+    
+    wallet_system -> wallet_logic;
+    marketplace -> market_logic;
+    mission_system -> mission_logic;
+    consultation -> chat_logic;
+    
+    wallet_logic -> wallet_db;
+    market_logic -> market_db;
+    mission_logic -> mission_db;
+    chat_logic -> chat_db;
+    
+    wallet_logic -> cache;
+    market_logic -> cache;
+    
+    wallet_logic -> notification_service;
+    market_logic -> notification_service;
+    mission_logic -> notification_service;
+    chat_logic -> notification_service;
+    
+    notification_service -> realtime_service;
+    
+    marketplace -> payment_service;
+    consultation -> chat_service;
+    
+    // Access Control
+    subgraph cluster_access {
+        label="Access Control";
+        style=filled;
+        color=lightcyan;
+        
+        wallet_access [label="Wallet Access"];
+        market_access [label="Market Access"];
+        mission_access [label="Mission Access"];
+        chat_access [label="Chat Access"];
+    }
+    
+    // Access Relationships
+    wallet_system -> wallet_access;
+    marketplace -> market_access;
+    mission_system -> mission_access;
+    consultation -> chat_access;
+    
+    // Rankings
+    {rank=same; dashboard}
+    {rank=same; wallet_system marketplace mission_system consultation}
+    {rank=same; wallet_logic market_logic mission_logic chat_logic}
+    {rank=same; wallet_db market_db mission_db chat_db cache}
+    {rank=same; notification_service realtime_service}
+    {rank=same; payment_service chat_service}
+    {rank=same; wallet_access market_access mission_access chat_access}
+}

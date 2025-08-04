@@ -191,7 +191,7 @@
                     <div class="card shadow-sm">
                         <div class="card-header bg-gradient-info">
                             <h3 class="card-title text-white mb-0">
-                                <i class="ion ion-pie-graph mr-2"></i>
+                                <i class="ion ion-pie-graph mr-2"></i> Grafik 
                             </h3>
                         </div>
                         <!-- Canvas untuk grafik donut -->
@@ -278,9 +278,12 @@
                                                         }
 
                                                         if ($selectedBadge !== null) {
-                                                            echo '<img src="data:image/png;base64,' . base64_encode($selectedBadge['badges']) . '" width="80">';
+                                                            echo '<img src="' . base_url('uploads/badges/' . $selectedBadge['badges']) . '" 
+                                                                     alt="Badge" 
+                                                                     class="img-fluid"
+                                                                     style="max-width: 70px; height: auto;">';
                                                         } else {
-                                                            echo 'Tidak ada badge';
+                                                            echo '<span class="badge badge-secondary">Tidak ada badge</span>';
                                                         }
                                                         ?>
                                                     </td>
@@ -325,7 +328,7 @@
                                                     <td><?= $i++; ?></td>
                                                     <td>
                                                         <?php if ($b['badges']) : ?>
-                                                            <center> <img src="data:image/png;base64,<?= base64_encode($b['badges']); ?>" alt="Badge Image" width="80"></center>
+                                                            <center> <img src="<?= base_url('uploads/badges/' . $b['badges']); ?>" alt="Badge Image" width="80"></center>
                                                         <?php endif; ?>
                                                     </td>
                                                     <td><?= $b['nama']; ?></td>
@@ -370,7 +373,10 @@
                                                     <td><?= $trx['nama_transaksi']; ?></td>
                                                     <td><?= $trx['detail']; ?></td>
                                                     <td><?= $trx['keterangan']; ?></td>
-                                                    <td><?= $trx['poin_digunakan']; ?></td>
+                                                    <!-- <td><?= $trx['poin_digunakan']; ?></td> -->
+                                                    <td><?= !empty($trx['poin_digunakan']) ? 
+                                                            number_format($trx['poin_digunakan'], 0, ',', '.') : 
+                                                            number_format($trx['poin_diberikan'], 0, ',', '.'); ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>
@@ -445,9 +451,12 @@
                                                             }
 
                                                             if ($selectedBadge !== null) {
-                                                                echo '<img src="data:image/png;base64,' . base64_encode($selectedBadge['badges']) . '" width="80">';
+                                                                echo '<img src="' . base_url('uploads/badges/' . $selectedBadge['badges']) . '" 
+                                                                         alt="Badge" 
+                                                                         class="img-fluid"
+                                                                         style="max-width: 70px; height: auto;">';
                                                             } else {
-                                                                echo 'Tidak ada badge';
+                                                                echo '<span class="badge badge-secondary">Tidak ada badge</span>';
                                                             }
                                                             ?>
                                                         </center>

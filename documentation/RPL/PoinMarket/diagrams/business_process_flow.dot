@@ -1,0 +1,36 @@
+digraph G {
+    // Pengaturan diagram
+    rankdir=TB;
+    node [shape=box, style=filled];
+    
+    // Proses Utama
+    poin [label="Manajemen Poin"];
+    market [label="Marketplace"];
+    konsul [label="Konsultasi"];
+    admin [label="Administrasi"];
+    
+    // Aktor
+    dosen [shape=circle];
+    mahasiswa [shape=circle];
+    staff [shape=circle];
+    
+    // Subproses
+    beri_poin [label="Pemberian Poin"];
+    validasi [label="Validasi"];
+    transaksi [label="Transaksi"];
+    jadwal [label="Jadwal"];
+    
+    // Hubungan
+    dosen -> beri_poin;
+    beri_poin -> validasi;
+    validasi -> poin;
+    
+    mahasiswa -> transaksi;
+    transaksi -> market;
+    
+    dosen -> jadwal;
+    jadwal -> konsul;
+    
+    staff -> admin;
+    admin -> {poin, market, konsul};
+}

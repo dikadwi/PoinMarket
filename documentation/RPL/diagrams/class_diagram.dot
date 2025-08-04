@@ -1,0 +1,33 @@
+digraph PoinMarket_ClassDiagram {
+    rankdir=BT;
+    node [shape=record];
+    
+    // User Classes
+    User [label="{User|+ id\l+ username\l+ email\l+ role\l|+ login()\l+ logout()\l}"];
+    
+    Superadmin [label="{Superadmin|+ permissions\l|+ manageUsers()\l+ configureSystem()\l}"];
+    Admin [label="{Admin|+ department\l|+ manageProducts()\l+ manageTransactions()\l}"];
+    Dosen [label="{Dosen|+ nip\l+ department\l|+ managePoints()\l+ evaluateStudent()\l}"];
+    Mahasiswa [label="{Mahasiswa|+ nim\l+ points\l+ wallet_balance\l|+ usePoints()\l+ accessMarketplace()\l}"];
+    
+    // Transaction Classes
+    Transaction [label="{Transaction|+ id\l+ user_id\l+ amount\l+ status\l|+ process()\l+ cancel()\l}"];
+    
+    Product [label="{Product|+ id\l+ name\l+ price\l+ stock\l|+ updateStock()\l}"];
+    
+    Point [label="{Point|+ id\l+ student_id\l+ amount\l+ type\l|+ add()\l+ deduct()\l}"];
+    
+    Notification [label="{Notification|+ id\l+ user_id\l+ message\l+ status\l|+ send()\l+ markAsRead()\l}"];
+    
+    // Relationships
+    edge [arrowhead=empty];
+    Superadmin -> User;
+    Admin -> User;
+    Dosen -> User;
+    Mahasiswa -> User;
+    
+    edge [arrowhead=diamond];
+    Transaction -> Product;
+    Transaction -> Point;
+    Transaction -> Notification;
+}

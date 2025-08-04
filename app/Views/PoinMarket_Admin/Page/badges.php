@@ -63,38 +63,88 @@
 <div class="modal fade" id="modalTambahBadges">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Tambah Badges</h5>
+        <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">
+                    <i class="fas fa-plus-circle mr-2"></i>Tambah Badges
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body" style="max-height: 450px; overflow-y: auto;">
                 <form action="/Badges" method="post" enctype="multipart/form-data">
-                    <div class="form-group ">
-                        <label for="nama" class="col-form-label">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
+                
+                    <div class="form-group">
+                        <label for="detail">
+                            <i class="fas fa-medal mr-2"></i>Nama Badges
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                            </div>
+                            <input type="text" class="form-control" id="detail" name="detail" 
+                                placeholder="Nama Badges" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
+                        </div>
                     </div>
-                    <div class="form-group ">
-                        <label for="point" class="col-form-label">Point</label>
-                        <input type="number" class="form-control" id="point" name="point" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
+
+                    <div class="form-group">
+                        <label for="nama">
+                            <i class="fas fa-layer-group mr-2"></i>Level
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                            </div>
+                            <input type="text" class="form-control" id="nama" name="nama" 
+                                placeholder="Level" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
+                        </div>
                     </div>
-                    <div class="form-group ">
-                        <label for="detail" class="col-form-label">Detail</label>
-                        <input type="text" class="form-control" id="detail" name="detail" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
+
+                    <div class="form-group">
+                        <label for="point">
+                            <i class="fas fa-coins mr-2"></i>Point
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-wallet"></i></span>
+                            </div>
+                            <input type="text" class="form-control" id="point" name="point" 
+                                placeholder="Point" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
+                        </div>
                     </div>
-                    <div class="form-group ">
-                        <label for="keterangan" class="col-form-label">Keterangan</label>
-                        <textarea class="form-control" id="keterangan" name="keterangan" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')"></textarea>
+
+                    <div class="form-group">
+                        <label for="keterangan">
+                            <i class="fas fa-list mr-2"></i>Detail 
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                            </div>
+                            <textarea class="form-control" id="keterangan" name="keterangan" 
+                                placeholder="Detail" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')"></textarea>
+                        </div>
                     </div>
-                    <div class="form-group ">
-                        <label for="badges" class="col-form-label">Badges(Upload Gambar)</label>
-                        <input type="file" class="form-control" id="badges" name="badges" accept="image/png, image/jpg, image/jpeg" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
+
+                    <div class="form-group">
+                        <label for="badges">
+                            <i class="fas fa-image mr-2"></i>Gambar 
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-file-image"></i></span>
+                            </div>
+                            <input type="file" class="form-control" id="badges" name="badges" accept="image/png, image/jpg, image/jpeg" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
+                        </div>
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Tambah</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Simpan
+                </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    <i class="fas fa-times"></i> Batal
+                </button>
             </div>
         </div>
         </form>

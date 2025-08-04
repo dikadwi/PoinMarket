@@ -1,0 +1,93 @@
+digraph PoinMarket_Use_Cases {
+    rankdir=LR;
+    node [shape=ellipse, fontname="Arial"];
+    actor [shape=box];
+    
+    // Actors
+    subgraph cluster_actors {
+        label="Actors";
+        style=filled;
+        color=lightgrey;
+        
+        superadmin [shape=box, label="Superadmin"];
+        admin [shape=box, label="Admin"];
+        dosen [shape=box, label="Dosen"];
+        mahasiswa [shape=box, label="Mahasiswa"];
+    }
+    
+    // Use Cases
+    subgraph cluster_superadmin {
+        label="Superadmin Use Cases";
+        style=filled;
+        color=lightblue;
+        
+        user_mgmt [label="User Management"];
+        sys_config [label="System Configuration"];
+        security [label="Security Management"];
+    }
+    
+    subgraph cluster_admin {
+        label="Admin Use Cases";
+        style=filled;
+        color=lightgreen;
+        
+        product_mgmt [label="Product Management"];
+        transaction_mgmt [label="Transaction Management"];
+        inventory_mgmt [label="Inventory Management"];
+    }
+    
+    subgraph cluster_dosen {
+        label="Dosen Use Cases";
+        style=filled;
+        color=lightpink;
+        
+        point_mgmt [label="Point Management"];
+        badge_mgmt [label="Badge Management"];
+        consultation [label="Consultation"];
+    }
+    
+    subgraph cluster_mahasiswa {
+        label="Mahasiswa Use Cases";
+        style=filled;
+        color=lightyellow;
+        
+        wallet [label="Wallet Management"];
+        marketplace [label="Marketplace Access"];
+        mission [label="Mission & Rewards"];
+        consult [label="Book Consultation"];
+    }
+    
+    // Shared Use Cases
+    subgraph cluster_shared {
+        label="Shared Use Cases";
+        style=filled;
+        color=lightgrey;
+        
+        auth [label="Authentication"];
+        notification [label="Notifications"];
+        profile [label="Profile Management"];
+    }
+    
+    // Relationships
+    superadmin -> user_mgmt;
+    superadmin -> sys_config;
+    superadmin -> security;
+    
+    admin -> product_mgmt;
+    admin -> transaction_mgmt;
+    admin -> inventory_mgmt;
+    
+    dosen -> point_mgmt;
+    dosen -> badge_mgmt;
+    dosen -> consultation;
+    
+    mahasiswa -> wallet;
+    mahasiswa -> marketplace;
+    mahasiswa -> mission;
+    mahasiswa -> consult;
+    
+    // Shared relationships
+    {superadmin, admin, dosen, mahasiswa} -> auth;
+    {superadmin, admin, dosen, mahasiswa} -> notification;
+    {superadmin, admin, dosen, mahasiswa} -> profile;
+}

@@ -1,0 +1,52 @@
+digraph PoinMarket_UseCase {
+    rankdir=LR;
+    node [shape=ellipse];
+    
+    // Actors
+    node [shape=actor];
+    Superadmin [label="Superadmin"];
+    Admin [label="Admin"];
+    Dosen [label="Dosen"];
+    Mahasiswa [label="Mahasiswa"];
+    
+    // Use Cases
+    node [shape=ellipse];
+    // Superadmin cases
+    manage_users [label="Manajemen User"];
+    system_config [label="Konfigurasi Sistem"];
+    monitor_activity [label="Monitor Aktivitas"];
+    
+    // Admin cases
+    manage_products [label="Manajemen Produk"];
+    manage_transactions [label="Manajemen Transaksi"];
+    manage_notifications [label="Kelola Notifikasi"];
+    
+    // Dosen cases
+    manage_points [label="Manajemen Poin"];
+    evaluate_students [label="Evaluasi Mahasiswa"];
+    give_badges [label="Pemberian Badge"];
+    
+    // Mahasiswa cases
+    wallet [label="Kelola Wallet"];
+    marketplace [label="Akses Marketplace"];
+    missions [label="Misi & Rewards"];
+    consultation [label="Konsultasi"];
+    
+    // Relationships
+    Superadmin -> manage_users;
+    Superadmin -> system_config;
+    Superadmin -> monitor_activity;
+    
+    Admin -> manage_products;
+    Admin -> manage_transactions;
+    Admin -> manage_notifications;
+    
+    Dosen -> manage_points;
+    Dosen -> evaluate_students;
+    Dosen -> give_badges;
+    
+    Mahasiswa -> wallet;
+    Mahasiswa -> marketplace;
+    Mahasiswa -> missions;
+    Mahasiswa -> consultation;
+}

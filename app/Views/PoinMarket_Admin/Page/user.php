@@ -74,43 +74,70 @@
 <div class="modal fade" id="modalTambahUser">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Tambah User</h5>
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">
+                    <i class="fas fa-user-plus mr-2"></i>Tambah User
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <form action="/User/save_Users" method="post" enctype="multipart/form-data">
             <div class="modal-body">
-                <form action="/User/save_Users" method="post" enctype="multipart/form-data">
-                    <!-- <div class="form-group">
-                        <label for="id" class="col-form-label">ID</label>
-                        <input type="number" class="form-control" id="id" name="id" readonly>
-                    </div> -->
                     <input type="hidden" name="id">
-                    <div class="form-group ">
-                        <label for="username" class="col-form-label">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
+                    <div class="form-group">
+                        <label for="username">
+                            <i class="fas fa-user mr-2"></i>Username
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                            </div>
+                            <input type="text" class="form-control" id="username" name="username" 
+                                placeholder="Username" required>
+                        </div>
                     </div>
-                    <div class="form-group ">
-                        <label for="email" class="col-form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')" oninput="setCustomValidity('')">
+
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="fas fa-envelope mr-2"></i>Email
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-at"></i></span>
+                            </div>
+                            <input type="email" class="form-control" id="email" name="email" 
+                                placeholder="Email" required>
+                        </div>
                     </div>
-                    <div class="form-group ">
-                        <label for="role" class="col-form-label">Role</label>
-                        <select class="form-control" name="role_id" required>
-                            <option value="">Pilih Role</option>
-                            <?php foreach ($roles as $role): ?>
-                                <option value="<?= $role->id ?>"><?= esc($role->name) ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                    
+                    <div class="form-group">
+                        <label for="role" class="col-form-label">
+                            <i class="fas fa-user-cog mr-2"></i>Role
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user-cog"></i></span>
+                            </div>
+                            <select class="form-control" name="role_id" required>
+                                <option value="">Pilih Role</option>
+                                <?php foreach ($roles as $role): ?>
+                                    <option value="<?= $role->id ?>"><?= esc($role->name) ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                     </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Tambah</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-            </div>
+                </div>
+                <div class="modal-footer">                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Simpan
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    <i class="fas fa-times"></i> Batal
+                    </button>
+                </div>
+            </form>
         </div>
-        </form>
     </div>
 </div>
 

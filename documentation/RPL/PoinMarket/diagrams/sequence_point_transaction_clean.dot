@@ -1,0 +1,87 @@
+digraph sequence_point_transaction {
+    rankdir=TB;
+    splines=ortho;
+    nodesep=1.2;
+    ranksep=0.8;
+    
+    node [shape=rect, style=filled, fillcolor=white, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9, dir=forward];
+
+    // Participants/Lifelines
+    subgraph cluster_participants {
+        label="";
+        style=invis;
+
+        student [label="Student"];
+        transaction_ui [label="Transaction\nUI"];
+        point_controller [label="Point\nController"];
+        wallet_service [label="Wallet\nService"];
+        transaction_model [label="Transaction\nModel"];
+        database [label="Database"];
+        notification [label="Notification\nService"];
+    }
+
+    // Transaction Process Messages
+    edge [color="#2E86C1"];
+    m1 [shape=point]; student -> transaction_ui [label="1. initiateTransaction(amount)"];
+    m2 [shape=point]; transaction_ui -> point_controller [label="2. processTransaction()"];
+    m3 [shape=point]; point_controller -> wallet_service [label="3. checkBalance()"];
+    m4 [shape=point]; wallet_service -> database [label="4. getBalance()"];
+    m5 [shape=point]; database -> wallet_service [label="5. currentBalance"];
+    m6 [shape=point]; wallet_service -> point_controller [label="6. balanceStatus"];
+    
+    // Conditional: If balance sufficient
+    edge [color="#27AE60"];
+    m7 [shape=point]; point_controller -> transaction_model [label="7. createTransaction()"];
+    m8 [shape=point]; transaction_model -> database [label="8. saveTransaction()"];
+    m9 [shape=point]; database -> transaction_model [label="9. transactionSaved"];
+    m10 [shape=point]; transaction_model -> point_controller [label="10. updateBalance()"];
+    m11 [shape=point]; point_controller -> wallet_service [label="11. deductPoints()"];
+    m12 [shape=point]; wallet_service -> database [label="12. updateBalance()"];
+    m13 [shape=point]; database -> wallet_service [label="13. balanceUpdated"];
+    
+    // Notification Process
+    edge [color="#8E44AD"];
+    m14 [shape=point]; point_controller -> notification [label="14. sendNotification()"];
+    m15 [shape=point]; notification -> database [label="15. saveNotification()"];
+    m16 [shape=point]; notification -> student [label="16. pushNotification()"];
+    m17 [shape=point]; point_controller -> transaction_ui [label="17. transactionComplete()"];
+    m18 [shape=point]; transaction_ui -> student [label="18. showSuccess()"];
+
+    // Activation boxes
+    node [shape=rect, style=filled, fillcolor=lightgrey, width=0.1, height=0.3];
+    
+    // Transaction activations
+    a1 [pos="2,2"]; a2 [pos="2,3"];
+    a3 [pos="3,3"]; a4 [pos="3,4"];
+    a5 [pos="4,4"]; a6 [pos="4,5"];
+    
+    // Balance check activations
+    a7 [pos="3,6"]; a8 [pos="3,7"];
+    a9 [pos="4,7"]; a10 [pos="4,8"];
+    
+    // Notification activations
+    a11 [pos="6,8"]; a12 [pos="6,9"];
+    a13 [pos="7,9"]; a14 [pos="7,10"];
+
+    // Lifelines (vertical lines)
+    edge [style=dashed, color=grey];
+    {rank=same; student transaction_ui point_controller wallet_service transaction_model database notification}
+    student -> student [weight=100];
+    transaction_ui -> transaction_ui [weight=100];
+    point_controller -> point_controller [weight=100];
+    wallet_service -> wallet_service [weight=100];
+    transaction_model -> transaction_model [weight=100];
+    database -> database [weight=100];
+    notification -> notification [weight=100];
+
+    // Notes
+    note_balance [shape=note, label="Check if student\nhas sufficient points", fillcolor=lightyellow];
+    note_balance -> m3;
+    
+    note_transaction [shape=note, label="Transaction includes:\n- Amount\n- Type\n- Description", fillcolor=lightyellow];
+    note_transaction -> m7;
+    
+    note_notification [shape=note, label="Notification sent to:\n- Student\n- Related parties", fillcolor=lightyellow];
+    note_notification -> m14;
+}

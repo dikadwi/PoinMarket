@@ -1,0 +1,93 @@
+digraph sequence_point_award {
+    rankdir=TB;
+    splines=polyline;
+    nodesep=0.6;
+    ranksep=0.4;
+    
+    node [shape=box, style=filled, fillcolor=white, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9, dir=forward];
+
+    // Participants on top level
+    subgraph cluster_top {
+        rank=same;
+        style=invis;
+        
+        dosen [label="Dosen"];
+        point_ui [label="Point UI"];
+        point_controller [label="Point\nController"];
+        wallet_service [label="Wallet\nService"];
+        database [label="Database"];
+        notification [label="Notification\nService"];
+        student [label="Student"];
+    }
+
+    // Point Award Flow
+    subgraph cluster_flow1 {
+        rank=same;
+        style=invis;
+        dosen -> point_ui [label="1. Input Point Award\n(student, points, reason)"];
+    }
+
+    subgraph cluster_flow2 {
+        rank=same;
+        style=invis;
+        point_ui -> point_controller [label="2. validateInput()"];
+    }
+
+    subgraph cluster_flow3 {
+        rank=same;
+        style=invis;
+        point_controller -> database [label="3. checkStudentExists()"];
+    }
+
+    subgraph cluster_flow4 {
+        rank=same;
+        style=invis;
+        database -> point_controller [label="4. student valid"];
+    }
+
+    subgraph cluster_flow5 {
+        rank=same;
+        style=invis;
+        point_controller -> wallet_service [label="5. addPoints()"];
+    }
+
+    subgraph cluster_flow6 {
+        rank=same;
+        style=invis;
+        wallet_service -> database [label="6. updateBalance()"];
+    }
+
+    subgraph cluster_flow7 {
+        rank=same;
+        style=invis;
+        database -> wallet_service [label="7. balance updated"];
+    }
+
+    subgraph cluster_flow8 {
+        rank=same;
+        style=invis;
+        point_controller -> database [label="8. logTransaction()"];
+    }
+
+    subgraph cluster_flow9 {
+        rank=same;
+        style=invis;
+        point_controller -> notification [label="9. createNotification()"];
+    }
+
+    subgraph cluster_flow10 {
+        rank=same;
+        style=invis;
+        notification -> student [label="10. send notification"];
+    }
+
+    subgraph cluster_flow11 {
+        rank=same;
+        style=invis;
+        notification -> dosen [label="11. confirmation"];
+    }
+
+    // Edge colors
+    edge [color="#2E86C1"];
+}

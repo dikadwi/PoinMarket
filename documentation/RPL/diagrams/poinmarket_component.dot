@@ -1,0 +1,210 @@
+digraph PoinMarket_ComponentDiagram {
+    rankdir=TB;
+    compound=true;
+    node [shape=component];
+    
+    // Client Layer
+    subgraph cluster_client {
+        label="Client Layer";
+        style=filled;
+        color=lightgrey;
+        
+        // Web Client Components
+        web_client [label="Web Browser\n(Client)"];
+        
+        // Client-side Libraries
+        subgraph cluster_client_libs {
+            label="Client Libraries";
+            style=filled;
+            color=white;
+            
+            jquery [label="jQuery"];
+            bootstrap [label="Bootstrap 4"];
+            adminlte [label="AdminLTE"];
+            datatables [label="DataTables"];
+            chartjs [label="Chart.js"];
+        }
+    }
+    
+    // Presentation Layer
+    subgraph cluster_presentation {
+        label="Presentation Layer";
+        style=filled;
+        color=lightblue;
+        
+        // View Components
+        views [label="Views"];
+        
+        subgraph cluster_views {
+            label="View Components";
+            style=filled;
+            color=white;
+            
+            admin_views [label="Admin Views"];
+            dosen_views [label="Dosen Views"];
+            mhs_views [label="Mahasiswa Views"];
+            shared_views [label="Shared Views"];
+        }
+        
+        // Template Engine
+        template_engine [label="Template\nEngine"];
+    }
+    
+    // Application Layer
+    subgraph cluster_application {
+        label="Application Layer";
+        style=filled;
+        color=lightgreen;
+        
+        // Core Components
+        subgraph cluster_core {
+            label="Core Components";
+            style=filled;
+            color=white;
+            
+            router [label="Router"];
+            auth_middleware [label="Auth\nMiddleware"];
+            csrf_middleware [label="CSRF\nMiddleware"];
+        }
+        
+        // Controllers
+        subgraph cluster_controllers {
+            label="Controllers";
+            style=filled;
+            color=white;
+            
+            auth_controller [label="Auth\nController"];
+            user_controller [label="User\nController"];
+            point_controller [label="Point\nController"];
+            market_controller [label="Market\nController"];
+            notif_controller [label="Notification\nController"];
+        }
+        
+        // Services
+        subgraph cluster_services {
+            label="Services";
+            style=filled;
+            color=white;
+            
+            auth_service [label="Auth\nService"];
+            point_service [label="Point\nService"];
+            market_service [label="Market\nService"];
+            notif_service [label="Notification\nService"];
+        }
+    }
+    
+    // Business Layer
+    subgraph cluster_business {
+        label="Business Layer";
+        style=filled;
+        color=pink;
+        
+        // Models
+        subgraph cluster_models {
+            label="Models";
+            style=filled;
+            color=white;
+            
+            user_model [label="User\nModel"];
+            point_model [label="Point\nModel"];
+            product_model [label="Product\nModel"];
+            transaction_model [label="Transaction\nModel"];
+        }
+        
+        // Business Logic
+        subgraph cluster_logic {
+            label="Business Logic";
+            style=filled;
+            color=white;
+            
+            point_logic [label="Point\nLogic"];
+            market_logic [label="Market\nLogic"];
+            user_logic [label="User\nLogic"];
+        }
+    }
+    
+    // Data Layer
+    subgraph cluster_data {
+        label="Data Layer";
+        style=filled;
+        color=lightyellow;
+        
+        // Database
+        database [label="MySQL/\nMariaDB"];
+        
+        // Cache
+        cache [label="Redis\nCache"];
+        
+        // File Storage
+        storage [label="File\nStorage"];
+    }
+    
+    // External Services
+    subgraph cluster_external {
+        label="External Services";
+        style=filled;
+        color=lightcyan;
+        
+        email_service [label="Email\nService"];
+        payment_gateway [label="Payment\nGateway"];
+    }
+    
+    // Component Relationships
+    edge [dir=forward];
+    
+    // Client to Presentation
+    web_client -> views;
+    jquery -> views;
+    bootstrap -> views;
+    adminlte -> views;
+    datatables -> views;
+    chartjs -> views;
+    
+    // Presentation to Application
+    views -> router;
+    router -> auth_middleware;
+    auth_middleware -> csrf_middleware;
+    
+    // Controllers to Services
+    auth_controller -> auth_service;
+    user_controller -> auth_service;
+    point_controller -> point_service;
+    market_controller -> market_service;
+    notif_controller -> notif_service;
+    
+    // Services to Business Logic
+    auth_service -> user_logic;
+    point_service -> point_logic;
+    market_service -> market_logic;
+    
+    // Business Logic to Models
+    user_logic -> user_model;
+    point_logic -> point_model;
+    market_logic -> product_model;
+    market_logic -> transaction_model;
+    
+    // Models to Data Layer
+    user_model -> database;
+    point_model -> database;
+    product_model -> database;
+    transaction_model -> database;
+    
+    // Cache and Storage
+    market_service -> cache;
+    point_service -> cache;
+    market_service -> storage;
+    
+    // External Services
+    notif_service -> email_service;
+    market_service -> payment_gateway;
+    
+    // Rankings
+    {rank=same; web_client jquery bootstrap adminlte datatables chartjs}
+    {rank=same; views template_engine}
+    {rank=same; router auth_middleware csrf_middleware}
+    {rank=same; auth_controller user_controller point_controller market_controller notif_controller}
+    {rank=same; auth_service point_service market_service notif_service}
+    {rank=same; user_model point_model product_model transaction_model}
+    {rank=same; database cache storage}
+    {rank=same; email_service payment_gateway}
+}

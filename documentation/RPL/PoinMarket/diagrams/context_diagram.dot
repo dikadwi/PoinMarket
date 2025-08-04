@@ -1,0 +1,98 @@
+digraph PoinMarket_Context {
+    rankdir=TB;
+    node [shape=record, fontname="Arial"];
+    
+    // Style for external entities
+    node [shape=box, style=filled, color=lightblue];
+    
+    // External Entities
+    superadmin [label="Superadmin\n(System Administrator)"];
+    admin [label="Admin\n(Market & Transaction Manager)"];
+    dosen [label="Dosen\n(Point & Badge Manager)"];
+    mahasiswa [label="Mahasiswa\n(End User)"];
+    payment [label="Payment Gateway\n(External Service)"];
+    email [label="Email Service\n(Notification)"];
+    
+    // Central System
+    node [shape=circle, style=filled, color=lightgreen];
+    system [label="PoinMarket\nSystem"];
+    
+    // Data Flows - From External to System
+    edge [color=blue, fontcolor=blue];
+    
+    superadmin -> system [label="
+        User Management
+        System Config
+        Security Settings
+    "];
+    
+    admin -> system [label="
+        Product Management
+        Transaction Processing
+        Inventory Control
+    "];
+    
+    dosen -> system [label="
+        Point Assignment
+        Badge Awards
+        Student Evaluation
+    "];
+    
+    mahasiswa -> system [label="
+        Purchase Orders
+        Point Usage
+        Consultation Booking
+    "];
+    
+    // Data Flows - From System to External
+    edge [color=red, fontcolor=red];
+    
+    system -> superadmin [label="
+        System Reports
+        User Analytics
+        Audit Logs
+    "];
+    
+    system -> admin [label="
+        Order Status
+        Stock Alerts
+        Sales Reports
+    "];
+    
+    system -> dosen [label="
+        Student Progress
+        Point History
+        Achievement Stats
+    "];
+    
+    system -> mahasiswa [label="
+        Point Balance
+        Order Status
+        Badge Collection
+    "];
+    
+    // External Services Integration
+    edge [color=green, fontcolor=green];
+    
+    system -> payment [label="
+        Payment Request
+        Transaction Verification
+    "];
+    payment -> system [label="
+        Payment Status
+        Transaction Result
+    "];
+    
+    system -> email [label="
+        Email Content
+        Recipient List
+    "];
+    email -> system [label="
+        Delivery Status
+        Bounce Reports
+    "];
+    
+    // Ranking
+    {rank=same; superadmin admin dosen mahasiswa}
+    {rank=same; payment email}
+}

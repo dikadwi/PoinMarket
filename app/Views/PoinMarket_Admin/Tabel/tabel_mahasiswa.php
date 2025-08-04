@@ -216,25 +216,26 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                     }
                     ?>
                 </td>
-                <td>
-                    <center>
-                        <?php
-                        $selectedBadge = null;
-                        foreach ($badges as $badge) {
-                            if ($m['point'] >= $badge['point']) {
-                                $selectedBadge = $badge;
-                            } else {
-                                break; // Menghentikan iterasi jika poin mahasiswa tidak cukup untuk badge berikutnya
-                            }
-                        }
-
-                        if ($selectedBadge !== null) {
-                            echo '<img src="data:image/png;base64,' . base64_encode($selectedBadge['badges']) . '" width="100">';
+                <td class="text-center">
+                    <?php
+                    $selectedBadge = null;
+                    foreach ($badges as $badge) {
+                        if ($m['point'] >= $badge['point']) {
+                            $selectedBadge = $badge;
                         } else {
-                            echo 'Tidak ada badge';
+                            break;
                         }
-                        ?>
-                    </center>
+                    }
+
+                    if ($selectedBadge !== null) {
+                        echo '<img src="' . base_url('uploads/badges/' . $selectedBadge['badges']) . '" 
+                                 alt="Badge" 
+                                 class="img-fluid"
+                                 style="max-width: 70px; height: auto;">';
+                    } else {
+                        echo '<span class="badge badge-secondary">Tidak ada badge</span>';
+                    }
+                    ?>
                 </td>
                 <td>
                     <button type=" button" class="btn btn-info" data-toggle="modal" data-target="#modalDetail<?php echo $m['id']; ?>"><i class="fas fa-eye"></i><span class="d-none d-md-inline"> Detail</span></button>
@@ -285,217 +286,251 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
     </ul>
 </nav>
 
-<!-- Modal box Detail -->
+<!-- Modal Detail Mahasiswa -->
 <?php foreach ($mahasiswa as $m) : ?>
-    <?php foreach ($badges as $b) : ?>
-        <?php if ($m['point'] >= $b['point']) : ?>
-            <div class="modal fade" id="modalDetail<?php echo $m['id']; ?>">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Detail </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
-                            <div class="col-lg-13">
-                                <div class="card mb-3">
-                                    <div class="row g-0">
-                                        <div class="col-md-12">
-                                            <div class="card-body">
-                                                <ul class="list-group list-group-flush">
-                                                    <h5 class="card-title"><b>NPM :</b></h5>
-                                                    <li class="list-group-item">
-                                                        <h4><?= $m['npm']; ?></h4>
-                                                    </li>
-                                                    <h5 class="card-title"><b>Nama Mahasiswa:</b></h5>
-                                                    <li class="list-group-item">
-                                                        <h4><?= $m['nama']; ?></h4>
-                                                    </li>
-                                                    <h5 class="card-title"><b>Gaya Belajar :</b></h5>
-                                                    <li class="list-group-item">
-                                                        <h4><?= $m['gaya_belajar']; ?></h4>
-                                                    </li>
-                                                    <h5 class="card-title"><b>Point :</b></h5>
-                                                    <li class="list-group-item">
-                                                        <h4><?= $m['point']; ?></h4>
-                                                    </li>
-                                                    <h5 class="card-title"><b>Transaksi :</b></h5>
-                                                    <table class="table table-bordered border-dark">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col">Reward</th>
-                                                                <th scope="col">Pembelian</th>
-                                                                <th scope="col">Punishment</th>
-                                                                <th scope="col">Misi Tambahan</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="text-align: center;"><?= isset($reward[$m['npm']]) ? $reward[$m['npm']] : 0; ?> </td>
-                                                                <td style="text-align: center;"><?= isset($punishment[$m['npm']]) ? $punishment[$m['npm']] : 0; ?></td>
-                                                                <td style="text-align: center;"><?= isset($pembelian[$m['npm']]) ? $pembelian[$m['npm']] : 0; ?></td>
-                                                                <td style="text-align: center;"><?= isset($misi[$m['npm']]) ? $misi[$m['npm']] : 0; ?></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                    <table class="table table-bordered border-dark">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td><b>Level </b></td>
-                                                                <td>
-                                                                    <?php
-                                                                    $selectedBadge = null;
-                                                                    foreach ($badges as $badge) {
-                                                                        if ($m['point'] >= $badge['point']) {
-                                                                            $selectedBadge = $badge;
-                                                                        } else {
-                                                                            break; // Menghentikan iterasi jika poin mahasiswa tidak cukup untuk badge berikutnya
-                                                                        }
-                                                                    }
-
-                                                                    if ($selectedBadge !== null) {
-                                                                        echo $selectedBadge['nama'];
-                                                                    } else {
-                                                                        echo 'Tidak ada badge';
-                                                                    }
-                                                                    ?>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><b>Badges </b></td>
-                                                                <td>
-                                                                    <?php
-                                                                    $selectedBadge = null;
-                                                                    foreach ($badges as $badge) {
-                                                                        if ($m['point'] >= $badge['point']) {
-                                                                            $selectedBadge = $badge;
-                                                                        } else {
-                                                                            break; // Menghentikan iterasi jika poin mahasiswa tidak cukup untuk badge berikutnya
-                                                                        }
-                                                                    }
-
-                                                                    if ($selectedBadge !== null) {
-                                                                        echo '<img src="data:image/png;base64,' . base64_encode($selectedBadge['badges']) . '" width="100">';
-                                                                    } else {
-                                                                        echo 'Tidak ada badge';
-                                                                    }
-                                                                    ?>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                    <!-- <h5 class="card-title"><b>Level :</b></h5>
-                                                    <li class="list-group-item">
-                                                        <h4>
-                                                            <?php
-                                                            $selectedBadge = null;
-                                                            foreach ($badges as $badge) {
-                                                                if ($m['point'] >= $badge['point']) {
-                                                                    $selectedBadge = $badge;
-                                                                } else {
-                                                                    break; // Menghentikan iterasi jika poin mahasiswa tidak cukup untuk badge berikutnya
-                                                                }
-                                                            }
-
-                                                            if ($selectedBadge !== null) {
-                                                                echo $selectedBadge['nama'];
-                                                            } else {
-                                                                echo 'Tidak ada badge';
-                                                            }
-                                                            ?>
-                                                        </h4>
-                                                    </li>
-                                                    <h5 class="card-title"><b>Badges :</b></h5>
-                                                    <li class="list-group-item">
-                                                        <center>
-                                                            <?php
-                                                            $selectedBadge = null;
-                                                            foreach ($badges as $badge) {
-                                                                if ($m['point'] >= $badge['point']) {
-                                                                    $selectedBadge = $badge;
-                                                                } else {
-                                                                    break; // Menghentikan iterasi jika poin mahasiswa tidak cukup untuk badge berikutnya
-                                                                }
-                                                            }
-
-                                                            if ($selectedBadge !== null) {
-                                                                echo '<img src="data:image/png;base64,' . base64_encode($selectedBadge['badges']) . '" width="100">';
-                                                            } else {
-                                                                echo 'Tidak ada badge';
-                                                            }
-                                                            ?>
-                                                        </center>
-                                                    </li> -->
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <?php endif; ?>
-    <?php endforeach; ?>
-<?php endforeach; ?>
-
-<!--Data Modal Box Edit Data-->
-<?php foreach ($mahasiswa as $m) : ?>
-    <div class="modal fade" id="modalEdit<?php echo $m['id']; ?>">
+    <div class="modal fade" id="modalDetail<?php echo $m['id']; ?>">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Edit Mahasiswa </h5>
+            <div class="modal-content">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-list mr-2"></i>Detail Mahasiswa
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <div class="modal-body" style="max-height: 450px; overflow-y: auto;">
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-hashtag mr-2"></i>NPM
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $m['npm']; ?>" readonly>
+                        </div>
+                    </div>
 
-                <div class="modal-body">
-                    <form action="/Mahasiswa/update_Mhs/<?= $m['id']; ?>" method="post" enctype="multipart/form-data">
-                        <div class="form-group ">
-                            <label for="id" class="col-form-label"></label>
-                            <input type="hidden" class="form-control" id="id" name="id" value="" required>
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-user mr-2"></i>Nama
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $m['nama']; ?>" readonly>
                         </div>
-                        <div class="form-group ">
-                            <label for="nama" class="col-form-label">Nama Mahasiswa</label>
-                            <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $m['nama'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-brain mr-2"></i> Gaya Belajar
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <?php
+                                    // Menentukan ikon berdasarkan gaya belajar mahasiswa
+                                    $icon = "fas fa-question-circle"; // Default jika tidak ditemukan
+                                    switch ($m['gaya_belajar']) {
+                                        case "Visual":
+                                            $icon = "fas fa-eye";
+                                            break;
+                                        case "Auditori":
+                                            $icon = "fas fa-headphones";
+                                            break;
+                                        case "Reading":
+                                            $icon = "fas fa-book";
+                                            break;
+                                        case "Kinestetik":
+                                            $icon = "fas fa-running";
+                                            break;                   
+                                    }
+                                    ?>
+                                    <i class="<?= $icon; ?>"></i>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $m['gaya_belajar']; ?>" readonly>
                         </div>
-                        <div class="form-group ">
-                            <label for="npm" class="col-form-label">NPM</label>
-                            <input type="text" class="form-control" id="npm" name="npm" value="<?php echo $m['npm'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-coins mr-2"></i>Point
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-wallet"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $m['point']; ?>" readonly>
                         </div>
-                        <div class="form-group">
-                            <label for="gaya_belajar" class="col-form-label">Gaya Belajar</label>
-                            <select name="gaya_belajar" id="gaya_belajar" class="form-control" required>
-                                <option value="Visual" <?php if ($m['gaya_belajar'] == 'Visual') echo 'selected'; ?>>Visual</option>
-                                <option value="Auditori" <?php if ($m['gaya_belajar'] == 'Auditori') echo 'selected'; ?>>Auditori</option>
-                                <option value="Kinestetik" <?php if ($m['gaya_belajar'] == 'Kinestetik') echo 'selected'; ?>>Kinestetik</option>
-                            </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-medal mr-2"></i>Level & Badges
+                        </label>
+                        <div class="alert 
+                            <?php
+                            $selectedBadge = null;
+                            foreach ($badges as $badge) {
+                                if ($m['point'] >= $badge['point']) {
+                                    $selectedBadge = $badge;
+                                }
+                            }
+                            if ($selectedBadge) {
+                                switch ($selectedBadge['nama']) {
+                                        default:
+                                        echo 'alert-light';
+                                }
+                            }
+                            ?>" role="alert">
+                            <?= $selectedBadge ? $selectedBadge['nama'] : 'Negative'; ?>
+                            <?php if ($selectedBadge) : ?>
+                                <img src="<?= base_url('uploads/badges/' . $selectedBadge['badges']); ?>" 
+                                     alt="Badge" 
+                                     style="height: 30px; width: auto;"
+                                     class="ml-2">
+                            <?php endif; ?>
                         </div>
-                        <!-- <div class="form-group ">
-                            <label for="gaya_belajar" class="col-form-label">Gaya Belajar</label>                           
-                                <input type="text" class="form-control" id="gaya_belajar" name="gaya_belajar" value="<?php echo $m['gaya_belajar'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                                                   </div> -->
-                        <?php if (in_groups(['superadmin', 'admin'])) : ?>
-                        <div class="form-group ">
-                            <label for="point" class="col-form-label">Point</label>
-                            <input type="text" class="form-control" id="point" name="point" value="<?php echo $m['point'] ?>" >
-                        </div>
-                        <?php endif; ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-chart-bar mr-2"></i>Statistik</label>
+                        <table class="table table-sm table-bordered">
+                            <tr>
+                                <td><i class="fas fa-gift text-success"></i> Reward</td>
+                                <td><?= isset($reward[$m['npm']]) ? $reward[$m['npm']] : 0; ?></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-shopping-cart text-primary"></i> Pembelian</td>
+                                <td><?= isset($pembelian[$m['npm']]) ? $pembelian[$m['npm']] : 0; ?></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-exclamation-triangle text-danger"></i> Punishment</td>
+                                <td><?= isset($punishment[$m['npm']]) ? $punishment[$m['npm']] : 0; ?></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-tasks text-info"></i> Misi Tambahan</td>
+                                <td><?= isset($misi[$m['npm']]) ? $misi[$m['npm']] : 0; ?></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Update</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <i class="fas fa-times mr-2"></i> Tutup
+                    </button>
                 </div>
             </div>
-            </form>
         </div>
     </div>
-<?php endforeach ?>
+<?php endforeach; ?>
+
+<!-- Modal Edit Mahasiswa -->
+<?php foreach ($mahasiswa as $m) : ?>
+    <div class="modal fade" id="modalEdit<?php echo $m['id']; ?>">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-edit mr-2"></i>Edit Mahasiswa
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>               
+                <div class="modal-body" style="max-height: 450px; overflow-y: auto;">
+                <form action="/Mahasiswa/update_Mhs/<?= $m['id']; ?>" method="post">
+                        <input type="hidden" name="id" value="<?= $m['id']; ?>">
+                        
+                        <div class="form-group">
+                            <label for="npm<?= $m['id']; ?>">
+                                <i class="fas fa-hashtag mr-2"></i>NPM
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                </div>
+                                <input type="text" class="form-control" id="npm<?= $m['id']; ?>" 
+                                    name="npm" value="<?= $m['npm']; ?>" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nama<?= $m['id']; ?>">
+                                <i class="fas fa-user mr-2"></i>Nama
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                </div>
+                                <input type="text" class="form-control" id="nama<?= $m['id']; ?>" 
+                                    name="nama" value="<?= $m['nama']; ?>" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gaya_belajar<?= $m['id']; ?>">
+                                <i class="fas fa-brain mr-2"></i>Gaya Belajar
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                    <?php
+                                    // Menentukan ikon berdasarkan gaya belajar mahasiswa
+                                    $icon = "fas fa-question-circle"; // Default jika tidak ditemukan
+                                    switch ($m['gaya_belajar']) {
+                                        case "Visual":
+                                            $icon = "fas fa-eye";
+                                            break;
+                                        case "Auditori":
+                                            $icon = "fas fa-headphones";
+                                            break;
+                                        case "Reading":
+                                            $icon = "fas fa-book";
+                                            break;
+                                        case "Kinestetik":
+                                            $icon = "fas fa-running";
+                                            break;                   
+                                    }
+                                    ?>
+                                    <i class="<?= $icon; ?>"></i>
+                                    </span>
+                                </div>
+                                <select class="form-control" id="gaya_belajar<?= $m['id']; ?>" name="gaya_belajar" required>
+                                    <option value="Visual" <?= ($m['gaya_belajar'] == 'Visual') ? 'selected' : ''; ?>>Visual</option>
+                                    <option value="Auditori" <?= ($m['gaya_belajar'] == 'Auditori') ? 'selected' : ''; ?>>Auditori</option>
+                                    <option value="Kinestetik" <?= ($m['gaya_belajar'] == 'Kinestetik') ? 'selected' : ''; ?>>Kinestetik</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="point<?= $m['id']; ?>">
+                                <i class="fas fa-coins mr-2"></i>Point
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-wallet"></i></span>
+                                </div>
+                                <input type="number" class="form-control" id="point<?= $m['id']; ?>" 
+                                    name="point" value="<?= $m['point']; ?>" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save mr-2"></i> Simpan 
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            <i class="fas fa-times mr-2"></i> Batal
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>

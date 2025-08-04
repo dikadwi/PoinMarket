@@ -1,0 +1,77 @@
+digraph CreateItemFlow {
+    // Graph settings
+    rankdir=TB;
+    node [shape=box, style=rounded, fontname="Arial"];
+    edge [fontname="Arial", fontsize=10];
+
+    // Start node
+    start [shape=oval, label="Mulai"];
+
+    // Item Type Selection
+    select_type [label="Pilih Jenis Item"];
+    
+    // Item Types
+    reward [label="Reward\n(Kode: 101)"];
+    mission [label="Misi\n(Kode: 105)"];
+    purchase [label="Pembelian\n(Kode: 102)"];
+    punishment [label="Hukuman\n(Kode: 103)"];
+    consultation [label="Konsultasi\n(Kode: 106)"];
+
+    // Item Details
+    reward_details [label="Detail Reward\n- Nama Reward\n- Jumlah Poin\n- Deskripsi\n- Periode Aktif"];
+    
+    mission_details [label="Detail Misi\n- Nama Misi\n- Jumlah Poin\n- Deskripsi\n- Deadline\n- Kriteria Penyelesaian"];
+    
+    purchase_details [label="Detail Barang\n- Nama Barang\n- Harga Poin\n- Stok\n- Deskripsi\n- Gambar"];
+    
+    punishment_details [label="Detail Hukuman\n- Nama Hukuman\n- Pengurangan Poin\n- Kategori\n- Deskripsi"];
+    
+    consult_details [label="Detail Konsultasi\n- Jenis Konsultasi\n- Biaya Poin\n- Durasi\n- Deskripsi"];
+
+    // Validation Steps
+    input_validation [label="Validasi oleh Admin\n- Cek Kelengkapan\n- Cek Format", style="rounded,filled", fillcolor=lightblue];
+    
+    // Save Process
+    save_process [label="Simpan Item"];
+    
+    // Notification
+    notify_success [label="Kirim Notifikasi\nke Dosen"];
+    notify_error [label="Tampilkan Pesan\nError"];
+    
+    // End states
+    complete [shape=oval, label="Selesai"];
+    error [shape=oval, label="Gagal"];
+
+    // Flow connections
+    start -> select_type;
+    
+    // Type selection
+    select_type -> reward;
+    select_type -> mission;
+    select_type -> purchase;
+    select_type -> punishment;
+    select_type -> consultation;
+    
+    // Details flow
+    reward -> reward_details;
+    mission -> mission_details;
+    purchase -> purchase_details;
+    punishment -> punishment_details;
+    consultation -> consult_details;
+    
+    // Validation flow
+    reward_details -> input_validation;
+    mission_details -> input_validation;
+    purchase_details -> input_validation;
+    punishment_details -> input_validation;
+    consult_details -> input_validation;
+    
+    // Process flow
+    input_validation -> save_process [label="Valid"];
+    input_validation -> notify_error [label="Tidak Valid"];
+    
+    // Completion paths
+    save_process -> notify_success;
+    notify_success -> complete;
+    notify_error -> error;
+}

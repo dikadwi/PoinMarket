@@ -1,0 +1,111 @@
+digraph sequence_market {
+    rankdir=TB;
+    splines=polyline;
+    nodesep=0.6;
+    ranksep=0.4;
+    
+    node [shape=box, style=filled, fillcolor=white, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9, dir=forward];
+
+    // Participants on top level
+    subgraph cluster_top {
+        rank=same;
+        style=invis;
+        
+        student [label="Student"];
+        market_ui [label="Market UI"];
+        market_controller [label="Market\nController"];
+        wallet_service [label="Wallet\nService"];
+        database [label="Database"];
+        notification [label="Notification\nService"];
+        admin [label="Admin"];
+    }
+
+    // Market Transaction Flow
+    subgraph cluster_flow1 {
+        rank=same;
+        style=invis;
+        student -> market_ui [label="1. Select Product\n(product_id, quantity)"];
+    }
+
+    subgraph cluster_flow2 {
+        rank=same;
+        style=invis;
+        market_ui -> market_controller [label="2. validateOrder()"];
+    }
+
+    subgraph cluster_flow3 {
+        rank=same;
+        style=invis;
+        market_controller -> database [label="3. checkStock()"];
+    }
+
+    subgraph cluster_flow4 {
+        rank=same;
+        style=invis;
+        database -> market_controller [label="4. stock available"];
+    }
+
+    subgraph cluster_flow5 {
+        rank=same;
+        style=invis;
+        market_controller -> wallet_service [label="5. checkBalance()"];
+    }
+
+    subgraph cluster_flow6 {
+        rank=same;
+        style=invis;
+        wallet_service -> database [label="6. getBalance()"];
+    }
+
+    subgraph cluster_flow7 {
+        rank=same;
+        style=invis;
+        database -> wallet_service [label="7. sufficient balance"];
+    }
+
+    subgraph cluster_flow8 {
+        rank=same;
+        style=invis;
+        market_controller -> wallet_service [label="8. deductPoints()"];
+    }
+
+    subgraph cluster_flow9 {
+        rank=same;
+        style=invis;
+        wallet_service -> database [label="9. updateBalance()"];
+    }
+
+    subgraph cluster_flow10 {
+        rank=same;
+        style=invis;
+        market_controller -> database [label="10. createOrder()"];
+    }
+
+    subgraph cluster_flow11 {
+        rank=same;
+        style=invis;
+        market_controller -> database [label="11. updateStock()"];
+    }
+
+    subgraph cluster_flow12 {
+        rank=same;
+        style=invis;
+        market_controller -> notification [label="12. orderNotification()"];
+    }
+
+    subgraph cluster_flow13 {
+        rank=same;
+        style=invis;
+        notification -> student [label="13. order confirmation"];
+    }
+
+    subgraph cluster_flow14 {
+        rank=same;
+        style=invis;
+        notification -> admin [label="14. new order alert"];
+    }
+
+    // Edge colors
+    edge [color="#27AE60"];
+}

@@ -1,0 +1,39 @@
+digraph sequence_redeem_reward {
+    rankdir=LR;
+    splines=polyline;
+    nodesep=1.0;
+    ranksep=1.2;
+    
+    node [shape=box, style=filled, fillcolor=white, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9, dir=forward];
+
+    // Actors
+    student [label="Student"];
+    reward [label="Reward\nSystem"];
+    wallet [label="Student\nWallet"];
+    database [label="Database"];
+    admin [label="Admin"];
+
+    // Redeem Flow
+    edge [color="#2E86C1", constraint=false];
+    student -> reward [label="1. Redeem Reward\n(reward_id)"];
+    reward -> database [label="2. Check Reward\nAvailability"];
+    database -> reward [label="3. Reward Status"];
+    
+    reward -> wallet [label="4. Check Points"];
+    wallet -> database [label="5. Get Balance"];
+    database -> wallet [label="6. Current Balance"];
+    
+    reward -> wallet [label="7. Deduct Points"];
+    wallet -> database [label="8. Update Balance"];
+    database -> wallet [label="9. Balance Updated"];
+    
+    reward -> database [label="10. Create Redemption"];
+    database -> reward [label="11. Redemption Created"];
+    
+    reward -> admin [label="12. Notify Admin"];
+    reward -> student [label="13. Confirmation"];
+
+    // Layout
+    {rank=same; student reward wallet database admin}
+}

@@ -1,0 +1,91 @@
+digraph dfd_level1 {
+    rankdir=TB;
+    splines=spline;
+    nodesep=1.0;
+    ranksep=1.2;
+    
+    node [fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9, dir=forward];
+
+    // External Entities
+    node [shape=box, style=filled, fillcolor=lightgrey];
+    mahasiswa [label="Mahasiswa"];
+    dosen [label="Dosen"];
+    admin [label="Admin"];
+    superadmin [label="Superadmin"];
+
+    // Main Processes
+    node [shape=circle, style=filled, fillcolor=lightblue];
+    auth [label="1.0\nUser\nAuthentication", width=1.5];
+    point_mgmt [label="2.0\nPoint\nManagement", width=1.5];
+    marketplace [label="3.0\nMarketplace\nSystem", width=1.5];
+    consultation [label="4.0\nConsultation\nSystem", width=1.5];
+    user_mgmt [label="5.0\nUser\nManagement", width=1.5];
+    reporting [label="6.0\nReporting &\nAnalytics", width=1.5];
+
+    // Data Stores
+    node [shape=box, style="filled,rounded", fillcolor=lightgreen];
+    users_db [label="D1 Users"];
+    points_db [label="D2 Points"];
+    products_db [label="D3 Products"];
+    orders_db [label="D4 Orders"];
+    consult_db [label="D5 Consultations"];
+    logs_db [label="D6 System Logs"];
+
+    // Authentication Flows
+    edge [color="#2E86C1"];
+    mahasiswa -> auth [label="Login"];
+    dosen -> auth [label="Login"];
+    admin -> auth [label="Login"];
+    superadmin -> auth [label="Login"];
+    auth -> users_db [label="Verify\ncredentials"];
+
+    // Point Management Flows
+    edge [color="#27AE60"];
+    dosen -> point_mgmt [label="Award points"];
+    point_mgmt -> points_db [label="Update\nbalance"];
+    points_db -> mahasiswa [label="Point\nstatus"];
+
+    // Marketplace Flows
+    edge [color="#8E44AD"];
+    mahasiswa -> marketplace [label="Place order"];
+    marketplace -> products_db [label="Check\nstock"];
+    marketplace -> points_db [label="Verify\nbalance"];
+    marketplace -> orders_db [label="Create\norder"];
+    admin -> marketplace [label="Manage\nproducts"];
+
+    // Consultation Flows
+    edge [color="#E74C3C"];
+    mahasiswa -> consultation [label="Book\nconsultation"];
+    dosen -> consultation [label="Set\nschedule"];
+    consultation -> consult_db [label="Store\nbooking"];
+    consultation -> points_db [label="Check\npoints"];
+
+    // User Management Flows
+    edge [color="#F39C12"];
+    superadmin -> user_mgmt [label="Manage\nusers"];
+    user_mgmt -> users_db [label="Update\nuser data"];
+
+    // Reporting Flows
+    edge [color="#16A085"];
+    reporting -> points_db [label="Point\nstatistics"];
+    reporting -> orders_db [label="Sales\ndata"];
+    reporting -> logs_db [label="Activity\nlogs"];
+    reporting -> superadmin [label="System\nreports"];
+    reporting -> admin [label="Sales\nreports"];
+
+    // System Logging
+    edge [color="#95A5A6"];
+    auth -> logs_db [label="Auth\nlogs"];
+    marketplace -> logs_db [label="Transaction\nlogs"];
+    consultation -> logs_db [label="Booking\nlogs"];
+    point_mgmt -> logs_db [label="Point\nlogs"];
+
+    // Layout
+    {rank=same; mahasiswa dosen admin superadmin}
+    {rank=same; auth user_mgmt}
+    {rank=same; point_mgmt marketplace consultation}
+    {rank=same; users_db points_db products_db}
+    {rank=same; orders_db consult_db logs_db}
+    {rank=same; reporting}
+}

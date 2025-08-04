@@ -1,0 +1,98 @@
+digraph TechnicalSpecifications {
+    // Graph settings
+    rankdir=TB;
+    compound=true;
+    node [shape=record, fontname="Arial", style=filled];
+    
+    // Main label
+    label="PoinMarket Technical Specifications";
+    labelloc="t";
+    fontsize=20;
+    fontname="Arial";
+
+    // Backend Stack
+    subgraph cluster_backend {
+        label="Backend Stack";
+        style=filled;
+        color=lightblue;
+        
+        php [label="{PHP|{Version: 7.4+|Extensions|Composer}}", fillcolor=white];
+        framework [label="{CodeIgniter 4|{MVC|RESTful|Routing}}", fillcolor=white];
+        database [label="{Database|{MySQL/MariaDB|Version: 5.7+}}", fillcolor=white];
+        cache [label="{Cache System|{Redis|Session Storage}}", fillcolor=white];
+    }
+
+    // Frontend Stack
+    subgraph cluster_frontend {
+        label="Frontend Stack";
+        style=filled;
+        color=lightgreen;
+        
+        html [label="{HTML5|{Semantic|Forms|Media}}", fillcolor=white];
+        css [label="{CSS3|{Bootstrap 4|Responsive|Custom}}", fillcolor=white];
+        js [label="{JavaScript|{jQuery|AJAX|DOM}}", fillcolor=white];
+        ui [label="{UI Libraries|{AdminLTE|DataTables|SweetAlert2|Chart.js}}", fillcolor=white];
+    }
+
+    // Development Tools
+    subgraph cluster_devtools {
+        label="Development Tools";
+        style=filled;
+        color=lightpink;
+        
+        server [label="{Local Server|{XAMPP|Apache 2.4+|PHP MyAdmin}}", fillcolor=white];
+        ide [label="{IDE/Editor|{VS Code|Extensions|Debugging}}", fillcolor=white];
+        vcs [label="{Version Control|{Git|GitHub|Branches}}", fillcolor=white];
+        testing [label="{Testing Tools|{Postman|Unit Tests|API Tests}}", fillcolor=white];
+    }
+
+    // System Requirements
+    subgraph cluster_requirements {
+        label="System Requirements";
+        style=filled;
+        color=lightyellow;
+        
+        server_req [label="{Server Requirements|{CPU: 2+ Cores|RAM: 4GB+|Storage: 20GB+}}", fillcolor=white];
+        client_req [label="{Client Requirements|{Modern Browser|JavaScript Enabled|Responsive Display}}", fillcolor=white];
+        network_req [label="{Network Requirements|{HTTPS|WebSocket|API Endpoints}}", fillcolor=white];
+    }
+
+    // Dependencies
+    subgraph cluster_dependencies {
+        label="Dependencies & Libraries";
+        style=filled;
+        color=lightgrey;
+        
+        auth [label="{Authentication|{Myth/Auth|JWT|Session}}", fillcolor=white];
+        upload [label="{File Handling|{Upload|Resize|Storage}}", fillcolor=white];
+        notification [label="{Notifications|{Real-time|Email|Push}}", fillcolor=white];
+        security [label="{Security|{CSRF|XSS|SQL Injection}}", fillcolor=white];
+    }
+
+    // Relationships
+    edge [color=grey, arrowhead=none];
+    
+    // Backend relationships
+    php -> framework;
+    framework -> database;
+    framework -> cache;
+    
+    // Frontend relationships
+    html -> css;
+    css -> js;
+    js -> ui;
+    
+    // Tool relationships
+    server -> ide;
+    ide -> vcs;
+    vcs -> testing;
+    
+    // Requirement relationships
+    server_req -> client_req;
+    client_req -> network_req;
+    
+    // Dependency relationships
+    auth -> upload;
+    upload -> notification;
+    notification -> security;
+}

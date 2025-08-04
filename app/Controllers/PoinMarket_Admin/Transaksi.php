@@ -97,6 +97,13 @@ class Transaksi extends BaseController
             });
         }
 
+        // Ambil data mahasiswa berdasarkan NPM
+        $mahasiswa = [];
+        foreach ($transaksi as $data) {
+            $mahasiswaData = $this->MahasiswaModel->getNamaByNpm($data['npm']);
+            $mahasiswa[$data['npm']] = $mahasiswaData ? $mahasiswaData['nama'] : '-'; // Jika nama mahasiswa tidak ditemukan
+        }
+
         $data = [
             'username' => $session->get('username'),
             'title' => 'Rewards',
@@ -105,6 +112,7 @@ class Transaksi extends BaseController
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'npm' => $this->MahasiswaModel->getMhs(),
+            'nama' => $mahasiswa,
             'topMenuPages' => $topMenuPages,
             'sideMenuPages' => $sideMenuPages,
         ];
@@ -133,6 +141,13 @@ class Transaksi extends BaseController
             });
         }
 
+        // Ambil data mahasiswa berdasarkan NPM
+        $mahasiswa = [];
+        foreach ($transaksi as $data) {
+            $mahasiswaData = $this->MahasiswaModel->getNamaByNpm($data['npm']);
+            $mahasiswa[$data['npm']] = $mahasiswaData ? $mahasiswaData['nama'] : '-'; // Jika nama mahasiswa tidak ditemukan
+        }
+
         $data = [
             'username' => $session->get('username'),
             'title' => 'Pembelian',
@@ -141,6 +156,7 @@ class Transaksi extends BaseController
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'npm' => $this->MahasiswaModel->getMhs(),
+            'nama' => $mahasiswa,
             'topMenuPages' => $topMenuPages,
             'sideMenuPages' => $sideMenuPages,
         ];
@@ -166,6 +182,13 @@ class Transaksi extends BaseController
             });
         }
 
+        // Ambil data mahasiswa berdasarkan NPM
+        $mahasiswa = [];
+        foreach ($transaksi as $data) {
+            $mahasiswaData = $this->MahasiswaModel->getNamaByNpm($data['npm']);
+            $mahasiswa[$data['npm']] = $mahasiswaData ? $mahasiswaData['nama'] : '-'; // Jika nama mahasiswa tidak ditemukan
+        }
+
         $data = [
             'username' => $session->get('username'),
             'title' => 'Punishment',
@@ -174,6 +197,7 @@ class Transaksi extends BaseController
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'npm' => $this->MahasiswaModel->getMhs(),
+            'nama' => $mahasiswa,
             'topMenuPages' => $topMenuPages,
             'sideMenuPages' => $sideMenuPages,
         ];
@@ -199,6 +223,13 @@ class Transaksi extends BaseController
             });
         }
 
+        // Ambil data mahasiswa berdasarkan NPM
+        $mahasiswa = [];
+        foreach ($transaksi as $data) {
+            $mahasiswaData = $this->MahasiswaModel->getNamaByNpm($data['npm']);
+            $mahasiswa[$data['npm']] = $mahasiswaData ? $mahasiswaData['nama'] : '-'; // Jika nama mahasiswa tidak ditemukan
+        }
+
         $data = [
             'username' => $session->get('username'),
             'title' => 'Misi',
@@ -207,6 +238,7 @@ class Transaksi extends BaseController
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'npm' => $this->MahasiswaModel->getMhs(),
+            'nama' => $mahasiswa,
             'topMenuPages' => $topMenuPages,
             'sideMenuPages' => $sideMenuPages,
         ];
@@ -232,6 +264,13 @@ class Transaksi extends BaseController
             });
         }
 
+        // Ambil data mahasiswa berdasarkan NPM
+        $mahasiswa = [];
+        foreach ($transaksi as $data) {
+            $mahasiswaData = $this->MahasiswaModel->getNamaByNpm($data['npm']);
+            $mahasiswa[$data['npm']] = $mahasiswaData ? $mahasiswaData['nama'] : '-'; // Jika nama mahasiswa tidak ditemukan
+        }
+
         $data = [
             'username' => $session->get('username'),
             'title' => 'Konsultasi',
@@ -240,6 +279,7 @@ class Transaksi extends BaseController
             'transaksi' => $this->TransaksiModel->getJenis($jenis),
             'jenis_transaksi' => $this->JenisTransaksiModel->getJenis(),
             'npm' => $this->MahasiswaModel->getMhs(),
+            'nama' => $mahasiswa,
             'topMenuPages' => $topMenuPages,
             'sideMenuPages' => $sideMenuPages,
         ];
@@ -376,8 +416,28 @@ class Transaksi extends BaseController
         $jenis_transaksi = $this->request->getVar('kode_jenis');
         $nama_transaksi = $this->request->getVar('nama_transaksi');
         $creator = $this->request->getVar('creator');
-        $id_transaksi = $this->request->getVar('id_transaksi');
+        // $id_transaksi = $this->request->getVar('id_transaksi');
 
+         // Generate id_transaksi otomatis
+         $npm_last_3 = substr($npm, -4); // Ambil 3 digit terakhir NPM
+         $kode_last = substr($jenis_transaksi, -2);
+         // Cek urutan transaksi terakhir
+        $last_transaction = $this->DataTransaksiModel
+        ->where('npm', $npm)
+        ->where('kode_jenis', $jenis_transaksi)
+        ->orderBy('id_transaksi', 'DESC')
+        ->first();
+        
+        $urutan = 1;
+        if ($last_transaction) {
+            // Ambil digit terakhir dari id_transaksi sebelumnya
+            $last_urutan = substr($last_transaction['id_transaksi'], -1);
+            $urutan = intval($last_urutan) + 1;
+            if ($urutan > 9) $urutan = 1; // Reset ke 1 jika lebih dari 9
+        }
+        
+        $id_transaksi = $npm_last_3 . $kode_last . $urutan;
+ 
         // 2. Validasi input dasar
         if (empty($npm)) {
             session()->setFlashdata("gagal", "NPM tidak boleh kosong.");
@@ -464,12 +524,80 @@ class Transaksi extends BaseController
             if ($insertResult === false) {
                 throw new \Exception('Gagal menyimpan data transaksi');
             }
-
+                
             // Commit transaksi
             $this->db->transComplete();
 
             if ($this->db->transStatus() === false) {
                 throw new \Exception('Transaksi database gagal');
+            }
+
+            // Setelah transaksi utama berhasil, kirim notifikasi
+            try {
+                // Load NotificationModel
+                $notificationModel = new \App\Models\NotificationModel();
+                
+                 // Inisialisasi database connection
+                $db = \Config\Database::connect();
+
+              // Get admin dan superadmin
+                $admins = $db->table('auth_groups_users')
+                ->select('users.id, users.username')
+                ->join('users', 'users.id = auth_groups_users.user_id', 'inner')
+                ->whereIn('auth_groups_users.group_id', ['1', '3']) // Ubah 'group' menjadi 'group_id' admin&superadmin
+                ->groupBy('users.id')
+                ->get()
+                ->getResultArray();
+
+                if ($admins) {
+                    // Get creator role
+                        $creatorRole = $db->table('auth_groups_users')
+                        ->select('auth_groups.name as group') // Tambahkan join ke auth_groups
+                        ->join('users', 'users.id = auth_groups_users.user_id', 'inner')
+                        ->join('auth_groups', 'auth_groups.id = auth_groups_users.group_id', 'inner')
+                        ->where('users.username', $creator)
+                        ->get()
+                        ->getRowArray();
+
+                    $role = $creatorRole ? $creatorRole['group'] : 'unknown';
+
+                    // Kirim notifikasi ke setiap admin
+                    foreach ($admins as $admin) {
+                        // Tentukan title berdasarkan kode_jenis
+                        $notificationTitle = 'Validasi Transaksi';
+                        switch ($jenis_transaksi) {
+                            case '101':
+                                $notificationTitle = 'Validasi Transaksi Reward';
+                                break;
+                            case '102':
+                                $notificationTitle = 'Validasi Transaksi Punishment';
+                                break;
+                            case '103':
+                                $notificationTitle = 'Validasi Transaksi Pembelian';
+                                break;
+                            case '104':
+                                $notificationTitle = 'Validasi Transaksi Konsultasi';
+                                break;
+                            case '105':
+                                $notificationTitle = 'Validasi Transaksi Misi';
+                                break;
+                        }
+
+                        $notificationModel->insert([
+                            'user_id' => $admin['id'],
+                            'title' => $notificationTitle,
+                            'message' => ucfirst($role) . " melakukan transaksi baru:\nNPM: {$npm}\nJenis: {$jenis_transaksi}\nNama: {$nama_transaksi}\n" . 
+                                        ($poin_diberikan ? "Poin diberikan: {$poin_diberikan}" : "Poin digunakan: {$poin_digunakan}"),
+                            'reference_id' => $id_transaksi,
+                            'type' => 'validasi',
+                            'is_read' => 0,
+                            'created_at' => \CodeIgniter\I18n\Time::now('Asia/Jakarta')->format('Y-m-d H:i:s')
+                        ]);
+                    }
+                }
+            } catch (\Exception $e) {
+                // Log error notifikasi tapi tidak mengganggu transaksi utama
+                log_message('error', 'Gagal mengirim notifikasi: ' . $e->getMessage());
             }
 
             // 8. Set pesan sukses

@@ -38,8 +38,8 @@ class Jenis_Transaksi extends BaseController
         $sideMenuPages = $this->PageModel->where('menu_position', 'sidemenu')->findAll();
 
         // Menampilkan item yang dibuat berdasarkna session creator 
-        $transaksi = $this->TransaksiModel->getTransaksi();
-        if ($session->get('username') == 'superadmin') {
+        $transaksi = $this->TransaksiModel->getTransaksiValid();
+        if (in_array($session->get('username'), ['superadmin', 'admin'])) {
             $transaksi_user = $transaksi;
         } else {
             $transaksi_user = array_filter($transaksi, function ($t) use ($session) {
@@ -243,7 +243,7 @@ class Jenis_Transaksi extends BaseController
         if (!$this->validate([
             'nama_transaksi' => 'required',
             'kode_jenis' => 'required',
-            'poin_digunakan' => 'required',
+            // 'poin_digunakan' => 'required',
             'gambar' => 'uploaded[gambar]|max_size[gambar,2048]|is_image[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]',
         ])) {
             return redirect()->back()->withInput()->with("gagal", "Validasi gagal. Mohon cek inputan Anda!");
@@ -267,6 +267,10 @@ class Jenis_Transaksi extends BaseController
         $namaGambar = $gambar->getRandomName();
         $gambar->move('uploads/', $namaGambar);
 
+        // Mengambil nilai poin dan set ke null jika kosong
+        $poin_digunakan = $this->request->getVar('poin_digunakan') ?? null;
+        $poin_diberikan = $this->request->getVar('poin_diberikan') ?? null;
+
         // Menyimpan data ke database
         $data = [
             'id_transaksi' => $id_transaksi,
@@ -274,7 +278,8 @@ class Jenis_Transaksi extends BaseController
             'nama_transaksi' => $this->request->getVar('nama_transaksi'),
             'detail' => $this->request->getVar('detail'),
             'keterangan' => $this->request->getVar('keterangan'),
-            'poin_digunakan' => $this->request->getVar('poin_digunakan'),
+            'poin_digunakan' => $poin_digunakan,
+            'poin_diberikan' => $poin_diberikan,
             'gambar' => $namaGambar,
             'creator' => $this->request->getVar('creator'),
             'valid' => 'wait'
@@ -297,6 +302,7 @@ class Jenis_Transaksi extends BaseController
         $nama = $this->request->getPost('nama_transaksi');
         $detail = $this->request->getPost('detail');
         $keterangan = $this->request->getPost('keterangan');
+        $poin_diberikan = $this->request->getPost('poin_diberikan');
         $poin_digunakan = $this->request->getPost('poin_digunakan');
         $gambar_lama = $this->request->getPost('gambar_lama');
         $gambar = $this->request->getFile('gambar');
@@ -308,6 +314,7 @@ class Jenis_Transaksi extends BaseController
             'nama_transaksi' => $nama,
             'detail' => $detail,
             'keterangan' => $keterangan,
+            'poin_diberikan' => $poin_diberikan,
             'poin_digunakan' => $poin_digunakan,
             // Untuk validasi oleh admin
             'status' => $status,

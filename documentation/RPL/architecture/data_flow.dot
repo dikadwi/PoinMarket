@@ -1,0 +1,85 @@
+digraph PoinMarket_DataFlow {
+    rankdir=LR;
+    node [shape=record, fontname="Arial"];
+    edge [fontname="Arial"];
+    
+    // User Types
+    subgraph cluster_users {
+        label="Users";
+        style=filled;
+        color=lightgrey;
+        
+        superadmin [label="Superadmin"];
+        admin [label="Admin"];
+        dosen [label="Dosen"];
+        mahasiswa [label="Mahasiswa"];
+    }
+    
+    // Core Systems
+    subgraph cluster_core {
+        label="Core Systems";
+        style=filled;
+        color=lightblue;
+        
+        auth [label="{Authentication System|{Login/Logout|Session Management|Role Control}}"];
+        point [label="{Point System|{Balance Management|Transaction History|Point Rules}}"];
+        market [label="{Marketplace|{Product Catalog|Shopping Cart|Order Processing}}"];
+        notification [label="{Notification System|{Real-time Updates|Email Notifications|System Alerts}}"];
+    }
+    
+    // Data Stores
+    subgraph cluster_storage {
+        label="Data Storage";
+        style=filled;
+        color=lightgreen;
+        
+        user_db [label="{User Database|{Profiles|Credentials|Roles}}"];
+        point_db [label="{Point Database|{Balances|Transactions|History}}"];
+        market_db [label="{Market Database|{Products|Orders|Inventory}}"];
+        notif_db [label="{Notification Database|{Messages|Status|Recipients}}"];
+    }
+    
+    // Data Flow
+    // Superadmin flows
+    superadmin -> auth [label="Manage System"];
+    auth -> user_db;
+    superadmin -> point [label="Configure Rules"];
+    point -> point_db;
+    
+    // Admin flows
+    admin -> market [label="Manage Products"];
+    market -> market_db;
+    admin -> notification [label="Send Notifications"];
+    notification -> notif_db;
+    
+    // Dosen flows
+    dosen -> point [label="Award Points"];
+    point -> point_db;
+    dosen -> notification [label="Send Feedback"];
+    notification -> notif_db;
+    
+    // Mahasiswa flows
+    mahasiswa -> auth [label="Login"];
+    auth -> user_db;
+    mahasiswa -> market [label="Shop"];
+    market -> market_db;
+    mahasiswa -> point [label="Use Points"];
+    point -> point_db;
+    
+    // System interconnections
+    edge [style=dashed];
+    market -> point [label="Point Transaction"];
+    point -> notification [label="Update Alert"];
+    auth -> notification [label="Login Alert"];
+    
+    // Database interconnections
+    edge [style=dotted];
+    user_db -> point_db [dir=both];
+    point_db -> market_db [dir=both];
+    market_db -> notif_db [dir=both];
+    
+    // Rankings
+    {rank=same; superadmin admin dosen mahasiswa}
+    {rank=same; auth point market notification}
+    {rank=same; user_db point_db market_db notif_db}
+}

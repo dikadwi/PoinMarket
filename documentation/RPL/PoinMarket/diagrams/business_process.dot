@@ -1,0 +1,76 @@
+digraph PoinMarket_Business_Process {
+    rankdir=TB;
+    node [shape=record, fontname="Arial"];
+    
+    subgraph cluster_point_management {
+        label="Manajemen Poin";
+        style=filled;
+        color=lightblue;
+        
+        point_award [label="Pemberian Poin"];
+        point_usage [label="Penggunaan Poin"];
+        point_admin [label="Pengelolaan Poin"];
+        
+        point_award -> point_usage;
+        point_usage -> point_admin;
+    }
+    
+    subgraph cluster_marketplace {
+        label="Marketplace";
+        style=filled;
+        color=lightgreen;
+        
+        product_mgmt [label="Manajemen Produk"];
+        transaction [label="Transaksi"];
+        inventory [label="Inventory"];
+        
+        product_mgmt -> transaction;
+        transaction -> inventory;
+    }
+    
+    subgraph cluster_consultation {
+        label="Sistem Konsultasi";
+        style=filled;
+        color=lightpink;
+        
+        booking [label="Booking Konsultasi"];
+        consultation [label="Pelaksanaan Konsultasi"];
+        feedback [label="Feedback & Rating"];
+        
+        booking -> consultation;
+        consultation -> feedback;
+    }
+    
+    subgraph cluster_badge {
+        label="Badge & Rewards";
+        style=filled;
+        color=lightyellow;
+        
+        badge_mgmt [label="Manajemen Badge"];
+        rewards [label="Sistem Rewards"];
+        achievement [label="Pencapaian"];
+        
+        badge_mgmt -> achievement;
+        achievement -> rewards;
+    }
+    
+    subgraph cluster_reporting {
+        label="Reporting & Analytics";
+        style=filled;
+        color=lightgrey;
+        
+        analytics [label="Performance Analytics"];
+        reports [label="Report Generation"];
+        monitoring [label="System Monitoring"];
+        
+        analytics -> reports;
+        monitoring -> reports;
+    }
+    
+    // Inter-cluster relationships
+    point_usage -> transaction;
+    transaction -> analytics;
+    consultation -> analytics;
+    achievement -> analytics;
+    point_admin -> reports;
+}

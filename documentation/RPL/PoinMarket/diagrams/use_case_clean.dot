@@ -1,0 +1,142 @@
+digraph PoinMarket_Use_Case {
+    rankdir=LR;
+    splines=polyline;
+    nodesep=0.5;
+    ranksep=0.7;
+    
+    // Node styling
+    node [
+        fontname="Arial",
+        fontsize=10,
+        margin="0.3,0.1"
+    ]
+    
+    // Edge styling
+    edge [
+        fontname="Arial",
+        fontsize=8,
+        len=1.5
+    ]
+    
+    // Actors
+    node [shape=box, style=filled, fillcolor=lightgrey]
+    superadmin [label="Superadmin"]
+    admin [label="Admin"]
+    dosen [label="Dosen"]
+    mahasiswa [label="Mahasiswa"]
+    
+    // Use Cases
+    node [shape=ellipse, style=filled, fillcolor=white]
+    
+    // Authentication Use Cases
+    login [label="Login"]
+    logout [label="Logout"]
+    manage_profile [label="Manage\nProfile"]
+    
+    // Superadmin Use Cases
+    manage_users [label="Manage\nUsers"]
+    system_config [label="System\nConfiguration"]
+    manage_roles [label="Manage\nRoles"]
+    monitor_system [label="Monitor\nSystem"]
+    
+    // Admin Use Cases
+    manage_products [label="Manage\nProducts"]
+    manage_orders [label="Manage\nOrders"]
+    manage_inventory [label="Manage\nInventory"]
+    generate_reports [label="Generate\nReports"]
+    
+    // Dosen Use Cases
+    manage_points [label="Manage\nPoints"]
+    manage_badges [label="Manage\nBadges"]
+    evaluate_students [label="Evaluate\nStudents"]
+    manage_consultation [label="Manage\nConsultation"]
+    
+    // Mahasiswa Use Cases
+    view_wallet [label="View\nWallet"]
+    shop_market [label="Shop in\nMarketplace"]
+    book_consult [label="Book\nConsultation"]
+    view_badges [label="View\nBadges"]
+    transfer_points [label="Transfer\nPoints"]
+    
+    // Common Use Cases
+    view_notifications [label="View\nNotifications"]
+    search_system [label="Search"]
+    
+    // Relationships - Authentication
+    edge [color="#2E86C1"]
+    {superadmin admin dosen mahasiswa} -> login
+    {superadmin admin dosen mahasiswa} -> logout
+    {superadmin admin dosen mahasiswa} -> manage_profile
+    
+    // Relationships - Superadmin
+    edge [color="#27AE60"]
+    superadmin -> manage_users
+    superadmin -> system_config
+    superadmin -> manage_roles
+    superadmin -> monitor_system
+    
+    // Relationships - Admin
+    edge [color="#E67E22"]
+    admin -> manage_products
+    admin -> manage_orders
+    admin -> manage_inventory
+    admin -> generate_reports
+    
+    // Relationships - Dosen
+    edge [color="#8E44AD"]
+    dosen -> manage_points
+    dosen -> manage_badges
+    dosen -> evaluate_students
+    dosen -> manage_consultation
+    
+    // Relationships - Mahasiswa
+    edge [color="#E74C3C"]
+    mahasiswa -> view_wallet
+    mahasiswa -> shop_market
+    mahasiswa -> book_consult
+    mahasiswa -> view_badges
+    mahasiswa -> transfer_points
+    
+    // Common Relationships
+    edge [color="#95A5A6"]
+    {superadmin admin dosen mahasiswa} -> view_notifications
+    {superadmin admin dosen mahasiswa} -> search_system
+    
+    // Include Relationships
+    edge [style=dashed, color="#2C3E50"]
+    shop_market -> view_wallet [label="<<include>>"]
+    transfer_points -> view_wallet [label="<<include>>"]
+    manage_orders -> manage_inventory [label="<<include>>"]
+    manage_badges -> evaluate_students [label="<<include>>"]
+    
+    // Extend Relationships
+    edge [style=dashed, color="#C0392B"]
+    generate_reports -> manage_inventory [label="<<extend>>"]
+    manage_consultation -> evaluate_students [label="<<extend>>"]
+    
+    // Layout Adjustments
+    {rank=same; superadmin admin dosen mahasiswa}
+    {rank=same; login logout manage_profile}
+    {rank=same; view_notifications search_system}
+    
+    // Subgraph for better organization
+    subgraph cluster_0 {
+        style=invis;
+        {rank=same; manage_users system_config manage_roles monitor_system}
+    }
+    
+    subgraph cluster_1 {
+        style=invis;
+        {rank=same; manage_products manage_orders manage_inventory generate_reports}
+    }
+    
+    subgraph cluster_2 {
+        style=invis;
+        {rank=same; manage_points manage_badges evaluate_students manage_consultation}
+    }
+    
+    subgraph cluster_3 {
+        style=invis;
+        {rank=same; view_wallet shop_market book_consult view_badges transfer_points}
+    }
+}

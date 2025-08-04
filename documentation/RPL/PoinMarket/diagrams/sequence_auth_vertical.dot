@@ -1,0 +1,170 @@
+digraph sequence_auth {
+    rankdir=TB;
+    splines=polyline;
+    nodesep=0.6;
+    ranksep=0.4;
+    
+    node [shape=box, style=filled, fillcolor=white, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9, dir=forward];
+
+    // Participants on top level
+    subgraph cluster_top {
+        rank=same;
+        style=invis;
+        
+        user [label="User"];
+        auth_ui [label="Auth UI"];
+        auth_controller [label="Auth\nController"];
+        user_model [label="User\nModel"];
+        database [label="Database"];
+        mailer [label="Email\nService"];
+    }
+
+    // Registration Flow - Level 1
+    subgraph cluster_reg1 {
+        rank=same;
+        style=invis;
+        reg1_start [shape=point, style=invis];
+        reg1_end [shape=point, style=invis];
+        user -> auth_ui [label="1. Register(email, password)"];
+    }
+
+    // Registration Flow - Level 2
+    subgraph cluster_reg2 {
+        rank=same;
+        style=invis;
+        reg2_start [shape=point, style=invis];
+        reg2_end [shape=point, style=invis];
+        auth_ui -> auth_controller [label="2. validateInput()"];
+    }
+
+    // Registration Flow - Level 3
+    subgraph cluster_reg3 {
+        rank=same;
+        style=invis;
+        reg3_start [shape=point, style=invis];
+        reg3_end [shape=point, style=invis];
+        auth_controller -> user_model [label="3. createUser()"];
+    }
+
+    // Registration Flow - Level 4
+    subgraph cluster_reg4 {
+        rank=same;
+        style=invis;
+        reg4_start [shape=point, style=invis];
+        reg4_end [shape=point, style=invis];
+        user_model -> database [label="4. insert()"];
+    }
+
+    // Registration Flow - Level 5
+    subgraph cluster_reg5 {
+        rank=same;
+        style=invis;
+        reg5_start [shape=point, style=invis];
+        reg5_end [shape=point, style=invis];
+        database -> user_model [label="5. success"];
+    }
+
+    // Registration Flow - Level 6
+    subgraph cluster_reg6 {
+        rank=same;
+        style=invis;
+        reg6_start [shape=point, style=invis];
+        reg6_end [shape=point, style=invis];
+        auth_controller -> mailer [label="6. sendVerification()"];
+    }
+
+    // Registration Flow - Level 7
+    subgraph cluster_reg7 {
+        rank=same;
+        style=invis;
+        reg7_start [shape=point, style=invis];
+        reg7_end [shape=point, style=invis];
+        mailer -> user [label="7. verification email"];
+    }
+
+    // Registration Flow - Level 8
+    subgraph cluster_reg8 {
+        rank=same;
+        style=invis;
+        reg8_start [shape=point, style=invis];
+        reg8_end [shape=point, style=invis];
+        auth_controller -> auth_ui [label="8. redirect login"];
+    }
+
+    // Login Flow - Level 9
+    subgraph cluster_login1 {
+        rank=same;
+        style=invis;
+        login1_start [shape=point, style=invis];
+        login1_end [shape=point, style=invis];
+        user -> auth_ui [label="9. login(email, password)"];
+    }
+
+    // Login Flow - Level 10
+    subgraph cluster_login2 {
+        rank=same;
+        style=invis;
+        login2_start [shape=point, style=invis];
+        login2_end [shape=point, style=invis];
+        auth_ui -> auth_controller [label="10. authenticate()"];
+    }
+
+    // Login Flow - Level 11
+    subgraph cluster_login3 {
+        rank=same;
+        style=invis;
+        login3_start [shape=point, style=invis];
+        login3_end [shape=point, style=invis];
+        auth_controller -> user_model [label="11. findUser()"];
+    }
+
+    // Login Flow - Level 12
+    subgraph cluster_login4 {
+        rank=same;
+        style=invis;
+        login4_start [shape=point, style=invis];
+        login4_end [shape=point, style=invis];
+        user_model -> database [label="12. select()"];
+    }
+
+    // Login Flow - Level 13
+    subgraph cluster_login5 {
+        rank=same;
+        style=invis;
+        login5_start [shape=point, style=invis];
+        login5_end [shape=point, style=invis];
+        database -> user_model [label="13. user data"];
+    }
+
+    // Login Flow - Level 14
+    subgraph cluster_login6 {
+        rank=same;
+        style=invis;
+        login6_start [shape=point, style=invis];
+        login6_end [shape=point, style=invis];
+        user_model -> auth_controller [label="14. validate()"];
+    }
+
+    // Login Flow - Level 15
+    subgraph cluster_login7 {
+        rank=same;
+        style=invis;
+        login7_start [shape=point, style=invis];
+        login7_end [shape=point, style=invis];
+        auth_controller -> auth_ui [label="15. createSession()"];
+    }
+
+    // Login Flow - Level 16
+    subgraph cluster_login8 {
+        rank=same;
+        style=invis;
+        login8_start [shape=point, style=invis];
+        login8_end [shape=point, style=invis];
+        auth_ui -> user [label="16. redirect dashboard"];
+    }
+
+    // Edge colors
+    edge [color="#2E86C1"]; // Registration flow in blue
+    edge [color="#27AE60"]; // Login flow in green
+}

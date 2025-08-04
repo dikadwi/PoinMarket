@@ -127,9 +127,12 @@
                                         }
 
                                         if ($selectedBadge !== null) {
-                                            echo '<img src="data:image/png;base64,' . base64_encode($selectedBadge['badges']) . '" class="img-thumbnail rounded-square mb-3" width="85">';
+                                            echo '<img src="' . base_url('uploads/badges/' . $selectedBadge['badges']) . '" 
+                                                     alt="Badge" 
+                                                     class="img-fluid"
+                                                     style="max-width: 70px; height: auto;">';
                                         } else {
-                                            echo 'Tidak ada badge';
+                                            echo '<span class="badge badge-secondary">Tidak ada badge</span>';
                                         }
                                         ?>
                                     </div>
@@ -278,11 +281,14 @@
                                                         }
                                                     }
 
-                                                    if ($selectedBadge !== null) {
-                                                        echo '<img src="data:image/png;base64,' . base64_encode($selectedBadge['badges']) . '" width="50">';
-                                                    } else {
-                                                        echo 'Tidak ada badge';
-                                                    }
+                                                     if ($selectedBadge !== null) {
+                                                            echo '<img src="' . base_url('uploads/badges/' . $selectedBadge['badges']) . '" 
+                                                                     alt="Badge" 
+                                                                     class="img-fluid"
+                                                                     style="max-width: 70px; height: auto;">';
+                                                        } else {
+                                                            echo '<span class="badge badge-secondary">Tidak ada badge</span>';
+                                                        }
                                                     ?>
 
                                                 </td>

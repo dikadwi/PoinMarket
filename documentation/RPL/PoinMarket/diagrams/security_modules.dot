@@ -1,0 +1,72 @@
+digraph SecurityModules {
+    // Graph settings
+    rankdir=TB;
+    node [shape=record, fontname="Arial", style=filled];
+    
+    // Main label
+    label="PoinMarket Security Modules";
+    labelloc="t";
+    fontsize=20;
+    fontname="Arial";
+
+    // Authentication Security
+    subgraph cluster_auth {
+        label="Keamanan Autentikasi";
+        style=filled;
+        color=lightblue;
+        
+        login [label="{Login Security|{Password Hash|2FA|Protection}}", fillcolor=white];
+        session [label="{Session|{Token|Timeout|Tracking}}", fillcolor=white];
+        access [label="{Access Control|{RBAC|Permissions}}", fillcolor=white];
+    }
+
+    // Data Security
+    subgraph cluster_data {
+        label="Keamanan Data";
+        style=filled;
+        color=lightgreen;
+        
+        data_enc [label="{Enkripsi|{Data|File|Backup}}", fillcolor=white];
+        db_sec [label="{Database|{Protection|Backup}}", fillcolor=white];
+        validation [label="{Validasi|{Input|Upload}}", fillcolor=white];
+    }
+
+    // Application Security
+    subgraph cluster_app {
+        label="Keamanan Aplikasi";
+        style=filled;
+        color=lightpink;
+        
+        xss [label="{XSS Protection|{Sanitize|Encode}}", fillcolor=white];
+        csrf [label="{CSRF|{Token|Origin}}", fillcolor=white];
+        sql [label="{SQL Injection|{Prepared|Escape}}", fillcolor=white];
+    }
+
+    // Monitoring
+    subgraph cluster_monitor {
+        label="Monitoring";
+        style=filled;
+        color=lightyellow;
+        
+        logs [label="{Logs|{Error|Access|Audit}}", fillcolor=white];
+        alerts [label="{Alerts|{Security|System}}", fillcolor=white];
+    }
+
+    // Relationships
+    edge [color=grey, arrowhead=vee];
+    
+    login -> session;
+    session -> access;
+    
+    data_enc -> db_sec;
+    db_sec -> validation;
+    
+    xss -> csrf;
+    csrf -> sql;
+    
+    logs -> alerts;
+
+    // Cross-module
+    login -> logs [style=dashed];
+    db_sec -> alerts [style=dashed];
+}

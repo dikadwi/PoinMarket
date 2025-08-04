@@ -30,7 +30,7 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
             <th scope="col">Email</th>
             <th scope="col">Role</th>
             <th scope="col">Waktu Dibuat</th>
-            <th scope="col" colspan="2">Aksi</th>
+            <th scope="col" colspan="3">Aksi</th>
         </tr>
     </thead>
     <tbody>
@@ -96,7 +96,10 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
                 </td>
                 <?php if (in_groups('superadmin')) : ?>
                     <td>
-                        <button href="/User/delete_User/<?= $u->userid; ?>" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i><span class="d-none d-md-inline"> Hapus</span></button>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?php echo $u->userid; ?>"><i class="fas fa-edit"></i><span class="d-none d-md-inline"> Edit</span></button>
+                    </td>
+                    <td>
+                        <a href="/User/delete_User/<?= $u->userid; ?>" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i><span class="d-none d-md-inline"> Hapus</span></a>
                     </td>
                 <?php endif ?>
             </tr>
@@ -142,55 +145,162 @@ $end = min($offset + $limit, $total_data); // Data terakhir yang ditampilkan
     <div class="modal fade" id="modalDetail<?php echo $u->userid; ?>">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel"><strong>Profil</strong> </h5>
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-list mr-2"></i>Detail User
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
-                    <div class="col-lg-13">
-                        <div class="row g-0">
-                            <!-- <div class="col-md-4">
-                                    <img src="/img/admin.jpg" class="img-fluid rounded-start" alt="<?= $u->username; ?>">
-                                </div> -->
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <ul class="list-group list-group-flush">
-                                        <h5 class="card-title"><b>Nama :</b></h5>
-                                        <li class="list-group-item">
-                                            <h4><?= $u->username; ?></h4>
-                                        </li>
-                                        <h5 class="card-title"><b>Email :</b></h5>
-                                        <li class="list-group-item">
-                                            <h4><?= $u->email; ?></h4>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <span class="badge badge-<?php
-                                                                        if ($u->name === 'superadmin') {
-                                                                            echo 'success';
-                                                                        } elseif ($u->name === 'admin') {
-                                                                            echo 'warning';
-                                                                        } elseif ($u->name === 'dosen') {
-                                                                            echo 'danger';
-                                                                        } else {
-                                                                            echo 'info';
-                                                                        }
-                                                                        ?>">
-                                                <?php echo $u->name; ?>
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label><i class="fas fa-user mr-2"></i>Username</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
                             </div>
+                            <input type="text" class="form-control" value="<?= $u->username; ?>" readonly>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope mr-2"></i>Email</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-at"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $u->email; ?>" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-user-cog mr-2"></i>Role</label>
+                        <div class="alert <?= ($u->name === 'superadmin') ? 'alert-success' : 
+                                        (($u->name === 'admin') ? 'alert-warning' : 
+                                        (($u->name === 'dosen') ? 'alert-danger' : 'alert-info')); ?>" 
+                            role="alert">
+                            <i class="fas <?= ($u->name === 'superadmin') ? 'fa-user-shield' : 
+                                        (($u->name === 'admin') ? 'fa-user-cog' : 
+                                        (($u->name === 'dosen') ? 'fa-chalkboard-teacher' : 'fa-user')); ?>">
+                            </i>
+                            <?= ucfirst($u->name); ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-clock mr-2"></i>Waktu Dibuat</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= date('d F Y H:i', strtotime($u->created_at)); ?>" readonly>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <i class="fas fa-times mr-2"></i> Tutup
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+<?php endforeach; ?>
 
+<!-- Modal Box Edit -->
+<?php foreach ($users as $u) : ?>
+    <div class="modal fade" id="modalEdit<?php echo $u->userid; ?>">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-edit mr-2"></i>Edit User
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="/User/update_User" method="post">
+                    <div class="modal-body">
+                        <input type="hidden" name="user_id" value="<?= $u->userid; ?>">
+                        
+                        <div class="form-group">
+                            <label for="username<?= $u->userid; ?>">
+                                <i class="fas fa-user mr-2"></i>Username
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                </div>
+                                <input type="text" class="form-control" id="username<?= $u->userid; ?>" 
+                                    name="username" value="<?= $u->username; ?>" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email<?= $u->userid; ?>">
+                                <i class="fas fa-envelope mr-2"></i>Email
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-at"></i></span>
+                                </div>
+                                <input type="email" class="form-control" id="email<?= $u->userid; ?>" 
+                                    name="email" value="<?= $u->email; ?>" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="role<?= $u->userid; ?>">
+                                <i class="fas fa-user-cog mr-2"></i>Role
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                    <i class="fas <?= ($u->name === 'superadmin') ? 'fa-user-shield' : 
+                                        (($u->name === 'admin') ? 'fa-user-cog' : 
+                                        (($u->name === 'dosen') ? 'fa-chalkboard-teacher' : 'fa-user')); ?>"></i>
+                                    </span>
+                                </div>
+                                <select class="form-control" id="role<?= $u->userid; ?>" name="role_id" required>
+                                    <?php foreach ($roles as $role) : ?>
+                                        <option value="<?= $role->id ?>" <?= ($role->name === $u->name) ? 'selected' : '' ?>>
+                                            <?= ucfirst($role->name) ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password<?= $u->userid; ?>">
+                                <i class="fas fa-lock mr-2"></i>Password Baru (Opsional)
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input type="password" class="form-control" id="password<?= $u->userid; ?>" 
+                                    name="password" minlength="8">
+                            </div>
+                            <small class="form-text text-muted">
+                                <i class="fas fa-info-circle"></i> 
+                                Kosongkan jika tidak ingin mengubah password. Minimal 8 karakter jika diisi.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save mr-2"></i> Simpan
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            <i class="fas fa-times mr-2"></i> Batal
+                        </button>                       
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 <?php endforeach; ?>

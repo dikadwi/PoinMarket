@@ -1,0 +1,42 @@
+digraph PoinMarket_ComponentDiagram {
+    rankdir=TB;
+    compound=true;
+    node [shape=component];
+    
+    subgraph cluster_frontend {
+        label="Frontend Layer";
+        style=filled;
+        color=lightgrey;
+        
+        UI [label="User Interface\n(AdminLTE)"];
+        JS [label="JavaScript\n(jQuery/AJAX)"];
+        Templates [label="View Templates"];
+    }
+    
+    subgraph cluster_backend {
+        label="Backend Layer";
+        style=filled;
+        color=lightblue;
+        
+        Controllers [label="Controllers"];
+        Models [label="Models"];
+        Services [label="Business Logic"];
+    }
+    
+    subgraph cluster_data {
+        label="Data Layer";
+        style=filled;
+        color=lightgreen;
+        
+        Database [label="MySQL/MariaDB"];
+        Cache [label="Cache System"];
+    }
+    
+    // Connections
+    UI -> JS [label="events"];
+    JS -> Controllers [label="API calls"];
+    Controllers -> Services;
+    Services -> Models;
+    Models -> Database;
+    Services -> Cache;
+}

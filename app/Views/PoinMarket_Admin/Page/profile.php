@@ -44,13 +44,13 @@
                                             <!-- <h4><?= session('user_ip'); ?></h4> <!- Menampilkan alamat IP dari sesi -->
                                             <h4><?= $_SERVER['REMOTE_ADDR']; ?></h4>
                                         </li>                                        
-                                        <h5 class="card-title"><b>Token API :</b></h5>
+                                        <!-- <h5 class="card-title"><b>Token API :</b></h5>
                                         <li class="list-group-item">
                                             <input type="hidden" id="tokenInput" value="<?= $user->token; ?>">
                                             <button class="btn btn-primary btn-block" type="button" onclick="copyToken()">
                                                 <i class="fas fa-key"></i> Copy Token API
                                             </button>
-                                        </li>
+                                        </li> -->
                                         <li class="list-group-item">
                                             <!-- <span class="badge badge-<?= ($user->name == 'admin') ? 'success' : 'warning'; ?>"><?= $user->name; ?></span> -->
                                             <span class="badge badge-<?php

@@ -10,9 +10,10 @@
                     <div class="row">
                         <div class="col-md-6 text-center">
                             <!-- Kolom Gambar -->
-                            <?php if ($t['badges']) : ?>
-                                <img src="data:image/png;base64,<?= base64_encode($t['badges']); ?>" alt="Badge Image" width="100">
-                            <?php endif; ?>
+                            <img src="<?= base_url('uploads/badges/' . $t['badges']); ?>"
+                            class="card-img-top"
+                            alt="Gambar_Item"
+                            style="width: 100%; height: auto;">
                         </div>
                         <div class="col-md-6">
                             <!-- Kolom Teks -->

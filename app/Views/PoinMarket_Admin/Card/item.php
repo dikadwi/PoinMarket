@@ -133,15 +133,6 @@
                                     </button>
                                 </div>
                             <?php endif ?>
-                            <!-- Tombol Validasi -->
-                            <?php if (in_groups(['superadmin', 'admin'])) : ?>
-                                <div class="col-6 col-md-3 mb-2 mb-md-0">
-                                    <button type="button" class="btn btn-secondary btn-block d-flex flex-column align-items-center" data-toggle="modal" data-target="#modalValidasi<?= esc($t['id_transaksi']) ?>">
-                                        <i class="fas fa-check-circle"></i> <!-- Ikon di atas teks -->
-                                        <span class="d-none d-md-inline">Validasi</span> <!-- Teks di bawah ikon -->
-                                    </button>
-                                </div>
-                            <?php endif; ?>
                             <!-- Tombol Hapus (Hanya untuk SuperAdmin & Admin) -->
                             <?php if (in_groups('superadmin') || ($t['kode_jenis'] == '103' && in_groups('admin')) || (in_groups('dosen') && $t['kode_jenis'] != '103')) : ?>
                                 <div class="col-6 col-md-3 mb-2 mb-md-0">
@@ -164,69 +155,107 @@
     <div class="modal fade" id="modalDetail<?php echo $t['id_transaksi']; ?>">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel"><?= $t['nama_transaksi']; ?> </h5>
+            <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-list mr-2"></i>Detail Item #<?= $t['id_transaksi']; ?>
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body" style="max-height: 450px; overflow-y: auto;">
-                    <div class="col-lg-13">
-                        <div class="row g-0">
-                            <div class="col-md-12">
-                                <div class="card-body">
-                                    <ul class="list-group list-group-flush">
-                                        <h5 class="card-title"><b>Id Transaksi :</b></h5>
-                                        <li class="list-group-item">
-                                            <h4><?= $t['id_transaksi']; ?></h4>
-                                        </li>
-                                        <h5 class="card-title"><b>Nama Item :</b></h5>
-                                        <li class="list-group-item">
-                                            <h4><?= $t['nama_transaksi']; ?></h4>
-                                        </li>
-                                        <h5 class="card-title"><b>Rule Item :</b></h5>
-                                        <li class="list-group-item">
-                                            <h4><?= $t['detail']; ?></h4>
-                                        </li>
-                                        <h5 class="card-title"><b>Feedback :</b></h5>
-                                        <li class="list-group-item">
-                                            <h4><?= $t['keterangan']; ?></h4>
-                                        </li>
-                                        <!-- Untuk Poin Harga -->
-                                        <?php if (in_array($t['kode_jenis'], ['102', '103', '105', '106'])) : ?>
-                                            <h5 class="card-title"><b>
-                                                    <?php
-                                                    if ($t['kode_jenis'] == '103') {
-                                                        echo 'Penalti :';
-                                                    } else {
-                                                        echo 'Harga :';
-                                                    }
-                                                    ?>
-                                                </b></h5>
-                                            <li class="list-group-item">
-                                                <h4> <?= $t['poin_digunakan']; ?> Point </h4>
-                                            </li>
-                                        <?php endif; ?>
-                                        <!-- Reward Untuk Kode Jenis 101 dan 105 -->
-                                        <?php if (in_array($t['kode_jenis'], ['101', '105'])) : ?>
-                                            <h5 class="card-title"><b>Reward :</b></h5>
-                                            <li class="list-group-item">
-                                                <h4> <?= $t['poin_diberikan']; ?> Point</h4>
-                                            </li>
-                                        <?php endif; ?>
-                                    </ul>
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-hashtag mr-2"></i>Id Transaksi
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $t['id_transaksi']; ?>" readonly>
+                        </div>
+                    </div>  
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-hashtag mr-2"></i>Nama Item
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $t['nama_transaksi']; ?>" readonly>
+                        </div>
+                    </div>    
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-layer-group mr-2"></i>Rule Item
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $t['detail']; ?>" readonly>
+                        </div>
+                    </div>    
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-layer-group mr-2"></i>Feedback
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $t['keterangan']; ?>" readonly>
+                        </div>
+                    </div>  
+                    <?php if (in_array($t['kode_jenis'], ['102', '103', '105', '106'])) : ?>
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-wallet mr-2"></i>Point Harga
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-coins"></i></span>
                                 </div>
+                                <input type="text" class="form-control" value="<?= $t['poin_digunakan']; ?> Point" readonly>
                             </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
+
+                    <!-- Reward Untuk Kode Jenis 101 dan 105 -->
+                    <?php if (in_array($t['kode_jenis'], ['101', '105'])) : ?>
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-gift mr-2"></i>Reward
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-coins"></i></span>
+                                </div>
+                                <input type="text" class="form-control" value="<?= $t['poin_diberikan']; ?> Point" readonly>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-user mr-2"></i>Creator
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                            </div>
+                            <input type="text" class="form-control" value="<?= $t['creator']; ?>" readonly>
+                        </div>
+                    </div>  
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <i class="fas fa-times mr-2"></i> Tutup
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-
 <?php endforeach; ?>
 
 <!--Data Modal Box Edit Data-->
@@ -234,8 +263,10 @@
     <div class="modal fade" id="modalEdit<?php echo $t['id_transaksi']; ?>">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content ">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Edit <?= $title; ?> </h5>
+                <div class="modal-header bg-warning text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-edit mr-2"></i>Edit Item #<?= $t['id_transaksi']; ?>
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -243,109 +274,95 @@
 
                 <div class="modal-body" style="max-height: 450px; overflow-y: auto;">
                     <form action="/Jenis_Transaksi/update_Jenis/<?= $t['id_transaksi']; ?>" method="post" enctype="multipart/form-data">
-                        <div class="form-group ">
-                            <label for="id" class="col-form-label">Id Transaksi</label>
-                            <input type="number" class="form-control" id="id" name="id" value="<?php echo $t['id_transaksi'] ?>" required readonly>
-                        </div>
-                        <div class="form-group ">
-                            <label for="nama_transaksi" class="col-form-label">Nama Item</label>
-                            <input type="text" class="form-control" id="nama_transaksi" name="nama_transaksi" value="<?php echo $t['nama_transaksi'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                        </div>
-                        <div class="form-group ">
-                            <label for="detail" class="col-form-label">Rule Item</label>
-                            <input type="text" class="form-control" id="detail" name="detail" value="<?php echo $t['detail'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                        </div>
-                        <div class="form-group ">
-                            <label for="keterangan" class="col-form-label">Feedback</label>
-                            <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?php echo $t['keterangan'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                        </div>
-                        <!-- <div class="form-group ">
-                            <label for="poin_digunakan" class="col-form-label">Point</label>
-                            <input type="number" class="form-control" id="poin_digunakan" name="poin_digunakan" value="<?php echo $t['poin_digunakan'] ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
-                        </div> -->
-                        <!-- Menampilkan poin berdasarkan kode_jenis -->
-                        <?php if (in_array($t['kode_jenis'], [102, 103, 105, 106])): ?>
-                            <div class="form-group">
-                                <label for="poin_digunakan" class="col-form-label">Poin Harga</label>
-                                <input type="number" class="form-control" id="poin_digunakan" name="poin_digunakan" value="<?php echo $t['poin_digunakan']; ?>" required>
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-hashtag mr-2"></i>Nama Item
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-tag"></i></span>
                             </div>
-                        <?php endif; ?>
-                        <?php if (in_array($t['kode_jenis'], [101, 105])): ?>
-                            <div class="form-group">
-                                <label for="poin_diberikan" class="col-form-label">Poin Reward</label>
-                                <input type="number" class="form-control" id="poin_diberikan" name="poin_diberikan" value="<?php echo isset($t['poin_diberikan']) ? $t['poin_diberikan'] : ''; ?>" required>
+                            <input type="text" class="form-control" id="nama_transaksi" name="nama_transaksi" value="<?= $t['nama_transaksi']; ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+                        </div>
+                    </div>    
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-layer-group mr-2"></i>Rule Item
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
                             </div>
-                        <?php endif; ?>
+                            <input type="text" class="form-control" id="detail" name="detail" value="<?= $t['detail']; ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+                        </div>
+                    </div>    
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-layer-group mr-2"></i>Feedback
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                            </div>
+                            <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?= $t['keterangan']; ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+                        </div>
+                    </div>   
+                    <?php if (in_array($t['kode_jenis'], ['102', '103', '105', '106'])) : ?>
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-wallet mr-2"></i>Point Harga
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-coins"></i></span>
+                                </div>
+                                <input type="text" class="form-control" id="poin_digunakan" name="poin_digunakan" value="<?= $t['poin_digunakan']; ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <!-- Reward Untuk Kode Jenis 101 dan 105 -->
+                    <?php if (in_array($t['kode_jenis'], ['101', '105'])) : ?>
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-gift mr-2"></i>Reward
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-coins"></i></span>
+                                </div>
+                                <input type="text" class="form-control" id="poin_diberikan" name="poin_diberikan" value="<?= $t['poin_diberikan']; ?>" required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong')">
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
                         <div class="form-group ">
                             <label for="gambar" class="col-form-label">Gambar</label>
                             <img src="<?= base_url('uploads/' . $t['gambar']); ?>" alt="Gambar" width="100" height="100">
                             <input type="hidden" name="gambar_lama" value="<?= $t['gambar']; ?>">
                             <input type="file" class="form-control" id="gambar" name="gambar">
                         </div>
-                        <?php if (in_groups(['superadmin'])) : ?>
-                            <div class="form-group ">
-                                <label for="creator" class="col-form-label">Creator</label>
-                                <input type="text" class="form-control" id="creator" name="creator" value="<?php echo $t['creator'] ?>">
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-user mr-2"></i>Creator
+                            </label>
+                            <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
                             </div>
-                        <?php else : ?>
-                            <input type="hidden" name="creator" value="<?php echo $t['creator'] ?>">
-                        <?php endif; ?>
+                            <input type="text" class="form-control" value="<?= $t['creator']; ?>" readonly>
+                        </div>
+                    </div>  
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Update</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save mr-2"></i> Simpan 
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <i class="fas fa-times mr-2"></i> Batal
+                    </button>
+                </div>  
             </div>
             </form>
-        </div>
-    </div>
-<?php endforeach ?>
-
-<!-- Modal Validasi -->
-<?php foreach ($transaksi as $t) : ?>
-    <div class="modal fade" id="modalValidasi<?= esc($t['id_transaksi']) ?>" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalEditLabel">Validasi Item</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="<?= base_url('/Marketplace/validasi') ?>" method="post">
-                        <input type="hidden" name="id_transaksi" value="<?= esc($t['id_transaksi']) ?>">
-
-                        <div class="form-group">
-                            <label for="nama_transaksi">Nama Item</label>
-                            <input type="text" class="form-control" id="nama_transaksi" name="nama_transaksi" value="<?= esc($t['nama_transaksi']) ?>" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="detail">Rule Item</label>
-                            <input type="text" class="form-control" id="detail" name="detail" value="<?= esc($t['detail']) ?>" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="keterangan">Feedback</label>
-                            <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?= esc($t['keterangan']) ?>" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="poin_digunakan">Point Harga</label>
-                            <input type="number" class="form-control" id="poin_digunakan" name="poin_digunakan" value="<?= esc($t['poin_digunakan']) ?>" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="valid">Status Validasi</label>
-                            <select class="form-control" id="valid" name="valid">
-                                <option value="Validasi" <?= ($t['valid'] == 'Validasi') ? 'selected' : '' ?>>Validasi</option>
-                                <option value="Tidak" <?= ($t['valid'] == 'Tidak') ? 'selected' : '' ?>>Tidak</option>
-                            </select>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-danger">Validasi</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
 <?php endforeach ?>

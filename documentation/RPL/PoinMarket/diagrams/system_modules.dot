@@ -1,0 +1,105 @@
+digraph SystemModules {
+    // Graph settings
+    rankdir=TB;
+    compound=true;
+    node [shape=record, fontname="Arial", style=filled];
+    
+    // Main label
+    label="PoinMarket System Modules";
+    labelloc="t";
+    fontsize=20;
+    fontname="Arial";
+
+    // User Management Module
+    subgraph cluster_user {
+        label="Modul Manajemen User";
+        style=filled;
+        color=lightblue;
+        
+        user_auth [label="{Autentikasi|{Login/Logout|Reset Password|Remember Me}}", fillcolor=white];
+        user_roles [label="{Role Management|{Admin|Dosen|Mahasiswa}}", fillcolor=white];
+        user_profile [label="{Profil User|{Info Pribadi|Foto|Settings}}", fillcolor=white];
+        access_control [label="{Access Control|{Permissions|Menu Access|Features}}", fillcolor=white];
+    }
+
+    // Point Management Module
+    subgraph cluster_point {
+        label="Modul Manajemen Poin";
+        style=filled;
+        color=lightgreen;
+        
+        point_wallet [label="{Wallet|{Saldo Poin|History|Analytics}}", fillcolor=white];
+        point_transaction [label="{Transaksi|{Reward|Misi|Pembelian|Hukuman}}", fillcolor=white];
+        point_validation [label="{Validasi|{Approval|Rejection|Review}}", fillcolor=white];
+        point_report [label="{Laporan|{Statistik|Export|Filter}}", fillcolor=white];
+    }
+
+    // Market Module
+    subgraph cluster_market {
+        label="Modul Market";
+        style=filled;
+        color=lightpink;
+        
+        market_catalog [label="{Katalog|{Produk|Kategori|Search}}", fillcolor=white];
+        market_cart [label="{Keranjang|{Add/Remove|Checkout|Calculate}}", fillcolor=white];
+        market_order [label="{Order|{Processing|History|Status}}", fillcolor=white];
+        market_inventory [label="{Inventory|{Stock|Update|Alert}}", fillcolor=white];
+    }
+
+    // Consultation Module
+    subgraph cluster_consultation {
+        label="Modul Konsultasi";
+        style=filled;
+        color=lightyellow;
+        
+        consult_schedule [label="{Jadwal|{Booking|Calendar|Availability}}", fillcolor=white];
+        consult_session [label="{Sesi|{Chat|Video|Notes}}", fillcolor=white];
+        consult_history [label="{Riwayat|{Records|Feedback|Rating}}", fillcolor=white];
+        consult_payment [label="{Pembayaran|{Point Cost|Confirmation|Receipt}}", fillcolor=white];
+    }
+
+    // Notification Module
+    subgraph cluster_notification {
+        label="Modul Notifikasi";
+        style=filled;
+        color=lightgrey;
+        
+        notif_realtime [label="{Real-time|{WebSocket|Push|Alert}}", fillcolor=white];
+        notif_email [label="{Email|{Template|Queue|Tracking}}", fillcolor=white];
+        notif_history [label="{History|{Read/Unread|Archive|Delete}}", fillcolor=white];
+        notif_settings [label="{Settings|{Preferences|Channels|Frequency}}", fillcolor=white];
+    }
+
+    // Relationships
+    edge [color=grey, arrowhead=vee];
+    
+    // User relationships
+    user_auth -> user_roles;
+    user_roles -> user_profile;
+    user_roles -> access_control;
+
+    // Point relationships
+    point_wallet -> point_transaction;
+    point_transaction -> point_validation;
+    point_validation -> point_report;
+
+    // Market relationships
+    market_catalog -> market_cart;
+    market_cart -> market_order;
+    market_order -> market_inventory;
+
+    // Consultation relationships
+    consult_schedule -> consult_session;
+    consult_session -> consult_history;
+    consult_payment -> consult_history;
+
+    // Notification relationships
+    notif_realtime -> notif_history;
+    notif_email -> notif_history;
+    notif_history -> notif_settings;
+
+    // Cross-module relationships
+    point_transaction -> market_order [style=dashed];
+    point_transaction -> consult_payment [style=dashed];
+    user_profile -> notif_settings [style=dashed];
+}

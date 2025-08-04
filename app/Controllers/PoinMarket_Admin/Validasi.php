@@ -59,7 +59,7 @@ class Validasi extends BaseController
 
         $data = [
             'username' => $session->get('username'),
-            'title' => 'Validasi',
+            'title' => 'Validasi Pesanan',
             // 'data_transaksi' => $this->DataTransaksiModel->getDataTransaksi(),
             'data_transaksi' => $datatransaksi_user,
             // 'data_transaksi' => $data_transaksi, // Hanya data transaksi yang validasi "Belum"
@@ -70,7 +70,7 @@ class Validasi extends BaseController
             'topMenuPages' => $topMenuPages,
             'sideMenuPages' => $sideMenuPages,
         ];
-        return view('PoinMarket_Admin/Page/validasi', $data);
+        return view('PoinMarket_Admin/Page/validasi_pesanan', $data);
     }
 
     // Mengambil semua data transaksi
@@ -80,6 +80,7 @@ class Validasi extends BaseController
         return $this->response->setJSON($data_transaksi);
     }
 
+    // hanya kirim notifikasi ke creator
     public function validasiTransaksi($id_transaksi)
     {
         // Ambil data transaksi berdasarkan id_transaksi yang diberikan
@@ -100,27 +101,76 @@ class Validasi extends BaseController
                 case '101': // Reward
                 case '105': // Misi
                     // Update status validasi menjadi 'Sudah' dan claim menjadi 'Belum'
+                    // karena poin harus diklaim dulu oleh mahasiswa
                     $this->DataTransaksiModel->update($id_transaksi, [
                         'validation' => 'Sudah',
                         'claim' => 'Belum'
                     ]);
                     break;
-                // Hanya update status validasi, tidak mengurangi poin
+
                 case '102': // Pembelian
                 case '106': // Konsultasi
+                    // Update status validasi menjadi 'Sudah'
+                    $this->DataTransaksiModel->update($id_transaksi, [
+                        'validation' => 'Sudah'
+                    ]);
                     break;
+
                 case '103': // Punishment
-                    // Update status validasi menjadi 'Sudah' dan lakukan pengurangan poin
+                    // Update status validasi menjadi 'Sudah' dan claim menjadi 'Sudah'
+                    // dan langsung kurangi poin mahasiswa
                     $this->DataTransaksiModel->update($id_transaksi, [
                         'validation' => 'Sudah',
                         'claim' => 'Sudah'
                     ]);
-                     // Ambil data mahasiswa berdasarkan npm
+                    // Ambil data mahasiswa berdasarkan npm
                     $npm = $transaksiData['npm'];
                     $mahasiswaData = $this->MahasiswaModel->where('npm', $npm)->first();
                     $poin = (int)$transaksiData['poin_digunakan'];
+                    // Kurangi poin mahasiswa
                     $this->MahasiswaModel->where('npm', $npm)->set('point', 'point - ' . $poin, false)->update();
                     break;
+
+                default:
+                    // Untuk jenis transaksi lain, tetap update status validasi
+                    $this->DataTransaksiModel->update($id_transaksi, [
+                        'validation' => 'Sudah',
+                        'claim' => 'Belum'
+                    ]);
+                    break;
+            }
+
+            // Kirim notifikasi setelah validasi sukses
+            try {
+                // Load NotificationModel
+                $notificationModel = new \App\Models\NotificationModel();
+                
+                // Inisialisasi database connection
+                $db = \Config\Database::connect();
+
+                // Get creator berdasarkan created_by dari transaksi
+                $creator = $db->table('users')
+                    ->select('users.id, users.username')
+                    ->where('username', $transaksiData['creator'])
+                    ->get()
+                    ->getRowArray();
+
+                if ($creator) {
+                    $notificationModel->insert([
+                        'user_id' => $creator['id'],
+                        'title' => 'Transaksi',
+                        'message' => "Transaksi telah divalidasi:\nNPM: {$transaksiData['npm']}\n" . 
+                                   ($transaksiData['poin_diberikan'] ? "Poin diberikan: {$transaksiData['poin_diberikan']}" : 
+                                   "Poin digunakan: {$transaksiData['poin_digunakan']}"),
+                        'reference_id' => $id_transaksi,
+                        'type' => 'transaksi',
+                        'is_read' => 0,
+                        'created_at' => \CodeIgniter\I18n\Time::now('Asia/Jakarta')->format('Y-m-d H:i:s')
+                    ]);
+                }
+            } catch (\Exception $e) {
+                // Log error notifikasi tapi tidak mengganggu proses validasi
+                log_message('error', 'Gagal mengirim notifikasi validasi: ' . $e->getMessage());
             }
     
             // Set flash data untuk pesan sukses
@@ -137,6 +187,35 @@ class Validasi extends BaseController
             $npm = $transaksiData['npm'];
             $poinDigunakan = (int)$transaksiData['poin_digunakan'];
             $this->MahasiswaModel->where('npm', $npm)->set('point', 'point + ' . $poinDigunakan, false)->update();
+
+            // Kirim notifikasi penolakan validasi
+            try {
+                $notificationModel = new \App\Models\NotificationModel();
+                $db = \Config\Database::connect();
+
+                // Get creator berdasarkan created_by dari transaksi
+                $creator = $db->table('users')
+                    ->select('users.id')
+                    ->where('username', $transaksiData['creator'])
+                    ->get()
+                    ->getRowArray();
+
+                if ($creator) {
+                    $notificationModel->insert([
+                        'user_id' => $creator['id'],
+                        'title' => 'Transaksi Tidak Divalidasi',
+                        'message' => "Transaksi Anda tidak divalidasi.\nNPM: {$npm}\n" .
+                                   "Poin dikembalikan: {$poinDigunakan}",
+                        'reference_id' => $id_transaksi,
+                        'type' => 'peringatan',
+                        'is_read' => 0,
+                        'created_at' => \CodeIgniter\I18n\Time::now('Asia/Jakarta')->format('Y-m-d H:i:s')
+                    ]);
+                }
+            } catch (\Exception $e) {
+                log_message('error', 'Gagal mengirim notifikasi penolakan: ' . $e->getMessage());
+            }
+
             session()->setFlashdata('gagal1', 'Transaksi tidak divalidasi.');
     
         } else {
@@ -159,58 +238,4 @@ class Validasi extends BaseController
             return $this->response->setJSON(['status' => 'error', 'message' => 'Transaksi tidak ditemukan.']);
         }
     }
-
-    // // Fungsi untuk memvalidasi transaksi
-    // public function validasiTransaksi($id_transaksi)
-    // {
-    //     // Ambil data transaksi berdasarkan id_transaksi yang diberikan
-    //     $transaksiData = $this->DataTransaksiModel->find($id_transaksi);
-
-    //     // Pastikan transaksi ditemukan dan status validasi masih 'Belum'
-    //     if ($transaksiData && $transaksiData['validation'] == 'Belum') {
-    //         // Ambil informasi mahasiswa
-    //         $mahasiswaData = $this->MahasiswaModel->where('npm', $transaksiData['npm'])->first();
-
-    //         // Pastikan mahasiswa ditemukan
-    //         if ($mahasiswaData) {
-    //             $totalPoinMahasiswa = $mahasiswaData['point'];
-    //             $poin_digunakan = $transaksiData['poin_digunakan'];
-    //             $jenis_transaksi = $transaksiData['jenis_transaksi'];
-
-    //             // Update status validasi menjadi 'Tervalidasi'
-    //             $this->DataTransaksiModel->update($id_transaksi, ['validation' => 'Sudah']);
-
-    //             // Cek jenis transaksi dan lakukan perubahan poin
-    //             if ($jenis_transaksi == '101') {  // Reward (Tambah Poin)
-    //                 $sisaPoin = $totalPoinMahasiswa + $poin_digunakan;
-    //             } elseif ($jenis_transaksi == '102' || $jenis_transaksi == '103') {  // Pembelian atau Punishment (Kurangi Poin)
-    //                 // Pastikan poin yang digunakan tidak melebihi total poin
-    //                 if ($poin_digunakan > $totalPoinMahasiswa) {
-    //                     session()->setFlashdata("gagal", "Poin yang digunakan melebihi poin yang tersedia.");
-    //                     return redirect()->back();
-    //                 }
-    //                 // Kurangi total poin mahasiswa dengan poin yang digunakan
-    //                 $sisaPoin = $totalPoinMahasiswa - $poin_digunakan;
-    //             } elseif ($jenis_transaksi == '105') {  // Misi Tambahan (Tambah Poin)
-    //                 // Tambahkan poin mahasiswa dengan jumlah poin yang digunakan
-    //                 $sisaPoin = $totalPoinMahasiswa + $poin_digunakan;
-    //             } else {
-    //                 session()->setFlashdata("gagal", "Jenis transaksi tidak valid.");
-    //                 return redirect()->back();
-    //             }
-
-    //             // Update poin mahasiswa setelah transaksi
-    //             $this->MahasiswaModel->update($mahasiswaData['id'], ['point' => $sisaPoin]);
-
-    //             session()->setFlashdata("sukses", "Transaksi berhasil divalidasi. Sisa poin: " . $sisaPoin);
-    //             return redirect()->back();
-    //         } else {
-    //             session()->setFlashdata("gagal", "Mahasiswa dengan NPM tersebut tidak ditemukan.");
-    //             return redirect()->back();
-    //         }
-    //     } else {
-    //         session()->setFlashdata("gagal", "Transaksi tidak valid atau sudah tervalidasi.");
-    //         return redirect()->back();
-    //     }
-    // }
 }

@@ -1,0 +1,36 @@
+digraph dfd_context {
+    rankdir=TB;
+    splines=spline;
+    nodesep=0.8;
+    ranksep=1.0;
+    
+    node [shape=circle, style=filled, fillcolor=lightblue, fontname="Arial", fontsize=11];
+    edge [fontname="Arial", fontsize=9, dir=forward];
+
+    // Main Process
+    poinmarket [label="PoinMarket\nSystem", width=2, height=2];
+
+    // External Entities
+    node [shape=box, fillcolor=lightgrey];
+    mahasiswa [label="Mahasiswa"];
+    dosen [label="Dosen"];
+    admin [label="Admin"];
+    superadmin [label="Superadmin"];
+
+    // Data Flows
+    edge [color="#2E86C1"];
+    mahasiswa -> poinmarket [label="- Login credentials\n- Profile updates\n- Product orders\n- Consultation bookings\n- Point redemptions"];
+    poinmarket -> mahasiswa [label="- Account status\n- Point balance\n- Order confirmations\n- Consultation schedule\n- Transaction history"];
+
+    edge [color="#27AE60"];
+    dosen -> poinmarket [label="- Login credentials\n- Point awards\n- Consultation schedule\n- Student evaluations"];
+    poinmarket -> dosen [label="- Student records\n- Consultation requests\n- Point distribution logs\n- Schedule confirmations"];
+
+    edge [color="#8E44AD"];
+    admin -> poinmarket [label="- Product management\n- Order processing\n- Transaction monitoring\n- User support"];
+    poinmarket -> admin [label="- Sales reports\n- Order notifications\n- Inventory status\n- User activities"];
+
+    edge [color="#E74C3C"];
+    superadmin -> poinmarket [label="- System configuration\n- User management\n- Role assignments\n- System monitoring"];
+    poinmarket -> superadmin [label="- System statistics\n- User analytics\n- Audit logs\n- Performance metrics"];
+}
